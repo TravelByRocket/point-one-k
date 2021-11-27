@@ -68,7 +68,7 @@ extension Project {
     }
 
     static var example: Project {
-        let dataController = DataController(inMemory: true)
+        let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
 
         let project = Project(context: viewContext)
@@ -78,7 +78,6 @@ extension Project {
         project.creationDate = Date()
 
         return project
-
     }
 
     var label: LocalizedStringKey {
