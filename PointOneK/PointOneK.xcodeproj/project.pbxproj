@@ -53,7 +53,7 @@
 		2F8B9D282751CF0A00E2CC3C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PointOneK.entitlements; sourceTree = "<group>"; };
 		2F8B9D312751CF5E00E2CC3C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2F8B9D332751CF6900E2CC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2F8B9D332751CF6900E2CC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F8B9D352751CFE200E2CC3C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 		2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		2F8B9D412751D0D800E2CC3C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -125,13 +125,10 @@
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
-				2F8B9D3B2751D00800E2CC3C /* Configuration */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
-				2F8B9D392751D00400E2CC3C /* FilesOldToReplace */,
 				2F8B9D8B2751D37D00E2CC3C /* Localization */,
-				2F8B9D332751CF6900E2CC3C /* Info.plist */,
-				2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */,
-				2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */,
+				2F8B9D972751DAC500E2CC3C /* Configuration */,
+				2F8B9D392751D00400E2CC3C /* FilesOldToReplace */,
 				2F8B9D412751D0D800E2CC3C /* Colors.xcassets */,
 				2F8B9D252751CF0A00E2CC3C /* Assets.xcassets */,
 				2F8B9D272751CF0A00E2CC3C /* Preview Content */,
@@ -193,13 +190,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		2F8B9D3B2751D00800E2CC3C /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		2F8B9D3C2751D00A00E2CC3C /* Activities */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +230,16 @@
 				2F8B9D912751D3BF00E2CC3C /* Localizable.stringsdict */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		2F8B9D972751DAC500E2CC3C /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */,
+				2F8B9D332751CF6900E2CC3C /* Info.plist */,
+				2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,14 +518,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PointOneK/PointOneK.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PointOneK/Preview Content\"";
 				DEVELOPMENT_TEAM = CX9A4TZM67;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PointOneK/Info.plist;
+				INFOPLIST_FILE = PointOneK/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -549,14 +549,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PointOneK/PointOneK.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PointOneK/Preview Content\"";
 				DEVELOPMENT_TEAM = CX9A4TZM67;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PointOneK/Info.plist;
+				INFOPLIST_FILE = PointOneK/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
