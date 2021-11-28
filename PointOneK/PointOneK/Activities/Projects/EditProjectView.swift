@@ -41,8 +41,8 @@ struct EditProjectView: View {
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Project.colors, id: \.self, content: colorButton)
                 }
-                .padding(.vertical)
             }
+                .padding(.vertical)
             Section(
                 // swiftlint:disable:next line_length
                 footer: Text("Closing a project moves it from the Open to Closed tab; deleting it removes the project entirely.")) {
@@ -107,7 +107,11 @@ struct EditProjectView: View {
 }
 
 struct EditProjectView_Previews: PreviewProvider {
+    static var dataController = DataController.preview
+
     static var previews: some View {
         EditProjectView(project: Project.example)
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+            .environmentObject(dataController)
     }
 }

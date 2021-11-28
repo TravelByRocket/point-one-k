@@ -212,11 +212,12 @@
 		2F8B9D3A2751D00600E2CC3C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */,
+				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
+				2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */,
 				2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */,
 				2F8B9D462751D0F800E2CC3C /* Bundle-Decodable.swift */,
 				2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */,
-				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
-				2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */,
 				2F8B9D452751D0F800E2CC3C /* Sequence-Sorting.swift */,
 			);
 			path = Extensions;
@@ -238,6 +239,7 @@
 				2F8B9D5A2751D13E00E2CC3C /* ProjectsViewNew.swift */,
 				2F8B9D592751D13E00E2CC3C /* ProjectHeaderView.swift */,
 				2F8B9D562751D13E00E2CC3C /* EditProjectView.swift */,
+				2F1DA9DE2753E3350004EFD5 /* EditQualityView.swift */,
 				2F8B9D582751D13E00E2CC3C /* EditItemView.swift */,
 				2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */,
 				2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */,

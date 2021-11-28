@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import SwiftUI
 
 /// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
 /// requests, tracking awards, and dealing with sample data.
