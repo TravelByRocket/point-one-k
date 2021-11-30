@@ -11,6 +11,7 @@ struct EditProjectView: View {
     let project: Project
 
     @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
 
     @State private var title: String
@@ -36,7 +37,37 @@ struct EditProjectView: View {
                 TextField("Project name", text: $title.onChange(update))
                 TextField("Description of this project", text: $detail.onChange(update))
             }
-
+            Section(header: Text("Qualities")) {
+                ForEach(project.qualities?.allObjects as? [Quality] ?? []) {quality in
+                    NavigationLink {
+                        EditQualityView(quality: quality)
+                    } label: {
+                        HStack {
+                            Text(quality.qualityTitle)
+                            Spacer()
+                            InfoPill(letter: quality.qualityIndicator.first!, level: .constant(0))
+                        }
+                    }
+                }
+                .onDelete(perform: {offsets in
+                    let qualities = project.qualities?.allObjects as? [Quality] ?? []
+                    for offset in offsets {
+                        let quality = qualities[offset]
+                        dataController.delete(quality)
+                    }
+                    dataController.save()
+                })
+                Button {
+                    withAnimation {
+                        let quality = Quality(context: managedObjectContext)
+                        quality.project = project
+                        dataController.save()
+                    }
+                } label: {
+                    Label("Add New Quality", systemImage: "plus")
+                        .accessibilityLabel("Add project")
+                }
+            }
             Section(header: Text("Custom project color")) {
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Project.colors, id: \.self, content: colorButton)
