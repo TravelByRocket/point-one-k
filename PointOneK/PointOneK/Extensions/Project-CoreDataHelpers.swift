@@ -34,6 +34,14 @@ extension Project {
         items?.allObjects as? [Item] ?? []
     }
 
+    var projectQualities: [Quality] {
+        qualities?.allObjects as? [Quality] ?? []
+    }
+
+    var scorePossible: Int {
+        projectQualities.count * 4
+    }
+
     var projectItemsDefaultSorted: [Item] {
         projectItems.sorted {first, second in
             if first.completed == false {

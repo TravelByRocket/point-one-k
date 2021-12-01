@@ -24,6 +24,18 @@ extension Item {
         creationDate ?? Date()
     }
 
+    var itemScores: [Score] {
+        scores?.allObjects as? [Score] ?? []
+    }
+
+    var projectQualities: [Quality] {
+        project?.projectQualities ?? []
+    }
+
+    var scoreTotal: Int {
+        Int((itemScores.map {$0.value}).reduce(0, +))
+    }
+
     static var example: Item {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
@@ -36,5 +48,10 @@ extension Item {
         item.priority = 2
 
         return item
+    }
+
+    func hasScore(for quality: Quality) -> Bool {
+        let scoredQualities = itemScores.map { $0.quality }
+        return scoredQualities.contains(quality)
     }
 }

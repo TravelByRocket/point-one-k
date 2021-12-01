@@ -20,6 +20,10 @@ extension Quality {
         indicator ?? String(qualityTitle.first!) // Text() does not take Character
     }
 
+    var qualityScores: [Score] {
+        scores?.allObjects as? [Score] ?? []
+    }
+
     static var example: Quality {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
@@ -36,5 +40,12 @@ extension Quality {
         quality.indicator = ["a", "h", "r", "q", "n", "k", "y", "m", "w", "x"][Int.random(in: 0...9)]
 
         return quality
+    }
+
+    func score(for item: Item) -> Score? {
+        for score in qualityScores where score.item == item {
+            return score
+        }
+        return nil
     }
 }

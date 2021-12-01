@@ -115,6 +115,11 @@ struct ProjectsViewNew: View {
             let item = Item(context: managedObjectContext)
             item.project = project
             item.creationDate = Date()
+            for quality in project.projectQualities {
+                let score = Score(context: managedObjectContext)
+                score.item = item
+                score.quality = quality
+            }
             dataController.save()
         }
     }

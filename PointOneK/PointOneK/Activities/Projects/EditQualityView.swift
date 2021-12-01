@@ -56,6 +56,11 @@ struct EditQualityView: View {
                     }
                 }
             }
+            Section(header: Text("Scores")) {
+                ForEach(quality.qualityScores) {score in
+                    RowInlineScoringView(score: score)
+                }
+            }
         }
     }
 
@@ -69,5 +74,26 @@ struct EditQualityView: View {
 struct EditQualityView_Previews: PreviewProvider {
     static var previews: some View {
         EditQualityView(quality: Quality.example)
+    }
+}
+
+fileprivate struct RowInlineScoringView: View {
+    @State var value: Int
+    private let score: Score
+
+    init(score: Score) {
+        self.score = score
+        _value = State(initialValue: score.scoreValue)
+    }
+
+    var body: some View {
+        HStack {
+            Text(score.scoreItemTitle)
+            Spacer()
+            LevelSelector(value: $value)
+                .onChange(of: value) { newValue in
+                    score.value = Int16(newValue)
+                }
+        }
     }
 }

@@ -36,10 +36,16 @@ struct ItemRowView: View {
 
     var body: some View {
         NavigationLink(destination: EditItemView(item: item)) {
-            Label {
-                Text(item.itemTitle)
-            } icon: {
-                icon
+            HStack {
+                Label {
+                    Text(item.itemTitle)
+                } icon: {
+                    icon
+            }
+                Spacer()
+                ForEach(item.project?.qualities?.allObjects as? [Quality] ?? []) {quality in
+                    InfoPill(letter: quality.qualityIndicator.first!, level: .constant(3))
+                }
             }
         }
         .accessibilityLabel(label)
