@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InfoPill: View {
     let letter: Character
-    @Binding var level: Int // may not be necessary to have @Binding
+    let level: Int // may not be necessary to have @Binding
 
     var dots: String {
         var line  = ""
@@ -73,11 +73,11 @@ struct InfoPill: View {
 struct InfoPill_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            InfoPill(letter: "i", level: .constant(1))
-            InfoPill(letter: "e", level: .constant(2))
-            InfoPill(letter: "v", level: .constant(3))
-            InfoPill(letter: "p", level: .constant(4))
-            InfoPill(letter: "n", level: .constant(0))
+            InfoPill(letter: "i", level: 1)
+            InfoPill(letter: "e", level: 2)
+            InfoPill(letter: "v", level: 3)
+            InfoPill(letter: "p", level: 4)
+            InfoPill(letter: "n", level: 0)
         }.previewLayout(.sizeThatFits)
     }
 }

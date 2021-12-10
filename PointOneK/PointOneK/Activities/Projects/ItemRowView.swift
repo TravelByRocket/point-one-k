@@ -37,23 +37,25 @@ struct ItemRowView: View {
     var body: some View {
         NavigationLink(destination: EditItemView(item: item)) {
             HStack {
-                Label {
-                    Text(item.itemTitle)
-                } icon: {
-                    icon
-            }
+                Text(item.itemTitle)
+                    .lineLimit(1)
                 Spacer()
                 ForEach(item.project?.qualities?.allObjects as? [Quality] ?? []) {quality in
-                    InfoPill(letter: quality.qualityIndicator.first!, level: .constant(3))
+                    InfoPill(letter: quality.qualityIndicator.first!, level: 3)
                 }
             }
+            .background(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
         }
         .accessibilityLabel(label)
     }
 }
 
-struct ItemRow_Previews: PreviewProvider {
+struct ItemRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemRowView(project: Project.example, item: Item.example)
+        NavigationView {
+            List {
+                ItemRowView(project: Project.example, item: Item.example)
+            }
+        }
     }
 }

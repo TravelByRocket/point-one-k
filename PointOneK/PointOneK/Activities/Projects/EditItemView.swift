@@ -46,7 +46,7 @@ struct EditItemView: View {
                 Spacer()
             }
             .background(
-                BackgroundBar(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
+                BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
         )
             VStack(alignment: .leading) {
                 Text("Notes:")

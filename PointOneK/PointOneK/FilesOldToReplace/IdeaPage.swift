@@ -26,7 +26,7 @@ struct IdeaPage: View {
                 Spacer()
             }
             .background(
-                BackgroundBar(value: idea.impact+idea.effort+idea.vision+idea.profitability, max: 16)
+                BackgroundBarView(value: idea.impact+idea.effort+idea.vision+idea.profitability, max: 16)
         )
             VStack(alignment: .leading) {
                 Text("Notes:")
@@ -55,23 +55,5 @@ struct IdeaPage_Previews: PreviewProvider {
             IdeaPage(idea: Idea())
         }
         .environmentObject(Category())
-    }
-}
-
-struct BackgroundBar: View {
-    let value: Int
-    let max: Int
-
-    var body: some View {
-        GeometryReader {geo in
-            Rectangle()
-                .cornerRadius(3.0)
-                .padding(-5)
-                .frame(width: geo.size.width * CGFloat(value) / CGFloat(max), alignment: .leading)
-                .foregroundColor(.red)
-                .opacity(0.5)
-                .hueRotation(Angle(degrees: Double(360 * (value) / max)))
-                .animation(.easeInOut(duration: 0.1))
-        }
     }
 }

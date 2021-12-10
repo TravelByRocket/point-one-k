@@ -51,11 +51,11 @@ struct EditProjectView: View {
                         HStack {
                             Text(quality.qualityTitle)
                             Spacer()
-                            InfoPill(letter: quality.qualityIndicator.first!, level: .constant(0))
-                            InfoPill(letter: quality.qualityIndicator.first!, level: .constant(1))
-                            InfoPill(letter: quality.qualityIndicator.first!, level: .constant(2))
-                            InfoPill(letter: quality.qualityIndicator.first!, level: .constant(3))
-                            InfoPill(letter: quality.qualityIndicator.first!, level: .constant(4))
+                            InfoPill(letter: quality.qualityIndicator.first!, level: 0)
+                            InfoPill(letter: quality.qualityIndicator.first!, level: 1)
+                            InfoPill(letter: quality.qualityIndicator.first!, level: 2)
+                            InfoPill(letter: quality.qualityIndicator.first!, level: 3)
+                            InfoPill(letter: quality.qualityIndicator.first!, level: 4)
                         }
                     }
                 }

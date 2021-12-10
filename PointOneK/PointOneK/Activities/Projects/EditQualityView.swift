@@ -46,18 +46,18 @@ struct EditQualityView: View {
                 VStack {
                     VStack {
                         HStack {
-                            InfoPill(letter: indicator.first ?? "?", level: .constant(1))
-                            InfoPill(letter: indicator.first ?? "?", level: .constant(2))
+                            InfoPill(letter: indicator.first ?? "?", level: 1)
+                            InfoPill(letter: indicator.first ?? "?", level: 2)
                         }
                         HStack {
-                            InfoPill(letter: indicator.first ?? "?", level: .constant(3))
-                            InfoPill(letter: indicator.first ?? "?", level: .constant(4))
+                            InfoPill(letter: indicator.first ?? "?", level: 3)
+                            InfoPill(letter: indicator.first ?? "?", level: 4)
                         }
                     }
                 }
             }
             Section(header: Text("Scores")) {
-                ForEach(quality.qualityScores) {score in
+                ForEach(quality.qualityScores.sorted(by: \Score.scoreItemTitle)) {score in
                     RowInlineScoringView(score: score)
                 }
             }

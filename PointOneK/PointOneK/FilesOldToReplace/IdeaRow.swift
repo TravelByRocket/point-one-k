@@ -15,14 +15,14 @@ struct IdeaRow: View {
             Text(idea.name)
                 .lineLimit(1)
             Spacer()
-            Group {
-                InfoPill(letter: "i", level: $idea.impact)
-                InfoPill(letter: "e", level: $idea.effort)
-                InfoPill(letter: "v", level: $idea.vision)
-                InfoPill(letter: "p", level: $idea.profitability)
-            }
+//            Group {
+//                InfoPill(letter: "i", level: $idea.impact)
+//                InfoPill(letter: "e", level: $idea.effort)
+//                InfoPill(letter: "v", level: $idea.vision)
+//                InfoPill(letter: "p", level: $idea.profitability)
+//            }
         }
-        .background(BackgroundBar(value: idea.totalScore, max: 16))
+        .background(BackgroundBarView(value: idea.totalScore, max: 16))
     }
 }
 
