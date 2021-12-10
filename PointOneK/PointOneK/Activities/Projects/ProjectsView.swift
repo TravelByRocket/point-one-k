@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProjectsViewNew: View {
+struct ProjectsView: View {
     static let openTag: String? = "Open"
     static let closedTag: String = "Closed"
 
@@ -136,11 +136,11 @@ struct ProjectsViewNew: View {
     }
 }
 
-struct ProjectsViewNew_Previews: PreviewProvider {
+struct ProjectsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        ProjectsViewNew(showClosedProjects: false)
+        ProjectsView(showClosedProjects: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

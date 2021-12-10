@@ -41,7 +41,7 @@ struct ItemRowView: View {
                     .lineLimit(1)
                 Spacer()
                 ForEach(item.project?.qualities?.allObjects as? [Quality] ?? []) {quality in
-                    InfoPill(letter: quality.qualityIndicator.first!, level: 3)
+                    InfoPill(letter: quality.qualityIndicator.first!, level: quality.score(for: item)?.scoreValue ?? 0)
                 }
             }
             .background(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))

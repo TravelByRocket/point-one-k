@@ -32,7 +32,6 @@ struct EditItemView: View {
                 .font(.title)
             ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
                 RowInlineScoringView(quality: quality, item: item)
-//                ValueRow(title: quality.qualityTitle, value: .constant(Int(quality.score(for: item)?.scoreValue ?? 0)), helpInfo: quality.qualityNote)
             }
             Toggle("Completed", isOn: $completed.onChange(update))
             Picker("Priority Sort Group", selection: $priority.onChange(update)) {
@@ -80,6 +79,9 @@ struct EditItemView_Previews: PreviewProvider {
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }
+        List {
+            RowInlineScoringView(quality: Quality.example, item: Item.example)
+        }
     }
 }
 
@@ -97,16 +99,23 @@ fileprivate struct RowInlineScoringView: View {
     }
 
     var body: some View {
-        HStack {
-            Text(quality.qualityTitle)
-            Spacer()
-            LevelSelector(value: $value)
-                .onChange(of: value) { newValue in
-                    item.objectWillChange.send()
-                    if score != nil {
-                        score!.value = Int16(newValue)
+        DisclosureGroup {
+            Text(Quality.example.qualityNote)
+                .italic()
+                .font(.footnote)
+                .foregroundColor(.secondary)
+        } label: {
+            HStack {
+                Text(quality.qualityTitle)
+                Spacer()
+                LevelSelector(value: $value)
+                    .onChange(of: value) { newValue in
+                        item.objectWillChange.send()
+                        if score != nil {
+                            score!.value = Int16(newValue)
+                        }
                     }
-                }
+            }
         }
     }
 }
