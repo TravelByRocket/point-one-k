@@ -31,7 +31,7 @@ struct BackgroundBarView: View {
                 .foregroundColor(.red)
                 .opacity(0.5)
                 .hueRotation(hueAngle)
-                .animation(.easeInOut(duration: 0.1))
+                .animation(.easeInOut(duration: 0.1), value: value)
         }
     }
 
