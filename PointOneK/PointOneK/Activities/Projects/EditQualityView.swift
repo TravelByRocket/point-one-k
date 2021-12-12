@@ -77,7 +77,7 @@ struct EditQualityView_Previews: PreviewProvider {
     }
 }
 
-fileprivate struct RowInlineScoringView: View {
+private struct RowInlineScoringView: View {
     @State var value: Int
     private let score: Score
 

@@ -161,7 +161,6 @@ struct EditProjectView_Previews: PreviewProvider {
     }
 }
 
-
 //            Button {
 //                for item in project.projectItems {
 //                    for quality in qualities {

@@ -14,13 +14,12 @@ struct LevelSelector: View {
             ForEach(1...4, id: \.self) {index in
                 Button(
                     action: {
-                        withAnimation{
+                        withAnimation {
                             if value == index {
                                 value = 0
                             } else {
                                 value = index
                             }
-
                         }
                     },
                     label: {

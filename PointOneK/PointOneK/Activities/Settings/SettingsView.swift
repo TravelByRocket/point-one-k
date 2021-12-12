@@ -26,7 +26,7 @@ struct SettingsView: View {
                     confirmDeletion = true
                 }
                 .disabled(!enableDeleteButton)
-                .alert("Delete All Data" ,isPresented: $confirmDeletion) {
+                .alert("Delete All Data", isPresented: $confirmDeletion) {
                     Button(role: .cancel) {
                         //
                     } label: {

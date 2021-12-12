@@ -85,7 +85,7 @@ struct EditItemView_Previews: PreviewProvider {
     }
 }
 
-fileprivate struct RowInlineScoringView: View {
+private struct RowInlineScoringView: View {
     @State var value: Int
     private let quality: Quality
     private let item: Item
