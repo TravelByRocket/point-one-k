@@ -8,7 +8,7 @@
 import CoreData
 
 /// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
-/// requests, tracking awards, and dealing with sample data.
+/// requests, and dealing with sample data.
 class DataController: ObservableObject {
     /// The lone CloudKit container used to stare all our data
     let container: NSPersistentCloudKitContainer
@@ -68,7 +68,6 @@ class DataController: ObservableObject {
             let project = Project(context: viewContext)
             project.title = "Project \(i)"
             project.items = []
-            project.creationDate = Date()
             project.closed = Bool.random()
             project.detail = "Nothin in particular \(Int16.random(in: 1000...9999 ) )"
 
@@ -85,7 +84,6 @@ class DataController: ObservableObject {
                 let item = Item(context: viewContext)
                 item.title = "Item \(j)"
                 item.priority = Int16.random(in: 1...3)
-                item.creationDate = Date()
                 item.completed = Bool.random()
                 item.project = project
 
@@ -126,25 +124,5 @@ class DataController: ObservableObject {
 
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
-    }
-
-    func hasEarned(award: Award) -> Bool {
-        switch award.criterion {
-        case "items":
-            // returns true if they added a certain number of items
-            let fetchRequest: NSFetchRequest<Item> = NSFetchRequest(entityName: "Item")
-            let awardCount = count(for: fetchRequest)
-            return awardCount >= award.value
-        case "complete":
-            // returns true if they added a certain number of items
-            let fetchRequest: NSFetchRequest<Item> = NSFetchRequest(entityName: "Item")
-            fetchRequest.predicate = NSPredicate(format: "completed = true")
-            let awardCount = count(for: fetchRequest)
-            return awardCount >= award.value
-        default:
-            // an unknown award criterium; this should never happen
-//            fatalError("Unknown award criterion \(award.criterion)")
-            return false
-        }
     }
 }

@@ -15,15 +15,11 @@ extension Project {
         "Midnight", "Dark Gray", "Gray"]
 
     var projectTitle: String {
-        title ?? NSLocalizedString("New Project", comment: "Create a new project")
+        title ?? "What" //NSLocalizedString("New Project", comment: "Create a new project")
     }
 
     var projectColor: String {
         color ?? "Light Blue"
-    }
-
-    var projectCreationDate: Date {
-        creationDate ?? Date()
     }
 
     var projectDetail: String {
@@ -60,7 +56,7 @@ extension Project {
                 return false
             }
 
-            return first.itemCreationDate < second.itemCreationDate
+            return first.itemTitle < second.itemTitle
 
         }
     }
@@ -82,8 +78,25 @@ extension Project {
         let project = Project(context: viewContext)
         project.title = "Example Project"
         project.detail = "This is an example project"
-        project.closed = true
-        project.creationDate = Date()
+        project.closed = false
+
+        let quality = Quality(context: viewContext)
+        quality.title = "Fancy title"
+        quality.note = "notes"
+        quality.indicator = "a"
+        quality.project = project
+
+        let score = Score(context: viewContext)
+        score.value = 3
+        score.quality = quality
+
+        let item = Item(context: viewContext)
+        item.project = project
+        item.note = "item note"
+        item.title = "Sweet Item"
+        item.completed = false
+
+        score.item = item
 
         return project
     }
@@ -100,8 +113,6 @@ extension Project {
             return projectItemsDefaultSorted
         case .title:
             return projectItems.sorted(by: \Item.itemTitle)
-        case .creationDate:
-            return projectItems.sorted(by: \Item.itemCreationDate)
         }
     }
 }

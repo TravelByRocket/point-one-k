@@ -9,7 +9,7 @@ import Foundation
 
 extension Item {
     enum SortOrder {
-        case optimized, title, creationDate
+        case optimized, title
     }
 
     var itemTitle: String {
@@ -18,10 +18,6 @@ extension Item {
 
     var itemNote: String {
         note ?? ""
-    }
-
-    var itemCreationDate: Date {
-        creationDate ?? Date()
     }
 
     var itemScores: [Score] {
@@ -44,7 +40,6 @@ extension Item {
         item.title = "My Item"
         item.note = "This is my note"
         item.completed = false
-        item.creationDate = Date()
         item.priority = 2
 
         return item

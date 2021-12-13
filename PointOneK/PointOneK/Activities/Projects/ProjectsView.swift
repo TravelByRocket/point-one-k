@@ -24,9 +24,12 @@ struct ProjectsView: View {
     init(showClosedProjects: Bool) {
         self.showClosedProjects = showClosedProjects
 
-        projects = FetchRequest<Project>(entity: Project.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Project.creationDate, ascending: false)
-        ], predicate: NSPredicate(format: "closed = %d", showClosedProjects))
+        projects = FetchRequest<Project>(
+            entity: Project.entity(),
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \Project.title, ascending: true)
+            ],
+            predicate: NSPredicate(format: "closed = %d", showClosedProjects))
 
     }
 
@@ -93,7 +96,6 @@ struct ProjectsView: View {
             .actionSheet(isPresented: $showingSortOrder) {
                 ActionSheet(title: Text("Sort items"), message: nil, buttons: [
                     .default(Text("Optimized")) { sortOrder = .optimized},
-                    .default(Text("Creation Date")) { sortOrder = .creationDate},
                     .default(Text("Title")) { sortOrder = .title}
                 ])
             }
@@ -105,7 +107,6 @@ struct ProjectsView: View {
         withAnimation {
             let project = Project(context: managedObjectContext)
             project.closed = false
-            project.creationDate = Date()
             dataController.save()
         }
     }
@@ -114,7 +115,6 @@ struct ProjectsView: View {
         withAnimation {
             let item = Item(context: managedObjectContext)
             item.project = project
-            item.creationDate = Date()
             for quality in project.projectQualities {
                 let score = Score(context: managedObjectContext)
                 score.item = item
