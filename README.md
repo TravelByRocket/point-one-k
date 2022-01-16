@@ -10,12 +10,12 @@ Summarized:
 * Item has `[Score]` (one for each `Quality`)
 
 ### `Project`
-A Project is the highest level object created. It contains all of the scored Items a well as the relevant information for that specific grouping of items. 
+A Project is the highest level object created. It contains all of the scored Items a well as project-specific information and content that relates to all of the items together. 
 
 #### Attributes
-* `closed: Bool` (maybe `archive`)
+* `closed: Bool` (maybe change to `archive`)
 * `color: String`
-* `creationDate: Date` (only for learning purposes, delete later)
+* `creationDate: Date` (only for learning/tutorial purposes, delete later)
 * `detail: String` (notes or description)
 * `title: String`
 
@@ -27,36 +27,36 @@ A Project is the highest level object created. It contains all of the scored Ite
 The items in a project are scored on the criteria determined when a project is created. Items are compared to each other based on total score. For example, when scoring business ideas, each item is an idea within a same project.
 
 #### Attributes
-`completed: Bool`
-`creationDate: Date` (only for learning purposes, delete later)
-`note: String`
-`priority: Int16` (to group items when viewing a project, if desired)
-`title: String`
+* `completed: Bool`
+* `creationDate: Date` (only for learning purposes, delete later)
+* `note: String`
+* `priority: Int16` (to group items when viewing a project, if desired)
+* `title: String`
 
 #### Relationships
-`project: Project` (the project this item belongs to)
-`scores: [Score]` (the score for each quality described in the Project)
+* `project: Project` (the project this item belongs to)
+* `scores: [Score]` (the score for each quality described in the Project)
 
 ### `Score`
 The numeric score used for a quality
 
 #### Attributes
-`value: Int16`
+* `value: Int16`
 
 #### Relationships
-`item: Item`
-`quality: Quality`
+* `item: Item`
+* `quality: Quality`
 
 ### `Quality`
-The set of vectors in a project that each item will be scored along
+One attribute to score by. A set of qualities in a project are what each item will be scored by.
 
 #### Attributes
-`note: String` (option to include scoring guidance nnotes)
-`title: String` (name)
+* `note: String` (option to include scoring guidance nnotes)
+* `title: String` (name)
 
 #### Relationships
-`project: Project` (a project contains one set of qualities)
-`scores: [Score]` (the associated Score object for each item; this really only makes conceptual sense the other direction and this is the requisite reverse relationship)
+* `project: Project` (a project contains one set of qualities)
+* `scores: [Score]` (the associated Score object for each item; this really only makes conceptual sense the other direction and this is the requisite reverse relationship)
 
 ### Delete Rules
 #### Cascade
