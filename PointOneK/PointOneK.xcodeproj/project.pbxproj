@@ -607,7 +607,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2021.000.00;
+				MARKETING_VERSION = 2022.000.00;
 				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -638,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2021.000.00;
+				MARKETING_VERSION = 2022.000.00;
 				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

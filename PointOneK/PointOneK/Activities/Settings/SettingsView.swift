@@ -11,11 +11,18 @@ struct SettingsView: View {
     @State private var enableDeleteButton = false
     @State private var confirmDeletion = false
 
+    @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
+
     var body: some View {
         Form {
             Section {
                 Button {
-                    //
+                    let project = Project(context: managedObjectContext)
+                    project.title = "$100 Startup Ideas"
+                    for title in ["Ease", "Profitability", "Vision", "Impact"] {
+                        
+                    }
                 } label: {
                     Text("Add $100 Template")
                 }
@@ -46,7 +53,11 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    static var dataController = DataController.preview
+    
     static var previews: some View {
         SettingsView()
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+            .environmentObject(dataController)
     }
 }
