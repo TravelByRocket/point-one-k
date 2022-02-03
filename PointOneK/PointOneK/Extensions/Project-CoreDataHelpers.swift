@@ -38,26 +38,16 @@ extension Project {
         projectQualities.count * 4
     }
 
+    /// Priority and then Score and then Title
     var projectItemsDefaultSorted: [Item] {
         projectItems.sorted {first, second in
-            if first.completed == false {
-                if second.completed == true {
-                    return true
-                }
-            } else if first.completed == true {
-                if second.completed == false {
-                    return false
-                }
+            if first.priority != second.priority {
+                return first.priority > second.priority
+            } else if first.scoreTotal != second.scoreTotal {
+                return first.scoreTotal > second.scoreTotal
+            } else {
+                return first.itemTitle < second.itemTitle
             }
-
-            if first.priority > second.priority {
-                return true
-            } else if first.priority < second.priority {
-                return false
-            }
-
-            return first.itemTitle < second.itemTitle
-
         }
     }
 
@@ -113,6 +103,8 @@ extension Project {
             return projectItemsDefaultSorted
         case .title:
             return projectItems.sorted(by: \Item.itemTitle)
+        case .score:
+            return projectItems.sorted(by: \Item.scoreTotal).reversed()
         }
     }
 }

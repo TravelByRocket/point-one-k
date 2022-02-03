@@ -28,8 +28,10 @@ struct EditItemView: View {
 
     var body: some View {
         Form {
-            TextField("Title", text: $title.onChange(update))
-                .font(.title)
+            Section {
+                TextField("Title", text: $title.onChange(update))
+                    .font(.title)
+            }
             ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
                 RowInlineScoringView(quality: quality, item: item)
             }
@@ -78,9 +80,6 @@ struct EditItemView_Previews: PreviewProvider {
             EditItemView(item: Item.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
-        }
-        List {
-            RowInlineScoringView(quality: Quality.example, item: Item.example)
         }
     }
 }

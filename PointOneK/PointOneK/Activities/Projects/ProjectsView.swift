@@ -10,7 +10,7 @@ import SwiftUI
 struct ProjectsView: View {
     static let openTag: String? = "Open"
     static let closedTag: String = "Closed"
-    
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
@@ -96,6 +96,7 @@ struct ProjectsView: View {
             .actionSheet(isPresented: $showingSortOrder) {
                 ActionSheet(title: Text("Sort items"), message: nil, buttons: [
                     .default(Text("Optimized")) { sortOrder = .optimized},
+                    .default(Text("Score")) { sortOrder = .score},
                     .default(Text("Title")) { sortOrder = .title}
                 ])
             }
