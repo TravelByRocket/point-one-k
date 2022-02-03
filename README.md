@@ -1,5 +1,5 @@
 # $0.1k
-Now inteneded to make basic trade studies, it was originally developed to prioritize entrepreneurial projects in the style of the book ["The $100 Startup" by Chris Guillebeau](https://100startup.com)
+Now intended to make basic trade studies, it was originally developed to prioritize entrepreneurial projects in the style of the book ["The $100 Startup" by Chris Guillebeau](https://100startup.com)
 
 ## Data Model
 Some of the properties were carried over from the Ultimate Portfolio App as I learned all of the intended nuances, while also adding all of the proprties I needed for my specific project. 
