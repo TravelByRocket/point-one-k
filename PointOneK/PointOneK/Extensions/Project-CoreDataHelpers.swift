@@ -22,10 +22,6 @@ extension Project {
         color ?? "Light Blue"
     }
 
-    var projectCreationDate: Date {
-        creationDate ?? Date()
-    }
-
     var projectDetail: String {
         detail ?? ""
     }
@@ -34,26 +30,24 @@ extension Project {
         items?.allObjects as? [Item] ?? []
     }
 
+    var projectQualities: [Quality] {
+        qualities?.allObjects as? [Quality] ?? []
+    }
+
+    var scorePossible: Int {
+        projectQualities.count * 4
+    }
+
+    /// Priority and then Score and then Title
     var projectItemsDefaultSorted: [Item] {
         projectItems.sorted {first, second in
-            if first.completed == false {
-                if second.completed == true {
-                    return true
-                }
-            } else if first.completed == true {
-                if second.completed == false {
-                    return false
-                }
+            if first.priority != second.priority {
+                return first.priority > second.priority
+            } else if first.scoreTotal != second.scoreTotal {
+                return first.scoreTotal > second.scoreTotal
+            } else {
+                return first.itemTitle < second.itemTitle
             }
-
-            if first.priority > second.priority {
-                return true
-            } else if first.priority < second.priority {
-                return false
-            }
-
-            return first.itemCreationDate < second.itemCreationDate
-
         }
     }
 
@@ -74,8 +68,25 @@ extension Project {
         let project = Project(context: viewContext)
         project.title = "Example Project"
         project.detail = "This is an example project"
-        project.closed = true
-        project.creationDate = Date()
+        project.closed = false
+
+        let quality = Quality(context: viewContext)
+        quality.title = "Fancy title"
+        quality.note = "notes"
+        quality.indicator = "a"
+        quality.project = project
+
+        let score = Score(context: viewContext)
+        score.value = 3
+        score.quality = quality
+
+        let item = Item(context: viewContext)
+        item.project = project
+        item.note = "item note"
+        item.title = "Sweet Item"
+        item.completed = false
+
+        score.item = item
 
         return project
     }
@@ -92,8 +103,8 @@ extension Project {
             return projectItemsDefaultSorted
         case .title:
             return projectItems.sorted(by: \Item.itemTitle)
-        case .creationDate:
-            return projectItems.sorted(by: \Item.itemCreationDate)
+        case .score:
+            return projectItems.sorted(by: \Item.scoreTotal).reversed()
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 extension Item {
     enum SortOrder {
-        case optimized, title, creationDate
+        case optimized, title, score
     }
 
     var itemTitle: String {
@@ -20,8 +20,16 @@ extension Item {
         note ?? ""
     }
 
-    var itemCreationDate: Date {
-        creationDate ?? Date()
+    var itemScores: [Score] {
+        scores?.allObjects as? [Score] ?? []
+    }
+
+    var projectQualities: [Quality] {
+        project?.projectQualities ?? []
+    }
+
+    var scoreTotal: Int {
+        Int((itemScores.map {$0.value}).reduce(0, +))
     }
 
     static var example: Item {
@@ -32,9 +40,13 @@ extension Item {
         item.title = "My Item"
         item.note = "This is my note"
         item.completed = false
-        item.creationDate = Date()
         item.priority = 2
 
         return item
+    }
+
+    func hasScore(for quality: Quality) -> Bool {
+        let scoredQualities = itemScores.map { $0.quality }
+        return scoredQualities.contains(quality)
     }
 }

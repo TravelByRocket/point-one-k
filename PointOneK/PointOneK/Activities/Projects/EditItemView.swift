@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditItemView: View {
-    let item: Item
+    @ObservedObject var item: Item
 
     @EnvironmentObject var dataController: DataController
 
@@ -28,7 +28,13 @@ struct EditItemView: View {
 
     var body: some View {
         Form {
-            TextField("Title", text: $title.onChange(update))
+            Section {
+                TextField("Title", text: $title.onChange(update))
+                    .font(.title)
+            }
+            ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
+                RowInlineScoringView(quality: quality, item: item)
+            }
             Toggle("Completed", isOn: $completed.onChange(update))
             Picker("Priority Sort Group", selection: $priority.onChange(update)) {
                 Text("0 (Unsorted)").tag(0)
@@ -36,9 +42,20 @@ struct EditItemView: View {
                 Text("2 (Normal)").tag(2)
                 Text("1 (Low)").tag(3)
             }
-            Section(header: Text("Note")) {
+            HStack {
+                Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
+                Spacer()
+            }
+            .background(
+                BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
+        )
+            VStack(alignment: .leading) {
+                Text("Notes:")
                 TextEditor(text: $note.onChange(update))
-
+                    .background(Color.secondary.opacity(0.2))
+                    .cornerRadius(10.0)
+                    .frame(minHeight: 200)
+                    .padding(.bottom)
             }
         }
         .navigationTitle("Edit Item")
@@ -56,9 +73,48 @@ struct EditItemView: View {
 }
 
 struct EditItemView_Previews: PreviewProvider {
+    static var dataController = DataController.preview
+
     static var previews: some View {
         NavigationView {
             EditItemView(item: Item.example)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(dataController)
+        }
+    }
+}
+
+private struct RowInlineScoringView: View {
+    @State var value: Int
+    private let quality: Quality
+    private let item: Item
+    private let score: Score?
+
+    init(quality: Quality, item: Item) {
+        self.quality = quality
+        self.item = item
+        self.score = quality.score(for: item)
+        _value = State(initialValue: score?.scoreValue ?? 0)
+    }
+
+    var body: some View {
+        DisclosureGroup {
+            Text(Quality.example.qualityNote)
+                .italic()
+                .font(.footnote)
+                .foregroundColor(.secondary)
+        } label: {
+            HStack {
+                Text(quality.qualityTitle)
+                Spacer()
+                LevelSelector(value: $value)
+                    .onChange(of: value) { newValue in
+                        item.objectWillChange.send()
+                        if score != nil {
+                            score!.value = Int16(newValue)
+                        }
+                    }
+            }
         }
     }
 }

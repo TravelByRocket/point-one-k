@@ -14,7 +14,13 @@ struct LevelSelector: View {
             ForEach(1...4, id: \.self) {index in
                 Button(
                     action: {
-                        value = index
+                        withAnimation {
+                            if value == index {
+                                value = 0
+                            } else {
+                                value = index
+                            }
+                        }
                     },
                     label: {
                         Image(systemName: "\(index).square\(value == index ? ".fill" : "")")

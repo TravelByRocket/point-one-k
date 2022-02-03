@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProjectsViewNew: View {
+struct ProjectsView: View {
     static let openTag: String? = "Open"
     static let closedTag: String = "Closed"
 
@@ -24,9 +24,12 @@ struct ProjectsViewNew: View {
     init(showClosedProjects: Bool) {
         self.showClosedProjects = showClosedProjects
 
-        projects = FetchRequest<Project>(entity: Project.entity(), sortDescriptors: [
-            NSSortDescriptor(keyPath: \Project.creationDate, ascending: false)
-        ], predicate: NSPredicate(format: "closed = %d", showClosedProjects))
+        projects = FetchRequest<Project>(
+            entity: Project.entity(),
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \Project.title, ascending: true)
+            ],
+            predicate: NSPredicate(format: "closed = %d", showClosedProjects))
 
     }
 
@@ -93,7 +96,7 @@ struct ProjectsViewNew: View {
             .actionSheet(isPresented: $showingSortOrder) {
                 ActionSheet(title: Text("Sort items"), message: nil, buttons: [
                     .default(Text("Optimized")) { sortOrder = .optimized},
-                    .default(Text("Creation Date")) { sortOrder = .creationDate},
+                    .default(Text("Score")) { sortOrder = .score},
                     .default(Text("Title")) { sortOrder = .title}
                 ])
             }
@@ -105,7 +108,6 @@ struct ProjectsViewNew: View {
         withAnimation {
             let project = Project(context: managedObjectContext)
             project.closed = false
-            project.creationDate = Date()
             dataController.save()
         }
     }
@@ -114,7 +116,11 @@ struct ProjectsViewNew: View {
         withAnimation {
             let item = Item(context: managedObjectContext)
             item.project = project
-            item.creationDate = Date()
+            for quality in project.projectQualities {
+                let score = Score(context: managedObjectContext)
+                score.item = item
+                score.quality = quality
+            }
             dataController.save()
         }
     }
@@ -131,11 +137,11 @@ struct ProjectsViewNew: View {
     }
 }
 
-struct ProjectsViewNew_Previews: PreviewProvider {
+struct ProjectsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        ProjectsViewNew(showClosedProjects: false)
+        ProjectsView(showClosedProjects: false)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

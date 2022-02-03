@@ -11,6 +11,7 @@ struct EditProjectView: View {
     let project: Project
 
     @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
 
     @State private var title: String
@@ -22,6 +23,10 @@ struct EditProjectView: View {
         GridItem(.adaptive(minimum: 42))
     ]
 
+    var qualities: [Quality] {
+        project.projectQualities.sorted(by: \Quality.qualityTitle)
+    }
+
     init(project: Project) {
         self.project = project
 
@@ -32,11 +37,51 @@ struct EditProjectView: View {
 
     var body: some View {
         Form {
-            Section(header: Text("Basic Settings")) {
-                TextField("Project name", text: $title.onChange(update))
+            TextField("Project name", text: $title.onChange(update))
+                .font(.title)
+            Section(header: Text("Descrption")) {
                 TextField("Description of this project", text: $detail.onChange(update))
+                    .font(.caption)
             }
-
+            Section(header: Text("Qualities")) {
+                ForEach(qualities) {quality in
+                    NavigationLink {
+                        EditQualityView(quality: quality)
+                    } label: {
+                        HStack {
+                            Text(quality.qualityTitle)
+                            Spacer()
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 0)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 1)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 2)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 3)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 4)
+                        }
+                    }
+                }
+                .onDelete(perform: {offsets in
+                    for offset in offsets {
+                        let quality = qualities[offset]
+                        dataController.delete(quality)
+                    }
+                    dataController.save()
+                })
+                Button {
+                    withAnimation {
+                        let quality = Quality(context: managedObjectContext)
+                        quality.project = project
+                        for item in project.projectItems {
+                            let score = Score(context: managedObjectContext)
+                            score.item = item
+                            score.quality = quality
+                        }
+                        dataController.save()
+                    }
+                } label: {
+                    Label("Add New Quality", systemImage: "plus")
+                        .accessibilityLabel("Add project")
+                }
+            }
             Section(header: Text("Custom project color")) {
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Project.colors, id: \.self, content: colorButton)
@@ -115,3 +160,18 @@ struct EditProjectView_Previews: PreviewProvider {
             .environmentObject(dataController)
     }
 }
+
+//            Button {
+//                for item in project.projectItems {
+//                    for quality in qualities {
+//                        if !item.hasScore(for: quality) {
+//                            let score = Score(context: managedObjectContext)
+//                            score.item = item
+//                            score.quality = quality
+//                        }
+//                    }
+//                }
+//                dataController.save()
+//            } label: {
+//                Text("Add missing scores")
+//            }
