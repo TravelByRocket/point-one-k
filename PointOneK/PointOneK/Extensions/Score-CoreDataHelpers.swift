@@ -12,8 +12,8 @@ extension Score {
         Int(value)
     }
 
-    var scoreItemTitle: String {
-        item?.itemTitle ?? "Coalesced Item Title"
+    var scoreItem: Item {
+        item ?? Item.example
     }
 
     static var example: Score {

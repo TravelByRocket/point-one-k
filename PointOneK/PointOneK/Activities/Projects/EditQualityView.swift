@@ -57,7 +57,7 @@ struct EditQualityView: View {
                 }
             }
             Section(header: Text("Scores")) {
-                ForEach(quality.qualityScores.sorted(by: \Score.scoreItemTitle)) {score in
+                ForEach(quality.qualityScores.sorted(by: \Score.scoreItem.itemTitle)) {score in
                     RowInlineScoringView(score: score)
                 }
             }
