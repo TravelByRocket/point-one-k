@@ -16,12 +16,24 @@ extension Quality {
         note ?? ""
     }
 
-    var qualityIndicator: String {
-        indicator ?? String(qualityTitle.first!) // Text() does not take Character
+    var qualityIndicator: String { // it is a Character but commonly used for Text(), which does not accept Character
+        indicator ?? defaultQualityIndicator
+    }
+
+    var defaultQualityIndicator: String {
+        String(qualityTitle.first ?? "?").lowercased()
+    }
+
+    var otherProjectIndicators: [String] {
+        qualityProject.projectQualities.filter { $0 != self}.map { $0.qualityIndicator }
     }
 
     var qualityScores: [Score] {
         scores?.allObjects as? [Score] ?? []
+    }
+
+    var qualityProject: Project {
+        project ?? Project.example
     }
 
     static var example: Quality {
