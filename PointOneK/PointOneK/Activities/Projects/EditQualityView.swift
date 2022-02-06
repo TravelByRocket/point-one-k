@@ -115,7 +115,7 @@ struct EditQualityView: View {
         quality.title = title
         quality.note = note
         quality.indicator = indicator
-//        dataController.save()
+        dataController.save()
     }
 }
 
