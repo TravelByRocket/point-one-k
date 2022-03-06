@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import SwiftUI
 @testable import PointOneK
 
 class ExtensionTests: XCTestCase {
@@ -45,6 +46,25 @@ class ExtensionTests: XCTestCase {
         let data = bundle.decode([String: Int].self, from: "DecodableDictionary.json")
         XCTAssertEqual(data.count, 3, "There should be 3 items decoded from DecodableDictionary.json")
         XCTAssertEqual(data["one"], 1, "The dictionary should contain Int to String mappings")
+    }
+
+    func testBindingOnChange() {
+        var onChangeFunctionRun = false
+
+        func exampleFunctionToCall() {
+            onChangeFunctionRun = true
+        }
+
+        var storedValue = ""
+        let binding = Binding(
+            get: { storedValue },
+            set: { storedValue = $0 }
+        )
+
+        let changedBinding = binding.onChange(exampleFunctionToCall)
+        changedBinding.wrappedValue = "Test"
+
+        XCTAssertTrue(onChangeFunctionRun, "The onChange() function must be run when the binding is changed")
     }
 
 }
