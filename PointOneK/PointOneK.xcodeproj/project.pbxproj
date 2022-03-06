@@ -47,6 +47,7 @@
 		2F8B9DAE2752BA7900E2CC3C /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9DAD2752BA7900E2CC3C /* ExtensionTests.swift */; };
 		2F9AFF6827D52C8400788417 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6727D52C8400788417 /* DecodableDictionary.json */; };
 		2F9AFF6A27D52CA200788417 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6927D52CA200788417 /* DecodableString.json */; };
+		2F9AFF6C27D5356800788417 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6B27D5356800788417 /* PerformanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		2F8B9DAD2752BA7900E2CC3C /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		2F9AFF6727D52C8400788417 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		2F9AFF6927D52CA200788417 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
+		2F9AFF6B27D5356800788417 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 				2F8B9DA727528E5F00E2CC3C /* ProjectTests.swift */,
 				2F8B9DAB2752A2F800E2CC3C /* DevelopmentTests.swift */,
 				2F8B9DAD2752BA7900E2CC3C /* ExtensionTests.swift */,
+				2F9AFF6B27D5356800788417 /* PerformanceTests.swift */,
 			);
 			path = PointOneKTests;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			files = (
 				2F8B9DA627528AF500E2CC3C /* AssetTests.swift in Sources */,
 				2F8B9D9F2752894400E2CC3C /* BaseTestCase.swift in Sources */,
+				2F9AFF6C27D5356800788417 /* PerformanceTests.swift in Sources */,
 				2F8B9DAE2752BA7900E2CC3C /* ExtensionTests.swift in Sources */,
 				2F8B9DA827528E5F00E2CC3C /* ProjectTests.swift in Sources */,
 				2F8B9DAC2752A2F800E2CC3C /* DevelopmentTests.swift in Sources */,
