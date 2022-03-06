@@ -68,7 +68,7 @@ extension Project {
         let project = Project(context: viewContext)
         project.title = "Example Project"
         project.detail = "This is an example project"
-        project.closed = false
+        project.closed = true
 
         let quality = Quality(context: viewContext)
         quality.title = "Fancy title"

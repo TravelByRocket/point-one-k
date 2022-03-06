@@ -31,7 +31,7 @@ class DevelopmentTests: BaseTestCase {
         XCTAssertTrue(project.closed, "The example project should be closed.")
     }
 
-    func testExampleProjectIsHighPriority() {
+    func testExampleItemIsHighPriority() {
         let item = Item.example
         XCTAssertEqual(item.priority, 2, "The example item should be high priority.")
     }
