@@ -48,7 +48,6 @@ struct ProjectsView: View {
                             addItem(to: project)
                         } label: {
                             Label("Add New Item", systemImage: "plus")
-                                .accessibilityLabel("Add project")
                         }
                     }
                 }

@@ -49,6 +49,16 @@
                ReferencedContainer = "container:PointOneK.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FF3350F27D53B4C00E1F7F4"
+               BuildableName = "PointOneKUITests.xctest"
+               BlueprintName = "PointOneKUITests"
+               ReferencedContainer = "container:PointOneK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

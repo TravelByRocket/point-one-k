@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import UIKit
 
 /// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.
@@ -31,6 +32,13 @@ class DataController: ObservableObject {
             if let error = error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
+
+            #if DEBUG
+            if CommandLine.arguments.contains("enable-testing") {
+                self.deleteAll()
+                UIView.setAnimationsEnabled(false)
+            }
+            #endif
         }
     }
 
