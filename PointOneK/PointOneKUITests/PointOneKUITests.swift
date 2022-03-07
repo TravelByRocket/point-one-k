@@ -53,6 +53,14 @@ class PointOneKUITests: XCTestCase {
         app.buttons["Compose"].tap()
 
         app.textFields["Project name"].tap()
+
+        // Tapping "space" here without a delay does not fail as far as the key existing
+        // but the space does not get collected if animations are disabled. Adding a delay
+        // fixes this. `waitForExistence` works but not sure why and has `unused` warning.
+        let when = DispatchTime.now() + 0.3 // can work with as little as 0.2 delay
+        while when > DispatchTime.now() { }
+        //        app.keys["space"].waitForExistence(timeout: 1) // this works with `unused` warning
+
         app.keys["space"].tap()
         app.keys["more"].tap()
         app.keys["2"].tap()
@@ -68,6 +76,14 @@ class PointOneKUITests: XCTestCase {
 
         app.buttons["New Item"].tap()
         app.textFields["New Item"].tap()
+
+        // Tapping "space" here without a delay does not fail as far as the key existing
+        // but the space does not get collected if animations are disabled. Adding a delay
+        // fixes this. `waitForExistence` works but not sure why and has `unused` warning.
+        let when = DispatchTime.now() + 0.3 // can work with as little as 0.2 delay
+        while when > DispatchTime.now() { }
+//        app.keys["space"].waitForExistence(timeout: 1) // this works with `unused` warning
+
         app.keys["space"].tap()
         app.keys["more"].tap()
         app.keys["2"].tap()
