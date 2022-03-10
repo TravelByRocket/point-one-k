@@ -12,27 +12,27 @@ struct ProjectHeaderView: View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
-                Text(project.projectTitle)
-
-                ProgressView(value: project.completionAmount)
-                    .accentColor(Color(project.projectColor))
-            }
-
+            Text(project.projectTitle)
+                .font(.title2)
             Spacer()
-
             NavigationLink(destination: EditProjectView(project: project)) {
                 Image(systemName: "square.and.pencil")
                     .imageScale(.large)
             }
         }
-        .padding(.bottom, 10)
-//        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .combine)
     }
 }
 
 struct ProjectHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectHeaderView(project: Project.example)
+        NavigationView {
+            List {
+                Section(header: ProjectHeaderView(project: Project.example)) {
+                    Text("Anything")
+                }
+            }
+            .listStyle(.insetGrouped)
+        }
     }
 }
