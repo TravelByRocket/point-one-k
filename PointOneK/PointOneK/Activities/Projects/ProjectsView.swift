@@ -51,6 +51,7 @@ struct ProjectsView: View {
                         }
                     }
                 }
+                .textCase(.none)
             }
         }
         .listStyle(InsetGroupedListStyle())
