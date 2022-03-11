@@ -24,6 +24,10 @@ struct EditProjectView: View {
         GridItem(.adaptive(minimum: 42))
     ]
 
+    var items: [Item] {
+        project.projectItems(using: sortOrder)
+    }
+
     var qualities: [Quality] {
         project.projectQualities.sorted(by: \Quality.qualityTitle)
     }
@@ -44,40 +48,71 @@ struct EditProjectView: View {
                 TextEditor(text: $detail.onChange(update))
                     .font(.caption)
             }
-            Section(header: Text("Qualities")) {
-                ForEach(qualities) {quality in
-                    NavigationLink {
-                        EditQualityView(quality: quality)
-                    } label: {
-                        HStack {
-                            Text(quality.qualityTitle)
-                            Spacer()
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 0)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 1)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 2)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 3)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 4)
+            Section(
+                header:
+                    HStack {
+                        Text("Items by \(sortOrder == .title ? "Title" : "Score")")
+                        Spacer()
+                        Button {
+                            if sortOrder == .title {
+                                sortOrder = .score
+                            } else { // if sortOrder == .score
+                                sortOrder = .title
+                            }
+                        } label: {
+                            Label {
+                                Text(sortOrder == .score ? "Title" : "Score")
+                            } icon: {
+                                Image(systemName: "arrow.up.arrow.down")
+                            }
+
                         }
+
+                    }
+            ) {
+                if items.isEmpty {
+                    Text("No items in this project")
+                } else {
+                    ForEach(items) { item in
+                        ItemRowView(project: project, item: item)
                     }
                 }
-                .onDelete(perform: {offsets in
-                    for offset in offsets {
-                        let quality = qualities[offset]
-                        dataController.delete(quality)
-                    }
-                    dataController.save()
-                })
+//                ItemRowView(project: Project.example, item: items.first!)
                 Button {
-                    withAnimation {
-                        let quality = Quality(context: managedObjectContext)
-                        quality.project = project
-                        for item in project.projectItems {
-                            let score = Score(context: managedObjectContext)
-                            score.item = item
-                            score.quality = quality
+                    addItem(to: project)
+                } label: {
+                    Label("Add New Item", systemImage: "plus")
+                        .accessibilityLabel("Add new item")
+                }
+            }
+            Section(header: Text("Qualities")) {
+                if qualities.isEmpty {
+                    Text("No qualities in this project")
+                } else {
+                    ForEach(qualities) { quality in
+                        NavigationLink {
+                            EditQualityView(quality: quality)
+                        } label: {
+                            HStack {
+                                Text(quality.qualityTitle)
+                                Spacer()
+                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 1)
+                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 2)
+                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 3)
+                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 4)
+                            }
+                        }
+                    }
+                    .onDelete(perform: {offsets in
+                        for offset in offsets {
+                            let quality = qualities[offset]
+                            dataController.delete(quality)
                         }
                         dataController.save()
-                    }
+                    })
+                }
+                Button {
+                    addQuality(to: project)
                 } label: {
                     Label("Add New Quality", systemImage: "plus")
                         .accessibilityLabel("Add project")
@@ -150,14 +185,42 @@ struct EditProjectView: View {
         dataController.delete(project)
         presentationMode.wrappedValue.dismiss()
     }
+
+    func addItem(to project: Project) {
+        withAnimation {
+            let item = Item(context: managedObjectContext)
+            item.project = project
+            for quality in project.projectQualities {
+                let score = Score(context: managedObjectContext)
+                score.item = item
+                score.quality = quality
+            }
+            dataController.save()
+        }
+    }
+
+    func addQuality(to project: Project) {
+        withAnimation {
+            let quality = Quality(context: managedObjectContext)
+            quality.project = project
+            for item in project.projectItems {
+                let score = Score(context: managedObjectContext)
+                score.item = item
+                score.quality = quality
+            }
+            dataController.save()
+        }
+    }
 }
 
 struct EditProjectView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        EditProjectView(project: Project.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
+        NavigationView {
+            EditProjectView(project: Project.example)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
+        }
     }
 }

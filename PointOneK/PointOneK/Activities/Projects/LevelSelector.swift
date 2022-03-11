@@ -9,8 +9,14 @@ import SwiftUI
 
 struct LevelSelector: View {
     @Binding var value: Int
+
     var body: some View {
         HStack {
+            if value == 0 {
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(.orange)
+                    .imageScale(.large)
+            }
             ForEach(1...4, id: \.self) {index in
                 Button(
                     action: {
@@ -34,10 +40,14 @@ struct LevelSelector: View {
 }
 
 struct LevelSelector_Previews: PreviewProvider {
-    @State static private var value = 1
+    @State static private var valueA = 1
+    @State static private var valueB = 0
 
     static var previews: some View {
-        LevelSelector(value: $value)
+        Group {
+            LevelSelector(value: $valueA)
+            LevelSelector(value: $valueB)
+        }
             .padding()
             .previewLayout(.sizeThatFits)
     }

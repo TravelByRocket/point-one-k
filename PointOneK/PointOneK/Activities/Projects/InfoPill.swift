@@ -64,7 +64,7 @@ struct InfoPill: View {
 //                .overlay(dotsView)
         }
         .padding(4)
-        .background(Color.secondary.opacity(0.3))
+        .background(level != 0 ? Color.secondary.opacity(0.3) : .orange.opacity(0.3))
         .cornerRadius(5.0)
         .padding(.horizontal, -2)
     }

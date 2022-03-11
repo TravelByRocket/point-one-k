@@ -11,6 +11,7 @@ struct EditItemView: View {
     @ObservedObject var item: Item
 
     @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
 
     @State var title: String
     @State var completed: Bool
@@ -35,27 +36,15 @@ struct EditItemView: View {
             ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
                 RowInlineScoringView(quality: quality, item: item)
             }
-            Toggle("Completed", isOn: $completed.onChange(update))
-            Picker("Priority Sort Group", selection: $priority.onChange(update)) {
-                Text("0 (Unsorted)").tag(0)
-                Text("3 (High)").tag(1)
-                Text("2 (Normal)").tag(2)
-                Text("1 (Low)").tag(3)
+            if item.projectQualities.isEmpty {
+                Text("No project qualities exist")
             }
-            HStack {
-                Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
-                Spacer()
-            }
-            .background(
-                BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
-        )
-            VStack(alignment: .leading) {
-                Text("Notes:")
+            Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
+                .background(
+                    BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
+                )
+            Section(header: Text("Item Note")) {
                 TextEditor(text: $note.onChange(update))
-                    .background(Color.secondary.opacity(0.2))
-                    .cornerRadius(10.0)
-                    .frame(minHeight: 200)
-                    .padding(.bottom)
             }
         }
         .navigationTitle("Edit Item")

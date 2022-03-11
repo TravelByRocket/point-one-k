@@ -23,7 +23,6 @@ struct ItemRowView: View {
             }
             .background(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
         }
-        .accessibilityLabel(label)
     }
 }
 

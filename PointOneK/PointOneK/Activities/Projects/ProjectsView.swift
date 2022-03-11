@@ -23,19 +23,14 @@ struct ProjectsView: View {
             sortDescriptors: [
                 NSSortDescriptor(keyPath: \Project.title, ascending: true)
             ],
-            predicate: NSPredicate(format: "closed = %d", false))
+            predicate: NSPredicate(format: "closed = false"))
     }
 
     var projectsList: some View {
         List {
             ForEach(projects.wrappedValue) {project in
                 Section(header: ProjectHeaderView(project: project)) {
-                    ForEach(project.projectItems(using: sortOrder)) { item in
-                        ItemRowView(project: project, item: item)
-                    }
-                    .onDelete { offsets in
-                        delete(offsets, from: project)
-                    }
+                    ProjectRowView(project: project)
                 }
                 .textCase(.none)
             }
@@ -109,29 +104,6 @@ struct ProjectsView: View {
         }
     }
 
-    func addItem(to project: Project) {
-        withAnimation {
-            let item = Item(context: managedObjectContext)
-            item.project = project
-            for quality in project.projectQualities {
-                let score = Score(context: managedObjectContext)
-                score.item = item
-                score.quality = quality
-            }
-            dataController.save()
-        }
-    }
-
-    func delete(_ offsets: IndexSet, from project: Project) {
-        let allItems = project.projectItems(using: sortOrder)
-
-        for offset in offsets {
-            let item = allItems[offset]
-            dataController.delete(item)
-        }
-
-        dataController.save()
-    }
 }
 
 struct ProjectsView_Previews: PreviewProvider {

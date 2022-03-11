@@ -48,6 +48,7 @@
 		2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */; };
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
 		2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */; };
+		2FCFE8D427DC09480044E7F7 /* ProjectRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */; };
 		2FF3351327D53B4C00E1F7F4 /* PointOneKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */; };
 		2FF3351527D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -117,6 +118,7 @@
 		2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataView.swift; sourceTree = "<group>"; };
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
 		2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToggleClosedRow.swift; sourceTree = "<group>"; };
+		2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRowView.swift; sourceTree = "<group>"; };
 		2FF3351027D53B4C00E1F7F4 /* PointOneKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointOneKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITests.swift; sourceTree = "<group>"; };
 		2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				2F8B9D5A2751D13E00E2CC3C /* ProjectsView.swift */,
+				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
 				2F8B9D592751D13E00E2CC3C /* ProjectHeaderView.swift */,
 				2F8B9D562751D13E00E2CC3C /* EditProjectView.swift */,
 				2F1DA9DE2753E3350004EFD5 /* EditQualityView.swift */,
@@ -477,6 +480,7 @@
 				2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */,
 				2F8B9D402751D0AE00E2CC3C /* DataController.swift in Sources */,
 				2F8B9D4B2751D0F800E2CC3C /* Sequence-Sorting.swift in Sources */,
+				2FCFE8D427DC09480044E7F7 /* ProjectRowView.swift in Sources */,
 				2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */,
 				2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */,
 				2F8B9D762751D16D00E2CC3C /* LevelSelector.swift in Sources */,
