@@ -65,6 +65,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            
             // DELETE DATA SECTION
             DeleteAllDataView()
         }
