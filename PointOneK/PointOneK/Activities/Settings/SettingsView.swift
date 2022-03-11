@@ -8,46 +8,66 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var enableDeleteButton = false
-    @State private var confirmDeletion = false
-
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
+    @FetchRequest var closedProjects: FetchedResults<Project>
+    @FetchRequest var openProjects: FetchedResults<Project>
+
+    var noProjectsText: some View {
+        Text("No projects here")
+            .font(.caption)
+            .italic()
+            .foregroundColor(.secondary)
+    }
+
+    var projectGroups: [(label: String, projects: [Project])] {
+        [
+            (label: "Open Projects", projects: Array(openProjects)),
+            (label: "Closed Projects", projects: Array(closedProjects))
+        ]
+    }
+
+    init() {
+        _closedProjects = FetchRequest<Project>(
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \Project.title, ascending: true)
+            ],
+            predicate: NSPredicate(format: "closed = true"))
+
+        _openProjects = FetchRequest<Project>(
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \Project.title, ascending: true)
+            ],
+            predicate: NSPredicate(format: "closed = false"))
+    }
+
     var body: some View {
         Form {
-            Section {
+            // TEMPLATES SECTION
+            Section(header: Text("Templates")) {
                 Button {
-                    let project = Project(context: managedObjectContext)
-                    project.title = "$100 Startup Ideas"
-//                    for title in ["Ease", "Profitability", "Vision", "Impact"] {
-//
-//                    }
+                    makeHundredDollarStartup(dataController)
                 } label: {
-                    Text("Add $100 Template")
+                    Text("$100 Startup")
                 }
             }
-            Section {
-                Toggle("Enable \"Delete All\" Option", isOn: $enableDeleteButton)
-                Button("Delete All Data") {
-                    confirmDeletion = true
-                }
-                .disabled(!enableDeleteButton)
-                .alert("Delete All Data", isPresented: $confirmDeletion) {
-                    Button(role: .cancel) {
-                        //
-                    } label: {
-                        Text("Cancel")
+
+            // OPEN/CLOSED PROJECTS SECTION
+            ForEach(projectGroups, id: \.label) { projectGroup in
+                Section(header: Text(projectGroup.label)) {
+                    if projectGroup.projects.isEmpty {
+                        noProjectsText
+                    } else {
+                        ForEach(projectGroup.projects) { project in
+                            ProjectToggleClosedRow(project: project)
+                        }
                     }
-                    Button(role: .destructive) {
-                        //
-                    } label: {
-                        Text("Delete All")
-                    }
-                } message: {
-                    Text("summary")
                 }
             }
+            
+            // DELETE DATA SECTION
+            DeleteAllDataView()
         }
     }
 }

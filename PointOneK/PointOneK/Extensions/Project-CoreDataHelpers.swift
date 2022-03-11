@@ -51,16 +51,6 @@ extension Project {
         }
     }
 
-    var completionAmount: Double {
-        let originalItems = items?.allObjects as? [Item] ?? []
-        guard !originalItems.isEmpty else {
-            return 0
-        }
-
-        let completedItems = originalItems.filter(\.completed)
-        return Double(completedItems.count) / Double(originalItems.count)
-    }
-
     static var example: Project {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
@@ -93,7 +83,7 @@ extension Project {
 
     var label: LocalizedStringKey {
         LocalizedStringKey(
-            "\(projectTitle), \(projectItems.count) items, \(completionAmount * 100, specifier: "%d")% complete."
+            "\(projectTitle), \(projectItems.count) items."
         )
     }
 

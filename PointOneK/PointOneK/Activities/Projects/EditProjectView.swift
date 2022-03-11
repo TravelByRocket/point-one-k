@@ -40,7 +40,7 @@ struct EditProjectView: View {
             TextField("Project name", text: $title.onChange(update))
                 .font(.title)
             Section(header: Text("Descrption")) {
-                TextField("Description of this project", text: $detail.onChange(update))
+                TextEditor(text: $detail.onChange(update))
                     .font(.caption)
             }
             Section(header: Text("Qualities")) {

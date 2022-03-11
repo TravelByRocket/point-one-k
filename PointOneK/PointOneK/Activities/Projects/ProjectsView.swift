@@ -8,47 +8,33 @@
 import SwiftUI
 
 struct ProjectsView: View {
-    static let openTag: String? = "Open"
-    static let closedTag: String = "Closed"
-
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
     @State private var showingSortOrder = false
-    @State private var sortOrder = Item.SortOrder.optimized
-
-    let showClosedProjects: Bool
+    @State private var showingSettings = false
+    @State private var sortOrder = Item.SortOrder.score
 
     let projects: FetchRequest<Project>
 
-    init(showClosedProjects: Bool) {
-        self.showClosedProjects = showClosedProjects
-
+    init() {
         projects = FetchRequest<Project>(
             entity: Project.entity(),
             sortDescriptors: [
                 NSSortDescriptor(keyPath: \Project.title, ascending: true)
             ],
-            predicate: NSPredicate(format: "closed = %d", showClosedProjects))
-
+            predicate: NSPredicate(format: "closed = %d", false))
     }
 
     var projectsList: some View {
         List {
             ForEach(projects.wrappedValue) {project in
                 Section(header: ProjectHeaderView(project: project)) {
-                    ForEach(project.projectItems(using: sortOrder)) {item in
+                    ForEach(project.projectItems(using: sortOrder)) { item in
                         ItemRowView(project: project, item: item)
                     }
                     .onDelete { offsets in
                         delete(offsets, from: project)
-                    }
-                    if showClosedProjects == false {
-                        Button {
-                            addItem(to: project)
-                        } label: {
-                            Label("Add New Item", systemImage: "plus")
-                        }
                     }
                 }
                 .textCase(.none)
@@ -59,22 +45,30 @@ struct ProjectsView: View {
 
     var addProjectToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            if showClosedProjects == false {
-                Button {
-                    addProject()
-                } label: {
-                    Label("Add Project", systemImage: "plus")
-                }
+            Button {
+                addProject()
+            } label: {
+                Label("Add Project", systemImage: "plus")
             }
         }
     }
 
     var sortOrderToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
+        ToolbarItem(placement: .navigationBarTrailing) {
             Button {
                 showingSortOrder.toggle()
             } label: {
                 Label("Sort", systemImage: "arrow.up.arrow.down")
+            }
+        }
+    }
+
+    var settingsToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button {
+                showingSettings.toggle()
+            } label: {
+                Label("Settings", systemImage: "gearshape")
             }
         }
     }
@@ -88,17 +82,20 @@ struct ProjectsView: View {
                     projectsList
                 }
             }
-            .navigationTitle(showClosedProjects ? "Closed Projects" : "Open Projects")
+            .navigationTitle("Open Projects")
             .toolbar {
-                addProjectToolbarItem
+                settingsToolbarItem
                 sortOrderToolbarItem
+                addProjectToolbarItem
             }
             .actionSheet(isPresented: $showingSortOrder) {
                 ActionSheet(title: Text("Sort items"), message: nil, buttons: [
-                    .default(Text("Optimized")) { sortOrder = .optimized},
                     .default(Text("Score")) { sortOrder = .score},
                     .default(Text("Title")) { sortOrder = .title}
                 ])
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
             }
             SelectSomethingView()
         }
@@ -141,7 +138,7 @@ struct ProjectsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        ProjectsView(showClosedProjects: false)
+        ProjectsView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
