@@ -38,19 +38,6 @@ extension Project {
         projectQualities.count * 4
     }
 
-    /// Priority and then Score and then Title
-    var projectItemsDefaultSorted: [Item] {
-        projectItems.sorted {first, second in
-            if first.priority != second.priority {
-                return first.priority > second.priority
-            } else if first.scoreTotal != second.scoreTotal {
-                return first.scoreTotal > second.scoreTotal
-            } else {
-                return first.itemTitle < second.itemTitle
-            }
-        }
-    }
-
     static var example: Project {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
@@ -89,8 +76,6 @@ extension Project {
 
     func projectItems(using sortOrder: Item.SortOrder) -> [Item] {
         switch sortOrder {
-        case .optimized:
-            return projectItemsDefaultSorted
         case .title:
             return projectItems.sorted(by: \Item.itemTitle)
         case .score:
