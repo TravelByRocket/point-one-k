@@ -10,14 +10,15 @@ import SwiftUI
 struct EditProjectView: View {
     let project: Project
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
-
     @State private var title: String
     @State private var detail: String
     @State private var color: String
     @State private var showingDeleteConfirm = false
+    @State private var sortOrder = Item.SortOrder.score
+
+    @EnvironmentObject var dataController: DataController
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
 
     let colorColumns = [
         GridItem(.adaptive(minimum: 42))
@@ -160,18 +161,3 @@ struct EditProjectView_Previews: PreviewProvider {
             .environmentObject(dataController)
     }
 }
-
-//            Button {
-//                for item in project.projectItems {
-//                    for quality in qualities {
-//                        if !item.hasScore(for: quality) {
-//                            let score = Score(context: managedObjectContext)
-//                            score.item = item
-//                            score.quality = quality
-//                        }
-//                    }
-//                }
-//                dataController.save()
-//            } label: {
-//                Text("Add missing scores")
-//            }
