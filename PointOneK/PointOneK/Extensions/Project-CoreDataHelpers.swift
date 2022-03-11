@@ -77,9 +77,9 @@ extension Project {
     func projectItems(using sortOrder: Item.SortOrder) -> [Item] {
         switch sortOrder {
         case .title:
-            return projectItems.sorted(by: \Item.itemTitle)
+            return projectItems.sorted(by: \Item.scoreTotal).reversed().sorted(by: \Item.itemTitle)
         case .score:
-            return projectItems.sorted(by: \Item.scoreTotal).reversed()
+            return projectItems.sorted(by: \Item.itemTitle).sorted(by: \Item.scoreTotal).reversed()
         }
     }
 }
