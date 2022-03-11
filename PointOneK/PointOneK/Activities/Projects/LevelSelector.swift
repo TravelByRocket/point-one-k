@@ -35,7 +35,7 @@ struct LevelSelector: View {
 
 struct LevelSelector_Previews: PreviewProvider {
     @State static private var value = 1
-    
+
     static var previews: some View {
         LevelSelector(value: $value)
             .padding()
