@@ -15,16 +15,14 @@ struct DeleteAllDataView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     var body: some View {
-        List {
-            Section(header: Text("Delete All")) {
-                Toggle("Allow Data Deletion", isOn: $enableDeleteButton)
-                Button("Delete All Data For App") {
-                    withAnimation {
-                        showingDeleteAlert = true
-                    }
+        Section(header: Text("Delete All")) {
+            Toggle("Allow Data Deletion", isOn: $enableDeleteButton)
+            Button("Delete All Data For App") {
+                withAnimation {
+                    showingDeleteAlert = true
                 }
-                .disabled(!enableDeleteButton)
             }
+            .disabled(!enableDeleteButton)
         }
         .alert("Delete All Data?", isPresented: $showingDeleteAlert) {
             Button(role: .cancel) {
@@ -53,8 +51,10 @@ struct DeleteAllDataView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        DeleteAllDataView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+        List {
+            DeleteAllDataView()
+        }
+        .environment(\.managedObjectContext, dataController.container.viewContext)
+        .environmentObject(dataController)
     }
 }

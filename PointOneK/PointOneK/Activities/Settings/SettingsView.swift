@@ -16,7 +16,6 @@ struct SettingsView: View {
 
     var noProjectsText: some View {
         Text("No projects here")
-            .font(.caption)
             .italic()
             .foregroundColor(.secondary)
     }
@@ -43,7 +42,7 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        Form {
+        List {
             // TEMPLATES SECTION
             Section(header: Text("Templates")) {
                 Button {
@@ -65,7 +64,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            
+
             // DELETE DATA SECTION
             DeleteAllDataView()
         }
