@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ProjectDetailView: View {
-    let project: Project
+    @ObservedObject var project: Project
 
     @State private var title: String
     @State private var detail: String
     @State private var color: String
     @State private var showingDeleteConfirm = false
     @State private var sortOrder = Item.SortOrder.score
+    @State private var holdCompletionPct: CGFloat = 0.0
+    @State private var showBatchEntry = false
+
+    private let batchHoldTimerLength = 1.5
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -70,46 +74,79 @@ struct ProjectDetailView: View {
 
                     }
             ) {
+                ForEach(items) { item in
+                    ItemRowView(project: project, item: item)
+                }
+                .onDelete(perform: {offsets in
+                    for offset in offsets {
+                        let item = items[offset]
+                        dataController.delete(item)
+                    }
+                    project.objectWillChange.send()
+                    dataController.save()
+                })
                 if items.isEmpty {
                     Text("No items in this project")
-                } else {
-                    ForEach(items) { item in
-                        ItemRowView(project: project, item: item)
-                    }
                 }
-//                ItemRowView(project: Project.example, item: items.first!)
                 Button {
                     addItem(to: project)
                 } label: {
-                    Label("Add New Item", systemImage: "plus")
-                        .accessibilityLabel("Add new item")
+                    HStack {
+                        Label("Add New Item", systemImage: "plus")
+                            .accessibilityLabel("Add new item")
+                        Spacer()
+                        Text("Hold to\nBatch Add")
+                            .padding(5)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 5.0)
+                                    .trim(from: 0.0, to: holdCompletionPct)
+                                    .stroke()
+                            }
+                            .font(.caption)
+                            .multilineTextAlignment(.center)
+                            .tint(.secondary)
+                    }
+                }
+                .onLongPressGesture(minimumDuration: batchHoldTimerLength, maximumDistance: 50) {
+                    holdCompletionPct = 0.0
+                    showBatchEntry.toggle()
+                } onPressingChanged: { isNowPressing in
+                    if isNowPressing {
+                        withAnimation(.linear(duration: batchHoldTimerLength)) {
+                            holdCompletionPct = 1.0
+                        }
+                    } else {
+                        holdCompletionPct = 0.0
+                    }
+                }
+                .sheet(isPresented: $showBatchEntry) {
+                    BatchAddItemsView(project: project)
                 }
             }
             Section(header: Text("Qualities")) {
-                if qualities.isEmpty {
-                    Text("No qualities in this project")
-                } else {
-                    ForEach(qualities) { quality in
-                        NavigationLink {
-                            QualityDetailView(quality: quality)
-                        } label: {
-                            HStack {
-                                Text(quality.qualityTitle)
-                                Spacer()
-                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 1)
-                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 2)
-                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 3)
-                                InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 4)
-                            }
+                ForEach(qualities) { quality in
+                    NavigationLink {
+                        QualityDetailView(quality: quality)
+                    } label: {
+                        HStack {
+                            Text(quality.qualityTitle)
+                            Spacer()
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 1)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 2)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 3)
+                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 4)
                         }
                     }
-                    .onDelete(perform: {offsets in
-                        for offset in offsets {
-                            let quality = qualities[offset]
-                            dataController.delete(quality)
-                        }
-                        dataController.save()
-                    })
+                }
+                .onDelete(perform: {offsets in
+                    for offset in offsets {
+                        let quality = qualities[offset]
+                        dataController.delete(quality)
+                    }
+                    dataController.save()
+                })
+                if qualities.isEmpty {
+                    Text("No qualities in this project")
                 }
                 Button {
                     addQuality(to: project)

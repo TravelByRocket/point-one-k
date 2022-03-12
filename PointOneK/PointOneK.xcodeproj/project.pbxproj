@@ -49,6 +49,8 @@
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
 		2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */; };
 		2FCFE8D427DC09480044E7F7 /* ProjectRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */; };
+		2FCFE8D627DC2D540044E7F7 /* BatchAddItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D527DC2D540044E7F7 /* BatchAddItemsView.swift */; };
+		2FCFE8D827DC36040044E7F7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D727DC36040044E7F7 /* HomeView.swift */; };
 		2FF3351327D53B4C00E1F7F4 /* PointOneKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */; };
 		2FF3351527D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -119,6 +121,8 @@
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
 		2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToggleClosedRow.swift; sourceTree = "<group>"; };
 		2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRowView.swift; sourceTree = "<group>"; };
+		2FCFE8D527DC2D540044E7F7 /* BatchAddItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchAddItemsView.swift; sourceTree = "<group>"; };
+		2FCFE8D727DC36040044E7F7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2FF3351027D53B4C00E1F7F4 /* PointOneKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointOneKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITests.swift; sourceTree = "<group>"; };
 		2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			children = (
 				2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
+				2FCFE8D727DC36040044E7F7 /* HomeView.swift */,
 				2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
@@ -247,6 +252,7 @@
 				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
 				2F8B9D592751D13E00E2CC3C /* ProjectHeaderView.swift */,
 				2F8B9D562751D13E00E2CC3C /* ProjectDetailView.swift */,
+				2FCFE8D527DC2D540044E7F7 /* BatchAddItemsView.swift */,
 				2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */,
 				2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */,
 				2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */,
@@ -470,6 +476,7 @@
 				2F8B9D5C2751D13E00E2CC3C /* ProjectDetailView.swift in Sources */,
 				2F8B9D4E2751D0F800E2CC3C /* Binding-OnChange.swift in Sources */,
 				2F8B9D362751CFE200E2CC3C /* Main.xcdatamodeld in Sources */,
+				2FCFE8D827DC36040044E7F7 /* HomeView.swift in Sources */,
 				2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */,
 				2F8B9D4D2751D0F800E2CC3C /* Color-Additions.swift in Sources */,
 				2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */,
@@ -491,6 +498,7 @@
 				2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */,
 				2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */,
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
+				2FCFE8D627DC2D540044E7F7 /* BatchAddItemsView.swift in Sources */,
 				2F8B9D5F2751D13E00E2CC3C /* ProjectHeaderView.swift in Sources */,
 				2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */,
 				2F8B9D4A2751D0F800E2CC3C /* Item-CoreDataHelpers.swift in Sources */,

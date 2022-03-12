@@ -13,6 +13,12 @@ struct DeleteAllDataView: View {
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
+
+    @FetchRequest(
+        entity: Project.entity(),
+        sortDescriptors: []
+    ) var projects: FetchedResults<Project>
 
     var body: some View {
         Section(header: Text("Delete All")) {
@@ -35,11 +41,18 @@ struct DeleteAllDataView: View {
                     .tint(.blue)
             }
             Button(role: .destructive) {
+                for project in projects {
+                    project.objectWillChange.send()
+                    dataController.delete(project)
+                }
                 dataController.deleteAll()
+                dataController.save()
                 withAnimation {
                     showingDeleteAlert = false
                     enableDeleteButton = false
+                    presentationMode.wrappedValue.dismiss()
                 }
+
             } label: {
                 Text("Delete Everything")
             }
