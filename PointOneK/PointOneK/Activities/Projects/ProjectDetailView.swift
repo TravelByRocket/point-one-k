@@ -14,7 +14,6 @@ struct ProjectDetailView: View {
     @State private var detail: String
     @State private var color: String
     @State private var showingDeleteConfirm = false
-    @State private var sortOrder = Item.SortOrder.score
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
@@ -23,35 +22,6 @@ struct ProjectDetailView: View {
     let colorColumns = [
         GridItem(.adaptive(minimum: 42))
     ]
-
-    var items: [Item] {
-        project.projectItems(using: sortOrder)
-    }
-
-    var qualities: [Quality] {
-        project.projectQualities.sorted(by: \Quality.qualityTitle)
-    }
-
-    var itemSortingHeader: some View {
-        HStack {
-            Text("Items by \(sortOrder == .title ? "Title" : "Score")")
-            Spacer()
-            Button {
-                if sortOrder == .title {
-                    sortOrder = .score
-                } else { // if sortOrder == .score
-                    sortOrder = .title
-                }
-            } label: {
-                Label {
-                    Text(sortOrder == .score ? "Title" : "Score")
-                } icon: {
-                    Image(systemName: "arrow.up.arrow.down")
-                }
-
-            }
-        }
-    }
 
     init(project: Project) {
         self.project = project
@@ -69,66 +39,8 @@ struct ProjectDetailView: View {
                 TextEditor(text: $detail.onChange(update))
                     .font(.caption)
             }
-            Section(header: itemSortingHeader) {
-                ForEach(items) { item in
-                    ItemRowView(project: project, item: item)
-                }
-                .onDelete(perform: {offsets in
-                    for offset in offsets {
-                        let item = items[offset]
-                        dataController.delete(item)
-                    }
-                    project.objectWillChange.send()
-                    dataController.save()
-                })
-                if items.isEmpty {
-                    Text("No items in this project")
-                }
-                HStack {
-                    Button {
-                        project.addItem()
-                        dataController.save()
-                    } label: {
-                        Label("Add New Item", systemImage: "plus")
-                            .accessibilityLabel("Add new item")
-                    }
-                    Spacer()
-                    BatchAddButtonView(project: project)
-                }
-            }
-            Section(header: Text("Qualities")) {
-                ForEach(qualities) { quality in
-                    NavigationLink {
-                        QualityDetailView(quality: quality)
-                    } label: {
-                        HStack {
-                            Text(quality.qualityTitle)
-                            Spacer()
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 1)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 2)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 3)
-                            InfoPill(letter: quality.qualityIndicator.first ?? "?", level: 4)
-                        }
-                    }
-                }
-                .onDelete(perform: {offsets in
-                    for offset in offsets {
-                        let quality = qualities[offset]
-                        dataController.delete(quality)
-                    }
-                    dataController.save()
-                })
-                if qualities.isEmpty {
-                    Text("No qualities in this project")
-                }
-                Button {
-                    project.addQuality()
-                    dataController.save()
-                } label: {
-                    Label("Add New Quality", systemImage: "plus")
-                        .accessibilityLabel("Add project")
-                }
-            }
+            ProjectItemsSection(project: project)
+            ProjectQualitiesSection(project: project)
             Section(header: Text("Custom project color")) {
                 LazyVGrid(columns: colorColumns) {
                     ForEach(Project.colors, id: \.self) { color in
