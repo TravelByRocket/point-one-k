@@ -36,6 +36,27 @@ struct ProjectDetailView: View {
         project.projectQualities.sorted(by: \Quality.qualityTitle)
     }
 
+    var itemSortingHeader: some View {
+        HStack {
+            Text("Items by \(sortOrder == .title ? "Title" : "Score")")
+            Spacer()
+            Button {
+                if sortOrder == .title {
+                    sortOrder = .score
+                } else { // if sortOrder == .score
+                    sortOrder = .title
+                }
+            } label: {
+                Label {
+                    Text(sortOrder == .score ? "Title" : "Score")
+                } icon: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+
+            }
+        }
+    }
+
     init(project: Project) {
         self.project = project
 
@@ -52,28 +73,7 @@ struct ProjectDetailView: View {
                 TextEditor(text: $detail.onChange(update))
                     .font(.caption)
             }
-            Section(
-                header:
-                    HStack {
-                        Text("Items by \(sortOrder == .title ? "Title" : "Score")")
-                        Spacer()
-                        Button {
-                            if sortOrder == .title {
-                                sortOrder = .score
-                            } else { // if sortOrder == .score
-                                sortOrder = .title
-                            }
-                        } label: {
-                            Label {
-                                Text(sortOrder == .score ? "Title" : "Score")
-                            } icon: {
-                                Image(systemName: "arrow.up.arrow.down")
-                            }
-
-                        }
-
-                    }
-            ) {
+            Section(header: itemSortingHeader) {
                 ForEach(items) { item in
                     ItemRowView(project: project, item: item)
                 }
@@ -88,39 +88,39 @@ struct ProjectDetailView: View {
                 if items.isEmpty {
                     Text("No items in this project")
                 }
-                Button {
-                    addItem(to: project)
-                } label: {
-                    HStack {
+                HStack {
+                    Button {
+                        addItem(to: project)
+                    } label: {
                         Label("Add New Item", systemImage: "plus")
                             .accessibilityLabel("Add new item")
-                        Spacer()
-                        Text("Hold to\nBatch Add")
-                            .padding(5)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 5.0)
-                                    .trim(from: 0.0, to: holdCompletionPct)
-                                    .stroke()
-                            }
-                            .font(.caption)
-                            .multilineTextAlignment(.center)
-                            .tint(.secondary)
                     }
-                }
-                .onLongPressGesture(minimumDuration: batchHoldTimerLength, maximumDistance: 50) {
-                    holdCompletionPct = 0.0
-                    showBatchEntry.toggle()
-                } onPressingChanged: { isNowPressing in
-                    if isNowPressing {
-                        withAnimation(.linear(duration: batchHoldTimerLength)) {
-                            holdCompletionPct = 1.0
+                    Spacer()
+                    Text("Hold to\nBatch Add")
+                        .padding(5)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 5.0)
+                                .trim(from: 1.0 - holdCompletionPct, to: 1.0)
+                                .stroke()
                         }
-                    } else {
-                        holdCompletionPct = 0.0
-                    }
-                }
-                .sheet(isPresented: $showBatchEntry) {
-                    BatchAddItemsView(project: project)
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                        .tint(.secondary)
+                        .onLongPressGesture(minimumDuration: batchHoldTimerLength, maximumDistance: 50) {
+                            holdCompletionPct = 0.0
+                            showBatchEntry.toggle()
+                        } onPressingChanged: { isNowPressing in
+                            if isNowPressing {
+                                withAnimation(.linear(duration: batchHoldTimerLength)) {
+                                    holdCompletionPct = 1.0
+                                }
+                            } else {
+                                holdCompletionPct = 0.0
+                            }
+                        }
+                        .sheet(isPresented: $showBatchEntry) {
+                            BatchAddItemsView(project: project)
+                        }
                 }
             }
             Section(header: Text("Qualities")) {
@@ -160,20 +160,20 @@ struct ProjectDetailView: View {
                     ForEach(Project.colors, id: \.self, content: colorButton)
                 }
             }
-                .padding(.vertical)
+            .padding(.vertical)
             Section(
                 // swiftlint:disable:next line_length
                 footer: Text("Closing a project moves it from the Open to Closed tab; deleting it removes the project entirely.")) {
-                Button(project.closed ? "Reopen this project" : "Close this project") {
-                    project.closed.toggle()
-                    update()
-                }
+                    Button(project.closed ? "Reopen this project" : "Close this project") {
+                        project.closed.toggle()
+                        update()
+                    }
 
-                Button("Delete this project") {
-                    showingDeleteConfirm.toggle()
+                    Button("Delete this project") {
+                        showingDeleteConfirm.toggle()
+                    }
+                    .accentColor(.red)
                 }
-                .accentColor(.red)
-            }
         }
         .navigationTitle("Edit Project")
         .onDisappear(perform: dataController.save)
@@ -191,7 +191,7 @@ struct ProjectDetailView: View {
         ZStack {
             Color(item)
                 .aspectRatio(1, contentMode: .fit)
-            .cornerRadius(6)
+                .cornerRadius(6)
 
             if item == color {
                 Image(systemName: "checkmark.circle")
@@ -213,9 +213,13 @@ struct ProjectDetailView: View {
     }
 
     func update() {
+        project.objectWillChange.send()
+
         project.title = title
         project.detail = detail
         project.color = color
+
+        dataController.save()
     }
 
     func delete() {
@@ -257,7 +261,7 @@ struct ProjectDetailView_Previews: PreviewProvider {
         NavigationView {
             ProjectDetailView(project: Project.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+                .environmentObject(dataController)
         }
     }
 }

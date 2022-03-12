@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectHeaderView: View {
-    let project: Project
+    @ObservedObject var project: Project
 
     var body: some View {
         HStack {
