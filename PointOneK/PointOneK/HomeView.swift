@@ -64,6 +64,10 @@ struct HomeView: View {
             }
             SelectSomethingView()
         }
+        // Documented issue through at least 15.1.1. Currently using 15.2.
+        // Views are improperly popping when updating `@ObservedObject`s
+        // Details at https://developer.apple.com/forums/thread/665369
+        .navigationViewStyle(.stack)
     }
 
     func addProject() {

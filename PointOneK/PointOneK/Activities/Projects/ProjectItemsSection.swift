@@ -35,7 +35,6 @@ struct ProjectItemsSection: View {
                 } icon: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
-
             }
         }
     }
@@ -75,8 +74,10 @@ struct ProjectItemsSection_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        ProjectItemsSection(project: Project.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+        List {
+            ProjectItemsSection(project: Project.example)
+        }
+        .environment(\.managedObjectContext, dataController.container.viewContext)
+        .environmentObject(dataController)
     }
 }

@@ -79,12 +79,9 @@ struct ProjectDetailView: View {
 
     func update() {
         project.objectWillChange.send()
-
         project.title = title
         project.detail = detail
         project.color = color
-
-        dataController.save()
     }
 
     func delete() {

@@ -52,7 +52,6 @@ struct ItemDetailView: View {
 
     func update() {
         item.project?.objectWillChange.send()
-
         item.title = title
         item.note = note
     }
@@ -95,10 +94,10 @@ private struct RowInlineScoringView: View {
                 Spacer()
                 LevelSelector(value: $value)
                     .onChange(of: value) { newValue in
-                        item.objectWillChange.send()
-                        if score != nil {
-                            score!.value = Int16(newValue)
-                        }
+                        score?.item?.project?.objectWillChange.send()
+                        score?.item?.objectWillChange.send()
+                        score?.objectWillChange.send()
+                        score?.value = Int16(newValue)
                     }
             }
         }

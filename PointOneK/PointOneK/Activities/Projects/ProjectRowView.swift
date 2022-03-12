@@ -30,7 +30,6 @@ struct ProjectRowView: View {
             }
             Spacer()
         }
-//        .frame(maxWidth: .infinity)
     }
 }
 

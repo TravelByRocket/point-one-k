@@ -109,13 +109,14 @@ struct QualityDetailView: View {
                 }
             }
         }
+        .onDisappear(perform: dataController.save)
     }
 
     func update() {
+        quality.project?.objectWillChange.send()
         quality.title = title
         quality.note = note
         quality.indicator = indicator
-        dataController.save()
     }
 }
 

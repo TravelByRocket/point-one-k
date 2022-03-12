@@ -17,7 +17,7 @@ struct ItemRowView: View {
                 Text(item.itemTitle)
                     .lineLimit(1)
                 Spacer()
-                ForEach(item.project?.qualities?.allObjects as? [Quality] ?? []) {quality in
+                ForEach(project.projectQualities) {quality in
                     InfoPill(letter: quality.qualityIndicator.first!, level: quality.score(for: item)?.scoreValue ?? 0)
                 }
             }
