@@ -15,10 +15,6 @@ struct ProjectDetailView: View {
     @State private var color: String
     @State private var showingDeleteConfirm = false
     @State private var sortOrder = Item.SortOrder.score
-    @State private var holdCompletionPct: CGFloat = 0.0
-    @State private var showBatchEntry = false
-
-    private let batchHoldTimerLength = 1.5
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -96,31 +92,7 @@ struct ProjectDetailView: View {
                             .accessibilityLabel("Add new item")
                     }
                     Spacer()
-                    Text("Hold to\nBatch Add")
-                        .padding(5)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5.0)
-                                .trim(from: 1.0 - holdCompletionPct, to: 1.0)
-                                .stroke()
-                        }
-                        .font(.caption)
-                        .multilineTextAlignment(.center)
-                        .tint(.secondary)
-                        .onLongPressGesture(minimumDuration: batchHoldTimerLength, maximumDistance: 50) {
-                            holdCompletionPct = 0.0
-                            showBatchEntry.toggle()
-                        } onPressingChanged: { isNowPressing in
-                            if isNowPressing {
-                                withAnimation(.linear(duration: batchHoldTimerLength)) {
-                                    holdCompletionPct = 1.0
-                                }
-                            } else {
-                                holdCompletionPct = 0.0
-                            }
-                        }
-                        .sheet(isPresented: $showBatchEntry) {
-                            BatchAddItemsView(project: project)
-                        }
+                    BatchAddButtonView(project: project)
                 }
             }
             Section(header: Text("Qualities")) {
@@ -157,7 +129,9 @@ struct ProjectDetailView: View {
             }
             Section(header: Text("Custom project color")) {
                 LazyVGrid(columns: colorColumns) {
-                    ForEach(Project.colors, id: \.self, content: colorButton)
+                    ForEach(Project.colors, id: \.self) { color in
+                        ProjectColorButtonView(item: color, color: $color.onChange(update))
+                    }
                 }
             }
             .padding(.vertical)
@@ -185,31 +159,6 @@ struct ProjectDetailView: View {
               message: Text("Are you sure you want to delete this project? You will also delete all the items it contains."), // swiftlint:disable:this line_length
               primaryButton: .default(Text("Delete"), action: delete),
               secondaryButton: .cancel())
-    }
-
-    func colorButton(for item: String) -> some View {
-        ZStack {
-            Color(item)
-                .aspectRatio(1, contentMode: .fit)
-                .cornerRadius(6)
-
-            if item == color {
-                Image(systemName: "checkmark.circle")
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-            }
-        }
-        .onTapGesture {
-            color = item
-            update()
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityAddTraits(
-            item == color
-            ? [.isButton, .isSelected]
-            : .isButton
-        )
-        .accessibilityLabel(LocalizedStringKey(item))
     }
 
     func update() {
