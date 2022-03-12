@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProjectsView: View {
+struct ProjectsListView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
@@ -106,11 +106,11 @@ struct ProjectsView: View {
 
 }
 
-struct ProjectsView_Previews: PreviewProvider {
+struct ProjectsListView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        ProjectsView()
+        ProjectsListView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

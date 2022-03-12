@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditQualityView: View {
+struct QualityDetailView: View {
     let quality: Quality
 
     @State var title: String
@@ -119,11 +119,11 @@ struct EditQualityView: View {
     }
 }
 
-struct EditQualityView_Previews: PreviewProvider {
+struct QualityDetailView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        EditQualityView(quality: Quality.example)
+        QualityDetailView(quality: Quality.example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

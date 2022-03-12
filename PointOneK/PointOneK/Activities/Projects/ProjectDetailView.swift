@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditProjectView: View {
+struct ProjectDetailView: View {
     let project: Project
 
     @State private var title: String
@@ -91,7 +91,7 @@ struct EditProjectView: View {
                 } else {
                     ForEach(qualities) { quality in
                         NavigationLink {
-                            EditQualityView(quality: quality)
+                            QualityDetailView(quality: quality)
                         } label: {
                             HStack {
                                 Text(quality.qualityTitle)
@@ -213,12 +213,12 @@ struct EditProjectView: View {
     }
 }
 
-struct EditProjectView_Previews: PreviewProvider {
+struct ProjectDetailView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
         NavigationView {
-            EditProjectView(project: Project.example)
+            ProjectDetailView(project: Project.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
         }

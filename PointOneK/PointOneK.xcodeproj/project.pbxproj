@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */; };
 		2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */; };
-		2F1DA9DF2753E3350004EFD5 /* EditQualityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DE2753E3350004EFD5 /* EditQualityView.swift */; };
+		2F1DA9DF2753E3350004EFD5 /* QualityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */; };
 		2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */; };
 		2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F32AC072763B29800BCA997 /* SettingsView.swift */; };
 		2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
@@ -28,11 +28,11 @@
 		2F8B9D4D2751D0F800E2CC3C /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */; };
 		2F8B9D4E2751D0F800E2CC3C /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */; };
 		2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */; };
-		2F8B9D5C2751D13E00E2CC3C /* EditProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D562751D13E00E2CC3C /* EditProjectView.swift */; };
+		2F8B9D5C2751D13E00E2CC3C /* ProjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D562751D13E00E2CC3C /* ProjectDetailView.swift */; };
 		2F8B9D5D2751D13E00E2CC3C /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */; };
-		2F8B9D5E2751D13E00E2CC3C /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D582751D13E00E2CC3C /* EditItemView.swift */; };
+		2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */; };
 		2F8B9D5F2751D13E00E2CC3C /* ProjectHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D592751D13E00E2CC3C /* ProjectHeaderView.swift */; };
-		2F8B9D602751D13E00E2CC3C /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D5A2751D13E00E2CC3C /* ProjectsView.swift */; };
+		2F8B9D602751D13E00E2CC3C /* ProjectsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */; };
 		2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D6A2751D16D00E2CC3C /* InfoPill.swift */; };
 		2F8B9D762751D16D00E2CC3C /* LevelSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D6E2751D16D00E2CC3C /* LevelSelector.swift */; };
 		2F8B9D8E2751D3AE00E2CC3C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9D902751D3AE00E2CC3C /* Localizable.strings */; };
@@ -73,7 +73,7 @@
 /* Begin PBXFileReference section */
 		2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Score-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quality-CoreDataHelpers.swift"; sourceTree = "<group>"; };
-		2F1DA9DE2753E3350004EFD5 /* EditQualityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQualityView.swift; sourceTree = "<group>"; };
+		2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityDetailView.swift; sourceTree = "<group>"; };
 		2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text-Character.swift"; sourceTree = "<group>"; };
 		2F32AC072763B29800BCA997 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F341B8C275993890096D685 /* BackgroundBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBarView.swift; sourceTree = "<group>"; };
@@ -95,11 +95,11 @@
 		2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
 		2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
 		2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSomethingView.swift; sourceTree = "<group>"; };
-		2F8B9D562751D13E00E2CC3C /* EditProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProjectView.swift; sourceTree = "<group>"; };
+		2F8B9D562751D13E00E2CC3C /* ProjectDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDetailView.swift; sourceTree = "<group>"; };
 		2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRowView.swift; sourceTree = "<group>"; };
-		2F8B9D582751D13E00E2CC3C /* EditItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		2F8B9D592751D13E00E2CC3C /* ProjectHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectHeaderView.swift; sourceTree = "<group>"; };
-		2F8B9D5A2751D13E00E2CC3C /* ProjectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsListView.swift; sourceTree = "<group>"; };
 		2F8B9D6A2751D16D00E2CC3C /* InfoPill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPill.swift; sourceTree = "<group>"; };
 		2F8B9D6E2751D16D00E2CC3C /* LevelSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelector.swift; sourceTree = "<group>"; };
 		2F8B9D8F2751D3AE00E2CC3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -187,6 +187,7 @@
 			children = (
 				2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
+				2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
@@ -243,12 +244,11 @@
 		2F8B9D3D2751D05B00E2CC3C /* Projects */ = {
 			isa = PBXGroup;
 			children = (
-				2F8B9D5A2751D13E00E2CC3C /* ProjectsView.swift */,
 				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
 				2F8B9D592751D13E00E2CC3C /* ProjectHeaderView.swift */,
-				2F8B9D562751D13E00E2CC3C /* EditProjectView.swift */,
-				2F1DA9DE2753E3350004EFD5 /* EditQualityView.swift */,
-				2F8B9D582751D13E00E2CC3C /* EditItemView.swift */,
+				2F8B9D562751D13E00E2CC3C /* ProjectDetailView.swift */,
+				2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */,
+				2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */,
 				2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */,
 				2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */,
 				2F8B9D6A2751D16D00E2CC3C /* InfoPill.swift */,
@@ -467,15 +467,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F8B9D5C2751D13E00E2CC3C /* EditProjectView.swift in Sources */,
+				2F8B9D5C2751D13E00E2CC3C /* ProjectDetailView.swift in Sources */,
 				2F8B9D4E2751D0F800E2CC3C /* Binding-OnChange.swift in Sources */,
 				2F8B9D362751CFE200E2CC3C /* Main.xcdatamodeld in Sources */,
 				2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */,
 				2F8B9D4D2751D0F800E2CC3C /* Color-Additions.swift in Sources */,
 				2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */,
-				2F1DA9DF2753E3350004EFD5 /* EditQualityView.swift in Sources */,
+				2F1DA9DF2753E3350004EFD5 /* QualityDetailView.swift in Sources */,
 				2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */,
-				2F8B9D602751D13E00E2CC3C /* ProjectsView.swift in Sources */,
+				2F8B9D602751D13E00E2CC3C /* ProjectsListView.swift in Sources */,
 				2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */,
 				2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */,
 				2F8B9D402751D0AE00E2CC3C /* DataController.swift in Sources */,
@@ -492,7 +492,7 @@
 				2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */,
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
 				2F8B9D5F2751D13E00E2CC3C /* ProjectHeaderView.swift in Sources */,
-				2F8B9D5E2751D13E00E2CC3C /* EditItemView.swift in Sources */,
+				2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */,
 				2F8B9D4A2751D0F800E2CC3C /* Item-CoreDataHelpers.swift in Sources */,
 				2F8B9D5D2751D13E00E2CC3C /* ItemRowView.swift in Sources */,
 			);

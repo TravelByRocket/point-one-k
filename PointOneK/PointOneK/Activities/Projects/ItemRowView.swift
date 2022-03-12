@@ -12,7 +12,7 @@ struct ItemRowView: View {
     @ObservedObject var item: Item
 
     var body: some View {
-        NavigationLink(destination: EditItemView(item: item)) {
+        NavigationLink(destination: ItemDetailView(item: item)) {
             HStack {
                 Text(item.itemTitle)
                     .lineLimit(1)

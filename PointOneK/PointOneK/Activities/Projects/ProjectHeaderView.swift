@@ -16,7 +16,7 @@ struct ProjectHeaderView: View {
                 .font(.title2)
             Spacer()
             NavigationLink {
-                EditProjectView(project: project)
+                ProjectDetailView(project: project)
             } label: {
                 Image(systemName: "square.and.pencil")
                     .imageScale(.large)

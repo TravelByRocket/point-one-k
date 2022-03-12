@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditItemView: View {
+struct ItemDetailView: View {
     @ObservedObject var item: Item
 
     @EnvironmentObject var dataController: DataController
@@ -61,12 +61,12 @@ struct EditItemView: View {
     }
 }
 
-struct EditItemView_Previews: PreviewProvider {
+struct ItemDetailView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
         NavigationView {
-            EditItemView(item: Item.example)
+            ItemDetailView(item: Item.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }
