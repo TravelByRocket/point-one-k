@@ -29,13 +29,7 @@ struct BatchAddItemsView: View {
                 Button {
                     let lines = text.components(separatedBy: "\n")
                     for line in lines {
-                        let item = Item(context: managedObjectContext)
-                        item.project  = project
-                        item.title = line
-                        for quality in project.projectQualities {
-                            let score = Score(context: managedObjectContext)
-                            score.quality = quality
-                        }
+                        project.addItem(titled: line)
                     }
                     dataController.save()
                     presentationMode.wrappedValue.dismiss()

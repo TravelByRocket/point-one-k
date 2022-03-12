@@ -16,9 +16,9 @@ struct ProjectDetailView: View {
     @State private var showingDeleteConfirm = false
     @State private var sortOrder = Item.SortOrder.score
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.presentationMode) private var presentationMode
 
     let colorColumns = [
         GridItem(.adaptive(minimum: 42))
@@ -65,7 +65,7 @@ struct ProjectDetailView: View {
         Form {
             TextField("Project name", text: $title.onChange(update))
                 .font(.title)
-            Section(header: Text("Descrption")) {
+            Section(header: Text("Description")) {
                 TextEditor(text: $detail.onChange(update))
                     .font(.caption)
             }
@@ -86,7 +86,8 @@ struct ProjectDetailView: View {
                 }
                 HStack {
                     Button {
-                        addItem(to: project)
+                        project.addItem()
+                        dataController.save()
                     } label: {
                         Label("Add New Item", systemImage: "plus")
                             .accessibilityLabel("Add new item")
@@ -121,7 +122,8 @@ struct ProjectDetailView: View {
                     Text("No qualities in this project")
                 }
                 Button {
-                    addQuality(to: project)
+                    project.addQuality()
+                    dataController.save()
                 } label: {
                     Label("Add New Quality", systemImage: "plus")
                         .accessibilityLabel("Add project")
@@ -137,16 +139,18 @@ struct ProjectDetailView: View {
             .padding(.vertical)
             Section(
                 // swiftlint:disable:next line_length
-                footer: Text("Closing a project moves it from the Open to Closed tab; deleting it removes the project entirely.")) {
+                footer: Text("Closing a project hides a project until it is restored from Settings; deleting it removes the project entirely and permanently.")) {
+
                     Button(project.closed ? "Reopen this project" : "Close this project") {
                         project.closed.toggle()
                         update()
                     }
+                    .tint(.primary)
 
                     Button("Delete this project") {
                         showingDeleteConfirm.toggle()
                     }
-                    .accentColor(.red)
+                    .tint(.red)
                 }
         }
         .navigationTitle("Edit Project")
@@ -174,32 +178,6 @@ struct ProjectDetailView: View {
     func delete() {
         dataController.delete(project)
         presentationMode.wrappedValue.dismiss()
-    }
-
-    func addItem(to project: Project) {
-        withAnimation {
-            let item = Item(context: managedObjectContext)
-            item.project = project
-            for quality in project.projectQualities {
-                let score = Score(context: managedObjectContext)
-                score.item = item
-                score.quality = quality
-            }
-            dataController.save()
-        }
-    }
-
-    func addQuality(to project: Project) {
-        withAnimation {
-            let quality = Quality(context: managedObjectContext)
-            quality.project = project
-            for item in project.projectItems {
-                let score = Score(context: managedObjectContext)
-                score.item = item
-                score.quality = quality
-            }
-            dataController.save()
-        }
     }
 }
 

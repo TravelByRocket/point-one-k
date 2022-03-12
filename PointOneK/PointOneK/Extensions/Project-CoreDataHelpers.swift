@@ -38,6 +38,35 @@ extension Project {
         projectQualities.count * 4
     }
 
+    func addItem(titled title: String? = nil) {
+        guard let moc = managedObjectContext else { return }
+
+        let item = Item(context: moc)
+        item.project = self
+
+        if let title = title {
+            item.title = title
+        }
+
+        for quality in projectQualities {
+            let score = Score(context: moc)
+            score.item = item
+            score.quality = quality
+        }
+    }
+
+    func addQuality() {
+        guard let moc = managedObjectContext else { return }
+
+        let quality = Quality(context: moc)
+        quality.project = self
+        for item in projectItems {
+            let score = Score(context: moc)
+            score.item = item
+            score.quality = quality
+        }
+    }
+
     static var example: Project {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
