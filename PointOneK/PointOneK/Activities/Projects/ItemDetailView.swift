@@ -14,16 +14,12 @@ struct ItemDetailView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     @State var title: String
-    @State var completed: Bool
-    @State var priority: Int
     @State var note: String
 
     init(item: Item) {
         self.item = item
 
         _title = State(wrappedValue: item.itemTitle)
-        _completed = State(wrappedValue: item.completed)
-        _priority = State(wrappedValue: Int(item.priority))
         _note = State(wrappedValue: item.itemNote)
     }
 
@@ -59,8 +55,6 @@ struct ItemDetailView: View {
 
         item.title = title
         item.note = note
-        item.completed = completed
-        item.priority = Int16(priority)
     }
 }
 

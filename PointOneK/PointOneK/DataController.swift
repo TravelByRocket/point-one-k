@@ -91,8 +91,6 @@ class DataController: ObservableObject {
             for j in 1...5 {
                 let item = Item(context: viewContext)
                 item.title = "Item \(j)"
-                item.priority = Int16.random(in: 1...3)
-                item.completed = Bool.random()
                 item.project = project
 
                 // QUALITIES <-> SCORES

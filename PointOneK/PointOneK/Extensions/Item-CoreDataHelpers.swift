@@ -39,8 +39,6 @@ extension Item {
         let item = Item(context: viewContext)
         item.title = "My Item"
         item.note = "This is my example note"
-        item.completed = false
-        item.priority = 2
 
         return item
     }

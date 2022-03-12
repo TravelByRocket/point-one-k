@@ -90,7 +90,6 @@ extension Project {
         item.project = project
         item.note = "item note"
         item.title = "Sweet Item"
-        item.completed = false
 
         score.item = item
 
