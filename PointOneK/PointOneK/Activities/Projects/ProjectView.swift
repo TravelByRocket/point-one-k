@@ -10,20 +10,8 @@ import SwiftUI
 struct ProjectView: View {
     let project: Project
 
-    @State private var color: String
-
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-
-    let colorColumns = [
-        GridItem(.adaptive(minimum: 42))
-    ]
-
-    init(project: Project) {
-        self.project = project
-
-        _color = State(wrappedValue: project.projectColor)
-    }
 
     var body: some View {
         Form {
@@ -33,23 +21,11 @@ struct ProjectView: View {
             }
             ProjectItemsSection(project: project)
             ProjectQualitiesSection(project: project)
-            Section(header: Text("Custom project color")) {
-                LazyVGrid(columns: colorColumns) {
-                    ForEach(Project.colors, id: \.self) { color in
-                        ProjectColorButtonView(item: color, color: $color.onChange(update))
-                    }
-                }
-            }
-            .padding(.vertical)
+            ProjectColorSelectionSection(project: project)
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")
         .onDisappear(perform: dataController.save)
-    }
-
-    func update() {
-        project.objectWillChange.send()
-        project.color = color
     }
 }
 
