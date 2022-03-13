@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-struct ProjectDetailView: View {
+struct ProjectView: View {
     @ObservedObject var project: Project
 
-    @State private var title: String
-    @State private var detail: String
     @State private var color: String
     @State private var showingDeleteConfirm = false
 
@@ -26,18 +24,14 @@ struct ProjectDetailView: View {
     init(project: Project) {
         self.project = project
 
-        _title = State(wrappedValue: project.projectTitle)
-        _detail = State(wrappedValue: project.projectDetail)
         _color = State(wrappedValue: project.projectColor)
     }
 
     var body: some View {
         Form {
-            TextField("Project name", text: $title.onChange(update))
-                .font(.title)
+            ProjectTitleEditView(project: project)
             Section(header: Text("Description")) {
-                TextEditor(text: $detail.onChange(update))
-                    .font(.caption)
+                ProjectDetailEditView(project: project)
             }
             ProjectItemsSection(project: project)
             ProjectQualitiesSection(project: project)
@@ -79,8 +73,6 @@ struct ProjectDetailView: View {
 
     func update() {
         project.objectWillChange.send()
-        project.title = title
-        project.detail = detail
         project.color = color
     }
 
@@ -91,12 +83,12 @@ struct ProjectDetailView: View {
     }
 }
 
-struct ProjectDetailView_Previews: PreviewProvider {
+struct ProjectView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
         NavigationView {
-            ProjectDetailView(project: Project.example)
+            ProjectView(project: Project.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }

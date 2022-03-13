@@ -23,7 +23,7 @@ struct ProjectsListView: View {
         List {
             ForEach(projects) {project in
                 NavigationLink {
-                    ProjectDetailView(project: project)
+                    ProjectView(project: project)
                 } label: {
                     ProjectRowView(project: project)
                 }
