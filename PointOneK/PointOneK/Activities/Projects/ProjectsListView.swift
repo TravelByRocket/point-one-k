@@ -22,10 +22,11 @@ struct ProjectsListView: View {
     var projectsList: some View {
         List {
             ForEach(projects) {project in
-                Section(header: ProjectHeaderView(project: project)) {
+                NavigationLink {
+                    ProjectDetailView(project: project)
+                } label: {
                     ProjectRowView(project: project)
                 }
-                .textCase(.none)
             }
         }
         .listStyle(InsetGroupedListStyle())
@@ -48,8 +49,10 @@ struct ProjectsListView_Previews: PreviewProvider {
     @State static var sortOrder: Item.SortOrder = .score
 
     static var previews: some View {
-        ProjectsListView(sortOrder: $sortOrder)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
+        NavigationView {
+            ProjectsListView(sortOrder: $sortOrder)
+                .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
+        }
     }
 }

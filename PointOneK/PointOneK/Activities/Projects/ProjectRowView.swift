@@ -18,15 +18,21 @@ struct ProjectRowView: View {
         project.projectItems.count
     }
 
+    var qualitiesList: String {
+        project.projectQualities.map { $0.qualityTitle }.joined(separator: ", ")
+    }
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
+                Text(project.projectTitle)
+                    .font(.title)
+                    .underline(true, color: Color(project.projectColor))
                 Text("\(qualityCount) Qualities, \(itemCount) Items")
-                Text(project.projectQualities.map { $0.qualityTitle }.joined(separator: ", "))
+                Text(qualitiesList)
                     .font(.caption)
                     .italic()
                     .foregroundColor(.secondary)
-
             }
             Spacer()
         }
@@ -35,6 +41,10 @@ struct ProjectRowView: View {
 
 struct ProjectRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectRowView(project: Project.example)
+        List {
+            ProjectRowView(project: Project.example)
+            ProjectRowView(project: Project.example)
+            ProjectRowView(project: Project.example)
+        }
     }
 }
