@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct ProjectView: View {
-    @ObservedObject var project: Project
+    let project: Project
 
     @State private var color: String
-    @State private var showingDeleteConfirm = false
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-    @Environment(\.presentationMode) private var presentationMode
 
     let colorColumns = [
         GridItem(.adaptive(minimum: 42))
@@ -43,43 +41,15 @@ struct ProjectView: View {
                 }
             }
             .padding(.vertical)
-            Section(
-                // swiftlint:disable:next line_length
-                footer: Text("Closing a project hides a project until it is restored from Settings; deleting it removes the project entirely and permanently.")) {
-
-                    Button(project.closed ? "Reopen this project" : "Close this project") {
-                        project.closed.toggle()
-                        update()
-                    }
-                    .tint(.primary)
-
-                    Button("Delete this project") {
-                        showingDeleteConfirm.toggle()
-                    }
-                    .tint(.red)
-                }
+            ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")
         .onDisappear(perform: dataController.save)
-        .alert(isPresented: $showingDeleteConfirm) { getDeleteAlert() }
-    }
-
-    func getDeleteAlert() -> Alert {
-        Alert(title: Text("Delete project?"),
-              message: Text("Are you sure you want to delete this project? You will also delete all the items it contains."), // swiftlint:disable:this line_length
-              primaryButton: .default(Text("Delete"), action: delete),
-              secondaryButton: .cancel())
     }
 
     func update() {
         project.objectWillChange.send()
         project.color = color
-    }
-
-    func delete() {
-        dataController.delete(project)
-        dataController.save()
-        presentationMode.wrappedValue.dismiss()
     }
 }
 
