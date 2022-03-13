@@ -74,10 +74,12 @@ struct ProjectItemsSection_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        List {
-            ProjectItemsSection(project: Project.example)
+        NavigationView {
+            List {
+                ProjectItemsSection(project: Project.example)
+            }
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+            .environmentObject(dataController)
         }
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
     }
 }
