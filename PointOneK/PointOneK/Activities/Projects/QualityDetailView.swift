@@ -145,6 +145,9 @@ private struct RowInlineScoringView: View {
             Spacer()
             LevelSelector(value: $value)
                 .onChange(of: value) { newValue in
+                    score.item?.project?.objectWillChange.send()
+                    score.item?.objectWillChange.send()
+                    score.objectWillChange.send()
                     score.value = Int16(newValue)
                 }
         }
