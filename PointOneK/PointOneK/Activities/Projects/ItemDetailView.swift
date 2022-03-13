@@ -84,7 +84,7 @@ private struct RowInlineScoringView: View {
 
     var body: some View {
         DisclosureGroup {
-            Text(Quality.example.qualityNote)
+            Text(quality.qualityNote)
                 .italic()
                 .font(.footnote)
                 .foregroundColor(.secondary)
