@@ -19,7 +19,6 @@ struct HomeView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button {
                 addProject()
-                dataController.save()
             } label: {
                 Label("Add Project", systemImage: "plus")
             }
@@ -49,12 +48,9 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ProjectsListView(sortOrder: $sortOrder)
-                .actionSheet(isPresented: $showingSortOrder) {
-                    ActionSheet(title: Text("Sort items"), message: nil, buttons: [
-                        .default(Text("Score")) { sortOrder = .score},
-                        .default(Text("Title")) { sortOrder = .title}
-                    ])
-                }
+                .actionSheet(
+                    isPresented: $showingSortOrder,
+                    content: sortOrderActionSheet)
                 .sheet(isPresented: $showingSettings) {
                     SettingsView()
                 }
@@ -62,13 +58,20 @@ struct HomeView: View {
                     settingsToolbarItem
                     sortOrderToolbarItem
                     addProjectToolbarItem
-            }
+                }
             SelectSomethingView()
         }
         // Documented issue through at least 15.1.1. Currently using 15.2.
         // Views are improperly popping when updating `@ObservedObject`s
         // Details at https://developer.apple.com/forums/thread/665369
         .navigationViewStyle(.stack)
+    }
+
+    func sortOrderActionSheet() -> ActionSheet {
+        ActionSheet(title: Text("Sort items"), message: nil, buttons: [
+            .default(Text("Score")) { sortOrder = .score},
+            .default(Text("Title")) { sortOrder = .title}
+        ])
     }
 
     func addProject() {
