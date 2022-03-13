@@ -12,17 +12,15 @@ struct ItemRowView: View {
     @ObservedObject var item: Item
 
     var body: some View {
-        NavigationLink(destination: ItemDetailView(item: item)) {
-            HStack {
-                Text(item.itemTitle)
-                    .lineLimit(1)
-                Spacer()
-                ForEach(project.projectQualities) {quality in
-                    InfoPill(letter: quality.qualityIndicator.first!, level: quality.score(for: item)?.scoreValue ?? 0)
-                }
+        HStack {
+            Text(item.itemTitle)
+                .lineLimit(1)
+            Spacer()
+            ForEach(project.projectQualities) {quality in
+                InfoPill(letter: quality.qualityIndicator.first!, level: quality.score(for: item)?.scoreValue ?? 0)
             }
-            .background(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
         }
+        .background(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
     }
 }
 

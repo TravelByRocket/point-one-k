@@ -11,6 +11,7 @@ struct ProjectItemsSection: View {
     @ObservedObject var project: Project
 
     @State private var sortOrder = Item.SortOrder.score
+    @SceneStorage("selectedItemID") var selectedItemObjectID: String?
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
@@ -42,7 +43,13 @@ struct ProjectItemsSection: View {
     var body: some View {
         Section(header: itemSortingHeader) {
             ForEach(items) { item in
-                ItemRowView(project: project, item: item)
+                NavigationLink(
+                    tag: String(item.id.debugDescription),
+                    selection: $selectedItemObjectID) {
+                        ItemDetailView(item: item)
+                    } label: {
+                        ItemRowView(project: project, item: item)
+                    }
             }
             .onDelete(perform: {offsets in
                 for offset in offsets {

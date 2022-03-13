@@ -28,6 +28,7 @@ struct BatchAddItemsView: View {
                 Spacer()
                 Button {
                     let lines = text.components(separatedBy: "\n")
+                    project.objectWillChange.send()
                     for line in lines {
                         project.addItem(titled: line)
                     }
