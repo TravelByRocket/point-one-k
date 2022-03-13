@@ -119,7 +119,7 @@ class DataController: ObservableObject {
     }
 
     func deleteAll() {
-        let types = [Item.self, Project.self, Quality.self, Score.self]
+        let types = [Project.self, Item.self, Quality.self, Score.self]
 
         for type in types {
             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = type.fetchRequest()

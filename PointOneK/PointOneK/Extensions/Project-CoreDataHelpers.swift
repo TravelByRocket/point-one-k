@@ -106,7 +106,7 @@ extension Project {
         switch sortOrder {
         case .title:
             return projectItems.sorted(by: \Item.scoreTotal).reversed()
-                .sorted(by: \Item.itemTitle)
+                .sorted(by: \Item.itemTitle.localizedLowercase)
         case .score:
             return projectItems.sorted { first, second in
                 if first.scoreTotal != second.scoreTotal {

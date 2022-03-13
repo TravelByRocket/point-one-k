@@ -19,6 +19,7 @@ struct HomeView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button {
                 addProject()
+                dataController.save()
             } label: {
                 Label("Add Project", systemImage: "plus")
             }
