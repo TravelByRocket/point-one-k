@@ -11,7 +11,6 @@ struct QualityIndicatorEditSection: View {
     @ObservedObject var quality: Quality
     @State private var indicatorFieldString: String
 
-    @State var editIndicator = false
     @State var overrideIndicator: Bool
 
     init(quality: Quality) {
