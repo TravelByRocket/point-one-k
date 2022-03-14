@@ -203,7 +203,6 @@
 			children = (
 				2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
-				2FCFE8D727DC36040044E7F7 /* HomeView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
@@ -322,6 +321,7 @@
 		2FCFE8EA27DEE7340044E7F7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2FCFE8D727DC36040044E7F7 /* HomeView.swift */,
 				2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */,
 				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
 				2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */,
