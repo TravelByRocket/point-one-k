@@ -11,8 +11,6 @@ struct ProjectsListView: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    @Binding var sortOrder: Item.SortOrder
-
     @FetchRequest(
         entity: Project.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Project.title, ascending: true)],
@@ -46,11 +44,10 @@ struct ProjectsListView: View {
 
 struct ProjectsListView_Previews: PreviewProvider {
     static var dataController = DataController.preview
-    @State static var sortOrder: Item.SortOrder = .score
 
     static var previews: some View {
         NavigationView {
-            ProjectsListView(sortOrder: $sortOrder)
+            ProjectsListView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
         }

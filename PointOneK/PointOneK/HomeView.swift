@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showingSortOrder = false
     @State private var showingSettings = false
-    @State private var sortOrder = Item.SortOrder.score
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
@@ -37,7 +35,7 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            ProjectsListView(sortOrder: $sortOrder)
+            ProjectsListView()
                 .sheet(isPresented: $showingSettings) {
                     SettingsView()
                 }
