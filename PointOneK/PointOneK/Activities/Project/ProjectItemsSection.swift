@@ -53,8 +53,10 @@ struct ProjectItemsSection: View {
             }
             .onDelete(perform: {offsets in
                 for offset in offsets {
-                    let item = items[offset]
-                    dataController.delete(item)
+                    withAnimation {
+                        let item = items[offset]
+                        dataController.delete(item)
+                    }
                 }
                 project.objectWillChange.send()
                 dataController.save()
@@ -64,8 +66,10 @@ struct ProjectItemsSection: View {
             }
             HStack {
                 Button {
-                    project.addItem()
-                    dataController.save()
+                    withAnimation {
+                        project.addItem()
+                        dataController.save()
+                    }
                 } label: {
                     Label("Add New Item", systemImage: "plus")
                         .accessibilityLabel("Add new item")

@@ -35,8 +35,10 @@ struct ProjectQualitiesSection: View {
             }
             .onDelete(perform: {offsets in
                 for offset in offsets {
-                    let quality = qualities[offset]
-                    dataController.delete(quality)
+                    withAnimation {
+                        let quality = qualities[offset]
+                        dataController.delete(quality)
+                    }
                 }
                 dataController.save()
             })
@@ -44,8 +46,10 @@ struct ProjectQualitiesSection: View {
                 Text("No qualities in this project")
             }
             Button {
-                project.addQuality()
-                dataController.save()
+                withAnimation {
+                    project.addQuality()
+                    dataController.save()
+                }
             } label: {
                 Label("Add New Quality", systemImage: "plus")
                     .accessibilityLabel("Add project")
