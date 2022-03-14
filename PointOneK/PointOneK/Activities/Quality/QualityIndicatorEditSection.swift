@@ -21,8 +21,7 @@ struct QualityIndicatorEditSection: View {
     }
 
     var body: some View {
-        Self._printChanges()
-        return Section(header: Text("Pill Symbol Character")) {
+        Section(header: Text("Pill Symbol Character")) {
             HStack {
                 VStack {
                     Text("Pill Previews")
