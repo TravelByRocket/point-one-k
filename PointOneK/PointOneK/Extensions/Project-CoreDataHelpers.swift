@@ -112,7 +112,7 @@ extension Project {
                 if first.scoreTotal != second.scoreTotal {
                     return first.scoreTotal > second.scoreTotal // larger first
                 } else {
-                    return first.itemTitle < second.itemTitle // 'a' first
+                    return first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
                 }
             }
         }
