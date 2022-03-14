@@ -25,16 +25,6 @@ struct HomeView: View {
         }
     }
 
-    var sortOrderToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                showingSortOrder.toggle()
-            } label: {
-                Label("Sort", systemImage: "arrow.up.arrow.down")
-            }
-        }
-    }
-
     var settingsToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button {
@@ -48,15 +38,11 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ProjectsListView(sortOrder: $sortOrder)
-                .actionSheet(
-                    isPresented: $showingSortOrder,
-                    content: sortOrderActionSheet)
                 .sheet(isPresented: $showingSettings) {
                     SettingsView()
                 }
                 .toolbar {
                     settingsToolbarItem
-                    sortOrderToolbarItem
                     addProjectToolbarItem
                 }
             SelectSomethingView()
@@ -65,13 +51,6 @@ struct HomeView: View {
         // Views are improperly popping when updating `@ObservedObject`s
         // Details at https://developer.apple.com/forums/thread/665369
         .navigationViewStyle(.stack)
-    }
-
-    func sortOrderActionSheet() -> ActionSheet {
-        ActionSheet(title: Text("Sort items"), message: nil, buttons: [
-            .default(Text("Score")) { sortOrder = .score},
-            .default(Text("Title")) { sortOrder = .title}
-        ])
     }
 
     func addProject() {

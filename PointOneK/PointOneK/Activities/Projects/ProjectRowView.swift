@@ -31,6 +31,7 @@ struct ProjectRowView: View {
                 Text(project.projectTitle)
                     .font(.title)
                     .underline(true, color: Color(project.projectColor))
+                    .lineLimit(1)
                 Text("\(qualityCount) Qualities, \(itemCount) Items")
                 Text(qualitiesList)
                     .font(.caption)
