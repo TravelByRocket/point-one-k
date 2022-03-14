@@ -251,35 +251,14 @@
 		2F8B9D3C2751D00A00E2CC3C /* Activities */ = {
 			isa = PBXGroup;
 			children = (
-				2F8B9D3D2751D05B00E2CC3C /* Projects */,
+				2FCFE8EA27DEE7340044E7F7 /* Home */,
+				2FCFE8E927DEE6F40044E7F7 /* Project */,
+				2FCFE8EB27DEE7700044E7F7 /* Item */,
+				2FCFE8EC27DEE7A30044E7F7 /* Quality */,
+				2FCFE8ED27DEE7B50044E7F7 /* Shared */,
 				2F32AC062763B27600BCA997 /* Settings */,
 			);
 			path = Activities;
-			sourceTree = "<group>";
-		};
-		2F8B9D3D2751D05B00E2CC3C /* Projects */ = {
-			isa = PBXGroup;
-			children = (
-				2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */,
-				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
-				2F8B9D562751D13E00E2CC3C /* ProjectView.swift */,
-				2FCFE8E127DD928A0044E7F7 /* ProjectTitleEditView.swift */,
-				2FCFE8E327DD93FE0044E7F7 /* ProjectDetailEditView.swift */,
-				2FCFE8DD27DC51680044E7F7 /* ProjectItemsSection.swift */,
-				2FCFE8DF27DC52670044E7F7 /* ProjectQualitiesSection.swift */,
-				2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */,
-				2FCFE8E527DD97070044E7F7 /* ProjectArchiveDeleteSection.swift */,
-				2FCFE8D927DC412F0044E7F7 /* BatchAddButtonView.swift */,
-				2FCFE8D527DC2D540044E7F7 /* BatchAddItemsView.swift */,
-				2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */,
-				2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */,
-				2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */,
-				2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */,
-				2F8B9D6A2751D16D00E2CC3C /* InfoPill.swift */,
-				2F8B9D6E2751D16D00E2CC3C /* LevelSelector.swift */,
-				2F341B8C275993890096D685 /* BackgroundBarView.swift */,
-			);
-			path = Projects;
 			sourceTree = "<group>";
 		};
 		2F8B9D8B2751D37D00E2CC3C /* Localization */ = {
@@ -322,6 +301,59 @@
 				2F9AFF6927D52CA200788417 /* DecodableString.json */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		2FCFE8E927DEE6F40044E7F7 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				2F8B9D562751D13E00E2CC3C /* ProjectView.swift */,
+				2FCFE8E127DD928A0044E7F7 /* ProjectTitleEditView.swift */,
+				2FCFE8E327DD93FE0044E7F7 /* ProjectDetailEditView.swift */,
+				2FCFE8DD27DC51680044E7F7 /* ProjectItemsSection.swift */,
+				2FCFE8DF27DC52670044E7F7 /* ProjectQualitiesSection.swift */,
+				2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */,
+				2FCFE8E527DD97070044E7F7 /* ProjectArchiveDeleteSection.swift */,
+				2FCFE8D927DC412F0044E7F7 /* BatchAddButtonView.swift */,
+				2FCFE8D527DC2D540044E7F7 /* BatchAddItemsView.swift */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		2FCFE8EA27DEE7340044E7F7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */,
+				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
+				2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		2FCFE8EB27DEE7700044E7F7 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */,
+				2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */,
+				2F8B9D6A2751D16D00E2CC3C /* InfoPill.swift */,
+				2F341B8C275993890096D685 /* BackgroundBarView.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		2FCFE8EC27DEE7A30044E7F7 /* Quality */ = {
+			isa = PBXGroup;
+			children = (
+				2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */,
+			);
+			path = Quality;
+			sourceTree = "<group>";
+		};
+		2FCFE8ED27DEE7B50044E7F7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2F8B9D6E2751D16D00E2CC3C /* LevelSelector.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		2FF3351127D53B4C00E1F7F4 /* PointOneKUITests */ = {
