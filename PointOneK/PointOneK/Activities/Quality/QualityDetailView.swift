@@ -8,30 +8,19 @@
 import SwiftUI
 
 struct QualityDetailView: View {
-    let quality: Quality
+    @ObservedObject var quality: Quality
 
     @State var title: String
     @State var note: String
-    @State var indicator: String
-    @State var editIndicator = false
-    @State var overrideIndicator: Bool
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-
-    var hasUniqueIndicator: Bool {
-        return !quality.otherProjectIndicators.contains(indicator)
-    }
 
     init(quality: Quality) {
         self.quality = quality
 
         _title = State(wrappedValue: quality.qualityTitle)
         _note = State(wrappedValue: quality.qualityNote)
-        _indicator = State(wrappedValue: quality.qualityIndicator)
-        _overrideIndicator = State(
-            wrappedValue: quality.indicator != nil
-            && quality.indicator != quality.defaultQualityIndicator)
     }
 
     var scoringFooter: some View {
@@ -47,57 +36,10 @@ struct QualityDetailView: View {
             }
             Section(header: Text("Scoring Notes"), footer: scoringFooter) {
                 TextEditor(text: $note.onChange(update))
-                    .frame(minHeight: 150)
+                    .font(.caption)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Section(header: Text("Pill Symbol Character")) {
-                VStack {
-                    Text("Default symbol is: \(quality.defaultQualityIndicator)")
-                    Text(hasUniqueIndicator ? "Symbol is unique" : "Symbol already used")
-                        .foregroundColor(hasUniqueIndicator ? .green : .orange)
-                        .font(.footnote)
-                        .italic()
-                }
-                Toggle("Override Default Symbol", isOn: $overrideIndicator)
-                    .onChange(of: overrideIndicator) { nowOverride in
-                        if !nowOverride {
-                            indicator = quality.defaultQualityIndicator
-                            update()
-                        }
-                    }
-                HStack {
-                    TextField("Indicator",
-                              text: $indicator.onChange(update),
-                              prompt: Text("Character to use as indicator"))
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .textFieldStyle(.roundedBorder)
-                        .font(.title)
-                        .aspectRatio(1.4, contentMode: .fit)
-                        .monospacedDigit()
-                        .disabled(!overrideIndicator)
-                        .onChange(of: $indicator.wrappedValue) { newValue in
-                            indicator = String(newValue.prefix(1))
-                        }
-                    Spacer()
-                    VStack {
-                        Text("Pill Previews")
-                            .font(.footnote)
-                        HStack {
-                            InfoPill(letter: indicator.first ?? "?", level: 1)
-                            InfoPill(letter: indicator.first ?? "?", level: 2)
-                            InfoPill(letter: indicator.first ?? "?", level: 3)
-                            InfoPill(letter: indicator.first ?? "?", level: 4)
-                        }
-                    }
-                    .padding(10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(lineWidth: 2)
-                            .foregroundColor(.secondary)
-                            .opacity(0.5)
-                    )
-                }
-            }
+            QualityIndicatorEditSection(quality: quality)
             Section(header: Text("Scores")) {
                 ForEach(quality.qualityScores.sorted(by: \Score.scoreItem.itemTitle)) {score in
                     ScoringRow(label: score.scoreItem.itemTitle, score: score)
@@ -116,7 +58,6 @@ struct QualityDetailView: View {
         quality.project?.objectWillChange.send()
         quality.title = title
         quality.note = note
-        quality.indicator = indicator
     }
 }
 

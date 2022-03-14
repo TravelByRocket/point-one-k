@@ -59,6 +59,8 @@
 		2FCFE8E827DD9D140044E7F7 /* ProjectColorSelectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */; };
 		2FCFE8EF27DEEB9B0044E7F7 /* ScoringRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8EE27DEEB9B0044E7F7 /* ScoringRow.swift */; };
 		2FCFE8F127DEEE7A0044E7F7 /* ScoringRowDisclosing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F027DEEE7A0044E7F7 /* ScoringRowDisclosing.swift */; };
+		2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */; };
+		2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */; };
 		2FF3351327D53B4C00E1F7F4 /* PointOneKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */; };
 		2FF3351527D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -139,6 +141,8 @@
 		2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColorSelectionSection.swift; sourceTree = "<group>"; };
 		2FCFE8EE27DEEB9B0044E7F7 /* ScoringRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringRow.swift; sourceTree = "<group>"; };
 		2FCFE8F027DEEE7A0044E7F7 /* ScoringRowDisclosing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringRowDisclosing.swift; sourceTree = "<group>"; };
+		2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityIndicatorEditSection.swift; sourceTree = "<group>"; };
+		2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character-AsString.swift"; sourceTree = "<group>"; };
 		2FF3351027D53B4C00E1F7F4 /* PointOneKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointOneKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITests.swift; sourceTree = "<group>"; };
 		2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
 				2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */,
 				2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */,
+				2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */,
 				2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */,
 				2F8B9D462751D0F800E2CC3C /* Bundle-Decodable.swift */,
 				2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */,
@@ -348,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */,
+				2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */,
 			);
 			path = Quality;
 			sourceTree = "<group>";
@@ -545,6 +551,7 @@
 				2FCFE8DE27DC51680044E7F7 /* ProjectItemsSection.swift in Sources */,
 				2FCFE8DA27DC412F0044E7F7 /* BatchAddButtonView.swift in Sources */,
 				2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */,
+				2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */,
 				2F8B9D602751D13E00E2CC3C /* ProjectsListView.swift in Sources */,
 				2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */,
 				2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */,
@@ -557,6 +564,7 @@
 				2F8B9D762751D16D00E2CC3C /* LevelSelector.swift in Sources */,
 				2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */,
 				2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */,
+				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE8E427DD93FE0044E7F7 /* ProjectDetailEditView.swift in Sources */,

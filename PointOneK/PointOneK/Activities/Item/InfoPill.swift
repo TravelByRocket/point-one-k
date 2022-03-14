@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InfoPill: View {
     let letter: Character
-    let level: Int // may not be necessary to have @Binding
+    let level: Int
 
     var dots: String {
         var line  = ""
