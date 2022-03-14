@@ -30,7 +30,9 @@ struct ItemDetailView: View {
                     .font(.title)
             }
             ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
-                RowInlineScoringView(quality: quality, item: item)
+                ScoringRowDisclosing(
+                    label: quality.qualityTitle,
+                    score: quality.score(for: item) ?? Score.example)
             }
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
@@ -65,39 +67,6 @@ struct ItemDetailView_Previews: PreviewProvider {
             ItemDetailView(item: Item.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
-        }
-    }
-}
-
-private struct RowInlineScoringView: View {
-    @State var value: Int
-    private let quality: Quality
-    private let item: Item
-    private let score: Score?
-
-    init(quality: Quality, item: Item) {
-        self.quality = quality
-        self.item = item
-        self.score = quality.score(for: item)
-        _value = State(initialValue: score?.scoreValue ?? 0)
-    }
-
-    var body: some View {
-        DisclosureGroup {
-            Text(quality.qualityNote)
-                .italic()
-                .font(.footnote)
-                .foregroundColor(.secondary)
-        } label: {
-            HStack {
-                Text(quality.qualityTitle)
-                Spacer()
-                LevelSelector(value: $value)
-                    .onChange(of: value) { newValue in
-                        score?.item?.objectWillChange.send()
-                        score?.value = Int16(newValue)
-                    }
-            }
         }
     }
 }

@@ -100,7 +100,7 @@ struct QualityDetailView: View {
             }
             Section(header: Text("Scores")) {
                 ForEach(quality.qualityScores.sorted(by: \Score.scoreItem.itemTitle)) {score in
-                    RowInlineScoringView(score: score)
+                    ScoringRow(label: score.scoreItem.itemTitle, score: score)
                 }
                 if quality.qualityScores.isEmpty {
                     Text("Project items will show up here")
@@ -127,29 +127,5 @@ struct QualityDetailView_Previews: PreviewProvider {
         QualityDetailView(quality: Quality.example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
-    }
-}
-
-private struct RowInlineScoringView: View {
-    @State var value: Int
-    private let score: Score
-
-    init(score: Score) {
-        self.score = score
-        _value = State(initialValue: score.scoreValue)
-    }
-
-    var body: some View {
-        HStack {
-            Text(score.scoreItem.itemTitle)
-            Spacer()
-            LevelSelector(value: $value)
-                .onChange(of: value) { newValue in
-//                    score.item?.project?.objectWillChange.send()
-                    score.item?.objectWillChange.send()
-                    score.objectWillChange.send()
-                    score.value = Int16(newValue)
-                }
-        }
     }
 }

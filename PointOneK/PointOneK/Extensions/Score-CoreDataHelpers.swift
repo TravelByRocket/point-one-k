@@ -16,6 +16,10 @@ extension Score {
         item ?? Item.example
     }
 
+    var scoreQuality: Quality {
+        quality ?? Quality.example
+    }
+
     static var example: Score {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
