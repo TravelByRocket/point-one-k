@@ -19,7 +19,7 @@ struct ProjectView: View {
             Section(header: Text("Description")) {
                 ProjectDetailEditView(project: project)
             }
-            ProjectItemsSection(project: project)
+            ProjectItemsSection(project: project, dataController: dataController)
             ProjectQualitiesSection(project: project)
             ProjectColorSelectionSection(project: project)
             ProjectArchiveDeleteSection(project: project)
