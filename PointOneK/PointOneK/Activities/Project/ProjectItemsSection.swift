@@ -22,20 +22,23 @@ struct ProjectItemsSection: View {
 
     var itemSortingHeader: some View {
         HStack {
-            Text("Items by \(sortOrder == .title ? "Title" : "Score")")
+            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
             Spacer()
             Button {
-                if sortOrder == .title {
-                    sortOrder = .score
-                } else { // if sortOrder == .score
-                    sortOrder = .title
+                withAnimation {
+                    if sortOrder == .title {
+                        sortOrder = .score
+                    } else { // if sortOrder == .score
+                        sortOrder = .title
+                    }
                 }
             } label: {
                 Label {
-                    Text(sortOrder == .score ? "Title" : "Score")
+                    Text("Switch sort priority")
                 } icon: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
+                .labelStyle(.iconOnly)
             }
         }
     }
