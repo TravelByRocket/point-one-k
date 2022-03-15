@@ -15,6 +15,7 @@ struct HomeView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
 
     @State var selectedItem: Item?
+    @State var newProject: Project?
 
     @State var showingUnlockView = false
 
@@ -44,10 +45,19 @@ struct HomeView: View {
                 NavigationLink(
                     tag: item,
                     selection: $selectedItem,
-                    destination: {ItemDetailView(item: item)},
+                    destination: { ItemDetailView(item: item) },
                     label: EmptyView.init
                 )
-                    .id(item)
+                .id(item)
+            }
+            if let project = newProject {
+                NavigationLink(
+                    tag: project,
+                    selection: $newProject,
+                    destination: { ProjectView(project: project) },
+                    label: EmptyView.init
+                )
+                .id(project)
             }
             ProjectsListView()
                 .sheet(isPresented: $showingSettings) {
@@ -67,15 +77,19 @@ struct HomeView: View {
         // Details at https://developer.apple.com/forums/thread/665369
         .navigationViewStyle(.stack)
         .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
+        .onOpenURL(perform: openURL)
     }
 
-    func addProject() {
+    func addProject(fromURL: Bool = false) {
         let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Project.fetchRequest()) < 3
         if canCreate {
             withAnimation {
                 let project = Project(context: managedObjectContext)
                 project.closed = false
                 dataController.save()
+                if fromURL {
+                    newProject = project
+                }
             }
         } else {
             showingUnlockView.toggle()
@@ -92,6 +106,9 @@ struct HomeView: View {
         }
     }
 
+    func openURL(_ url: URL) {
+        addProject(fromURL: true)
+    }
 }
 
 struct HomeView_Previews: PreviewProvider {

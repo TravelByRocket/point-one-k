@@ -48,6 +48,8 @@
 		2F9AFF6827D52C8400788417 /* DecodableDictionary.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6727D52C8400788417 /* DecodableDictionary.json */; };
 		2F9AFF6A27D52CA200788417 /* DecodableString.json in Resources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6927D52CA200788417 /* DecodableString.json */; };
 		2F9AFF6C27D5356800788417 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6B27D5356800788417 /* PerformanceTests.swift */; };
+		2FBF508027E147DD00B6883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF507F27E147DD00B6883E /* AppDelegate.swift */; };
+		2FBF508227E147E500B6883E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF508127E147E500B6883E /* SceneDelegate.swift */; };
 		2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */; };
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
 		2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */; };
@@ -137,6 +139,8 @@
 		2F9AFF6727D52C8400788417 /* DecodableDictionary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableDictionary.json; sourceTree = "<group>"; };
 		2F9AFF6927D52CA200788417 /* DecodableString.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DecodableString.json; sourceTree = "<group>"; };
 		2F9AFF6B27D5356800788417 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
+		2FBF507F27E147DD00B6883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2FBF508127E147E500B6883E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataView.swift; sourceTree = "<group>"; };
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
 		2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToggleClosedRow.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */,
+				2FBF507F27E147DD00B6883E /* AppDelegate.swift */,
+				2FBF508127E147E500B6883E /* SceneDelegate.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
@@ -590,6 +596,7 @@
 				2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */,
 				2F8B9D402751D0AE00E2CC3C /* DataController.swift in Sources */,
 				2F8B9D4B2751D0F800E2CC3C /* Sequence-Sorting.swift in Sources */,
+				2FBF508027E147DD00B6883E /* AppDelegate.swift in Sources */,
 				2FCFE8D427DC09480044E7F7 /* ProjectRowView.swift in Sources */,
 				2FCFE8E627DD97080044E7F7 /* ProjectArchiveDeleteSection.swift in Sources */,
 				2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */,
@@ -601,6 +608,7 @@
 				2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */,
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
+				2FBF508227E147E500B6883E /* SceneDelegate.swift in Sources */,
 				2F0EFE4427E1202D00E5788D /* ProductView.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */,

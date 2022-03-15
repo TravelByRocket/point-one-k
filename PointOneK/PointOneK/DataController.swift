@@ -27,6 +27,15 @@ class DataController: ObservableObject {
         }
     }
 
+    var dateAskedForReview: Date? {
+        get {
+            defaults.object(forKey: "dateAskedForReview") as? Date
+        }
+        set {
+            defaults.set(newValue, forKey: "dateAskedForReview")
+        }
+    }
+
     /// Initializes a data controler, either in memory (for temporary use such as testing and previewing), or on
     /// permanent storage (for us in regular app runs).
     ///
@@ -193,11 +202,15 @@ class DataController: ObservableObject {
 
     func appLaunched() {
         guard count(for: Project.fetchRequest()) >= 5 else { return }
+        let hasNeverAsked = dateAskedForReview == nil
+        let intervalSinceAsked = dateAskedForReview?.timeIntervalSinceNow ?? 0
+        guard hasNeverAsked || intervalSinceAsked > 86_400 * 40 else { return }
 
         let allscenes = UIApplication.shared.connectedScenes
         let scene = allscenes.first // { $0.activationState == .foregroundActive } // works iff no filtering
 
         if let windowScene = scene as? UIWindowScene {
+            dateAskedForReview = Date()
             SKStoreReviewController.requestReview(in: windowScene)
         }
     }
