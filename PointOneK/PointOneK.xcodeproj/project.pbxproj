@@ -238,7 +238,6 @@
 				2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
-				2FCFE91A27E0F03E0044E7F7 /* Configuration.storekit */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
 				2F8B9D8B2751D37D00E2CC3C /* Localization */,
@@ -310,6 +309,7 @@
 		2F8B9D972751DAC500E2CC3C /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				2FCFE91A27E0F03E0044E7F7 /* Configuration.storekit */,
 				2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */,
 				2F8B9D332751CF6900E2CC3C /* Info.plist */,
 				2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */,
