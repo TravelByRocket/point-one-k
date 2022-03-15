@@ -10,6 +10,7 @@ import SwiftUI
 class SceneDelegate: NSObject, UIWindowSceneDelegate {
     @Environment(\.openURL) var openURL
 
+    // for opening the app cold
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -23,6 +24,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
             }
     }
 
+    // for when the scene already exists
     func windowScene(
         _ windowScene: UIWindowScene,
         performActionFor shortcutItem: UIApplicationShortcutItem,
