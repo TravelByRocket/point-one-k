@@ -8,6 +8,7 @@
 import CoreData
 import CoreSpotlight
 import SwiftUI
+import StoreKit
 
 /// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.
@@ -15,13 +16,26 @@ class DataController: ObservableObject {
     /// The lone CloudKit container used to stare all our data
     let container: NSPersistentCloudKitContainer
 
+    let defaults: UserDefaults
+
+    var fullVersionUnlocked: Bool {
+        get {
+            defaults.bool(forKey: "fullVersionUnlocked")
+        }
+        set {
+            defaults.set(newValue, forKey: "fullVersionUnlocked")
+        }
+    }
+
     /// Initializes a data controler, either in memory (for temporary use such as testing and previewing), or on
     /// permanent storage (for us in regular app runs).
     ///
     /// Defaults to permanent storage.
     /// - Parameter inMemory: Whether to store this data in temporary storage or not
-    init(inMemory: Bool = false) {
+    /// - Paramater defaults: The UserDefaults suite where user data should be stored
+    init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
+        self.defaults = defaults
 
         // For testing and previewing purposes, we create a temporary, in-memory databse by writing to /dev/null/ so
         // our data is destroyed after the app finishes running.
@@ -175,5 +189,16 @@ class DataController: ObservableObject {
         }
 
         return try? container.viewContext.existingObject(with: id) as? Item
+    }
+
+    func appLaunched() {
+        guard count(for: Project.fetchRequest()) >= 5 else { return }
+
+        let allscenes = UIApplication.shared.connectedScenes
+        let scene = allscenes.first // { $0.activationState == .foregroundActive } // works iff no filtering
+
+        if let windowScene = scene as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: windowScene)
+        }
     }
 }

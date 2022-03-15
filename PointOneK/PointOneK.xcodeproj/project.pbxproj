@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */; };
+		2F0EFE4027E11A9100E5788D /* SKProduct-LocalizedPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0EFE3F27E11A9000E5788D /* SKProduct-LocalizedPrice.swift */; };
+		2F0EFE4227E11B5800E5788D /* PurchaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0EFE4127E11B5800E5788D /* PurchaseButton.swift */; };
+		2F0EFE4427E1202D00E5788D /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0EFE4327E1202D00E5788D /* ProductView.swift */; };
+		2F0EFE4627E1223100E5788D /* UnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0EFE4527E1223100E5788D /* UnlockView.swift */; };
 		2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */; };
 		2F1DA9DF2753E3350004EFD5 /* QualityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */; };
 		2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */; };
@@ -63,6 +67,7 @@
 		2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */; };
 		2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE91427DFF80A0044E7F7 /* ProjectItemsSectionModel.swift */; };
 		2FCFE91727E025510044E7F7 /* ValueClearHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE91627E025510044E7F7 /* ValueClearHaptic.swift */; };
+		2FCFE91927E0EEC10044E7F7 /* UnlockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE91827E0EEC10044E7F7 /* UnlockManager.swift */; };
 		2FF3351327D53B4C00E1F7F4 /* PointOneKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */; };
 		2FF3351527D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +91,10 @@
 
 /* Begin PBXFileReference section */
 		2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Score-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		2F0EFE3F27E11A9000E5788D /* SKProduct-LocalizedPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKProduct-LocalizedPrice.swift"; sourceTree = "<group>"; };
+		2F0EFE4127E11B5800E5788D /* PurchaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseButton.swift; sourceTree = "<group>"; };
+		2F0EFE4327E1202D00E5788D /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		2F0EFE4527E1223100E5788D /* UnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockView.swift; sourceTree = "<group>"; };
 		2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quality-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityDetailView.swift; sourceTree = "<group>"; };
 		2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text-Character.swift"; sourceTree = "<group>"; };
@@ -147,6 +156,8 @@
 		2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character-AsString.swift"; sourceTree = "<group>"; };
 		2FCFE91427DFF80A0044E7F7 /* ProjectItemsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectItemsSectionModel.swift; sourceTree = "<group>"; };
 		2FCFE91627E025510044E7F7 /* ValueClearHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueClearHaptic.swift; sourceTree = "<group>"; };
+		2FCFE91827E0EEC10044E7F7 /* UnlockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockManager.swift; sourceTree = "<group>"; };
+		2FCFE91A27E0F03E0044E7F7 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		2FF3351027D53B4C00E1F7F4 /* PointOneKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointOneKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITests.swift; sourceTree = "<group>"; };
 		2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -178,6 +189,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F0EFE4727E129BD00E5788D /* Unlock */ = {
+			isa = PBXGroup;
+			children = (
+				2FCFE91827E0EEC10044E7F7 /* UnlockManager.swift */,
+				2F0EFE4127E11B5800E5788D /* PurchaseButton.swift */,
+				2F0EFE4327E1202D00E5788D /* ProductView.swift */,
+				2F0EFE4527E1223100E5788D /* UnlockView.swift */,
+			);
+			path = Unlock;
+			sourceTree = "<group>";
+		};
 		2F32AC062763B27600BCA997 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +238,7 @@
 				2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
+				2FCFE91A27E0F03E0044E7F7 /* Configuration.storekit */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
 				2F8B9D8B2751D37D00E2CC3C /* Localization */,
@@ -246,6 +269,7 @@
 		2F8B9D3A2751D00600E2CC3C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2F0EFE3F27E11A9000E5788D /* SKProduct-LocalizedPrice.swift */,
 				2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */,
 				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
 				2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */,
@@ -263,12 +287,13 @@
 		2F8B9D3C2751D00A00E2CC3C /* Activities */ = {
 			isa = PBXGroup;
 			children = (
+				2F0EFE4727E129BD00E5788D /* Unlock */,
 				2FCFE8EA27DEE7340044E7F7 /* Home */,
 				2FCFE8E927DEE6F40044E7F7 /* Project */,
 				2FCFE8EB27DEE7700044E7F7 /* Item */,
 				2FCFE8EC27DEE7A30044E7F7 /* Quality */,
-				2FCFE8ED27DEE7B50044E7F7 /* Shared */,
 				2F32AC062763B27600BCA997 /* Settings */,
+				2FCFE8ED27DEE7B50044E7F7 /* Shared */,
 			);
 			path = Activities;
 			sourceTree = "<group>";
@@ -558,6 +583,7 @@
 				2FCFE91727E025510044E7F7 /* ValueClearHaptic.swift in Sources */,
 				2FCFE8DA27DC412F0044E7F7 /* BatchAddButtonView.swift in Sources */,
 				2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */,
+				2F0EFE4627E1223100E5788D /* UnlockView.swift in Sources */,
 				2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */,
 				2F8B9D602751D13E00E2CC3C /* ProjectsListView.swift in Sources */,
 				2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */,
@@ -567,16 +593,20 @@
 				2FCFE8D427DC09480044E7F7 /* ProjectRowView.swift in Sources */,
 				2FCFE8E627DD97080044E7F7 /* ProjectArchiveDeleteSection.swift in Sources */,
 				2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */,
+				2FCFE91927E0EEC10044E7F7 /* UnlockManager.swift in Sources */,
+				2F0EFE4027E11A9100E5788D /* SKProduct-LocalizedPrice.swift in Sources */,
 				2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */,
 				2F8B9D762751D16D00E2CC3C /* LevelSelector.swift in Sources */,
 				2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */,
 				2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */,
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
+				2F0EFE4427E1202D00E5788D /* ProductView.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */,
 				2FCFE8E427DD93FE0044E7F7 /* ProjectDetailEditView.swift in Sources */,
 				2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */,
+				2F0EFE4227E11B5800E5788D /* PurchaseButton.swift in Sources */,
 				2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */,
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
 				2FCFE8D627DC2D540044E7F7 /* BatchAddItemsView.swift in Sources */,

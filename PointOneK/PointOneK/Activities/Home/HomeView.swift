@@ -16,6 +16,8 @@ struct HomeView: View {
 
     @State var selectedItem: Item?
 
+    @State var showingUnlockView = false
+
     var addProjectToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button {
@@ -51,6 +53,9 @@ struct HomeView: View {
                 .sheet(isPresented: $showingSettings) {
                     SettingsView()
                 }
+                .sheet(isPresented: $showingUnlockView) {
+                    UnlockView()
+                }
                 .toolbar {
                     settingsToolbarItem
                     addProjectToolbarItem
@@ -65,10 +70,15 @@ struct HomeView: View {
     }
 
     func addProject() {
-        withAnimation {
-            let project = Project(context: managedObjectContext)
-            project.closed = false
-            dataController.save()
+        let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Project.fetchRequest()) < 3
+        if canCreate {
+            withAnimation {
+                let project = Project(context: managedObjectContext)
+                project.closed = false
+                dataController.save()
+            }
+        } else {
+            showingUnlockView.toggle()
         }
     }
 
