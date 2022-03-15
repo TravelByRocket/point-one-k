@@ -26,6 +26,10 @@
 			<string>rectangle.stack.badge.plus</string>
 		</dict>
 	</array>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>co.synodic.PointOneK.newProject</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

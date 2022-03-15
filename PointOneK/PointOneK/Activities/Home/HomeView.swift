@@ -14,6 +14,8 @@ struct HomeView: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
+    private let newProjectActivity = "co.synodic.PointOneK.newProject"
+
     @State var selectedItem: Item?
     @State var newProject: Project?
 
@@ -77,6 +79,11 @@ struct HomeView: View {
         // Details at https://developer.apple.com/forums/thread/665369
         .navigationViewStyle(.stack)
         .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
+        .onContinueUserActivity(newProjectActivity, perform: createProject)
+        .userActivity(newProjectActivity) { activity in
+            activity.title = "New Project"
+            activity.isEligibleForPrediction = true
+        }
         .onOpenURL(perform: openURL)
     }
 
@@ -94,6 +101,10 @@ struct HomeView: View {
         } else {
             showingUnlockView.toggle()
         }
+    }
+
+    func createProject(_ userActivity: NSUserActivity) {
+        addProject()
     }
 
     func selectItem(with identifier: String) {

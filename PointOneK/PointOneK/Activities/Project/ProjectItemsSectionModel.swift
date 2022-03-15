@@ -33,6 +33,7 @@ extension ProjectItemsSection {
         }
 
         func addItem() {
+            objectWillChange.send()
             project.addItem()
             dataController.save()
         }
