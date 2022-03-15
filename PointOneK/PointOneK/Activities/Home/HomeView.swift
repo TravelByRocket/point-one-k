@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreSpotlight
 
 struct HomeView: View {
     @State private var showingSettings = false
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
+
+    @State var selectedItem: Item?
 
     var addProjectToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
@@ -35,6 +38,15 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
+            if let item = selectedItem {
+                NavigationLink(
+                    tag: item,
+                    selection: $selectedItem,
+                    destination: {ItemDetailView(item: item)},
+                    label: EmptyView.init
+                )
+                    .id(item)
+            }
             ProjectsListView()
                 .sheet(isPresented: $showingSettings) {
                     SettingsView()
@@ -49,6 +61,7 @@ struct HomeView: View {
         // Views are improperly popping when updating `@ObservedObject`s
         // Details at https://developer.apple.com/forums/thread/665369
         .navigationViewStyle(.stack)
+        .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
     }
 
     func addProject() {
@@ -58,6 +71,17 @@ struct HomeView: View {
             dataController.save()
         }
     }
+
+    func selectItem(with identifier: String) {
+        selectedItem = dataController.item(with: identifier)
+    }
+
+    func loadSpotlightItem(_ userActivity: NSUserActivity) {
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            selectItem(with: uniqueIdentifier)
+        }
+    }
+
 }
 
 struct HomeView_Previews: PreviewProvider {

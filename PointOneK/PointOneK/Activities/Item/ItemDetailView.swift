@@ -49,13 +49,17 @@ struct ItemDetailView: View {
             }
         }
         .navigationTitle("Edit Item")
-        .onDisappear(perform: dataController.save)
+        .onDisappear(perform: save)
     }
 
     func update() {
         item.project?.objectWillChange.send()
         item.title = title
         item.note = note
+    }
+
+    func save() {
+        dataController.update(item)
     }
 }
 

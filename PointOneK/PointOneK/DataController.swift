@@ -6,7 +6,8 @@
 //
 
 import CoreData
-import UIKit
+import CoreSpotlight
+import SwiftUI
 
 /// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.
@@ -114,7 +115,21 @@ class DataController: ObservableObject {
         }
     }
 
-    func delete(_ object: NSManagedObject) {
+    func delete(_ object: Project) {
+        let id = object.objectID.uriRepresentation().absoluteString
+        CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [id])
+
+        container.viewContext.delete(object)
+    }
+
+    func delete(_ object: Item) {
+        let id = object.objectID.uriRepresentation().absoluteString
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id])
+
+        container.viewContext.delete(object)
+    }
+
+    func delete(_ object: Quality) {
         container.viewContext.delete(object)
     }
 
@@ -130,5 +145,35 @@ class DataController: ObservableObject {
 
     func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
+    }
+
+    func update(_ item: Item) {
+        let itemID = item.objectID.uriRepresentation().absoluteString
+        let projectID = item.project?.objectID.uriRepresentation().absoluteString
+
+        let attributeSet = CSSearchableItemAttributeSet(contentType: .text)
+        attributeSet.title = item.itemTitle
+        attributeSet.contentDescription = item.itemNote
+
+        let searchableItem = CSSearchableItem(
+            uniqueIdentifier: itemID,
+            domainIdentifier: projectID,
+            attributeSet: attributeSet)
+
+        CSSearchableIndex.default().indexSearchableItems([searchableItem])
+
+        save()
+    }
+
+    func item(with uniqueIdentifier: String) -> Item? {
+        guard let url = URL(string: uniqueIdentifier) else {
+            return nil
+        }
+
+        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
+            return nil
+        }
+
+        return try? container.viewContext.existingObject(with: id) as? Item
     }
 }

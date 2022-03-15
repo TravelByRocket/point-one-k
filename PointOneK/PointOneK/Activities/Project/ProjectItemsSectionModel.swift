@@ -42,7 +42,7 @@ extension ProjectItemsSection {
                 let item = items[offset]
                 dataController.delete(item)
             }
-            project.objectWillChange.send()
+            objectWillChange.send()
             dataController.save()
         }
     }

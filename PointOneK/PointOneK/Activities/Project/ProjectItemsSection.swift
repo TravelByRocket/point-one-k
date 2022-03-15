@@ -34,7 +34,7 @@ struct ProjectItemsSection: View {
         Section(header: itemSortingHeader) {
             ForEach(viewModel.items) { item in
                 NavigationLink(
-                    tag: String(item.id.debugDescription),
+                    tag: String(item.objectID.debugDescription),
                     selection: $selectedItemObjectID) {
                         ItemDetailView(item: item)
                     } label: {
