@@ -50,6 +50,23 @@
 		2F9AFF6C27D5356800788417 /* PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9AFF6B27D5356800788417 /* PerformanceTests.swift */; };
 		2FBF508027E147DD00B6883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF507F27E147DD00B6883E /* AppDelegate.swift */; };
 		2FBF508227E147E500B6883E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF508127E147E500B6883E /* SceneDelegate.swift */; };
+		2FBF508927E188D700B6883E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF508827E188D700B6883E /* WidgetKit.framework */; };
+		2FBF508B27E188D700B6883E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF508A27E188D700B6883E /* SwiftUI.framework */; };
+		2FBF508E27E188D700B6883E /* PointOneKWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF508D27E188D700B6883E /* PointOneKWidgetsBundle.swift */; };
+		2FBF509127E188D900B6883E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF509027E188D900B6883E /* Assets.xcassets */; };
+		2FBF509727E188D900B6883E /* PointOneKWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2FBF508727E188D700B6883E /* PointOneKWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2FBF509C27E189C200B6883E /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */; };
+		2FBF509D27E189D100B6883E /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */; };
+		2FBF509E27E18A0500B6883E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */; };
+		2FBF50A027E18B1600B6883E /* DataController-AppLaunched.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF509F27E18B1600B6883E /* DataController-AppLaunched.swift */; };
+		2FBF50A127E18F1A00B6883E /* Project-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */; };
+		2FBF50A227E18F2000B6883E /* Score-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */; };
+		2FBF50A327E18F2300B6883E /* Quality-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */; };
+		2FBF50A427E18F3B00B6883E /* Sequence-Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D452751D0F800E2CC3C /* Sequence-Sorting.swift */; };
+		2FBF50A627E2643000B6883E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9D412751D0D800E2CC3C /* Colors.xcassets */; };
+		2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF50A727E2681300B6883E /* DataProvider.swift */; };
+		2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */; };
+		2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
 		2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */; };
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
 		2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */; };
@@ -82,6 +99,13 @@
 			remoteGlobalIDString = 2F8B9D1D2751CF0A00E2CC3C;
 			remoteInfo = PointOneK;
 		};
+		2FBF509527E188D900B6883E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F8B9D162751CF0A00E2CC3C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FBF508627E188D700B6883E;
+			remoteInfo = PointOneKWidgetExtension;
+		};
 		2FF3351627D53B4C00E1F7F4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2F8B9D162751CF0A00E2CC3C /* Project object */;
@@ -90,6 +114,20 @@
 			remoteInfo = PointOneK;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2FBF509B27E188D900B6883E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2FBF509727E188D900B6883E /* PointOneKWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Score-CoreDataHelpers.swift"; sourceTree = "<group>"; };
@@ -141,6 +179,16 @@
 		2F9AFF6B27D5356800788417 /* PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceTests.swift; sourceTree = "<group>"; };
 		2FBF507F27E147DD00B6883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FBF508127E147E500B6883E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2FBF508727E188D700B6883E /* PointOneKWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PointOneKWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FBF508827E188D700B6883E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2FBF508A27E188D700B6883E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		2FBF508D27E188D700B6883E /* PointOneKWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKWidgetsBundle.swift; sourceTree = "<group>"; };
+		2FBF509027E188D900B6883E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FBF509227E188D900B6883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FBF509F27E18B1600B6883E /* DataController-AppLaunched.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataController-AppLaunched.swift"; sourceTree = "<group>"; };
+		2FBF50A727E2681300B6883E /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKWidget.swift; sourceTree = "<group>"; };
+		2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PointOneKWidgetExtension.entitlements; sourceTree = "<group>"; };
 		2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataView.swift; sourceTree = "<group>"; };
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
 		2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToggleClosedRow.swift; sourceTree = "<group>"; };
@@ -183,6 +231,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FBF508427E188D700B6883E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF508B27E188D700B6883E /* SwiftUI.framework in Frameworks */,
+				2FBF508927E188D700B6883E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2FF3350D27D53B4C00E1F7F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -218,9 +275,11 @@
 		2F8B9D152751CF0A00E2CC3C = {
 			isa = PBXGroup;
 			children = (
+				2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */,
 				2F8B9D202751CF0A00E2CC3C /* PointOneK */,
 				2F8B9D9D2752894400E2CC3C /* PointOneKTests */,
 				2FF3351127D53B4C00E1F7F4 /* PointOneKUITests */,
+				2FBF508C27E188D700B6883E /* PointOneKWidget */,
 				2F8B9D1F2751CF0A00E2CC3C /* Products */,
 				2F8B9D302751CF5E00E2CC3C /* Frameworks */,
 			);
@@ -232,6 +291,7 @@
 				2F8B9D1E2751CF0A00E2CC3C /* PointOneK.app */,
 				2F8B9D9C2752894400E2CC3C /* PointOneKTests.xctest */,
 				2FF3351027D53B4C00E1F7F4 /* PointOneKUITests.xctest */,
+				2FBF508727E188D700B6883E /* PointOneKWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,6 +304,7 @@
 				2FBF508127E147E500B6883E /* SceneDelegate.swift */,
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
 				2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */,
+				2FBF509F27E18B1600B6883E /* DataController-AppLaunched.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
 				2F8B9D8B2751D37D00E2CC3C /* Localization */,
@@ -267,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				2F8B9D312751CF5E00E2CC3C /* CloudKit.framework */,
+				2FBF508827E188D700B6883E /* WidgetKit.framework */,
+				2FBF508A27E188D700B6883E /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -344,6 +407,18 @@
 				2F9AFF6927D52CA200788417 /* DecodableString.json */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		2FBF508C27E188D700B6883E /* PointOneKWidget */ = {
+			isa = PBXGroup;
+			children = (
+				2FBF508D27E188D700B6883E /* PointOneKWidgetsBundle.swift */,
+				2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */,
+				2FBF50A727E2681300B6883E /* DataProvider.swift */,
+				2FBF509027E188D900B6883E /* Assets.xcassets */,
+				2FBF509227E188D900B6883E /* Info.plist */,
+			);
+			path = PointOneKWidget;
 			sourceTree = "<group>";
 		};
 		2FCFE8E927DEE6F40044E7F7 /* Project */ = {
@@ -425,10 +500,12 @@
 				2F8B9D1A2751CF0A00E2CC3C /* Sources */,
 				2F8B9D1B2751CF0A00E2CC3C /* Frameworks */,
 				2F8B9D1C2751CF0A00E2CC3C /* Resources */,
+				2FBF509B27E188D900B6883E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2FBF509627E188D900B6883E /* PBXTargetDependency */,
 			);
 			name = PointOneK;
 			productName = PointOneK;
@@ -452,6 +529,23 @@
 			productName = PointOneKTests;
 			productReference = 2F8B9D9C2752894400E2CC3C /* PointOneKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2FBF508627E188D700B6883E /* PointOneKWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FBF509827E188D900B6883E /* Build configuration list for PBXNativeTarget "PointOneKWidgetExtension" */;
+			buildPhases = (
+				2FBF508327E188D700B6883E /* Sources */,
+				2FBF508427E188D700B6883E /* Frameworks */,
+				2FBF508527E188D700B6883E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PointOneKWidgetExtension;
+			productName = PointOneKWidgetExtension;
+			productReference = 2FBF508727E188D700B6883E /* PointOneKWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		2FF3350F27D53B4C00E1F7F4 /* PointOneKUITests */ = {
 			isa = PBXNativeTarget;
@@ -478,7 +572,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					2F8B9D1D2751CF0A00E2CC3C = {
@@ -487,6 +581,9 @@
 					2F8B9D9B2752894400E2CC3C = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 2F8B9D1D2751CF0A00E2CC3C;
+					};
+					2FBF508627E188D700B6883E = {
+						CreatedOnToolsVersion = 13.3;
 					};
 					2FF3350F27D53B4C00E1F7F4 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -511,6 +608,7 @@
 				2F8B9D1D2751CF0A00E2CC3C /* PointOneK */,
 				2F8B9D9B2752894400E2CC3C /* PointOneKTests */,
 				2FF3350F27D53B4C00E1F7F4 /* PointOneKUITests */,
+				2FBF508627E188D700B6883E /* PointOneKWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -534,6 +632,15 @@
 			files = (
 				2F9AFF6A27D52CA200788417 /* DecodableString.json in Resources */,
 				2F9AFF6827D52C8400788417 /* DecodableDictionary.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF508527E188D700B6883E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF509127E188D900B6883E /* Assets.xcassets in Resources */,
+				2FBF50A627E2643000B6883E /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FBF50A027E18B1600B6883E /* DataController-AppLaunched.swift in Sources */,
 				2F8B9D5C2751D13E00E2CC3C /* ProjectView.swift in Sources */,
 				2F8B9D4E2751D0F800E2CC3C /* Binding-OnChange.swift in Sources */,
 				2F8B9D362751CFE200E2CC3C /* Main.xcdatamodeld in Sources */,
@@ -637,6 +745,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2FBF508327E188D700B6883E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */,
+				2FBF50A227E18F2000B6883E /* Score-CoreDataHelpers.swift in Sources */,
+				2FBF50A127E18F1A00B6883E /* Project-CoreDataHelpers.swift in Sources */,
+				2FBF509E27E18A0500B6883E /* DataController.swift in Sources */,
+				2FBF50A427E18F3B00B6883E /* Sequence-Sorting.swift in Sources */,
+				2FBF509C27E189C200B6883E /* Main.xcdatamodeld in Sources */,
+				2FBF50A327E18F2300B6883E /* Quality-CoreDataHelpers.swift in Sources */,
+				2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */,
+				2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */,
+				2FBF508E27E188D700B6883E /* PointOneKWidgetsBundle.swift in Sources */,
+				2FBF509D27E189D100B6883E /* Item-CoreDataHelpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2FF3350C27D53B4C00E1F7F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,6 +779,11 @@
 			isa = PBXTargetDependency;
 			target = 2F8B9D1D2751CF0A00E2CC3C /* PointOneK */;
 			targetProxy = 2F8B9DA02752894400E2CC3C /* PBXContainerItemProxy */;
+		};
+		2FBF509627E188D900B6883E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FBF508627E188D700B6883E /* PointOneKWidgetExtension */;
+			targetProxy = 2FBF509527E188D900B6883E /* PBXContainerItemProxy */;
 		};
 		2FF3351727D53B4C00E1F7F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -804,6 +935,7 @@
 		2F8B9D2D2751CF0A00E2CC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
@@ -835,6 +967,7 @@
 		2F8B9D2E2751CF0A00E2CC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
@@ -909,6 +1042,64 @@
 			};
 			name = Release;
 		};
+		2FBF509927E188D900B6883E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PointOneKWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CX9A4TZM67;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PointOneKWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PointOneKWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2022.000.00;
+				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK.PointOneKWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FBF509A27E188D900B6883E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = PointOneKWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CX9A4TZM67;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PointOneKWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PointOneKWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2022.000.00;
+				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK.PointOneKWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		2FF3351827D53B4C00E1F7F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -971,6 +1162,15 @@
 			buildConfigurations = (
 				2F8B9DA22752894400E2CC3C /* Debug */,
 				2F8B9DA32752894400E2CC3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FBF509827E188D900B6883E /* Build configuration list for PBXNativeTarget "PointOneKWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FBF509927E188D900B6883E /* Debug */,
+				2FBF509A27E188D900B6883E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

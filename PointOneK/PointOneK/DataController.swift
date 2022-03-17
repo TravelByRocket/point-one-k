@@ -8,7 +8,7 @@
 import CoreData
 import CoreSpotlight
 import SwiftUI
-import StoreKit
+import WidgetKit
 
 /// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.
@@ -36,6 +36,17 @@ class DataController: ObservableObject {
         }
     }
 
+    var widgetProject: Project? {
+        let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
+        let projects = (try? container.viewContext.fetch(Project.fetchRequest())) ?? []
+        for project in projects {
+            if projectURL == project.objectID.uriRepresentation() {
+                return project
+            }
+        }
+        return nil
+    }
+
     /// Initializes a data controler, either in memory (for temporary use such as testing and previewing), or on
     /// permanent storage (for us in regular app runs).
     ///
@@ -50,6 +61,12 @@ class DataController: ObservableObject {
         // our data is destroyed after the app finishes running.
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        } else {
+            let groupID = "group.co.synodic.PointOneK"
+
+            if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
+                container.persistentStoreDescriptions.first?.url = url.appendingPathComponent("Main.sqlite")
+            }
         }
 
         container.loadPersistentStores { _, error in
@@ -135,6 +152,7 @@ class DataController: ObservableObject {
     func save() {
         if container.viewContext.hasChanges {
             try? container.viewContext.save()
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 
@@ -198,20 +216,5 @@ class DataController: ObservableObject {
         }
 
         return try? container.viewContext.existingObject(with: id) as? Item
-    }
-
-    func appLaunched() {
-        guard count(for: Project.fetchRequest()) >= 5 else { return }
-        let hasNeverAsked = dateAskedForReview == nil
-        let intervalSinceAsked = dateAskedForReview?.timeIntervalSinceNow ?? 0
-        guard hasNeverAsked || intervalSinceAsked > 86_400 * 40 else { return }
-
-        let allscenes = UIApplication.shared.connectedScenes
-        let scene = allscenes.first // { $0.activationState == .foregroundActive } // works iff no filtering
-
-        if let windowScene = scene as? UIWindowScene {
-            dateAskedForReview = Date()
-            SKStoreReviewController.requestReview(in: windowScene)
-        }
     }
 }

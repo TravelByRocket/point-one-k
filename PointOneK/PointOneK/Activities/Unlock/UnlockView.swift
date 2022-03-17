@@ -20,7 +20,7 @@ struct UnlockView: View {
             case .failed:
                 Text("Sorry, there was a error loading the store. Please try again later.")
             case .loading:
-                ProgressView("Loading...")
+                ProgressView("Loading…")
             case .purchased:
                 Text("Thank you!")
             case .deferred:

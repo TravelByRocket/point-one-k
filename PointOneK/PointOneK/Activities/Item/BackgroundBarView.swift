@@ -10,6 +10,7 @@ import SwiftUI
 struct BackgroundBarView: View {
     let value: Int
     let max: Int
+    var expandPadding = true
 
     var hueAngle: Angle {
         // avoid divide by zero error
@@ -24,7 +25,7 @@ struct BackgroundBarView: View {
         GeometryReader {geo in
             Rectangle()
                 .cornerRadius(3.0)
-                .padding(-5)
+                .padding(expandPadding ? -5 : 0)
                 .frame(
                     width: getBarWidth(geo: geo),
                     alignment: .leading)
