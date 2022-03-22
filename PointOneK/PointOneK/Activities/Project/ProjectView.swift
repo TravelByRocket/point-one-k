@@ -26,41 +26,6 @@ struct ProjectView: View {
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")
-        .toolbar {
-            Button {
-                let records = project.prepareCloudRecords()
-                let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
-
-                operation.savePolicy = .allKeys
-
-//                operation.modifyRecordsCompletionBlock = { _, _, error in
-//                    if let error = error {
-//                        print("Error: \(error.localizedDescription)")
-//                    }
-//                }
-                operation.modifyRecordsResultBlock = { result in
-                    switch result {
-                    case .success:
-                        print("Data uploaded to iCloud")
-                    case .failure:
-                        print("Error: \(result)")
-                    }
-                }
-
-                let container = CKContainer.default()
-//                print(container.containerIdentifier as? String "oops")
-                container.publicCloudDatabase.add(operation)
-//                CKContainer(identifier: "iCloud.co.synodic.PointOneK").publicCloudDatabase.add(operation)
-            } label: {
-                Label {
-                    Text("Upload to iCloud")
-                } icon: {
-                    Image(systemName: "icloud.and.arrow.up")
-                }
-
-            }
-
-        }
         .onDisappear(perform: dataController.save)
     }
 }
