@@ -275,7 +275,6 @@
 		2F8B9D152751CF0A00E2CC3C = {
 			isa = PBXGroup;
 			children = (
-				2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */,
 				2F8B9D202751CF0A00E2CC3C /* PointOneK */,
 				2F8B9D9D2752894400E2CC3C /* PointOneKTests */,
 				2FF3351127D53B4C00E1F7F4 /* PointOneKUITests */,
@@ -337,11 +336,8 @@
 		2F8B9D3A2751D00600E2CC3C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2FBF50AF27EA5A8400B6883E /* CoreDataHelpers */,
 				2F0EFE3F27E11A9000E5788D /* SKProduct-LocalizedPrice.swift */,
-				2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */,
-				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
-				2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */,
-				2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */,
 				2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */,
 				2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */,
 				2F8B9D462751D0F800E2CC3C /* Bundle-Decodable.swift */,
@@ -382,6 +378,7 @@
 				2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */,
 				2F8B9D332751CF6900E2CC3C /* Info.plist */,
 				2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */,
+				2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -419,6 +416,17 @@
 				2FBF509227E188D900B6883E /* Info.plist */,
 			);
 			path = PointOneKWidget;
+			sourceTree = "<group>";
+		};
+		2FBF50AF27EA5A8400B6883E /* CoreDataHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */,
+				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
+				2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */,
+				2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */,
+			);
+			path = CoreDataHelpers;
 			sourceTree = "<group>";
 		};
 		2FCFE8E927DEE6F40044E7F7 /* Project */ = {
@@ -1047,7 +1055,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PointOneKWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneKWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CX9A4TZM67;
@@ -1076,7 +1084,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = PointOneKWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneKWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CX9A4TZM67;
