@@ -41,8 +41,14 @@ struct QualityDetailView: View {
             }
             QualityIndicatorEditSection(quality: quality)
             Section(header: Text("Scores")) {
-                ForEach(quality.qualityScores.sorted(by: \Score.scoreItem.itemTitle)) {score in
-                    ScoringRow(label: score.scoreItem.itemTitle, score: score)
+                ForEach(
+                    quality.qualityScores
+                        .filter { $0.item != nil }
+                        .sorted(by: \Score.item!.itemTitle)
+                ) { score in
+                    ScoringRow(
+                        label: score.item!.itemTitle,
+                        score: score)
                 }
                 if quality.qualityScores.isEmpty {
                     Text("Project items will show up here")

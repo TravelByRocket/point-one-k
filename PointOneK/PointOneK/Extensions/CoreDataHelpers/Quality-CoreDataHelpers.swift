@@ -33,9 +33,10 @@ extension Quality {
 
     /// All indicators for the project except for the indicator for this Quality instance
     var otherProjectIndicators: [Character] {
-        qualityProject.projectQualities
+        project?.projectQualities
             .filter { $0 != self}
             .map { $0.qualityIndicatorCharacter }
+        ?? []
     }
 
     var hasUniqueIdentifier: Bool {
@@ -44,10 +45,6 @@ extension Quality {
 
     var qualityScores: [Score] {
         scores?.allObjects as? [Score] ?? []
-    }
-
-    var qualityProject: Project {
-        project ?? Project.example
     }
 
     static var example: Quality {

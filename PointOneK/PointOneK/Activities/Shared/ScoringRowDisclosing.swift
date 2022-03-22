@@ -13,7 +13,7 @@ struct ScoringRowDisclosing: View {
 
     var body: some View {
         DisclosureGroup {
-            Text(score.scoreQuality.qualityNote)
+            Text(score.quality?.qualityNote ?? "Quality not found")
                 .italic()
                 .font(.footnote)
                 .foregroundColor(.secondary)
