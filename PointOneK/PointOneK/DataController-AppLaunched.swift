@@ -11,12 +11,14 @@ import StoreKit
 extension DataController {
     func appLaunched() {
         guard count(for: Project.fetchRequest()) >= 5 else { return }
+        guard count(for: Item.fetchRequest()) >= 10 else { return }
+
         let hasNeverAsked = dateAskedForReview == nil
         let intervalSinceAsked = dateAskedForReview?.timeIntervalSinceNow ?? 0
         guard hasNeverAsked || intervalSinceAsked > 86_400 * 40 else { return }
 
         let allscenes = UIApplication.shared.connectedScenes
-        let scene = allscenes.first // { $0.activationState == .foregroundActive } // works iff no filtering
+        let scene = allscenes.first
 
         if let windowScene = scene as? UIWindowScene {
             dateAskedForReview = Date()
