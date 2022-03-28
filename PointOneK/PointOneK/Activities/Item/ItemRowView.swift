@@ -20,7 +20,7 @@ struct ItemRowView: View {
                 InfoPill(letter: quality.qualityIndicatorCharacter, level: quality.score(for: item)?.scoreValue ?? 0)
             }
         }
-        .background(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
+        .listRowBackground(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
     }
 }
 

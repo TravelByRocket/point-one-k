@@ -23,16 +23,19 @@ struct BackgroundBarView: View {
 
     var body: some View {
         GeometryReader {geo in
-            Rectangle()
-                .cornerRadius(3.0)
-                .padding(expandPadding ? -5 : 0)
-                .frame(
-                    width: getBarWidth(geo: geo),
-                    alignment: .leading)
-                .foregroundColor(.red)
-                .opacity(0.5)
-                .hueRotation(hueAngle)
-                .animation(.easeInOut(duration: 0.1), value: value)
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(Color.secondarySystemGroupedBackground)
+                RoundedRectangle(cornerRadius: 3)
+                    .padding(4)
+                    .frame(
+                        width: getBarWidth(geo: geo),
+                        alignment: .leading)
+                    .foregroundColor(.red)
+                    .opacity(0.5)
+                    .hueRotation(hueAngle)
+                    .animation(.easeInOut(duration: 0.1), value: value)
+            }
         }
     }
 
@@ -55,7 +58,7 @@ struct BackgroundBarView_Previews: PreviewProvider {
                     Spacer()
                 }
                 .frame(maxWidth: .infinity)
-                .background(BackgroundBarView(value: i, max: 5))
+                .listRowBackground(BackgroundBarView(value: i, max: 5))
             }
             List {
                 BackgroundBarView(value: 0, max: 0)

@@ -40,8 +40,7 @@ struct PointOneKWidgetEntryView: View {
                         .background {
                             BackgroundBarView(
                                 value: item.scoreTotal,
-                                max: entry.project.scorePossible,
-                                expandPadding: false)
+                                max: entry.project.scorePossible)
                             .padding(-3)
                         }
                     }

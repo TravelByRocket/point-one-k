@@ -40,6 +40,11 @@ struct ProjectItemsSection: View {
                     } label: {
                         ItemRowView(project: viewModel.project, item: item)
                     }
+                    .listRowBackground(
+                        BackgroundBarView(
+                            value: item.scoreTotal,
+                            max: viewModel.project.scorePossible)
+                    )
             }
             .onDelete { offsets in
                 withAnimation {
