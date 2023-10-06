@@ -87,7 +87,7 @@ struct HomeView: View {
         .onOpenURL(perform: openURL)
     }
 
-    func addProject(fromURL: Bool = false) {
+    @discardableResult func addProject(fromURL: Bool = false) {
         let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Project.fetchRequest()) < 3
         if canCreate {
             withAnimation {

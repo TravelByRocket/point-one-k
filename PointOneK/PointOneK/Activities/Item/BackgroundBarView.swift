@@ -10,7 +10,6 @@ import SwiftUI
 struct BackgroundBarView: View {
     let value: Int
     let max: Int
-    var expandPadding = true
 
     var hueAngle: Angle {
         // avoid divide by zero error

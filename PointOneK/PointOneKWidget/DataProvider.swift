@@ -29,18 +29,19 @@ struct Provider: TimelineProvider {
     }
 
     func loadProject() -> Project {
+        // Look for the selected project
         let dataController = DataController()
-        let projects = (try? dataController.container.viewContext.fetch(Project.fetchRequest())) ?? []
         if let project = dataController.widgetProject {
             return project
         }
 
         // Use the first project as backup
+        let projects = (try? dataController.container.viewContext.fetch(Project.fetchRequest())) ?? []
         if let project = projects.sorted(by: \Project.projectTitle).first {
             return project
         }
 
-        // Use example as last resort
+        // Use example project as last resort
         return Project.example
     }
 }
