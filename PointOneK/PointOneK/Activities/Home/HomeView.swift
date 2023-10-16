@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showingSettings = false
-
+    // Private
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
