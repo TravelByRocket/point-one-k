@@ -18,6 +18,10 @@
 		2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F32AC072763B29800BCA997 /* SettingsView.swift */; };
 		2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
 		2F35D62B27F1280C001EEE55 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */; };
+		2F57751E2ADDE7540010B428 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F57751A2ADDE7540010B428 /* Project.swift */; };
+		2F57751F2ADDE7540010B428 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F57751B2ADDE7540010B428 /* Item.swift */; };
+		2F5775202ADDE7540010B428 /* Quality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F57751C2ADDE7540010B428 /* Quality.swift */; };
+		2F5775212ADDE7540010B428 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F57751D2ADDE7540010B428 /* Score.swift */; };
 		2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */; };
 		2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D232751CF0A00E2CC3C /* ContentView.swift */; };
 		2F8B9D262751CF0A00E2CC3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9D252751CF0A00E2CC3C /* Assets.xcassets */; };
@@ -141,6 +145,10 @@
 		2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text-Character.swift"; sourceTree = "<group>"; };
 		2F32AC072763B29800BCA997 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F341B8C275993890096D685 /* BackgroundBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBarView.swift; sourceTree = "<group>"; };
+		2F57751A2ADDE7540010B428 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		2F57751B2ADDE7540010B428 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		2F57751C2ADDE7540010B428 /* Quality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quality.swift; sourceTree = "<group>"; };
+		2F57751D2ADDE7540010B428 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		2F8B9D1E2751CF0A00E2CC3C /* PointOneK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointOneK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKApp.swift; sourceTree = "<group>"; };
 		2F8B9D232751CF0A00E2CC3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -375,6 +383,10 @@
 		2F8B9D972751DAC500E2CC3C /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				2F57751A2ADDE7540010B428 /* Project.swift */,
+				2F57751B2ADDE7540010B428 /* Item.swift */,
+				2F57751C2ADDE7540010B428 /* Quality.swift */,
+				2F57751D2ADDE7540010B428 /* Score.swift */,
 				2FCFE91A27E0F03E0044E7F7 /* Configuration.storekit */,
 				2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */,
 				2F8B9D332751CF6900E2CC3C /* Info.plist */,
@@ -693,6 +705,7 @@
 				2F8B9D4E2751D0F800E2CC3C /* Binding-OnChange.swift in Sources */,
 				2F8B9D362751CFE200E2CC3C /* Main.xcdatamodeld in Sources */,
 				2FCFE8EF27DEEB9B0044E7F7 /* ScoringRow.swift in Sources */,
+				2F5775202ADDE7540010B428 /* Quality.swift in Sources */,
 				2FCFE8D827DC36040044E7F7 /* HomeView.swift in Sources */,
 				2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */,
 				2F8B9D4D2751D0F800E2CC3C /* Color-Additions.swift in Sources */,
@@ -702,11 +715,13 @@
 				2FCFE8E027DC52670044E7F7 /* ProjectQualitiesSection.swift in Sources */,
 				2FCFE8F127DEEE7A0044E7F7 /* ScoringRowDisclosing.swift in Sources */,
 				2F1DA9DF2753E3350004EFD5 /* QualityDetailView.swift in Sources */,
+				2F57751E2ADDE7540010B428 /* Project.swift in Sources */,
 				2FCFE8DE27DC51680044E7F7 /* ProjectItemsSection.swift in Sources */,
 				2FCFE91727E025510044E7F7 /* ValueClearHaptic.swift in Sources */,
 				2FCFE8DA27DC412F0044E7F7 /* BatchAddButtonView.swift in Sources */,
 				2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */,
 				2F0EFE4627E1223100E5788D /* UnlockView.swift in Sources */,
+				2F57751F2ADDE7540010B428 /* Item.swift in Sources */,
 				2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */,
 				2F8B9D602751D13E00E2CC3C /* ProjectsListView.swift in Sources */,
 				2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */,
@@ -719,6 +734,7 @@
 				2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */,
 				2FCFE91927E0EEC10044E7F7 /* UnlockManager.swift in Sources */,
 				2F0EFE4027E11A9100E5788D /* SKProduct-LocalizedPrice.swift in Sources */,
+				2F5775212ADDE7540010B428 /* Score.swift in Sources */,
 				2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */,
 				2F8B9D762751D16D00E2CC3C /* LevelSelector.swift in Sources */,
 				2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */,
