@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProjectColorSelectionSection: View {
-    @ObservedObject var project: Project
+    var project: Project
 
     @State private var color: String
 
     init(project: Project) {
         self.project = project
-        _color = State(initialValue: project.projectColor)
+        color = project.projectColor
     }
 
     let colorColumns = [
@@ -54,7 +54,6 @@ struct ProjectColorSelectionSection: View {
     }
 
     func update() {
-        project.objectWillChange.send()
         project.color = color
     }
 }

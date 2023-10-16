@@ -6,19 +6,18 @@
 //
 
 import Foundation
-import CoreData
+import SwiftData
 
 // swiftlint:disable:next function_body_length
-func makeHundredDollarStartup(_ dataController: DataController) {
-    let managedObjectContext = dataController.container.viewContext
-
-    let project = Project(context: managedObjectContext)
+func makeHundredDollarStartup(_ context: ModelContext) {
+    let project = Project()
     project.title = "$100 Startup Ideas"
     project.closed = false
     project.detail = "Have lots of business ideas but can't figure out which one to pursue? Use this template to score them and see what floats to the top. Inspired by the book \"The $100 Startup\"."
     // swiftlint:disable:previous line_length
+    context.insert(project)
 
-    let ease = Quality(context: managedObjectContext)
+    let ease = Quality()
     ease.project = project
     ease.title = "Ease"
     // swiftlint:disable line_length
@@ -29,8 +28,9 @@ func makeHundredDollarStartup(_ dataController: DataController) {
         2) This will take substantial effort, studying, resources, or coordintation. 1000s of hours for a project.
         1) Huge amounts of resources. Many 1000s of hours for a project.
         """
+    context.insert(ease)
 
-    let impact = Quality(context: managedObjectContext)
+    let impact = Quality()
     impact.project = project
     impact.title = "Impact"
     impact.note = """
@@ -40,8 +40,9 @@ func makeHundredDollarStartup(_ dataController: DataController) {
         2) Some; nothing amazing but appreciable and positive
         1) Little; not much going for it in this category
         """
+    context.insert(impact)
 
-    let vision = Quality(context: managedObjectContext)
+    let vision = Quality()
     vision.project = project
     vision.title = "Vision"
     vision.note = """
@@ -51,8 +52,9 @@ func makeHundredDollarStartup(_ dataController: DataController) {
         2) It has elements of my perfect vision and is a stepping stone
         1) There's not much I am excited to be getting experience in
         """
+    context.insert(vision)
 
-    let profitability = Quality(context: managedObjectContext)
+    let profitability = Quality()
     profitability.project = project
     profitability.title = "Profitability"
     profitability.note = """
@@ -62,6 +64,5 @@ func makeHundredDollarStartup(_ dataController: DataController) {
         2) Pays for utilities
         1) Pays for really fancy ketchup
         """
-
-    dataController.save()
+    context.insert(profitability)
 }

@@ -8,38 +8,38 @@
 import SwiftUI
 
 struct ProjectRowView: View {
-    @ObservedObject var project: Project
+    let project: Project
 
-    var qualityCount: Int {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(project.projectTitle)
+                .font(.title)
+                .underline(true, color: Color(project.projectColor))
+
+            Text("\(qualityCount) Qualities, \(itemCount) Items")
+
+            Text(qualitiesList)
+                .font(.caption)
+                .italic()
+                .foregroundColor(.secondary)
+        }
+        .lineLimit(1)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var qualityCount: Int {
         project.projectQualities.count
     }
 
-    var itemCount: Int {
+    private var itemCount: Int {
         project.projectItems.count
     }
 
-    var qualitiesList: String {
+    private var qualitiesList: String {
         project.projectQualities
             .map { $0.qualityTitle }
             .sorted { $0.lowercased() < $1.lowercased() }
             .joined(separator: ", ")
-    }
-
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(project.projectTitle)
-                    .font(.title)
-                    .underline(true, color: Color(project.projectColor))
-                    .lineLimit(1)
-                Text("\(qualityCount) Qualities, \(itemCount) Items")
-                Text(qualitiesList)
-                    .font(.caption)
-                    .italic()
-                    .foregroundColor(.secondary)
-            }
-            Spacer()
-        }
     }
 }
 

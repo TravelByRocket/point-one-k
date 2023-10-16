@@ -9,17 +9,14 @@ import SwiftUI
 import CoreSpotlight
 
 struct HomeView: View {
-    @State private var showingSettings = false
-
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
-
+    // Private
+    @Environment(\.modelContext) private var context
+    @State private var iShowingSettings = false
     private let newProjectActivity = "co.synodic.PointOneK.newProject"
 
+    // Init
     @State var selectedItem: Item?
     @State var newProject: Project?
-
-    @State var showingUnlockView = false
 
     var addProjectToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
@@ -34,7 +31,7 @@ struct HomeView: View {
     var settingsToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button {
-                showingSettings.toggle()
+                iShowingSettings.toggle()
             } label: {
                 Label("Settings", systemImage: "gearshape")
             }
@@ -42,7 +39,11 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
+            NavigationLink(value: selectedItem) {
+                EmptyView()
+            }
+            
             if let item = selectedItem {
                 NavigationLink(
                     tag: item,
@@ -52,6 +53,7 @@ struct HomeView: View {
                 )
                 .id(item)
             }
+
             if let project = newProject {
                 NavigationLink(
                     tag: project,
@@ -61,17 +63,16 @@ struct HomeView: View {
                 )
                 .id(project)
             }
+
             ProjectsListView()
-                .sheet(isPresented: $showingSettings) {
+                .sheet(isPresented: $iShowingSettings) {
                     SettingsView()
-                }
-                .sheet(isPresented: $showingUnlockView) {
-                    UnlockView()
                 }
                 .toolbar {
                     settingsToolbarItem
                     addProjectToolbarItem
                 }
+
             SelectSomethingView()
         }
         // Documented issue through at least 15.1.1. Currently using 15.2.
@@ -88,18 +89,13 @@ struct HomeView: View {
     }
 
     func addProject(fromURL: Bool = false) {
-        let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Project.fetchRequest()) < 3
-        if canCreate {
-            withAnimation {
-                let project = Project(context: managedObjectContext)
-                project.closed = false
-                dataController.save()
-                if fromURL {
-                    newProject = project
-                }
+        withAnimation {
+            let project = Project()
+            project.closed = false
+            context.insert(project)
+            if fromURL {
+                newProject = project
             }
-        } else {
-            showingUnlockView.toggle()
         }
     }
 
@@ -108,7 +104,7 @@ struct HomeView: View {
     }
 
     func selectItem(with identifier: String) {
-        selectedItem = dataController.item(with: identifier)
+//        selectedItem = dataController.item(with: identifier)
     }
 
     func loadSpotlightItem(_ userActivity: NSUserActivity) {
@@ -123,11 +119,7 @@ struct HomeView: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         HomeView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

@@ -21,7 +21,7 @@ extension Item {
     }
 
     var itemScores: [Score] {
-        scores?.allObjects as? [Score] ?? []
+        scores ?? []
     }
 
     var projectQualities: [Quality] {
@@ -29,14 +29,14 @@ extension Item {
     }
 
     var scoreTotal: Int {
-        Int((itemScores.map {$0.value}).reduce(0, +))
+        itemScores
+            .map { $0.value ?? 0 }
+            .map { Int($0) }
+            .reduce(0, +)
     }
 
     static var example: Item {
-        let dataController = DataController.preview
-        let viewContext = dataController.container.viewContext
-
-        let item = Item(context: viewContext)
+        let item = Item()
         item.title = "My Item"
         item.note = "This is my example note"
 

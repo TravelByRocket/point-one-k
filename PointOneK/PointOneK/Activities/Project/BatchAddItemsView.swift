@@ -8,49 +8,41 @@
 import SwiftUI
 
 struct BatchAddItemsView: View {
-    let project: Project
-
+    // Private
+    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.modelContext) private var context
     @State private var text: String = ""
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
+    // Init
+    let project: Project
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("Add items below, separated by new lines")
+
             TextEditor(text: $text)
                 .overlay {
                     RoundedRectangle(cornerRadius: 5.0)
                         .stroke()
                 }
-            HStack {
-                Spacer()
-                Button {
-                    let lines = text.components(separatedBy: "\n")
-                    project.objectWillChange.send()
-                    for line in lines {
-                        project.addItem(titled: line)
-                    }
-                    dataController.save()
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Text("Submit")
-                }
-                Spacer()
-            }
 
+            Button {
+                let lines = text.components(separatedBy: "\n")
+                for line in lines {
+                    project.addItem(titled: line)
+                }
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Submit")
+            }
+            .frame(maxWidth: .infinity)
         }
         .padding(5)
     }
 }
 
 struct BatchAddItemsView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         BatchAddItemsView(project: Project.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

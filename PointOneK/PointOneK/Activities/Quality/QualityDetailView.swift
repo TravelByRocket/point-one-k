@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct QualityDetailView: View {
-    @ObservedObject var quality: Quality
+    @Environment(\.modelContext) private var context
+
+    let quality: Quality
 
     @State var title: String
     @State var note: String
-
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
 
     init(quality: Quality) {
         self.quality = quality
@@ -34,12 +33,15 @@ struct QualityDetailView: View {
                 TextField("Title", text: $title.onChange(update), prompt: Text("Title here"))
                     .font(.title)
             }
+
             Section(header: Text("Scoring Notes"), footer: scoringFooter) {
                 TextEditor(text: $note.onChange(update))
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
             }
+
             QualityIndicatorEditSection(quality: quality)
+
             Section(header: Text("Scores")) {
                 ForEach(
                     quality.qualityScores
@@ -50,6 +52,7 @@ struct QualityDetailView: View {
                         label: score.item!.itemTitle,
                         score: score)
                 }
+
                 if quality.qualityScores.isEmpty {
                     Text("Project items will show up here")
                         .foregroundColor(.secondary)
@@ -57,22 +60,16 @@ struct QualityDetailView: View {
                 }
             }
         }
-        .onDisappear(perform: dataController.save)
     }
 
     func update() {
-        quality.project?.objectWillChange.send()
         quality.title = title
         quality.note = note
     }
 }
 
 struct QualityDetailView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         QualityDetailView(quality: Quality.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

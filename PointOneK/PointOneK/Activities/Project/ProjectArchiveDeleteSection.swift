@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    @ObservedObject var project: Project
-
-    @State private var showingDeleteConfirm = false
-
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    // Private
+    @Environment(\.modelContext) private var context
     @Environment(\.presentationMode) private var presentationMode
+
+    // Init
+    @State var project: Project
+    @State var showingDeleteConfirm = false
 
     var footer: some View {
         // swiftlint:disable:next line_length
@@ -23,10 +23,11 @@ struct ProjectArchiveDeleteSection: View {
 
     var body: some View {
         Section(footer: footer) {
-            Button(project.closed ? "Reopen this project" : "Close this project") {
-                project.closed.toggle()
+            Button(project.projectClosed ? "Reopen this project" : "Close this project") {
+                project.closed = !project.projectClosed
             }
             .tint(.primary)
+            
             Button("Delete this project") {
                 showingDeleteConfirm.toggle()
             }
@@ -44,18 +45,14 @@ struct ProjectArchiveDeleteSection: View {
     }
 
     func delete() {
-        dataController.delete(project)
+        context.delete(project)
     }
 }
 
 struct ProjectArchiveDeleteSection_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         Form {
             ProjectArchiveDeleteSection(project: Project.example)
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
         }
     }
 }

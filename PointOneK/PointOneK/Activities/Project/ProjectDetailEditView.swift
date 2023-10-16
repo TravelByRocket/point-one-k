@@ -22,7 +22,6 @@ struct ProjectDetailEditView: View {
     }
 
     func update() {
-        project.objectWillChange.send()
         project.detail = detail
     }
 }

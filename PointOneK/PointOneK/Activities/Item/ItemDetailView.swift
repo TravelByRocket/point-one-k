@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @ObservedObject var item: Item
+    @Environment(\.modelContext) private var context
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-
-    @State var title: String
-    @State var note: String
+    let item: Item
+    @State private var title: String
+    @State private var note: String
 
     init(item: Item) {
         self.item = item
@@ -29,21 +27,25 @@ struct ItemDetailView: View {
                 TextField("Title", text: $title.onChange(update))
                     .font(.title)
             }
+
             ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
                     score: quality.score(for: item) ?? Score.example)
             }
+
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
             }
-            HStack {
-                Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
-                Spacer()
-            }
-            .listRowBackground(
-                BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
-            )
+
+            Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .listRowBackground(
+                    BackgroundBarView(
+                        value: item.scoreTotal,
+                        max: item.project?.scorePossible ?? 0)
+                )
+
             Section(header: Text("Item Note")) {
                 TextEditor(text: $note.onChange(update))
             }
@@ -53,24 +55,19 @@ struct ItemDetailView: View {
     }
 
     func update() {
-        item.project?.objectWillChange.send()
         item.title = title
         item.note = note
     }
 
     func save() {
-        dataController.update(item)
+        context.insert(item)
     }
 }
 
 struct ItemDetailView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         NavigationView {
             ItemDetailView(item: Item.example)
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
         }
     }
 }

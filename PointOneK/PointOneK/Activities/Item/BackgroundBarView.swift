@@ -1,5 +1,5 @@
 //
-//  BackgroundBarBiew.swift
+//  BackgroundBarView.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 2 Dec 2021.

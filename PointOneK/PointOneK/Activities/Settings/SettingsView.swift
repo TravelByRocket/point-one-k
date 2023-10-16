@@ -7,13 +7,22 @@
 
 import SwiftUI
 import WidgetKit
+import SwiftData
 
 struct SettingsView: View {
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.modelContext) private var context
 
-    @FetchRequest var closedProjects: FetchedResults<Project>
-    @FetchRequest var openProjects: FetchedResults<Project>
+    @Query(
+        filter: #Predicate<Project> { $0.closed == false },
+        sort: \Project.title,
+        order: .forward)
+    private var closedProjects: [Project]
+    
+    @Query(
+        filter: #Predicate<Project> { $0.closed != false },
+        sort: \Project.title,
+        order: .forward)
+    private var openProjects: [Project]
 
     @State private var widgetProject: URL? = UserDefaults(
         suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
@@ -26,23 +35,9 @@ struct SettingsView: View {
 
     var projectGroups: [(label: String, projects: [Project])] {
         [
-            (label: "Open Projects", projects: Array(openProjects)),
-            (label: "Closed Projects", projects: Array(closedProjects))
+            (label: "Open Projects", projects: openProjects),
+            (label: "Closed Projects", projects: closedProjects)
         ]
-    }
-
-    init() {
-        _closedProjects = FetchRequest<Project>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \Project.title, ascending: true)
-            ],
-            predicate: NSPredicate(format: "closed = true"))
-
-        _openProjects = FetchRequest<Project>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \Project.title, ascending: true)
-            ],
-            predicate: NSPredicate(format: "closed = false"))
     }
 
     var body: some View {
@@ -50,7 +45,7 @@ struct SettingsView: View {
             // TEMPLATES SECTION
             Section(header: Text("Templates")) {
                 Button {
-                    makeHundredDollarStartup(dataController)
+                    makeHundredDollarStartup(context)
                 } label: {
                     Text("$100 Startup")
                 }
@@ -75,7 +70,7 @@ struct SettingsView: View {
                     Picker("Pick Project", selection: $widgetProject) {
                         ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
                             Text(project.projectTitle)
-                                .tag((project.objectID.uriRepresentation()) as URL?)
+//                                .tag((project.objectID.uriRepresentation()) as URL?)
                         }
                         Text("Use Placeholder Project")
                             .italic()
@@ -96,11 +91,7 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         SettingsView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

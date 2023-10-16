@@ -6,19 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DeleteAllDataView: View {
     @State private var enableDeleteButton = false
     @State private var showingDeleteAlert = false
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.modelContext) private var context
     @Environment(\.presentationMode) var presentationMode
 
-    @FetchRequest(
-        entity: Project.entity(),
-        sortDescriptors: []
-    ) var projects: FetchedResults<Project>
+    @Query() private var projects: [Project]
 
     var body: some View {
         Section(header: Text("Delete All")) {
@@ -42,11 +39,9 @@ struct DeleteAllDataView: View {
             }
             Button(role: .destructive) {
                 for project in projects {
-                    project.objectWillChange.send()
-                    dataController.delete(project)
+                    context.delete(project)
                 }
-                dataController.deleteAll()
-                dataController.save()
+
                 withAnimation {
                     showingDeleteAlert = false
                     enableDeleteButton = false
@@ -61,13 +56,9 @@ struct DeleteAllDataView: View {
 }
 
 struct DeleteAllDataView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         List {
             DeleteAllDataView()
         }
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
     }
 }

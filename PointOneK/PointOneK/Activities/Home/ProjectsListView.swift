@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectsListView: View {
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.modelContext) private var context
 
-    @FetchRequest(
-        entity: Project.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Project.title, ascending: true)],
-        predicate: NSPredicate(format: "closed = false")
-    ) var projects: FetchedResults<Project>
+    @Query(
+        filter: #Predicate<Project> { $0.closed == false },
+        sort: \Project.title,
+        order: .forward)
+    private var projects: [Project]
 
     var projectsList: some View {
         List {
@@ -27,7 +27,7 @@ struct ProjectsListView: View {
                 }
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(.insetGrouped)
     }
 
     var body: some View {
@@ -43,13 +43,9 @@ struct ProjectsListView: View {
 }
 
 struct ProjectsListView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         NavigationView {
             ProjectsListView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
         }
     }
 }

@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: Project
+    @Environment(\.modelContext) private var context
 
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
-
-    var qualities: [Quality] {
-        project.projectQualities.sorted(by: \Quality.qualityTitle)
-    }
+    let project: Project
 
     var body: some View {
         Section(header: Text("Qualities")) {
@@ -25,7 +20,9 @@ struct ProjectQualitiesSection: View {
                 } label: {
                     HStack {
                         Text(quality.qualityTitle)
+
                         Spacer()
+
                         InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
                         InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
                         InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
@@ -33,37 +30,39 @@ struct ProjectQualitiesSection: View {
                     }
                 }
             }
-            .onDelete(perform: {offsets in
+            .onDelete {offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
-                        dataController.delete(quality)
+                        project.qualities?.removeAll { $0 == quality }
+                        context.delete(quality)
                     }
                 }
-                dataController.save()
-            })
+                try? context.save()
+            }
+
             if qualities.isEmpty {
                 Text("No qualities in this project")
             }
+
             Button {
                 withAnimation {
                     project.addQuality()
-                    dataController.save()
                 }
             } label: {
                 Label("Add New Quality", systemImage: "plus")
-                    .accessibilityLabel("Add project")
+                    .accessibilityLabel("Add quality")
             }
         }
+    }
+
+    private var qualities: [Quality] {
+        project.projectQualities.sorted(by: \Quality.qualityTitle)
     }
 }
 
 struct ProjectQualitiesSection_Previews: PreviewProvider {
-    static var dataController = DataController.preview
-
     static var previews: some View {
         ProjectQualitiesSection(project: Project.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

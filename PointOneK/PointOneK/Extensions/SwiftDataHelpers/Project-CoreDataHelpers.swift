@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CloudKit
+import SynodicTools
 
 extension Project {
     static let colors = [
@@ -27,11 +28,15 @@ extension Project {
     }
 
     var projectItems: [Item] {
-        items?.allObjects as? [Item] ?? []
+        items ?? []
     }
 
     var projectQualities: [Quality] {
-        qualities?.allObjects as? [Quality] ?? []
+        qualities ?? []
+    }
+
+    var projectClosed: Bool {
+        closed ?? false
     }
 
     var scorePossible: Int {
@@ -39,54 +44,45 @@ extension Project {
     }
 
     func addItem(titled title: String? = nil) {
-        guard let moc = managedObjectContext else { return }
-
-        let item = Item(context: moc)
-        item.project = self
-
-        if let title = title {
-            item.title = title
-        }
+        let item = Item()
+        item.title = title
+        items.append(safely: item)
 
         for quality in projectQualities {
-            let score = Score(context: moc)
+            let score = Score()
             score.item = item
             score.quality = quality
         }
     }
 
     func addQuality() {
-        guard let moc = managedObjectContext else { return }
-
-        let quality = Quality(context: moc)
-        quality.project = self
+        let quality = Quality()
         for item in projectItems {
-            let score = Score(context: moc)
+            let score = Score()
             score.item = item
             score.quality = quality
         }
+
+        qualities.append(safely: quality)
     }
 
     static var example: Project {
-        let dataController = DataController.preview
-        let viewContext = dataController.container.viewContext
-
-        let project = Project(context: viewContext)
+        let project = Project()
         project.title = "Example Project"
         project.detail = "This is an example project"
         project.closed = true
 
-        let quality = Quality(context: viewContext)
+        let quality = Quality()
         quality.title = "Fancy title"
         quality.note = "notes"
         quality.indicator = "a"
         quality.project = project
 
-        let score = Score(context: viewContext)
+        let score = Score()
         score.value = 3
         score.quality = quality
 
-        let item = Item(context: viewContext)
+        let item = Item()
         item.project = project
         item.note = "item note"
         item.title = "Sweet Item"

@@ -9,14 +9,11 @@ import Foundation
 
 extension Score {
     var scoreValue: Int {
-        Int(value)
+        Int(value ?? 0)
     }
 
     static var example: Score {
-        let dataController = DataController.preview
-        let viewContext = dataController.container.viewContext
-
-        let score = Score(context: viewContext)
+        let score = Score()
         score.quality = Quality.example
         score.item = Item.example
 
