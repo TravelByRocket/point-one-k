@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectsListView: View {
     // Private
@@ -17,7 +18,13 @@ struct ProjectsListView: View {
         entity: ProjectOld.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)],
         predicate: NSPredicate(format: "closed = false")
-    ) var projects: FetchedResults<ProjectOld>
+    ) var projectsOld: FetchedResults<ProjectOld>
+
+    @Query(
+        filter: #Predicate<Project2> { $0.closed == false },
+        sort: \Project2.title,
+        order: .forward)
+    private var projects2: [Project2]
 
     var projectsList: some View {
         List {
@@ -34,7 +41,7 @@ struct ProjectsListView: View {
 
     var body: some View {
         Group {
-            if projects.isEmpty {
+            if projectsOld.isEmpty {
                 Text("There's nothing here right now")
             } else {
                 projectsList
