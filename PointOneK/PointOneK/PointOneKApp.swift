@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PointOneKApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    private let allModels: [any PersistentModel.Type] = [Project2.self, Item2.self, Quality2.self, Score2.self]
+    
     @StateObject var dataController: DataController
     @StateObject var unlockManager: UnlockManager
 
@@ -19,7 +21,6 @@ struct PointOneKApp: App {
 
         _dataController = StateObject(wrappedValue: dataController)
         _unlockManager = StateObject(wrappedValue: unlockManager)
-
     }
 
     var body: some Scene {
@@ -28,14 +29,9 @@ struct PointOneKApp: App {
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
                 .environmentObject(unlockManager)
-                .onReceive(
-                    // Automatically save when no longer in the foreground. Use this over scene phase API for port to
-                    // macOS (as of macOS 11.1)
-                    NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification),
-                    perform: save
-                )
                 .onAppear(perform: dataController.appLaunched)
         }
+        .modelContainer(for: allModels)
     }
 
     func save(note: Notification) {
