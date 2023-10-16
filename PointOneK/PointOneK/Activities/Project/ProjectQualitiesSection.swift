@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: Project
+    @ObservedObject var project: ProjectOld
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    var qualities: [Quality] {
-        project.projectQualities.sorted(by: \Quality.qualityTitle)
+    var qualities: [QualityOld] {
+        project.projectQualities.sorted(by: \QualityOld.qualityTitle)
     }
 
     var body: some View {
@@ -62,7 +62,7 @@ struct ProjectQualitiesSection_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        ProjectQualitiesSection(project: Project.example)
+        ProjectQualitiesSection(project: ProjectOld.example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

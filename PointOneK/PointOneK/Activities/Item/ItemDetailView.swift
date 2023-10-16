@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @ObservedObject var item: Item
+    @ObservedObject var item: ItemOld
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -16,7 +16,7 @@ struct ItemDetailView: View {
     @State var title: String
     @State var note: String
 
-    init(item: Item) {
+    init(item: ItemOld) {
         self.item = item
 
         _title = State(wrappedValue: item.itemTitle)
@@ -29,10 +29,10 @@ struct ItemDetailView: View {
                 TextField("Title", text: $title.onChange(update))
                     .font(.title)
             }
-            ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) {quality in
+            ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) {quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
-                    score: quality.score(for: item) ?? Score.example)
+                    score: quality.score(for: item) ?? ScoreOld.example)
             }
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
@@ -68,7 +68,7 @@ struct ItemDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationView {
-            ItemDetailView(item: Item.example)
+            ItemDetailView(item: ItemOld.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }

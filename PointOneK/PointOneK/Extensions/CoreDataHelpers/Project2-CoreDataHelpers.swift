@@ -8,7 +8,7 @@
 import SwiftUI
 import CloudKit
 
-extension ProjectOld {
+extension Project2 {
     static let colors = [
         "Pink", "Purple", "Red", "Orange", "Gold",
         "Green", "Teal", "Light Blue", "Dark Blue",
@@ -26,12 +26,12 @@ extension ProjectOld {
         detail ?? ""
     }
 
-    var projectItems: [ItemOld] {
-        items?.allObjects as? [ItemOld] ?? []
+    var projectItems: [Item2] {
+        items ?? []
     }
 
-    var projectQualities: [QualityOld] {
-        qualities?.allObjects as? [QualityOld] ?? []
+    var projectQualities: [Quality2] {
+        qualities ?? []
     }
 
     var scorePossible: Int {
@@ -39,9 +39,7 @@ extension ProjectOld {
     }
 
     func addItem(titled title: String? = nil) {
-        guard let moc = managedObjectContext else { return }
-
-        let item = ItemOld(context: moc)
+        let item = Item2()
         item.project = self
 
         if let title = title {
@@ -49,44 +47,42 @@ extension ProjectOld {
         }
 
         for quality in projectQualities {
-            let score = ScoreOld(context: moc)
+            let score = Score2()
             score.item = item
             score.quality = quality
         }
     }
 
     func addQuality() {
-        guard let moc = managedObjectContext else { return }
-
-        let quality = QualityOld(context: moc)
+        let quality = Quality2()
         quality.project = self
         for item in projectItems {
-            let score = ScoreOld(context: moc)
+            let score = Score2()
             score.item = item
             score.quality = quality
         }
     }
 
-    static var example: ProjectOld {
+    static var example: Project2 {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
 
-        let project = ProjectOld(context: viewContext)
+        let project = Project2()
         project.title = "Example Project"
         project.detail = "This is an example project"
         project.closed = true
 
-        let quality = QualityOld(context: viewContext)
+        let quality = Quality2()
         quality.title = "Fancy title"
         quality.note = "notes"
         quality.indicator = "a"
         quality.project = project
 
-        let score = ScoreOld(context: viewContext)
+        let score = Score2()
         score.value = 3
         score.quality = quality
 
-        let item = ItemOld(context: viewContext)
+        let item = Item2()
         item.project = project
         item.note = "item note"
         item.title = "Sweet Item"
@@ -102,11 +98,11 @@ extension ProjectOld {
         )
     }
 
-    func projectItems(using sortOrder: ItemOld.SortOrder) -> [ItemOld] {
+    func projectItems(using sortOrder: Item2.SortOrder) -> [Item2] {
         switch sortOrder {
         case .title:
-            return projectItems.sorted(by: \ItemOld.scoreTotal).reversed()
-                .sorted(by: \ItemOld.itemTitle.localizedLowercase)
+            return projectItems.sorted(by: \Item2.scoreTotal).reversed()
+                .sorted(by: \Item2.itemTitle.localizedLowercase)
         case .score:
             return projectItems.sorted { first, second in
                 if first.scoreTotal != second.scoreTotal {

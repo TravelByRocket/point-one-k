@@ -11,7 +11,7 @@ struct Provider: TimelineProvider {
     typealias Entry = SimpleEntry
 
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), project: Project.example)
+        SimpleEntry(date: Date(), project: ProjectOld.example)
     }
 
     func getSnapshot(
@@ -28,24 +28,24 @@ struct Provider: TimelineProvider {
         completion(timeline)
     }
 
-    func loadProject() -> Project {
+    func loadProject() -> ProjectOld {
         let dataController = DataController()
-        let projects = (try? dataController.container.viewContext.fetch(Project.fetchRequest())) ?? []
+        let projects = (try? dataController.container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
         if let project = dataController.widgetProject {
             return project
         }
 
         // Use the first project as backup
-        if let project = projects.sorted(by: \Project.projectTitle).first {
+        if let project = projects.sorted(by: \ProjectOld.projectTitle).first {
             return project
         }
 
         // Use example as last resort
-        return Project.example
+        return ProjectOld.example
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let project: Project
+    let project: ProjectOld
 }

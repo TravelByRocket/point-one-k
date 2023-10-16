@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ScoringRow: View {
     let label: String
-    private let score: Score
+    private let score: ScoreOld
     @State private var value: Int
 
-    init(label: String, score: Score) {
+    init(label: String, score: ScoreOld) {
         self.label = label
         self.score = score
         _value = State(initialValue: score.scoreValue)
@@ -35,7 +35,7 @@ struct ScoringRow: View {
 struct ScoringRow_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            ScoringRow(label: "Item/Quality", score: Score.example)
+            ScoringRow(label: "Item/Quality", score: ScoreOld.example)
         }
     }
 }

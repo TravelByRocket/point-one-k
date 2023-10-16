@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScoringRowDisclosing: View {
     let label: String
-    let score: Score
+    let score: ScoreOld
 
     var body: some View {
         DisclosureGroup {
@@ -25,6 +25,6 @@ struct ScoringRowDisclosing: View {
 
 struct ScoringRowDisclosing_Previews: PreviewProvider {
     static var previews: some View {
-        ScoringRowDisclosing(label: "Quality", score: Score.example)
+        ScoringRowDisclosing(label: "Quality", score: ScoreOld.example)
     }
 }

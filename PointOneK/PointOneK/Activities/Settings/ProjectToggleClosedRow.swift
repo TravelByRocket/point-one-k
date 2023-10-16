@@ -10,12 +10,12 @@ import SwiftUI
 struct ProjectToggleClosedRow: View {
 //    let isClosed: Bool
 //    let title: String
-    @ObservedObject private var project: Project
+    @ObservedObject private var project: ProjectOld
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    init(project: Project) {
+    init(project: ProjectOld) {
         self._project = ObservedObject(initialValue: project)
 //        self.project = project
 //        isClosed = project.closed
@@ -48,7 +48,7 @@ struct ProjectToggleClosedRow_Previews: PreviewProvider {
 
     static var previews: some View {
         List {
-            ProjectToggleClosedRow(project: Project.example)
+            ProjectToggleClosedRow(project: ProjectOld.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
         }

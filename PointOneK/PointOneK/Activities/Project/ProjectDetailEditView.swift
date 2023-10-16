@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProjectDetailEditView: View {
     @State private var detail: String
-    let project: Project
+    let project: ProjectOld
 
-    init(project: Project) {
+    init(project: ProjectOld) {
         self.project = project
         _detail = State(wrappedValue: project.projectDetail)
     }
@@ -30,7 +30,7 @@ struct ProjectDetailEditView: View {
 struct ProjectDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
         Form {
-            ProjectDetailEditView(project: Project.example)
+            ProjectDetailEditView(project: ProjectOld.example)
         }
     }
 }

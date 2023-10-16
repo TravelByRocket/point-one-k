@@ -9,7 +9,7 @@ import SwiftUI
 import CloudKit
 
 struct ProjectView: View {
-    let project: Project
+    let project: ProjectOld
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
@@ -35,7 +35,7 @@ struct ProjectView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationView {
-            ProjectView(project: Project.example)
+            ProjectView(project: ProjectOld.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }

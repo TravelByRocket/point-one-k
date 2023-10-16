@@ -12,8 +12,8 @@ struct SettingsView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    @FetchRequest var closedProjects: FetchedResults<Project>
-    @FetchRequest var openProjects: FetchedResults<Project>
+    @FetchRequest var closedProjects: FetchedResults<ProjectOld>
+    @FetchRequest var openProjects: FetchedResults<ProjectOld>
 
     @State private var widgetProject: URL? = UserDefaults(
         suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
@@ -24,7 +24,7 @@ struct SettingsView: View {
             .foregroundColor(.secondary)
     }
 
-    var projectGroups: [(label: String, projects: [Project])] {
+    var projectGroups: [(label: String, projects: [ProjectOld])] {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects))
@@ -32,15 +32,15 @@ struct SettingsView: View {
     }
 
     init() {
-        _closedProjects = FetchRequest<Project>(
+        _closedProjects = FetchRequest<ProjectOld>(
             sortDescriptors: [
-                NSSortDescriptor(keyPath: \Project.title, ascending: true)
+                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)
             ],
             predicate: NSPredicate(format: "closed = true"))
 
-        _openProjects = FetchRequest<Project>(
+        _openProjects = FetchRequest<ProjectOld>(
             sortDescriptors: [
-                NSSortDescriptor(keyPath: \Project.title, ascending: true)
+                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)
             ],
             predicate: NSPredicate(format: "closed = false"))
     }
@@ -73,7 +73,7 @@ struct SettingsView: View {
                 header: Text("Widget Project"),
                 footer: Text("If you close your widget project it will remain visible in the widget.")) {
                     Picker("Pick Project", selection: $widgetProject) {
-                        ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
+                        ForEach(openProjects.sorted(by: \ProjectOld.projectTitle)) { project in
                             Text(project.projectTitle)
                                 .tag((project.objectID.uriRepresentation()) as URL?)
                         }

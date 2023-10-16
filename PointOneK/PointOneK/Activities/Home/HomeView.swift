@@ -16,8 +16,8 @@ struct HomeView: View {
 
     private let newProjectActivity = "co.synodic.PointOneK.newProject"
 
-    @State var selectedItem: Item?
-    @State var newProject: Project?
+    @State var selectedItem: ItemOld?
+    @State var newProject: ProjectOld?
 
     @State var showingUnlockView = false
 
@@ -88,10 +88,10 @@ struct HomeView: View {
     }
 
     func addProject(fromURL: Bool = false) {
-        let canCreate = dataController.fullVersionUnlocked || dataController.count(for: Project.fetchRequest()) < 3
+        let canCreate = dataController.fullVersionUnlocked || dataController.count(for: ProjectOld.fetchRequest()) < 3
         if canCreate {
             withAnimation {
-                let project = Project(context: managedObjectContext)
+                let project = ProjectOld(context: managedObjectContext)
                 project.closed = false
                 dataController.save()
                 if fromURL {

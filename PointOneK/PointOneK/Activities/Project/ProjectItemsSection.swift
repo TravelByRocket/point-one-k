@@ -69,7 +69,7 @@ struct ProjectItemsSection: View {
         }
     }
 
-    init(project: Project, dataController: DataController) {
+    init(project: ProjectOld, dataController: DataController) {
         let viewModel = ViewModel(project: project, dataController: dataController)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -79,7 +79,7 @@ struct ProjectItemsSection_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             List {
-                ProjectItemsSection(project: Project.example, dataController: DataController.preview)
+                ProjectItemsSection(project: ProjectOld.example, dataController: DataController.preview)
             }
         }
     }

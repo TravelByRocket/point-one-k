@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BatchAddItemsView: View {
-    let project: Project
+    let project: ProjectOld
 
     @State private var text: String = ""
 
@@ -49,7 +49,7 @@ struct BatchAddItemsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        BatchAddItemsView(project: Project.example)
+        BatchAddItemsView(project: ProjectOld.example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

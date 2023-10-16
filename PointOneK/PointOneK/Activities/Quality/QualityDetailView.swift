@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QualityDetailView: View {
-    @ObservedObject var quality: Quality
+    @ObservedObject var quality: QualityOld
 
     @State var title: String
     @State var note: String
@@ -16,7 +16,7 @@ struct QualityDetailView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    init(quality: Quality) {
+    init(quality: QualityOld) {
         self.quality = quality
 
         _title = State(wrappedValue: quality.qualityTitle)
@@ -44,7 +44,7 @@ struct QualityDetailView: View {
                 ForEach(
                     quality.qualityScores
                         .filter { $0.item != nil }
-                        .sorted(by: \Score.item!.itemTitle)
+                        .sorted(by: \ScoreOld.item!.itemTitle)
                 ) { score in
                     ScoringRow(
                         label: score.item!.itemTitle,
@@ -71,7 +71,7 @@ struct QualityDetailView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        QualityDetailView(quality: Quality.example)
+        QualityDetailView(quality: QualityOld.example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

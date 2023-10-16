@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    @ObservedObject var project: Project
-    @ObservedObject var item: Item
+    @ObservedObject var project: ProjectOld
+    @ObservedObject var item: ItemOld
 
     var body: some View {
         HStack {
@@ -28,7 +28,7 @@ struct ItemRowView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             List {
-                ItemRowView(project: Project.example, item: Item.example)
+                ItemRowView(project: ProjectOld.example, item: ItemOld.example)
             }
         }
     }

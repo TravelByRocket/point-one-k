@@ -22,8 +22,8 @@ class ProjectTests: BaseTestCase {
             }
         }
 
-        XCTAssertEqual(dataController.count(for: Project.fetchRequest()), targetCount)
-        XCTAssertEqual(dataController.count(for: Item.fetchRequest()), targetCount * targetCount)
+        XCTAssertEqual(dataController.count(for: ProjectOld.fetchRequest()), targetCount)
+        XCTAssertEqual(dataController.count(for: ItemOld.fetchRequest()), targetCount * targetCount)
     }
 
     func testDeletingProjectCascadeDeleteItems() throws {
@@ -33,7 +33,7 @@ class ProjectTests: BaseTestCase {
         let projects = try managedObjectContext.fetch(request)
         dataController.delete(projects[0])
 
-        XCTAssertEqual(dataController.count(for: Project.fetchRequest()), 4) // 5 - 1 projects
-        XCTAssertEqual(dataController.count(for: Item.fetchRequest()), 20) // 5 (items/project) * (5 - 1 projects)
+        XCTAssertEqual(dataController.count(for: ProjectOld.fetchRequest()), 4) // 5 - 1 projects
+        XCTAssertEqual(dataController.count(for: ItemOld.fetchRequest()), 20) // 5 (items/project) * (5 - 1 projects)
     }
 }
