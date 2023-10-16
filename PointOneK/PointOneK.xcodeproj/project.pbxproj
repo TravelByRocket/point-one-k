@@ -413,9 +413,13 @@
 			isa = PBXGroup;
 			children = (
 				2F8B9D432751D0F800E2CC3C /* Project-CoreDataHelpers.swift */,
+				2F5775222ADDEC520010B428 /* Project2-CoreDataHelpers.swift */,
 				2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */,
+				2F5775242ADDEC710010B428 /* Item2-CoreDataHelpers.swift */,
 				2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */,
+				2F5775262ADDEC790010B428 /* Score2-CoreDataHelpers.swift */,
 				2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */,
+				2F5775282ADDEC800010B428 /* Quality2-CoreDataHelpers.swift */,
 			);
 			path = CoreDataHelpers;
 			sourceTree = "<group>";
@@ -729,6 +733,7 @@
 				2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */,
 				2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */,
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
+				2F5775272ADDEC790010B428 /* Score2-CoreDataHelpers.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */,
@@ -736,7 +741,9 @@
 				2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */,
 				2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */,
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
+				2F5775232ADDEC520010B428 /* Project2-CoreDataHelpers.swift in Sources */,
 				2FCFE8D627DC2D540044E7F7 /* BatchAddItemsView.swift in Sources */,
+				2F5775292ADDEC800010B428 /* Quality2-CoreDataHelpers.swift in Sources */,
 				2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */,
 				2F8B9D4A2751D0F800E2CC3C /* Item-CoreDataHelpers.swift in Sources */,
 				2F64BDA32C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift in Sources */,
