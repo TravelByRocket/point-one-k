@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProjectsListView: View {
+    // Private
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.modelContext) private var context
 
     @FetchRequest(
         entity: ProjectOld.entity(),

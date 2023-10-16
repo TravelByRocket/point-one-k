@@ -9,17 +9,17 @@ import SwiftUI
 import CoreSpotlight
 
 struct HomeView: View {
-    @State private var showingSettings = false
-
+    // Private
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-
+    @Environment(\.modelContext) private var context
+    @State private var showingSettings = false
+    @State private var showingUnlockView = false
     private let newProjectActivity = "co.synodic.PointOneK.newProject"
 
+    // Init
     @State var selectedItem: ItemOld?
     @State var newProject: ProjectOld?
-
-    @State var showingUnlockView = false
 
     var addProjectToolbarItem: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
