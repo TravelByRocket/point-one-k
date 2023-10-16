@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PointOneKApp: App {
@@ -21,5 +22,6 @@ struct PointOneKApp: App {
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }
+        .modelContainer(for: allModels)
     }
 }
