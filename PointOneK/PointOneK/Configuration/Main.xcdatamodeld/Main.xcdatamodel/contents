@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23B5056e" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+    <entity name="ItemOld" representedClassName="ItemOld" syncable="YES" codeGenerationType="class">
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="items" inverseEntity="Project"/>
-        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Score" inverseName="item" inverseEntity="Score"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectOld" inverseName="items" inverseEntity="ProjectOld"/>
+        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ScoreOld" inverseName="item" inverseEntity="ScoreOld"/>
     </entity>
-    <entity name="Project" representedClassName="Project" syncable="YES" codeGenerationType="class">
+    <entity name="ProjectOld" representedClassName="ProjectOld" syncable="YES" codeGenerationType="class">
         <attribute name="closed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="detail" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Item" inverseName="project" inverseEntity="Item"/>
-        <relationship name="qualities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Quality" inverseName="project" inverseEntity="Quality"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ItemOld" inverseName="project" inverseEntity="ItemOld"/>
+        <relationship name="qualities" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QualityOld" inverseName="project" inverseEntity="QualityOld"/>
     </entity>
-    <entity name="Quality" representedClassName="Quality" syncable="YES" codeGenerationType="class">
+    <entity name="QualityOld" representedClassName="QualityOld" syncable="YES" codeGenerationType="class">
         <attribute name="indicator" optional="YES" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="qualities" inverseEntity="Project"/>
-        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Score" inverseName="quality" inverseEntity="Score"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectOld" inverseName="qualities" inverseEntity="ProjectOld"/>
+        <relationship name="scores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ScoreOld" inverseName="quality" inverseEntity="ScoreOld"/>
     </entity>
-    <entity name="Score" representedClassName="Score" syncable="YES" codeGenerationType="class">
+    <entity name="ScoreOld" representedClassName="ScoreOld" syncable="YES" codeGenerationType="class">
         <attribute name="value" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="scores" inverseEntity="Item"/>
-        <relationship name="quality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quality" inverseName="scores" inverseEntity="Quality"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemOld" inverseName="scores" inverseEntity="ItemOld"/>
+        <relationship name="quality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QualityOld" inverseName="scores" inverseEntity="QualityOld"/>
     </entity>
 </model>
