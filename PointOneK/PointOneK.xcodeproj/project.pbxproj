@@ -770,6 +770,7 @@
 			files = (
 				2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */,
 				2FBF50A227E18F2000B6883E /* Score-CoreDataHelpers.swift in Sources */,
+				2F9F40362BF1BDF900047162 /* Item2-CoreDataHelpers.swift in Sources */,
 				2F9F40342BF19BE300047162 /* Score.swift in Sources */,
 				2FBF50A127E18F1A00B6883E /* Project-CoreDataHelpers.swift in Sources */,
 				2FBF509E27E18A0500B6883E /* DataController.swift in Sources */,
@@ -783,6 +784,7 @@
 				2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */,
 				2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */,
 				2FBF508E27E188D700B6883E /* PointOneKWidgetsBundle.swift in Sources */,
+				2F9F40352BF1BDEB00047162 /* Project2-CoreDataHelpers.swift in Sources */,
 				2FBF509D27E189D100B6883E /* Item-CoreDataHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

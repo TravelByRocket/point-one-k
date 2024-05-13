@@ -7,9 +7,9 @@
 
 import CoreData
 import CoreSpotlight
+import SwiftData
 import SwiftUI
 import WidgetKit
-import SwiftData
 
 /// An environment singleton responsible for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.

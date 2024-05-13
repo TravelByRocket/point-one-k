@@ -10,7 +10,7 @@ import SwiftUI
 
 extension DataController {
     func appLaunched() {
-//        guard count(for: ProjectOld.fetchRequest()) >= 5 else { return }
+        guard count(for: ProjectOld.fetchRequest()) >= 5 else { return }
         guard count(for: ItemOld.fetchRequest()) >= 10 else { return }
 
         let hasNeverAsked = dateAskedForReview == nil
