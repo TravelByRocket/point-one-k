@@ -9,6 +9,7 @@ import CoreData
 import CoreSpotlight
 import SwiftUI
 import WidgetKit
+import SwiftData
 
 /// An environment singleton responsible for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.
@@ -33,7 +34,7 @@ class DataController: ObservableObject {
         return projects.first { projectURL == $0.objectID.uriRepresentation() }
     }
 
-    /// Initializes a data controler, either in memory (for temporary use such as testing and previewing), or on
+    /// Initializes a data controller, either in memory (for temporary use such as testing and previewing), or on
     /// permanent storage (for us in regular app runs).
     ///
     /// Defaults to permanent storage.
@@ -208,4 +209,23 @@ class DataController: ObservableObject {
 
         return try? container.viewContext.existingObject(with: id) as? ItemOld
     }
+
+    static let previewContainer: ModelContainer = {
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = try ModelContainer(
+                for: Project2.self, Item2.self, Quality2.self, Score2.self,
+                configurations: config
+            )
+
+//            for i in 1...9 {
+//                let user = User(name: "Example User \(i)")
+//                container.mainContext.insert(user)
+//            }
+
+            return container
+        } catch {
+            fatalError("Failed to create model container for previewing: \(error.localizedDescription)")
+        }
+    }()
 }

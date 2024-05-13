@@ -10,6 +10,7 @@ import SwiftData
 import Testing
 
 @testable import PointOneK
+import XCTest
 
 final class ProjectTests: BaseTestCase {
     @Test func testCreatingProjectsAndItems() {

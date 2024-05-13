@@ -9,6 +9,7 @@ import Testing
 import UIKit
 
 @testable import PointOneK
+import XCTest
 
 struct AssetTests {
     @Test func testColorsExist() {

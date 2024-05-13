@@ -1,18 +1,19 @@
 //
-//  Project-CoreDataHelpers.swift
+//  Project2-CoreDataHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 19 Sep 2021.
 //
 
-import SwiftUI
 import CloudKit
+import SwiftUI
 
 extension Project2 {
     static let colors = [
         "Pink", "Purple", "Red", "Orange", "Gold",
         "Green", "Teal", "Light Blue", "Dark Blue",
-        "Midnight", "Dark Gray", "Gray"]
+        "Midnight", "Dark Gray", "Gray",
+    ]
 
     var projectTitle: String {
         title ?? NSLocalizedString("New Project", comment: "Create a new project")
@@ -42,7 +43,7 @@ extension Project2 {
         let item = Item2()
         item.project = self
 
-        if let title = title {
+        if let title {
             item.title = title
         }
 
@@ -63,9 +64,9 @@ extension Project2 {
         }
     }
 
+    @MainActor
     static var example: Project2 {
-        let dataController = DataController.preview
-        let viewContext = dataController.container.viewContext
+        let container = DataController.previewContainer.mainContext
 
         let project = Project2()
         project.title = "Example Project"
@@ -89,6 +90,8 @@ extension Project2 {
 
         score.item = item
 
+        container.insert(project)
+
         return project
     }
 
@@ -101,14 +104,14 @@ extension Project2 {
     func projectItems(using sortOrder: Item2.SortOrder) -> [Item2] {
         switch sortOrder {
         case .title:
-            return projectItems.sorted(by: \Item2.scoreTotal).reversed()
+            projectItems.sorted(by: \Item2.scoreTotal).reversed()
                 .sorted(by: \Item2.itemTitle.localizedLowercase)
         case .score:
-            return projectItems.sorted { first, second in
+            projectItems.sorted { first, second in
                 if first.scoreTotal != second.scoreTotal {
-                    return first.scoreTotal > second.scoreTotal // larger first
+                    first.scoreTotal > second.scoreTotal // larger first
                 } else {
-                    return first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
+                    first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
                 }
             }
         }

@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 11/14/20.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct PointOneKApp: App {

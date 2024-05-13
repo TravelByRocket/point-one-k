@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 19 Sep 2021.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ProjectsListView: View {
     // Private
@@ -23,7 +23,8 @@ struct ProjectsListView: View {
     @Query(
         filter: #Predicate<Project2> { $0.closed == false },
         sort: \Project2.title,
-        order: .forward)
+        order: .forward
+    )
     private var projects2: [Project2]
 
     var projectsList: some View {

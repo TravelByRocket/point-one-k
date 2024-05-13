@@ -770,9 +770,13 @@
 			files = (
 				2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */,
 				2FBF50A227E18F2000B6883E /* Score-CoreDataHelpers.swift in Sources */,
+				2F9F40342BF19BE300047162 /* Score.swift in Sources */,
 				2FBF50A127E18F1A00B6883E /* Project-CoreDataHelpers.swift in Sources */,
 				2FBF509E27E18A0500B6883E /* DataController.swift in Sources */,
+				2F9F40322BF19BDF00047162 /* Item.swift in Sources */,
 				2FBF50A427E18F3B00B6883E /* Sequence-Sorting.swift in Sources */,
+				2F9F40312BF19BDA00047162 /* Project.swift in Sources */,
+				2F9F40332BF19BE100047162 /* Quality.swift in Sources */,
 				2FBF509C27E189C200B6883E /* Main.xcdatamodeld in Sources */,
 				2FBF50A327E18F2300B6883E /* Quality-CoreDataHelpers.swift in Sources */,
 				2F35D62B27F1280C001EEE55 /* Color-Additions.swift in Sources */,

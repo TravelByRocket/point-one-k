@@ -66,7 +66,7 @@ struct ProjectItemsSection: View {
                     Label("Add New Item", systemImage: "plus")
                         .accessibilityLabel("Add new item")
                 }
-                
+
                 Spacer()
 
                 BatchAddButtonView(project: viewModel.project)
@@ -88,5 +88,6 @@ struct ProjectItemsSection: View {
                 dataController: DataController.preview
             )
         }
+        .modelContainer(DataController.previewContainer)
     }
 }

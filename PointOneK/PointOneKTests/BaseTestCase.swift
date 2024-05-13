@@ -9,6 +9,7 @@ import CoreData
 import SwiftData
 
 @testable import PointOneK
+import XCTest
 
 class BaseTestCase {
     let dataController: DataController!
