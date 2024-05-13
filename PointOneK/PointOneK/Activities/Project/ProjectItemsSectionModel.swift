@@ -10,16 +10,16 @@ import Foundation
 
 extension ProjectItemsSection {
     class ViewModel: ObservableObject {
-        @Published var project: ProjectOld
+        @Published var project: Project2
         let dataController: DataController
 
-        @Published var sortOrder = ItemOld.SortOrder.score
+        @Published var sortOrder = Item2.SortOrder.score
 
-        var items: [ItemOld] {
+        var items: [Item2] {
             project.projectItems(using: sortOrder)
         }
 
-        init(project: ProjectOld, dataController: DataController) {
+        init(project: Project2, dataController: DataController) {
             self.project = project
             self.dataController = dataController
         }
@@ -38,10 +38,11 @@ extension ProjectItemsSection {
             dataController.save()
         }
 
-        func delete(at offsets: IndexSet) {
+        func delete(at offsets: IndexSet, with context: ModelContext) {
             for offset in offsets {
                 let item = items[offset]
-                dataController.delete(item)
+                context.delete(item)
+                #warning("delete not enabled")
             }
             objectWillChange.send()
             dataController.save()

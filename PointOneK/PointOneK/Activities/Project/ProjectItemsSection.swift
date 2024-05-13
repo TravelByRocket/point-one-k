@@ -10,6 +10,7 @@ import SwiftUI
 struct ProjectItemsSection: View {
     @StateObject var viewModel: ViewModel
     @SceneStorage("selectedItemID") var selectedItemObjectID: String?
+    @Environment(\.modelContext) private var context
 
     var itemSortingHeader: some View {
         HStack {
@@ -50,7 +51,7 @@ struct ProjectItemsSection: View {
             }
             .onDelete { offsets in
                 withAnimation {
-                    viewModel.delete(at: offsets)
+                    viewModel.delete(at: offsets, with: context)
                 }
             }
             if viewModel.items.isEmpty {
@@ -65,13 +66,15 @@ struct ProjectItemsSection: View {
                     Label("Add New Item", systemImage: "plus")
                         .accessibilityLabel("Add new item")
                 }
+                
                 Spacer()
+
                 BatchAddButtonView(project: viewModel.project)
             }
         }
     }
 
-    init(project: ProjectOld, dataController: DataController) {
+    init(project: Project2, dataController: DataController) {
         let viewModel = ViewModel(project: project, dataController: dataController)
         _viewModel = StateObject(wrappedValue: viewModel)
     }

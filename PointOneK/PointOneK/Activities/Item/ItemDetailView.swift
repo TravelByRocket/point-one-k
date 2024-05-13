@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @ObservedObject var item: ItemOld
+    var item: Item2
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.modelContext) private var context
 
     @State var title: String
     @State var note: String
 
-    init(item: ItemOld) {
+    init(item: Item2) {
         self.item = item
 
         _title = State(wrappedValue: item.itemTitle)
@@ -54,13 +55,12 @@ struct ItemDetailView: View {
     }
 
     func update() {
-        item.project?.objectWillChange.send()
         item.title = title
         item.note = note
     }
 
     func save() {
-        dataController.update(item)
+        // might not be needed
     }
 }
 

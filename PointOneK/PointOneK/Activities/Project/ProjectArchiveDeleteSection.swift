@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    @ObservedObject var project: ProjectOld
+    var project: Project2
 
     @State private var showingDeleteConfirm = false
 
@@ -22,11 +22,11 @@ struct ProjectArchiveDeleteSection: View {
 
     var body: some View {
         Section(footer: footer) {
-            Button(project.closed ? "Reopen this project" : "Close this project") {
-                project.closed.toggle()
+            Button(project.closed ?? false ? "Reopen this project" : "Close this project") {
+                project.closed?.toggle()
             }
-            .tint(.primary)
-            Button("Delete this project") {
+
+            Button("Delete this project", role: .destructive) {
                 showingDeleteConfirm.toggle()
             }
             .tint(.red)
@@ -43,7 +43,7 @@ struct ProjectArchiveDeleteSection: View {
     }
 
     func delete() {
-        dataController.delete(project)
+        context.delete(project)
     }
 }
 

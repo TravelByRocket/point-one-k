@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScoringRowDisclosing: View {
     let label: String
-    let score: ScoreOld
+    let score: Score2
 
     var body: some View {
         DisclosureGroup {

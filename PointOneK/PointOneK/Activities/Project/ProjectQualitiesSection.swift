@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: ProjectOld
+    var project: Project2
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.modelContext) private var context
 
-    var qualities: [QualityOld] {
-        project.projectQualities.sorted(by: \QualityOld.qualityTitle)
+    var qualities: [Quality2] {
+        project.projectQualities.sorted(by: \Quality2.qualityTitle)
     }
 
     var body: some View {
@@ -37,7 +38,7 @@ struct ProjectQualitiesSection: View {
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
-                        dataController.delete(quality)
+                        context.delete(quality)
                     }
                 }
                 dataController.save()
