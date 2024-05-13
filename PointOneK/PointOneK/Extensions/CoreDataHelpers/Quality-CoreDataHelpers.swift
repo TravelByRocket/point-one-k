@@ -47,22 +47,22 @@ extension QualityOld {
         scores?.allObjects as? [ScoreOld] ?? []
     }
 
-    static var example: QualityOld {
-        let dataController = DataController.preview
-        let viewContext = dataController.container.viewContext
-
-        let quality = QualityOld(context: viewContext)
-        quality.title = "Shiny Quality \(Int.random(in: 10 ... 99))"
-        quality.note = """
-        4) Amazing
-        3) Great
-        2) Good
-        1) Acceptable
-        """
-        quality.indicator = ["a", "h", "r", "q", "n", "k", "y", "m", "w", "x"][Int.random(in: 0 ... 9)]
-
-        return quality
-    }
+//    static var example: QualityOld {
+//        let dataController = DataController.preview
+//        let viewContext = dataController.container.viewContext
+//
+//        let quality = QualityOld(context: viewContext)
+//        quality.title = "Shiny Quality \(Int.random(in: 10 ... 99))"
+//        quality.note = """
+//        4) Amazing
+//        3) Great
+//        2) Good
+//        1) Acceptable
+//        """
+//        quality.indicator = ["a", "h", "r", "q", "n", "k", "y", "m", "w", "x"][Int.random(in: 0 ... 9)]
+//
+//        return quality
+//    }
 
     func score(for item: ItemOld) -> ScoreOld? {
         for score in qualityScores where score.item == item {

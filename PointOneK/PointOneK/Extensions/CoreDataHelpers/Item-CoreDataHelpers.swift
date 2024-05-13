@@ -32,6 +32,7 @@ extension ItemOld {
         Int((itemScores.map(\.value)).reduce(0, +))
     }
 
+    @MainActor
     static var example: ItemOld {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext

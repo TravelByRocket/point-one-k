@@ -68,34 +68,34 @@ extension ProjectOld {
         }
     }
 
-    static var example: ProjectOld {
-        let dataController = DataController.preview
-        let viewContext = dataController.container.viewContext
-
-        let project = ProjectOld(context: viewContext)
-        project.title = "Example Project"
-        project.detail = "This is an example project"
-        project.closed = true
-
-        let quality = QualityOld(context: viewContext)
-        quality.title = "Fancy title"
-        quality.note = "notes"
-        quality.indicator = "a"
-        quality.project = project
-
-        let score = ScoreOld(context: viewContext)
-        score.value = 3
-        score.quality = quality
-
-        let item = ItemOld(context: viewContext)
-        item.project = project
-        item.note = "item note"
-        item.title = "Sweet Item"
-
-        score.item = item
-
-        return project
-    }
+//    static var example: ProjectOld {
+//        let dataController = DataController.preview
+//        let viewContext = dataController.container.viewContext
+//
+//        let project = ProjectOld(context: viewContext)
+//        project.title = "Example Project"
+//        project.detail = "This is an example project"
+//        project.closed = true
+//
+//        let quality = QualityOld(context: viewContext)
+//        quality.title = "Fancy title"
+//        quality.note = "notes"
+//        quality.indicator = "a"
+//        quality.project = project
+//
+//        let score = ScoreOld(context: viewContext)
+//        score.value = 3
+//        score.quality = quality
+//
+//        let item = ItemOld(context: viewContext)
+//        item.project = project
+//        item.note = "item note"
+//        item.title = "Sweet Item"
+//
+//        score.item = item
+//
+//        return project
+//    }
 
     var label: LocalizedStringKey {
         LocalizedStringKey(

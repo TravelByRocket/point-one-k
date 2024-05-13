@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DeleteAllDataView: View {
     @State private var enableDeleteButton = false
@@ -15,10 +16,12 @@ struct DeleteAllDataView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
 
-    @FetchRequest(
-        entity: ProjectOld.entity(),
-        sortDescriptors: []
-    ) var projects: FetchedResults<ProjectOld>
+    @Query(
+        filter: #Predicate<Project2> { $0.closed == false },
+        sort: \Project2.title,
+        order: .forward
+    )
+    private var projects: [Project2]
 
     var body: some View {
         Section(header: Text("Delete All")) {
@@ -44,7 +47,6 @@ struct DeleteAllDataView: View {
 
             Button(role: .destructive) {
                 for project in projects {
-                    project.objectWillChange.send()
                     dataController.delete(project)
                 }
 
@@ -57,7 +59,6 @@ struct DeleteAllDataView: View {
                     enableDeleteButton = false
                     dismiss()
                 }
-
             } label: {
                 Text("Delete Everything")
             }

@@ -32,19 +32,20 @@ extension ProjectItemsSection {
             }
         }
 
+        @MainActor
         func addItem() {
             objectWillChange.send()
             project.addItem()
             dataController.save()
         }
 
+        @MainActor
         func delete(at offsets: IndexSet, with context: ModelContext) {
             for offset in offsets {
                 let item = items[offset]
-                context.delete(item)
-                #warning("delete not enabled")
+                dataController.modelContainer.mainContext.delete(item)
             }
-            objectWillChange.send()
+
             dataController.save()
         }
     }

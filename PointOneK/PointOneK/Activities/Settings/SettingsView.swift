@@ -7,13 +7,25 @@
 
 import SwiftUI
 import WidgetKit
+import SwiftData
 
 struct SettingsView: View {
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
-    @FetchRequest var closedProjects: FetchedResults<ProjectOld>
-    @FetchRequest var openProjects: FetchedResults<ProjectOld>
+    @Query(
+        filter: #Predicate<Project2> { $0.closed == true },
+        sort: \Project2.title,
+        order: .forward
+    )
+    private var closedProjects: [Project2]
+
+    @Query(
+        filter: #Predicate<Project2> { $0.closed == false },
+        sort: \Project2.title,
+        order: .forward
+    )
+    private var openProjects: [Project2]
 
     @State private var widgetProject: URL? = UserDefaults(
         suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
@@ -24,27 +36,11 @@ struct SettingsView: View {
             .foregroundColor(.secondary)
     }
 
-    var projectGroups: [(label: String, projects: [ProjectOld])] {
+    var projectGroups: [(label: String, projects: [Project2])] {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects)),
         ]
-    }
-
-    init() {
-        _closedProjects = FetchRequest<ProjectOld>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true),
-            ],
-            predicate: NSPredicate(format: "closed = true")
-        )
-
-        _openProjects = FetchRequest<ProjectOld>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true),
-            ],
-            predicate: NSPredicate(format: "closed = false")
-        )
     }
 
     var body: some View {
@@ -76,9 +72,10 @@ struct SettingsView: View {
                 footer: Text("If you close your widget project it will remain visible in the widget.")
             ) {
                 Picker("Pick Project", selection: $widgetProject) {
-                    ForEach(openProjects.sorted(by: \ProjectOld.projectTitle)) { project in
+                    ForEach(openProjects.sorted(by: \Project2.projectTitle)) { project in
                         Text(project.projectTitle)
-                            .tag((project.objectID.uriRepresentation()) as URL?)
+                        #warning("missing uri tag for project")
+//                            .tag((project.objectID.uriRepresentation()) as URL?)
                     }
                     Text("Use Placeholder Project")
                         .italic()

@@ -22,6 +22,7 @@ struct PointOneKApp: App {
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }
-        .modelContainer(for: allModels)
+//        .modelContainer(for: allModels)
+        .modelContainer(dataController.modelContainer)
     }
 }
