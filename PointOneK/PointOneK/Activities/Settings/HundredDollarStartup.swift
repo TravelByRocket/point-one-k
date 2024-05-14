@@ -10,14 +10,12 @@ import Foundation
 
 // swiftlint:disable line_length
 func makeHundredDollarStartup(_ dataController: DataController) {
-    let managedObjectContext = dataController.container.viewContext
-
-    let project = ProjectOld(context: managedObjectContext)
+    let project = Project2()
     project.title = "$100 Startup Ideas"
     project.closed = false
     project.detail = "Have lots of business ideas but can't figure out which one to pursue? Use this template to score them and see what floats to the top. Inspired by the book \"The $100 Startup\"."
 
-    let ease = QualityOld(context: managedObjectContext)
+    let ease = Quality2()
     ease.project = project
     ease.title = "Ease"
 
@@ -25,11 +23,11 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     How easy is this project? Easier the better! And don't try too hard, the easy way is hard enough
     4) I can do this task in my sleep, like singing happy birthday. Or it takes little time or resources. <10s of hours for a project.
     3) I have to gather resources, maybe depend on others a little bit, or put in some effort to completing the task. 100s of hours for a project.
-    2) This will take substantial effort, studying, resources, or coordintation. 1000s of hours for a project.
+    2) This will take substantial effort, studying, resources, or coordination. 1000s of hours for a project.
     1) Huge amounts of resources. Many 1000s of hours for a project.
     """
 
-    let impact = QualityOld(context: managedObjectContext)
+    let impact = Quality2()
     impact.project = project
     impact.title = "Impact"
     impact.note = """
@@ -40,7 +38,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) Little; not much going for it in this category
     """
 
-    let vision = QualityOld(context: managedObjectContext)
+    let vision = Quality2()
     vision.project = project
     vision.title = "Vision"
     vision.note = """
@@ -51,7 +49,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) There's not much I am excited to be getting experience in
     """
 
-    let profitability = QualityOld(context: managedObjectContext)
+    let profitability = Quality2()
     profitability.project = project
     profitability.title = "Profitability"
     profitability.note = """
@@ -62,5 +60,10 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) Pays for really fancy ketchup
     """
 
-    dataController.save()
+    dataController.modelContext.insert(project)
+    dataController.modelContext.insert(impact)
+    dataController.modelContext.insert(ease)
+    dataController.modelContext.insert(profitability)
+    dataController.modelContext.insert(vision)
+    try? dataController.modelContext.save()
 }

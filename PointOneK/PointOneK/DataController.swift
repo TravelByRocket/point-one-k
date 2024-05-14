@@ -122,6 +122,7 @@ class DataController: ObservableObject {
                 quality.title = "Quality \(qualityCounter)"
                 quality.note = "Description \(Int.random(in: 1_000 ... 9_999))"
                 quality.project = project
+                modelContainer.mainContext.insert(quality)
             }
 
             // ITEMS
@@ -139,9 +140,8 @@ class DataController: ObservableObject {
                         score.value = Int16.random(in: 1 ... 4)
                     }
                 }
+                modelContainer.mainContext.insert(item)
             }
-
-            modelContainer.mainContext.insert(project)
         }
 
 
@@ -192,6 +192,10 @@ class DataController: ObservableObject {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
 
+    func count<T>(for fetchDescriptor: FetchDescriptor<T>) -> Int {
+        (try? modelContext.fetchCount(fetchDescriptor)) ?? 0
+    }
+
     @MainActor
     func update(_ item: Item2) {
 //        let itemID = item.objectID.uriRepresentation().absoluteString
@@ -212,16 +216,18 @@ class DataController: ObservableObject {
         save()
     }
 
-    func item(with uniqueIdentifier: String) -> ItemOld? {
-        guard let url = URL(string: uniqueIdentifier) else {
-            return nil
-        }
-
-        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
-            return nil
-        }
-
-        return try? container.viewContext.existingObject(with: id) as? ItemOld
+    func item(with uniqueIdentifier: String) -> Item2? {
+        #warning("unable to get item by ID")
+        return nil
+//        guard let url = URL(string: uniqueIdentifier) else {
+//            return nil
+//        }
+//
+//        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
+//            return nil
+//        }
+//
+//        return try? container.viewContext.existingObject(with: id) as? Item2
     }
 
     static let previewContainer: ModelContainer = {

@@ -10,6 +10,7 @@ import Testing
 
 @testable import PointOneK
 import XCTest
+import SwiftData
 
 final class DevelopmentTests: BaseTestCase {
     @MainActor @Test func testSampleDataCreationsWorks() throws {

@@ -7,11 +7,13 @@
 
 import StoreKit
 import SwiftUI
+import SwiftData
 
 extension DataController {
     func appLaunched() {
-        guard count(for: ProjectOld.fetchRequest()) >= 5 else { return }
-        guard count(for: ItemOld.fetchRequest()) >= 10 else { return }
+        let projectCount = count(for: FetchDescriptor<Project2>())
+        let itemCount = (try? modelContext.fetchCount(FetchDescriptor<Item2>())) ?? 0
+        guard projectCount >= 5, itemCount <= 10 else { return }
 
         let hasNeverAsked = dateAskedForReview == nil
         let intervalSinceAsked = dateAskedForReview?.timeIntervalSinceNow ?? 0
