@@ -11,7 +11,6 @@ import SwiftData
 
 struct SettingsView: View {
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
 
     @Query(
         filter: #Predicate<Project2> { $0.closed == true },
