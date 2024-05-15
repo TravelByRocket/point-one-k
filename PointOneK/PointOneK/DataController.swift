@@ -70,12 +70,12 @@ class DataController: ObservableObject {
 
             self.container.viewContext.automaticallyMergesChangesFromParent = true
 
-#if DEBUG
-            if CommandLine.arguments.contains("enable-testing") {
-                self.deleteAll()
-                UIView.setAnimationsEnabled(false)
-            }
-#endif
+            #if DEBUG
+                if CommandLine.arguments.contains("enable-testing") {
+                    self.deleteAll()
+                    UIView.setAnimationsEnabled(false)
+                }
+            #endif
         }
     }
 
@@ -144,7 +144,6 @@ class DataController: ObservableObject {
             }
         }
 
-
         try modelContainer.mainContext.save()
     }
 
@@ -188,12 +187,12 @@ class DataController: ObservableObject {
         }
     }
 
-    func count<T>(for fetchDescriptor: FetchDescriptor<T>) -> Int {
+    func count(for fetchDescriptor: FetchDescriptor<some Any>) -> Int {
         (try? modelContext.fetchCount(fetchDescriptor)) ?? 0
     }
 
     @MainActor
-    func update(_ item: Item2) {
+    func update(_: Item2) {
 //        let itemID = item.objectID.uriRepresentation().absoluteString
 //        let projectID = item.project?.objectID.uriRepresentation().absoluteString
 //
@@ -212,7 +211,7 @@ class DataController: ObservableObject {
         save()
     }
 
-    func item(with uniqueIdentifier: String) -> Item2? {
+    func item(with _: String) -> Item2? {
         #warning("unable to get item by ID")
         return nil
 //        guard let url = URL(string: uniqueIdentifier) else {

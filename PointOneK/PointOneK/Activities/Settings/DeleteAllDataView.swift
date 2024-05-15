@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 9 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct DeleteAllDataView: View {
     @State private var enableDeleteButton = false

@@ -5,9 +5,9 @@
 //  Created by Bryan Costanza on 10 Dec 2021.
 //
 
+import SwiftData
 import SwiftUI
 import WidgetKit
-import SwiftData
 
 struct SettingsView: View {
     @EnvironmentObject var dataController: DataController

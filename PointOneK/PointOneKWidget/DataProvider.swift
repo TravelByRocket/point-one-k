@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 16 Mar 2022.
 //
 
-import WidgetKit
 import SwiftData
+import WidgetKit
 
 struct Provider: TimelineProvider {
     typealias Entry = SimpleEntry
@@ -33,7 +33,7 @@ struct Provider: TimelineProvider {
         completion(timeline)
     }
 
-    @MainActor 
+    @MainActor
     func loadProject() -> Project2 {
         let dataController = DataController()
         let projects = (try? dataController.modelContainer.mainContext.fetch(FetchDescriptor<Project2>())) ?? []

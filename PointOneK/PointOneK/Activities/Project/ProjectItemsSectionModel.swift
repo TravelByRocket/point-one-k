@@ -39,7 +39,7 @@ extension ProjectItemsSection {
         }
 
         @MainActor
-        func delete(at offsets: IndexSet, with context: ModelContext) {
+        func delete(at offsets: IndexSet, with _: ModelContext) {
             for offset in offsets {
                 let item = items[offset]
                 dataController.modelContainer.mainContext.delete(item)

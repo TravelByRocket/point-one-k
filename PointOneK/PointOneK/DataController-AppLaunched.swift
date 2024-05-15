@@ -6,8 +6,8 @@
 //
 
 import StoreKit
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 extension DataController {
     func appLaunched() {
