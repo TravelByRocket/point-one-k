@@ -11,7 +11,6 @@ struct ProjectQualitiesSection: View {
     var project: Project2
 
     @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment(\.modelContext) private var context
 
     var qualities: [Quality2] {

@@ -11,7 +11,6 @@ import SwiftUI
 struct ProjectsListView: View {
     // Private
     @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
 
     @Query(
         filter: #Predicate<Project2> { $0.closed == false },

@@ -5,7 +5,6 @@
 //  Created by Bryan Costanza on 14 Mar 2022.
 //
 
-import CoreData
 import Foundation
 
 extension ProjectItemsSection {

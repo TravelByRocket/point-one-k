@@ -188,10 +188,6 @@ class DataController: ObservableObject {
         }
     }
 
-    func count(for fetchRequest: NSFetchRequest<some Any>) -> Int {
-        (try? container.viewContext.count(for: fetchRequest)) ?? 0
-    }
-
     func count<T>(for fetchDescriptor: FetchDescriptor<T>) -> Int {
         (try? modelContext.fetchCount(fetchDescriptor)) ?? 0
     }

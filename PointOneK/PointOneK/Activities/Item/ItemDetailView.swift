@@ -11,7 +11,6 @@ struct ItemDetailView: View {
     var item: Item2
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.modelContext) private var context
 
     @State var title: String
