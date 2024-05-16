@@ -1,5 +1,5 @@
 //
-//  Quality-CoreDataHelpers.swift
+//  Quality-ModelHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 28 Nov 2021.

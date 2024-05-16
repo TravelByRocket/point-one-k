@@ -1,5 +1,5 @@
 //
-//  Score-CoreDataHelpers.swift
+//  Score-ModelHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 29 Nov 2021.
