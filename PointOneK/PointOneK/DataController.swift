@@ -120,36 +120,6 @@ class DataController: ObservableObject {
 
     /// Saves our Core Data context iff there are changes. This silently ignores any errors caused by saving, but this
     /// should be fine because our attributes are optional.
-    @MainActor
-    func save() {
-        #warning("save might be redundant")
-        if modelContainer.mainContext.hasChanges {
-            try? modelContainer.mainContext.save()
-            WidgetCenter.shared.reloadAllTimelines()
-        }
-    }
-
-    @MainActor
-    func delete(_ object: Project) {
-//        let id = object.objectID.uriRepresentation().absoluteString
-//        CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [id])
-        #warning("spotlight not being used")
-        modelContainer.mainContext.delete(object)
-    }
-
-    @MainActor
-    func delete(_ object: Item) {
-//        let id = object.objectID.uriRepresentation().absoluteString
-//        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id])
-        #warning("spotlight not being used")
-        modelContainer.mainContext.delete(object)
-    }
-
-    @MainActor
-    func delete(_ object: Quality) {
-        modelContainer.mainContext.delete(object)
-    }
-
     func deleteAll() {
         let types: [any PersistentModel.Type] = [Project.self, Item.self, Quality.self, Score.self]
 
@@ -160,20 +130,6 @@ class DataController: ObservableObject {
 
     func count(for fetchDescriptor: FetchDescriptor<some Any>) -> Int {
         (try? modelContext.fetchCount(fetchDescriptor)) ?? 0
-    }
-
-    func item(with _: String) -> Item? {
-        #warning("unable to get item by ID")
-        return nil
-//        guard let url = URL(string: uniqueIdentifier) else {
-//            return nil
-//        }
-//
-//        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
-//            return nil
-//        }
-//
-//        return try? container.viewContext.existingObject(with: id) as? Item
     }
 
     static let previewContainer: ModelContainer = {

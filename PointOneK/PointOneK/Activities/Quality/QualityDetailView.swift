@@ -57,7 +57,6 @@ struct QualityDetailView: View {
                 }
             }
         }
-        .onDisappear(perform: dataController.save)
     }
 
     func update() {

@@ -20,7 +20,6 @@ struct ProjectToggleClosedRow: View {
                 withAnimation {
                     #warning("toggle of property not allowed")
 //                    project.closed.toggle()
-                    dataController.save()
                 }
             } label: {
                 Label {

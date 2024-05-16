@@ -33,9 +33,7 @@ extension ProjectItemsSection {
 
         @MainActor
         func addItem() {
-            objectWillChange.send()
             project.addItem()
-            dataController.save()
         }
 
         @MainActor
@@ -44,8 +42,6 @@ extension ProjectItemsSection {
                 let item = items[offset]
                 dataController.modelContainer.mainContext.delete(item)
             }
-
-            dataController.save()
         }
     }
 }

@@ -47,7 +47,7 @@ struct DeleteAllDataView: View {
 
             Button(role: .destructive) {
                 for project in projects {
-                    dataController.delete(project)
+                    context.delete(project)
                 }
 
                 dataController.deleteAll()

@@ -10,7 +10,6 @@ import SwiftUI
 struct ProjectQualitiesSection: View {
     var project: Project
 
-    @EnvironmentObject private var dataController: DataController
     @Environment(\.modelContext) private var context
 
     var qualities: [Quality] {
@@ -40,7 +39,6 @@ struct ProjectQualitiesSection: View {
                         context.delete(quality)
                     }
                 }
-                dataController.save()
             })
             if qualities.isEmpty {
                 Text("No qualities in this project")
@@ -48,7 +46,6 @@ struct ProjectQualitiesSection: View {
             Button {
                 withAnimation {
                     project.addQuality()
-                    dataController.save()
                 }
             } label: {
                 Label("Add New Quality", systemImage: "plus")
