@@ -15,7 +15,6 @@ import WidgetKit
 /// requests, and dealing with sample data.
 class DataController: ObservableObject {
     /// The lone CloudKit container used to stare all our data
-    let container: NSPersistentCloudKitContainer
     let modelContainer: ModelContainer
     let modelContext: ModelContext
 
@@ -44,39 +43,12 @@ class DataController: ObservableObject {
     /// - Parameter inMemory: Whether to store this data in temporary storage or not
     /// - Parameter defaults: The UserDefaults suite where user data should be stored
     init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
-        container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
+        let modelConfig = ModelConfiguration(isStoredInMemoryOnly: inMemory)
         // swiftlint:disable:next force_try
-        modelContainer = try! ModelContainer(for: Project.self, Item.self, Score.self, Quality.self)
+        modelContainer = try! ModelContainer(for: Project.self, Item.self, Score.self, Quality.self, configurations: modelConfig)
         modelContext = ModelContext(modelContainer)
 
         self.defaults = defaults
-
-        // For testing and previewing purposes, we create a temporary, in-memory database by writing to /dev/null/ so
-        // our data is destroyed after the app finishes running.
-        if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
-        } else {
-            let groupID = "group.co.synodic.PointOneK"
-
-            if let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupID) {
-                container.persistentStoreDescriptions.first?.url = url.appendingPathComponent("Main.sqlite")
-            }
-        }
-
-        container.loadPersistentStores { _, error in
-            if let error {
-                fatalError("Fatal error loading store: \(error.localizedDescription)")
-            }
-
-            self.container.viewContext.automaticallyMergesChangesFromParent = true
-
-            #if DEBUG
-                if CommandLine.arguments.contains("enable-testing") {
-                    self.deleteAll()
-                    UIView.setAnimationsEnabled(false)
-                }
-            #endif
-        }
     }
 
     @MainActor
@@ -189,26 +161,6 @@ class DataController: ObservableObject {
 
     func count(for fetchDescriptor: FetchDescriptor<some Any>) -> Int {
         (try? modelContext.fetchCount(fetchDescriptor)) ?? 0
-    }
-
-    @MainActor
-    func update(_: Item) {
-//        let itemID = item.objectID.uriRepresentation().absoluteString
-//        let projectID = item.project?.objectID.uriRepresentation().absoluteString
-//
-//        let attributeSet = CSSearchableItemAttributeSet(contentType: .text)
-//        attributeSet.title = item.itemTitle
-//        attributeSet.contentDescription = item.itemNote
-//
-//        let searchableItem = CSSearchableItem(
-//            uniqueIdentifier: itemID,
-//            domainIdentifier: projectID,
-//            attributeSet: attributeSet
-//        )
-//
-//        CSSearchableIndex.default().indexSearchableItems([searchableItem])
-
-        save()
     }
 
     func item(with _: String) -> Item? {
