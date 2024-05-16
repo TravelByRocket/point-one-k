@@ -1,5 +1,5 @@
 //
-//  Project2-CoreDataHelpers.swift
+//  Project-CoreDataHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 19 Sep 2021.
@@ -8,7 +8,7 @@
 import CloudKit
 import SwiftUI
 
-extension Project2 {
+extension Project {
     static let colors = [
         "Pink", "Purple", "Red", "Orange", "Gold",
         "Green", "Teal", "Light Blue", "Dark Blue",
@@ -27,11 +27,11 @@ extension Project2 {
         detail ?? ""
     }
 
-    var projectItems: [Item2] {
+    var projectItems: [Item] {
         items ?? []
     }
 
-    var projectQualities: [Quality2] {
+    var projectQualities: [Quality] {
         qualities ?? []
     }
 
@@ -40,7 +40,7 @@ extension Project2 {
     }
 
     func addItem(titled title: String? = nil) {
-        let item = Item2()
+        let item = Item()
         item.project = self
 
         if let title {
@@ -48,42 +48,42 @@ extension Project2 {
         }
 
         for quality in projectQualities {
-            let score = Score2()
+            let score = Score()
             score.item = item
             score.quality = quality
         }
     }
 
     func addQuality() {
-        let quality = Quality2()
+        let quality = Quality()
         quality.project = self
         for item in projectItems {
-            let score = Score2()
+            let score = Score()
             score.item = item
             score.quality = quality
         }
     }
 
     @MainActor
-    static var example: Project2 {
+    static var example: Project {
         let container = DataController.previewContainer.mainContext
 
-        let project = Project2()
+        let project = Project()
         project.title = "Example Project"
         project.detail = "This is an example project"
         project.closed = true
 
-        let quality = Quality2()
+        let quality = Quality()
         quality.title = "Fancy title"
         quality.note = "notes"
         quality.indicator = "a"
         quality.project = project
 
-        let score = Score2()
+        let score = Score()
         score.value = 3
         score.quality = quality
 
-        let item = Item2()
+        let item = Item()
         item.project = project
         item.note = "item note"
         item.title = "Sweet Item"
@@ -101,11 +101,11 @@ extension Project2 {
         )
     }
 
-    func projectItems(using sortOrder: Item2.SortOrder) -> [Item2] {
+    func projectItems(using sortOrder: Item.SortOrder) -> [Item] {
         switch sortOrder {
         case .title:
-            projectItems.sorted(by: \Item2.scoreTotal).reversed()
-                .sorted(by: \Item2.itemTitle.localizedLowercase)
+            projectItems.sorted(by: \Item.scoreTotal).reversed()
+                .sorted(by: \Item.itemTitle.localizedLowercase)
         case .score:
             projectItems.sorted { first, second in
                 if first.scoreTotal != second.scoreTotal {

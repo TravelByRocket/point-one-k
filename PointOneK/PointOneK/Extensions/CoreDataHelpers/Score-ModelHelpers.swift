@@ -1,5 +1,5 @@
 //
-//  Score2-CoreDataHelpers.swift
+//  Score-CoreDataHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 29 Nov 2021.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-extension Score2 {
+extension Score {
     var scoreValue: Int {
         Int(value ?? 0)
     }
 
     @MainActor
-    static var example: Score2 {
+    static var example: Score {
         let container = DataController.previewContainer
 
-        let score = Score2()
-        score.quality = Quality2.example
-        score.item = Item2.example
+        let score = Score()
+        score.quality = Quality.example
+        score.item = Item.example
 
         container.mainContext.insert(score)
 

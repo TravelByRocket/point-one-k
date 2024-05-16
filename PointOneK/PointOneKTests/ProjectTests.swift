@@ -17,10 +17,10 @@ final class ProjectTests: BaseTestCase {
     @Test func testCreatingProjectsAndItems() {
         let targetCount = 10
         for _ in 0 ..< targetCount {
-            let project = Project2()
+            let project = Project()
 
             for _ in 0 ..< targetCount {
-                let item = Item2()
+                let item = Item()
                 item.project = project
                 dataController.modelContext.insert(item)
             }

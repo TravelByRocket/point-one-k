@@ -407,10 +407,10 @@
 		2FBF50AF27EA5A8400B6883E /* CoreDataHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				2F5775222ADDEC520010B428 /* Project2-CoreDataHelpers.swift */,
-				2F5775242ADDEC710010B428 /* Item2-CoreDataHelpers.swift */,
-				2F5775262ADDEC790010B428 /* Score2-CoreDataHelpers.swift */,
-				2F5775282ADDEC800010B428 /* Quality2-CoreDataHelpers.swift */,
+				2F5775222ADDEC520010B428 /* Project-ModelHelpers.swift */,
+				2F5775242ADDEC710010B428 /* Item-ModelHelpers.swift */,
+				2F5775262ADDEC790010B428 /* Score-ModelHelpers.swift */,
+				2F5775282ADDEC800010B428 /* Quality-ModelHelpers.swift */,
 			);
 			path = CoreDataHelpers;
 			sourceTree = "<group>";
@@ -723,7 +723,7 @@
 				2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */,
 				2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */,
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
-				2F5775272ADDEC790010B428 /* Score2-CoreDataHelpers.swift in Sources */,
+				2F5775272ADDEC790010B428 /* Score-ModelHelpers.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */,
@@ -733,7 +733,7 @@
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
 				2F5775232ADDEC520010B428 /* Project2-CoreDataHelpers.swift in Sources */,
 				2FCFE8D627DC2D540044E7F7 /* BatchAddItemsView.swift in Sources */,
-				2F5775292ADDEC800010B428 /* Quality2-CoreDataHelpers.swift in Sources */,
+				2F5775292ADDEC800010B428 /* Quality-ModelHelpers.swift in Sources */,
 				2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */,
 				2F8B9D4A2751D0F800E2CC3C /* Item-CoreDataHelpers.swift in Sources */,
 				2F64BDA32C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift in Sources */,
@@ -759,7 +759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */,
-				2F9F40362BF1BDF900047162 /* Item2-CoreDataHelpers.swift in Sources */,
+				2F9F40362BF1BDF900047162 /* Item-ModelHelpers.swift in Sources */,
 				2F9F40342BF19BE300047162 /* Score.swift in Sources */,
 				2FBF509E27E18A0500B6883E /* DataController.swift in Sources */,
 				2F9F40322BF19BDF00047162 /* Item.swift in Sources */,
@@ -771,7 +771,7 @@
 				2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */,
 				2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */,
 				2FBF508E27E188D700B6883E /* PointOneKWidgetsBundle.swift in Sources */,
-				2F9F40352BF1BDEB00047162 /* Project2-CoreDataHelpers.swift in Sources */,
+				2F9F40352BF1BDEB00047162 /* Project-ModelHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

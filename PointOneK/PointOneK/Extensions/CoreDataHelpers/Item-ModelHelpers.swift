@@ -1,5 +1,5 @@
 //
-//  Item2-CoreDataHelpers.swift
+//  Item-CoreDataHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 19 Sep 2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Item2 {
+extension Item {
     enum SortOrder {
         case title, score
     }
@@ -20,11 +20,11 @@ extension Item2 {
         note ?? ""
     }
 
-    var itemScores: [Score2] {
+    var itemScores: [Score] {
         scores ?? []
     }
 
-    var projectQualities: [Quality2] {
+    var projectQualities: [Quality] {
         project?.projectQualities ?? []
     }
 
@@ -36,10 +36,10 @@ extension Item2 {
     }
 
     @MainActor
-    static var example: Item2 {
+    static var example: Item {
         let container = DataController.previewContainer
 
-        let item = Item2()
+        let item = Item()
         item.title = "My Item"
         item.note = "This is my example note"
 
@@ -48,7 +48,7 @@ extension Item2 {
         return item
     }
 
-    func hasScore(for quality: Quality2) -> Bool {
+    func hasScore(for quality: Quality) -> Bool {
         let scoredQualities = itemScores.map(\.quality)
         return scoredQualities.contains(quality)
     }

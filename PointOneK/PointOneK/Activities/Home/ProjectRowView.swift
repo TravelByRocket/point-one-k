@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectRowView: View {
-    var project: Project2
+    var project: Project
 
     var qualityCount: Int {
         project.projectQualities.count

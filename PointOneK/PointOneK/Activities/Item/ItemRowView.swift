@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    var project: Project2
-    var item: Item2
+    var project: Project
+    var item: Item
 
     var body: some View {
         HStack {

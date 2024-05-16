@@ -1,5 +1,5 @@
 //
-//  Quality2-CoreDataHelpers.swift
+//  Quality-CoreDataHelpers.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 28 Nov 2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Quality2 {
+extension Quality {
     var qualityTitle: String {
         title ?? "New Quality"
     }
@@ -43,15 +43,15 @@ extension Quality2 {
         !otherProjectIndicators.contains(qualityIndicatorCharacter)
     }
 
-    var qualityScores: [Score2] {
+    var qualityScores: [Score] {
         scores ?? []
     }
 
     @MainActor
-    static var example: Quality2 {
+    static var example: Quality {
         let container = DataController.previewContainer
 
-        let quality = Quality2()
+        let quality = Quality()
         quality.title = "Shiny Quality \(Int.random(in: 10 ... 99))"
         quality.note = """
         4) Amazing
@@ -66,7 +66,7 @@ extension Quality2 {
         return quality
     }
 
-    func score(for item: Item2) -> Score2? {
+    func score(for item: Item) -> Score? {
         for score in qualityScores where score.item == item {
             return score
         }

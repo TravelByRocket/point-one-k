@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    var project: Project2
+    var project: Project
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.modelContext) private var context
 
-    var qualities: [Quality2] {
-        project.projectQualities.sorted(by: \Quality2.qualityTitle)
+    var qualities: [Quality] {
+        project.projectQualities.sorted(by: \Quality.qualityTitle)
     }
 
     var body: some View {

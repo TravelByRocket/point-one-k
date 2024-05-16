@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BatchAddItemsView: View {
-    let project: Project2
+    let project: Project
 
     @State private var text: String = ""
 

@@ -10,7 +10,7 @@ import SwiftUI
 struct ProjectToggleClosedRow: View {
 //    let isClosed: Bool
 //    let title: String
-    var project: Project2
+    var project: Project
 
     @EnvironmentObject var dataController: DataController
 

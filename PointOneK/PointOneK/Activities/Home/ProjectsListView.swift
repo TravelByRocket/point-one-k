@@ -13,11 +13,11 @@ struct ProjectsListView: View {
     @EnvironmentObject private var dataController: DataController
 
     @Query(
-        filter: #Predicate<Project2> { $0.closed == false },
-        sort: \Project2.title,
+        filter: #Predicate<Project> { $0.closed == false },
+        sort: \Project.title,
         order: .forward
     )
-    private var projects2: [Project2]
+    private var projects2: [Project]
 
     var projectsList: some View {
         List {

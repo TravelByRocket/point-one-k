@@ -17,11 +17,11 @@ struct DeleteAllDataView: View {
     @Environment(\.dismiss) var dismiss
 
     @Query(
-        filter: #Predicate<Project2> { $0.closed == false },
-        sort: \Project2.title,
+        filter: #Predicate<Project> { $0.closed == false },
+        sort: \Project.title,
         order: .forward
     )
-    private var projects: [Project2]
+    private var projects: [Project]
 
     var body: some View {
         Section(header: Text("Delete All")) {

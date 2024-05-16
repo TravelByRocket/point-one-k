@@ -31,7 +31,7 @@ class DataController: ObservableObject {
     }
 
     @MainActor
-    var widgetProject: Project2? {
+    var widgetProject: Project? {
         let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
         let projects = (try? container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
         return projects.first { projectURL == $0.objectID.uriRepresentation() }
@@ -46,7 +46,7 @@ class DataController: ObservableObject {
     init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
         // swiftlint:disable:next force_try
-        modelContainer = try! ModelContainer(for: Project2.self, Item2.self, Score2.self, Quality2.self)
+        modelContainer = try! ModelContainer(for: Project.self, Item.self, Score.self, Quality.self)
         modelContext = ModelContext(modelContainer)
 
         self.defaults = defaults
@@ -134,7 +134,7 @@ class DataController: ObservableObject {
                 // QUALITIES <-> SCORES
                 if let qualities = project.qualities {
                     for quality in qualities {
-                        let score = Score2()
+                        let score = Score()
                         score.item = item
                         score.quality = quality
                         score.value = Int16.random(in: 1 ... 4)
@@ -159,7 +159,7 @@ class DataController: ObservableObject {
     }
 
     @MainActor
-    func delete(_ object: Project2) {
+    func delete(_ object: Project) {
 //        let id = object.objectID.uriRepresentation().absoluteString
 //        CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [id])
         #warning("spotlight not being used")
@@ -167,7 +167,7 @@ class DataController: ObservableObject {
     }
 
     @MainActor
-    func delete(_ object: Item2) {
+    func delete(_ object: Item) {
 //        let id = object.objectID.uriRepresentation().absoluteString
 //        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id])
         #warning("spotlight not being used")
@@ -175,12 +175,12 @@ class DataController: ObservableObject {
     }
 
     @MainActor
-    func delete(_ object: Quality2) {
+    func delete(_ object: Quality) {
         modelContainer.mainContext.delete(object)
     }
 
     func deleteAll() {
-        let types: [any PersistentModel.Type] = [Project2.self, Item2.self, Quality2.self, Score2.self]
+        let types: [any PersistentModel.Type] = [Project.self, Item.self, Quality.self, Score.self]
 
         for type in types {
             try? modelContext.delete(model: type)
@@ -192,7 +192,7 @@ class DataController: ObservableObject {
     }
 
     @MainActor
-    func update(_: Item2) {
+    func update(_: Item) {
 //        let itemID = item.objectID.uriRepresentation().absoluteString
 //        let projectID = item.project?.objectID.uriRepresentation().absoluteString
 //
@@ -211,7 +211,7 @@ class DataController: ObservableObject {
         save()
     }
 
-    func item(with _: String) -> Item2? {
+    func item(with _: String) -> Item? {
         #warning("unable to get item by ID")
         return nil
 //        guard let url = URL(string: uniqueIdentifier) else {
@@ -222,14 +222,14 @@ class DataController: ObservableObject {
 //            return nil
 //        }
 //
-//        return try? container.viewContext.existingObject(with: id) as? Item2
+//        return try? container.viewContext.existingObject(with: id) as? Item
     }
 
     static let previewContainer: ModelContainer = {
         do {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(
-                for: Project2.self, Item2.self, Quality2.self, Score2.self,
+                for: Project.self, Item.self, Quality.self, Score.self,
                 configurations: config
             )
 

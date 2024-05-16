@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProjectTitleEditView: View {
     @State private var title: String
-    let project: Project2
+    let project: Project
 
-    init(project: Project2) {
+    init(project: Project) {
         self.project = project
         _title = State(wrappedValue: project.projectTitle)
     }

@@ -9,16 +9,16 @@ import Foundation
 
 extension ProjectItemsSection {
     class ViewModel: ObservableObject {
-        @Published var project: Project2
+        @Published var project: Project
         let dataController: DataController
 
-        @Published var sortOrder = Item2.SortOrder.score
+        @Published var sortOrder = Item.SortOrder.score
 
-        var items: [Item2] {
+        var items: [Item] {
             project.projectItems(using: sortOrder)
         }
 
-        init(project: Project2, dataController: DataController) {
+        init(project: Project, dataController: DataController) {
             self.project = project
             self.dataController = dataController
         }

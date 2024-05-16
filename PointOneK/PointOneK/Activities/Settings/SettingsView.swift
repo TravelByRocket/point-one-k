@@ -13,18 +13,18 @@ struct SettingsView: View {
     @EnvironmentObject var dataController: DataController
 
     @Query(
-        filter: #Predicate<Project2> { $0.closed == true },
-        sort: \Project2.title,
+        filter: #Predicate<Project> { $0.closed == true },
+        sort: \Project.title,
         order: .forward
     )
-    private var closedProjects: [Project2]
+    private var closedProjects: [Project]
 
     @Query(
-        filter: #Predicate<Project2> { $0.closed == false },
-        sort: \Project2.title,
+        filter: #Predicate<Project> { $0.closed == false },
+        sort: \Project.title,
         order: .forward
     )
-    private var openProjects: [Project2]
+    private var openProjects: [Project]
 
     @State private var widgetProject: URL? = UserDefaults(
         suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
@@ -35,7 +35,7 @@ struct SettingsView: View {
             .foregroundColor(.secondary)
     }
 
-    var projectGroups: [(label: String, projects: [Project2])] {
+    var projectGroups: [(label: String, projects: [Project])] {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects)),
@@ -71,7 +71,7 @@ struct SettingsView: View {
                 footer: Text("If you close your widget project it will remain visible in the widget.")
             ) {
                 Picker("Pick Project", selection: $widgetProject) {
-                    ForEach(openProjects.sorted(by: \Project2.projectTitle)) { project in
+                    ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
                         Text(project.projectTitle)
                         #warning("missing uri tag for project")
 //                            .tag((project.objectID.uriRepresentation()) as URL?)

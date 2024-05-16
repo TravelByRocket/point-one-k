@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    var item: Item2
+    var item: Item
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.modelContext) private var context
@@ -16,7 +16,7 @@ struct ItemDetailView: View {
     @State var title: String
     @State var note: String
 
-    init(item: Item2) {
+    init(item: Item) {
         self.item = item
 
         _title = State(wrappedValue: item.itemTitle)

@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct QualityDetailView: View {
-    var quality: Quality2
+    var quality: Quality
 
     @State var title: String
     @State var note: String
 
     @EnvironmentObject var dataController: DataController
 
-    init(quality: Quality2) {
+    init(quality: Quality) {
         self.quality = quality
 
         _title = State(wrappedValue: quality.qualityTitle)
@@ -43,7 +43,7 @@ struct QualityDetailView: View {
                 ForEach(
                     quality.qualityScores
                         .filter { $0.item != nil }
-                        .sorted(by: \Score2.item!.itemTitle)
+                        .sorted(by: \Score.item!.itemTitle)
                 ) { score in
                     ScoringRow(
                         label: score.item!.itemTitle,

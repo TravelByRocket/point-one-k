@@ -74,7 +74,7 @@ struct ProjectItemsSection: View {
         }
     }
 
-    init(project: Project2, dataController: DataController) {
+    init(project: Project, dataController: DataController) {
         let viewModel = ViewModel(project: project, dataController: dataController)
         _viewModel = StateObject(wrappedValue: viewModel)
     }

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProjectDetailEditView: View {
     @State private var detail: String
-    let project: Project2
+    let project: Project
 
-    init(project: Project2) {
+    init(project: Project) {
         self.project = project
         _detail = State(wrappedValue: project.projectDetail)
     }

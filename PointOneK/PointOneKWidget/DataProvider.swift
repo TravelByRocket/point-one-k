@@ -34,15 +34,15 @@ struct Provider: TimelineProvider {
     }
 
     @MainActor
-    func loadProject() -> Project2 {
+    func loadProject() -> Project {
         let dataController = DataController()
-        let projects = (try? dataController.modelContainer.mainContext.fetch(FetchDescriptor<Project2>())) ?? []
+        let projects = (try? dataController.modelContainer.mainContext.fetch(FetchDescriptor<Project>())) ?? []
         if let project = dataController.widgetProject {
             return project
         }
 
         // Use the first project as backup
-        if let project = projects.sorted(by: \Project2.projectTitle).first {
+        if let project = projects.sorted(by: \Project.projectTitle).first {
             return project
         }
 
@@ -53,5 +53,5 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let project: Project2
+    let project: Project
 }

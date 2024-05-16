@@ -10,12 +10,12 @@ import Foundation
 
 // swiftlint:disable line_length
 func makeHundredDollarStartup(_ dataController: DataController) {
-    let project = Project2()
+    let project = Project()
     project.title = "$100 Startup Ideas"
     project.closed = false
     project.detail = "Have lots of business ideas but can't figure out which one to pursue? Use this template to score them and see what floats to the top. Inspired by the book \"The $100 Startup\"."
 
-    let ease = Quality2()
+    let ease = Quality()
     ease.project = project
     ease.title = "Ease"
 
@@ -27,7 +27,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) Huge amounts of resources. Many 1000s of hours for a project.
     """
 
-    let impact = Quality2()
+    let impact = Quality()
     impact.project = project
     impact.title = "Impact"
     impact.note = """
@@ -38,7 +38,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) Little; not much going for it in this category
     """
 
-    let vision = Quality2()
+    let vision = Quality()
     vision.project = project
     vision.title = "Vision"
     vision.note = """
@@ -49,7 +49,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) There's not much I am excited to be getting experience in
     """
 
-    let profitability = Quality2()
+    let profitability = Quality()
     profitability.project = project
     profitability.title = "Profitability"
     profitability.note = """

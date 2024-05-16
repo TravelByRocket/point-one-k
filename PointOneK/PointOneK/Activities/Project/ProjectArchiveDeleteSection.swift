@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    var project: Project2
+    var project: Project
 
     @State private var showingDeleteConfirm = false
 

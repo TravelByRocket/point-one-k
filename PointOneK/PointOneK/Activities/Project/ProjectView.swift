@@ -14,7 +14,7 @@ struct ProjectView: View {
     @Environment(\.modelContext) private var context
 
     // Init
-    let project: Project2
+    let project: Project
 
     var body: some View {
         Form {
