@@ -8,17 +8,24 @@
 import SwiftUI
 
 struct ProjectItemsSection: View {
-    @StateObject var viewModel: ViewModel
     @SceneStorage("selectedItemID") var selectedItemObjectID: String?
     @Environment(\.modelContext) private var context
 
+    @State private var sortOrder = Item.SortOrder.score
+
+    var project: Project
+
     var itemSortingHeader: some View {
         HStack {
-            Text("Items by \(viewModel.sortOrder == .title ? "Title, Score" : "Score, Title")")
+            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
             Spacer()
             Button {
                 withAnimation {
-                    viewModel.toggleSortOrder()
+                    if sortOrder == .title {
+                        sortOrder = .score
+                    } else { // if sortOrder == .score
+                        sortOrder = .title
+                    }
                 }
             } label: {
                 Label {
@@ -33,34 +40,34 @@ struct ProjectItemsSection: View {
 
     var body: some View {
         Section(header: itemSortingHeader) {
-            ForEach(viewModel.items) { item in
+            ForEach(project.items ?? []) { item in
                 NavigationLink(
                     tag: String(item.objectID.debugDescription),
                     selection: $selectedItemObjectID
                 ) {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(project: viewModel.project, item: item)
+                    ItemRowView(project: project, item: item)
                 }
                 .listRowBackground(
                     BackgroundBarView(
                         value: item.scoreTotal,
-                        max: viewModel.project.scorePossible
+                        max: project.scorePossible
                     )
                 )
             }
             .onDelete { offsets in
                 withAnimation {
-                    viewModel.delete(at: offsets, with: context)
+//                    context.delete(at: offsets, with: context)
                 }
             }
-            if viewModel.items.isEmpty {
+            if project.items?.isEmpty ?? true {
                 Text("No items in this project")
             }
             HStack {
                 Button {
                     withAnimation {
-                        viewModel.addItem()
+//                        viewModel.addItem()
                     }
                 } label: {
                     Label("Add New Item", systemImage: "plus")
@@ -69,14 +76,9 @@ struct ProjectItemsSection: View {
 
                 Spacer()
 
-                BatchAddButtonView(project: viewModel.project)
+                BatchAddButtonView(project: project)
             }
         }
-    }
-
-    init(project: Project, dataController: DataController) {
-        let viewModel = ViewModel(project: project, dataController: dataController)
-        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
@@ -88,6 +90,5 @@ struct ProjectItemsSection: View {
                 dataController: DataController.preview
             )
         }
-        .modelContainer(DataController.previewContainer)
     }
 }

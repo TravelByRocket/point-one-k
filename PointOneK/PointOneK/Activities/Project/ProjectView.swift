@@ -9,8 +9,6 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    // Private
-    @EnvironmentObject private var dataController: DataController
     @Environment(\.modelContext) private var context
 
     // Init
@@ -22,7 +20,7 @@ struct ProjectView: View {
             Section(header: Text("Description")) {
                 ProjectDetailEditView(project: project)
             }
-            ProjectItemsSection(project: project, dataController: dataController)
+            ProjectItemsSection(project: project)
             ProjectQualitiesSection(project: project)
             ProjectColorSelectionSection(project: project)
             ProjectArchiveDeleteSection(project: project)

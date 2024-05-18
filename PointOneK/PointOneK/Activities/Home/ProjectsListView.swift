@@ -9,8 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct ProjectsListView: View {
-    // Private
-    @EnvironmentObject private var dataController: DataController
+    @Environment(\.modelContext) private var context
 
     @Query(
         filter: #Predicate<Project> { $0.closed == false },

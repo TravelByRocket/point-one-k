@@ -19,8 +19,7 @@ struct PointOneKApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(dataController)
         }
-        .modelContainer(dataController.modelContainer)
+        .modelContainer(for: Project.self)
     }
 }
