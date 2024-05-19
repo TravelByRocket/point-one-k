@@ -9,20 +9,22 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    @Environment(\.modelContext) private var context
-
-    // Init
     let project: Project
 
     var body: some View {
         Form {
             ProjectTitleEditView(project: project)
+
             Section(header: Text("Description")) {
                 ProjectDetailEditView(project: project)
             }
+
             ProjectItemsSection(project: project)
+
             ProjectQualitiesSection(project: project)
+
             ProjectColorSelectionSection(project: project)
+            
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")
@@ -33,4 +35,5 @@ struct ProjectView: View {
     NavigationView {
         ProjectView(project: .example)
     }
+    .modelContainer(container)
 }
