@@ -16,7 +16,18 @@ struct ProjectsListView: View {
     )
     private var projects: [Project]
 
-    var projectsList: some View {
+    var body: some View {
+        Group {
+            if projects.isEmpty {
+                Text("There's nothing here right now")
+            } else {
+                projectsList
+            }
+        }
+        .navigationTitle("Open Projects")
+    }
+
+    private var projectsList: some View {
         List {
             ForEach(projects) { project in
                 NavigationLink {
@@ -27,17 +38,6 @@ struct ProjectsListView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-    }
-
-    var body: some View {
-        Group {
-            if projects.isEmpty {
-                Text("There's nothing here right now")
-            } else {
-                projectsList
-            }
-        }
-        .navigationTitle("Open Projects")
     }
 }
 

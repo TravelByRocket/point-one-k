@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectRowView: View {
     var project: Project
@@ -26,20 +27,20 @@ struct ProjectRowView: View {
     }
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(project.projectTitle)
-                    .font(.title)
-                    .underline(true, color: Color(project.projectColor))
-                    .lineLimit(1)
-                Text("\(qualityCount) Qualities, \(itemCount) Items")
-                Text(qualitiesList)
-                    .font(.caption)
-                    .italic()
-                    .foregroundColor(.secondary)
-            }
-            Spacer()
+        VStack(alignment: .leading) {
+            Text(project.projectTitle)
+                .font(.title)
+                .underline(true, color: Color(project.projectColor))
+                .lineLimit(1)
+
+            Text("\(qualityCount) Qualities, \(itemCount) Items")
+
+            Text(qualitiesList)
+                .font(.caption)
+                .italic()
+                .foregroundColor(.secondary)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -49,4 +50,5 @@ struct ProjectRowView: View {
         ProjectRowView(project: .example)
         ProjectRowView(project: .example)
     }
+    .modelContainer(container)
 }
