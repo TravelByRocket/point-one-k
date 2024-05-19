@@ -16,16 +16,15 @@ import XCTest
 final class ProjectTests: BaseTestCase {
     @Test func testCreatingProjectsAndItems() {
         let targetCount = 10
+
         for _ in 0 ..< targetCount {
             let project = Project()
 
             for _ in 0 ..< targetCount {
                 let item = Item()
                 item.project = project
-//                dataController.modelContext.insert(item)
+                context.insert(item)
             }
-
-//            dataController.modelContext.insert(project)
         }
 
         #expect(dataController.count(for: ProjectOld.fetchRequest()) == targetCount)

@@ -9,14 +9,12 @@ import SwiftData
 import SwiftUI
 
 struct ProjectsListView: View {
-    @Environment(\.modelContext) private var context
-
     @Query(
         filter: #Predicate<Project> { $0.closed == false },
         sort: \Project.title,
         order: .forward
     )
-    private var projects2: [Project]
+    private var projects: [Project]
 
     var projectsList: some View {
         List {
@@ -33,7 +31,7 @@ struct ProjectsListView: View {
 
     var body: some View {
         Group {
-            if projects2.isEmpty {
+            if projects.isEmpty {
                 Text("There's nothing here right now")
             } else {
                 projectsList
