@@ -11,12 +11,10 @@ import WidgetKit
 struct Provider: TimelineProvider {
     typealias Entry = SimpleEntry
 
-    @MainActor
     func placeholder(in _: Context) -> SimpleEntry {
         SimpleEntry(date: .now, project: .example)
     }
 
-    @MainActor
     func getSnapshot(
         in _: Context,
         completion: @escaping (SimpleEntry) -> Void
@@ -25,7 +23,6 @@ struct Provider: TimelineProvider {
         completion(entry)
     }
 
-    @MainActor
     func getTimeline(in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let entry = SimpleEntry(date: Date(), project: loadProject())
 
@@ -33,18 +30,16 @@ struct Provider: TimelineProvider {
         completion(timeline)
     }
 
-    @MainActor
     func loadProject() -> Project {
-        let dataController = DataController()
-        let projects = (try? dataController.modelContainer.mainContext.fetch(FetchDescriptor<Project>())) ?? []
-        if let project = dataController.widgetProject {
-            return project
-        }
+//        let projects = (try? context.fetch(FetchDescriptor<Project>())) ?? []
+//        if let project = dataController.widgetProject {
+//            return project
+//        }
 
         // Use the first project as backup
-        if let project = projects.sorted(by: \Project.projectTitle).first {
-            return project
-        }
+//        if let project = projects.sorted(by: \Project.projectTitle).first {
+//            return project
+//        }
 
         // Use example as last resort
         return .example

@@ -60,10 +60,13 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     1) Pays for really fancy ketchup
     """
 
-    dataController.modelContext.insert(project)
-    dataController.modelContext.insert(impact)
-    dataController.modelContext.insert(ease)
-    dataController.modelContext.insert(profitability)
-    dataController.modelContext.insert(vision)
-    try? dataController.modelContext.save()
+    context.insert(project)
+    context.insert(impact)
+    context.insert(ease)
+    context.insert(profitability)
+    context.insert(vision)
+    
+    if context.hasChanges {
+        try? context.save()
+    }
 }

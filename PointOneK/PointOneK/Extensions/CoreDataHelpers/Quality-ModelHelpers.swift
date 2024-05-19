@@ -47,10 +47,7 @@ extension Quality {
         scores ?? []
     }
 
-    @MainActor
     static var example: Quality {
-        let container = DataController.previewContainer
-
         let quality = Quality()
         quality.title = "Shiny Quality \(Int.random(in: 10 ... 99))"
         quality.note = """
@@ -59,9 +56,7 @@ extension Quality {
         2) Good
         1) Acceptable
         """
-        quality.indicator = ["a", "h", "r", "q", "n", "k", "y", "m", "w", "x"][Int.random(in: 0 ... 9)]
-
-        container.mainContext.insert(quality)
+        quality.indicator = ["a", "h", "r", "q", "n", "k", "y", "m", "w", "x"].randomElement() ?? "a"
 
         return quality
     }

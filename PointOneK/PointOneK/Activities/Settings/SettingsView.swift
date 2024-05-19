@@ -10,8 +10,6 @@ import SwiftUI
 import WidgetKit
 
 struct SettingsView: View {
-    @EnvironmentObject var dataController: DataController
-
     @Query(
         filter: #Predicate<Project> { $0.closed == true },
         sort: \Project.title,
@@ -47,7 +45,7 @@ struct SettingsView: View {
             // TEMPLATES SECTION
             Section(header: Text("Templates")) {
                 Button {
-                    makeHundredDollarStartup(dataController)
+//                    makeHundredDollarStartup(dataController)
                 } label: {
                     Text("$100 Startup")
                 }

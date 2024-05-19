@@ -22,7 +22,7 @@ final class ProjectTests: BaseTestCase {
             for _ in 0 ..< targetCount {
                 let item = Item()
                 item.project = project
-                dataController.modelContext.insert(item)
+//                dataController.modelContext.insert(item)
             }
 
 //            dataController.modelContext.insert(project)

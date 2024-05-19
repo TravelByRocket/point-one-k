@@ -64,10 +64,7 @@ extension Project {
         }
     }
 
-    @MainActor
     static var example: Project {
-        let container = DataController.previewContainer.mainContext
-
         let project = Project()
         project.title = "Example Project"
         project.detail = "This is an example project"
@@ -89,8 +86,6 @@ extension Project {
         item.title = "Sweet Item"
 
         score.item = item
-
-        container.insert(project)
 
         return project
     }

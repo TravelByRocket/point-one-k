@@ -12,15 +12,10 @@ extension Score {
         Int(value ?? 0)
     }
 
-    @MainActor
     static var example: Score {
-        let container = DataController.previewContainer
-
         let score = Score()
         score.quality = Quality.example
         score.item = Item.example
-
-        container.mainContext.insert(score)
 
         return score
     }

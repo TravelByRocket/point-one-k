@@ -35,15 +35,10 @@ extension Item {
             .reduce(0, +)
     }
 
-    @MainActor
     static var example: Item {
-        let container = DataController.previewContainer
-
         let item = Item()
         item.title = "My Item"
         item.note = "This is my example note"
-
-        container.mainContext.insert(item)
 
         return item
     }

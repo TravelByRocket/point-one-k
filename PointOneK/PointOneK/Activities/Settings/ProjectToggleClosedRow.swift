@@ -12,8 +12,6 @@ struct ProjectToggleClosedRow: View {
 //    let title: String
     var project: Project
 
-    @EnvironmentObject var dataController: DataController
-
     var body: some View {
         HStack {
             Button {

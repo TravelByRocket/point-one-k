@@ -13,8 +13,6 @@ struct QualityDetailView: View {
     @State var title: String
     @State var note: String
 
-    @EnvironmentObject var dataController: DataController
-
     init(quality: Quality) {
         self.quality = quality
 

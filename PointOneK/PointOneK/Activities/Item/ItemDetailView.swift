@@ -10,7 +10,6 @@ import SwiftUI
 struct ItemDetailView: View {
     var item: Item
 
-    @EnvironmentObject var dataController: DataController
     @Environment(\.modelContext) private var context
 
     @State var title: String
