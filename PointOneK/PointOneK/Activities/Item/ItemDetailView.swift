@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ItemDetailView: View {
     var item: Item
@@ -61,9 +62,14 @@ struct ItemDetailView: View {
         // might not be needed
     }
 }
+#Preview {
+    // swiftlint:disable:next force_try
+    let container = try! ModelContainer(for: Project.self)
+    let project = Project.example
 
 #Preview(traits: .modifier(.persistenceLayer)) {
     NavigationView {
         ItemDetailView(item: .example)
     }
+    .modelContainer(container)
 }
