@@ -7,6 +7,7 @@
 
 import CloudKit
 import SwiftUI
+import SwiftData
 
 extension Project {
     static let colors = [
@@ -39,9 +40,10 @@ extension Project {
         projectQualities.count * 4
     }
 
-    func addItem(titled title: String? = nil) {
+    func addItem(titled title: String? = nil, in context: ModelContext) {
         let item = Item()
-        item.project = self
+        context.insert(item)
+        items.append(safely: item)
 
         if let title {
             item.title = title
@@ -51,16 +53,22 @@ extension Project {
             let score = Score()
             score.item = item
             score.quality = quality
+            context.insert(score)
         }
+
+//        try? modelContext?.save()
     }
 
-    func addQuality() {
+    func addQuality(in context: ModelContext) {
         let quality = Quality()
-        quality.project = self
+        context.insert(quality)
+        qualities.append(safely: quality)
+
         for item in projectItems {
             let score = Score()
             score.item = item
             score.quality = quality
+            context.insert(score)
         }
     }
 

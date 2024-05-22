@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectItemsSection: View {
-    @SceneStorage("selectedItemID") var selectedItemObjectID: String?
     @Environment(\.modelContext) private var context
 
     @State private var sortOrder = Item.SortOrder.score
 
-    var project: Project
+    @Bindable var project: Project
 
     var itemSortingHeader: some View {
         HStack {
@@ -58,7 +58,10 @@ struct ProjectItemsSection: View {
             }
             .onDelete { offsets in
                 withAnimation {
-//                    context.delete(at: offsets, with: context)
+                    for offset in offsets {
+                        guard let item = project.items?[offset] else { continue }
+                        context.delete(item)
+                    }
                 }
             }
             if project.items?.isEmpty ?? true {
@@ -67,7 +70,7 @@ struct ProjectItemsSection: View {
             HStack {
                 Button {
                     withAnimation {
-//                        viewModel.addItem()
+                        project.addItem(titled: "New Item", in: context)
                     }
                 } label: {
                     Label("Add New Item", systemImage: "plus")
@@ -91,4 +94,5 @@ struct ProjectItemsSection: View {
             )
         }
     }
+    .modelContainer(container)
 }

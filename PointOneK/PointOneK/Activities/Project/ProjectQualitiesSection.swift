@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectQualitiesSection: View {
-    var project: Project
+    @Bindable var project: Project
 
     @Environment(\.modelContext) private var context
 
@@ -32,20 +33,22 @@ struct ProjectQualitiesSection: View {
                     }
                 }
             }
-            .onDelete(perform: { offsets in
+            .onDelete { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
                         context.delete(quality)
                     }
                 }
-            })
+            }
+
             if qualities.isEmpty {
                 Text("No qualities in this project")
             }
+
             Button {
                 withAnimation {
-                    project.addQuality()
+                    project.addQuality(in: context)
                 }
             } label: {
                 Label("Add New Quality", systemImage: "plus")

@@ -24,7 +24,7 @@ struct ProjectView: View {
             ProjectQualitiesSection(project: project)
 
             ProjectColorSelectionSection(project: project)
-            
+
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")

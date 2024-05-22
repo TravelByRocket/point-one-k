@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectTitleEditView: View {
     @State private var title: String
@@ -30,4 +31,5 @@ struct ProjectTitleEditView: View {
     Form {
         ProjectTitleEditView(project: .example)
     }
+    .modelContainer(container)
 }

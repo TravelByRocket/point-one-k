@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct BatchAddItemsView: View {
     let project: Project
@@ -33,7 +34,7 @@ struct BatchAddItemsView: View {
                     project.objectWillChange.send()
 
                     for line in lines {
-                        project.addItem(titled: line)
+                        project.addItem(titled: line, in: context)
                     }
 
                     dataController.save()

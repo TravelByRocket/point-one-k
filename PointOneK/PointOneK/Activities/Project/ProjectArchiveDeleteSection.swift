@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectArchiveDeleteSection: View {
     var project: Project
@@ -51,4 +52,5 @@ struct ProjectArchiveDeleteSection: View {
     Form {
         ProjectArchiveDeleteSection(project: .example)
     }
+    .modelContainer(container)
 }
