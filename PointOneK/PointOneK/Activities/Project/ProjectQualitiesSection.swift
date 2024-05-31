@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 11 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ProjectQualitiesSection: View {
     @Bindable var project: Project

@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 12 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ProjectTitleEditView: View {
     @State private var title: String
@@ -31,5 +31,4 @@ struct ProjectTitleEditView: View {
     Form {
         ProjectTitleEditView(project: .example)
     }
-    .modelContainer(container)
 }

@@ -1,5 +1,5 @@
 //
-//  OptionalSequence+append.swift
+//  Optional+RangeReplaceableCollection+appendSafely.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 5/21/24.

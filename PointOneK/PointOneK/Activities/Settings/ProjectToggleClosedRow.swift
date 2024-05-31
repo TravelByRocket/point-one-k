@@ -6,29 +6,37 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProjectToggleClosedRow: View {
-//    let isClosed: Bool
-//    let title: String
-    var project: Project
+    @Bindable var project: Project
 
     var body: some View {
-        HStack {
-            Button {
-                withAnimation {
-                    #warning("toggle of property not allowed")
-//                    project.closed.toggle()
-                }
-            } label: {
-                Label {
-                    Text(project.projectTitle)
-                } icon: {
-                    Image(systemName: project.closed == true ? "arrow.up.circle" : "xmark.circle")
-                        .foregroundColor(project.closed == true ? .green : .gray)
-                }
-            }
+        Button(action: toggleClosed, label: { label })
             .buttonStyle(.plain)
+    }
+
+    private func toggleClosed() {
+        withAnimation {
+            if project.closed != nil {
+                project.closed?.toggle()
+            } else {
+                project.closed = true
+            }
         }
+    }
+
+    private var label: some View {
+        Label {
+            Text(project.projectTitle)
+        } icon: {
+            Image(systemName: systemName)
+                .foregroundColor(project.closed == true ? .green : .gray)
+        }
+    }
+
+    private var systemName: String {
+        project.closed == true ? "arrow.up.circle" : "xmark.circle"
     }
 }
 

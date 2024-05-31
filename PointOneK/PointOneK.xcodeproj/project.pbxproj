@@ -14,6 +14,7 @@
 		2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F32AC072763B29800BCA997 /* SettingsView.swift */; };
 		2F33BC0E2BFCCA8E00C026D5 /* Optional+RangeReplaceableCollection+appendSafely.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33BC0D2BFCCA8E00C026D5 /* Optional+RangeReplaceableCollection+appendSafely.swift */; };
 		2F33BC0F2BFCDAF400C026D5 /* Optional+RangeReplaceableCollection+appendSafely.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33BC0D2BFCCA8E00C026D5 /* Optional+RangeReplaceableCollection+appendSafely.swift */; };
+		2F33BC112C013F8300C026D5 /* ModelContainer+previewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F33BC102C013F8300C026D5 /* ModelContainer+previewContainer.swift */; };
 		2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
 		2F35D62B27F1280C001EEE55 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */; };
 		2F64BDA32C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F64BDA22C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift */; };
@@ -133,6 +134,7 @@
 		2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text-Character.swift"; sourceTree = "<group>"; };
 		2F32AC072763B29800BCA997 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F33BC0D2BFCCA8E00C026D5 /* Optional+RangeReplaceableCollection+appendSafely.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+RangeReplaceableCollection+appendSafely.swift"; sourceTree = "<group>"; };
+		2F33BC102C013F8300C026D5 /* ModelContainer+previewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelContainer+previewContainer.swift"; sourceTree = "<group>"; };
 		2F341B8C275993890096D685 /* BackgroundBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBarView.swift; sourceTree = "<group>"; };
 		2F64BDA22C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceLayerPreviewModifier.swift; sourceTree = "<group>"; };
 		2F8B9D1E2751CF0A00E2CC3C /* PointOneK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointOneK.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -322,6 +324,7 @@
 				2F8B9D452751D0F800E2CC3C /* Sequence-Sorting.swift */,
 				2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */,
 				2F33BC0D2BFCCA8E00C026D5 /* Optional+RangeReplaceableCollection+appendSafely.swift */,
+				2F33BC102C013F8300C026D5 /* ModelContainer+previewContainer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,7 +403,7 @@
 			path = PointOneKWidget;
 			sourceTree = "<group>";
 		};
-		2FBF50AF27EA5A8400B6883E /* CoreDataHelpers */ = {
+		2FBF50AF27EA5A8400B6883E /* ModelHelpers */ = {
 			isa = PBXGroup;
 			children = (
 				2F5775222ADDEC520010B428 /* Project-ModelHelpers.swift */,
@@ -408,7 +411,7 @@
 				2F5775262ADDEC790010B428 /* Score-ModelHelpers.swift */,
 				2F5775282ADDEC800010B428 /* Quality-ModelHelpers.swift */,
 			);
-			path = CoreDataHelpers;
+			path = ModelHelpers;
 			sourceTree = "<group>";
 		};
 		2FCDC7C42C3B008E007FE63A /* Model Helpers */ = {
@@ -718,6 +721,7 @@
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
 				2F5775272ADDEC790010B428 /* Score-ModelHelpers.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
+				2F5F95352C09432A00CFE1F5 /* ModelPreview.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE8E427DD93FE0044E7F7 /* ProjectDetailEditView.swift in Sources */,
 				2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */,
@@ -725,6 +729,7 @@
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
 				2F5775232ADDEC520010B428 /* Project2-CoreDataHelpers.swift in Sources */,
 				2FCFE8D627DC2D540044E7F7 /* BatchAddItemsView.swift in Sources */,
+				2F33BC112C013F8300C026D5 /* ModelContainer+previewContainer.swift in Sources */,
 				2F5775292ADDEC800010B428 /* Quality-ModelHelpers.swift in Sources */,
 				2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */,
 				2F8B9D4A2751D0F800E2CC3C /* Item-CoreDataHelpers.swift in Sources */,

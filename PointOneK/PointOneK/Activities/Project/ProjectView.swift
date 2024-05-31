@@ -35,5 +35,5 @@ struct ProjectView: View {
     NavigationView {
         ProjectView(project: .example)
     }
-    .modelContainer(container)
+    .modelContainer(previewContainer)
 }

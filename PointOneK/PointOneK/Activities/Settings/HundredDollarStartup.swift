@@ -65,7 +65,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     context.insert(ease)
     context.insert(profitability)
     context.insert(vision)
-    
+
     if context.hasChanges {
         try? context.save()
     }

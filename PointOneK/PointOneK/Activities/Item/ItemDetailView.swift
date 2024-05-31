@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 20 Sep 2021.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ItemDetailView: View {
     var item: Item
@@ -62,14 +62,9 @@ struct ItemDetailView: View {
         // might not be needed
     }
 }
-#Preview {
-    // swiftlint:disable:next force_try
-    let container = try! ModelContainer(for: Project.self)
-    let project = Project.example
 
 #Preview(traits: .modifier(.persistenceLayer)) {
     NavigationView {
         ItemDetailView(item: .example)
     }
-    .modelContainer(container)
 }

@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 12 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
     var project: Project
@@ -52,5 +52,4 @@ struct ProjectArchiveDeleteSection: View {
     Form {
         ProjectArchiveDeleteSection(project: .example)
     }
-    .modelContainer(container)
 }

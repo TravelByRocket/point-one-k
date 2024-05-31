@@ -6,8 +6,8 @@
 //
 
 import CloudKit
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 extension Project {
     static let colors = [

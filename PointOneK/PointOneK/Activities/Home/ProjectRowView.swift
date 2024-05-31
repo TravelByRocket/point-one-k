@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 11 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ProjectRowView: View {
     var project: Project
@@ -50,5 +50,4 @@ struct ProjectRowView: View {
         ProjectRowView(project: .example)
         ProjectRowView(project: .example)
     }
-    .modelContainer(container)
 }

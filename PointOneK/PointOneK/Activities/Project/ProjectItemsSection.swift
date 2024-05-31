@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 11 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ProjectItemsSection: View {
     @Environment(\.modelContext) private var context
@@ -94,5 +94,4 @@ struct ProjectItemsSection: View {
             )
         }
     }
-    .modelContainer(container)
 }
