@@ -11,21 +11,6 @@ import SwiftUI
 struct ProjectRowView: View {
     var project: Project
 
-    var qualityCount: Int {
-        project.projectQualities.count
-    }
-
-    var itemCount: Int {
-        project.projectItems.count
-    }
-
-    var qualitiesList: String {
-        project.projectQualities
-            .map(\.qualityTitle)
-            .sorted { $0.lowercased() < $1.lowercased() }
-            .joined(separator: ", ")
-    }
-
     var body: some View {
         VStack(alignment: .leading) {
             Text(project.projectTitle)
@@ -33,7 +18,7 @@ struct ProjectRowView: View {
                 .underline(true, color: Color(project.projectColor))
                 .lineLimit(1)
 
-            Text("\(qualityCount) Qualities, \(itemCount) Items")
+            Text(summary)
 
             Text(qualitiesList)
                 .font(.caption)
@@ -41,6 +26,17 @@ struct ProjectRowView: View {
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    var summary: String {
+        "\(project.projectQualities.count) Qualities, \(project.projectItems.count) Items"
+    }
+
+    var qualitiesList: String {
+        project.projectQualities
+            .map(\.qualityTitle)
+            .sorted { $0.lowercased() < $1.lowercased() }
+            .joined(separator: ", ")
     }
 }
 

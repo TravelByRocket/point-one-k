@@ -39,15 +39,40 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ProjectsListView()
-                .sheet(isPresented: $showingSettings) {
-                    SettingsView()
-                }
                 .toolbar {
                     settingsToolbarItem
                     addProjectToolbarItem
                 }
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+        }
+    }
 
-            SelectSomethingView()
+    // MARK: Add Project
+
+    var addProjectToolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            HStack {
+                titleTextField
+                addProjectButton
+            }
+        }
+    }
+
+    var titleTextField: some View {
+        TextField(
+            "Enter New Project Title",
+            text: $newProjectTitle
+        )
+        .textFieldStyle(.roundedBorder)
+    }
+
+    var addProjectButton: some View {
+        Button {
+            addProject()
+        } label: {
+            Label("Add Project", systemImage: "plus")
         }
         .navigationViewStyle(.stack)
     }

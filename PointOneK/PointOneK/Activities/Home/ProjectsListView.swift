@@ -19,7 +19,7 @@ struct ProjectsListView: View {
     var body: some View {
         Group {
             if projects.isEmpty {
-                Text("There's nothing here right now")
+                contentUnavailable
             } else {
                 projectsList
             }
@@ -38,6 +38,13 @@ struct ProjectsListView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
+    }
+
+    private var contentUnavailable: some View {
+        ContentUnavailableView(
+            "No Projects Found",
+            systemImage: "exclamationmark.magnifyingglass"
+        )
     }
 }
 
