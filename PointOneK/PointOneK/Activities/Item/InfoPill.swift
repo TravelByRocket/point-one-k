@@ -78,4 +78,6 @@ struct InfoPill: View {
         InfoPill(letter: "p", level: 4)
         InfoPill(letter: "n", level: 0)
     }
+    .padding(10)
+    .previewLayout(.sizeThatFits)
 }

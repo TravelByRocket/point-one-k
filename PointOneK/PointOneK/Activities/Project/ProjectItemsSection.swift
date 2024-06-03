@@ -47,7 +47,10 @@ struct ProjectItemsSection: View {
                 ) {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(project: project, item: item)
+                    ItemRowView(
+//                        project: project,
+                        item: item
+                    )
                 }
                 .listRowBackground(
                     BackgroundBarView(

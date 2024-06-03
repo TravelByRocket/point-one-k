@@ -9,9 +9,9 @@ import SwiftData
 import SwiftUI
 
 struct ItemDetailView: View {
-    var item: Item
-
     @Environment(\.modelContext) private var context
+
+    @Bindable var item: Item
 
     @State var title: String
     @State var note: String
@@ -35,31 +35,27 @@ struct ItemDetailView: View {
                     score: quality.score(for: item) ?? .example
                 )
             }
+
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
             }
-            HStack {
-                Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
-                Spacer()
-            }
+
+            Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
+
             .listRowBackground(
                 BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
             )
+
             Section(header: Text("Item Note")) {
                 TextEditor(text: $note.onChange(update))
             }
         }
         .navigationTitle("Edit Item")
-        .onDisappear(perform: save)
     }
 
     func update() {
         item.title = title
         item.note = note
-    }
-
-    func save() {
-        // might not be needed
     }
 }
 
