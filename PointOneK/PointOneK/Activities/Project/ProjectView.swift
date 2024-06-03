@@ -9,7 +9,7 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    let project: Project
+    @Bindable var project: Project
 
     var body: some View {
         Form {

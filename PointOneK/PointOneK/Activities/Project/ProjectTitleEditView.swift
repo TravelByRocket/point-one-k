@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ProjectTitleEditView: View {
     @State private var title: String
-    let project: Project
+    @Bindable var project: Project
 
     init(project: Project) {
         self.project = project

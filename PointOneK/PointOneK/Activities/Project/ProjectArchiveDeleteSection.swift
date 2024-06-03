@@ -9,7 +9,9 @@ import SwiftData
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    var project: Project
+    @Environment(\.modelContext) private var context
+
+    @Bindable var project: Project
 
     @State private var showingDeleteConfirm = false
 
