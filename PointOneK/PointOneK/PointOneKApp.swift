@@ -20,6 +20,17 @@ struct PointOneKApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Project.self)
+        .modelContainer(
+            for: Project.self,
+            inMemory: isInMemory
+        )
+    }
+
+    var isInMemory: Bool {
+#if DEBUG
+        return true
+#else
+        return false
+#endif
     }
 }
