@@ -27,10 +27,10 @@ struct PointOneKApp: App {
     }
 
     var isInMemory: Bool {
-#if DEBUG
-        return true
-#else
-        return false
-#endif
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
     }
 }

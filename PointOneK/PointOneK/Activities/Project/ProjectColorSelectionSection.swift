@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectColorSelectionSection: View {
-    @Bindable var  project: Project
+    @Bindable var project: Project
 
     @State private var color: String
 

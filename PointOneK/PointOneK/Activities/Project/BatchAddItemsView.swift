@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct BatchAddItemsView: View {
-    @Bindable var  project: Project
+    @Bindable var project: Project
 
     @State private var text: String = ""
 

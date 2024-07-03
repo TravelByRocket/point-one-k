@@ -69,9 +69,7 @@ struct HomeView: View {
     }
 
     var addProjectButton: some View {
-        Button {
-            addProject()
-        } label: {
+        Button(action: addProject) {
             Label("Add Project", systemImage: "plus")
         }
         .navigationViewStyle(.stack)

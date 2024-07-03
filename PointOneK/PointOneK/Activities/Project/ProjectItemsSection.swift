@@ -48,7 +48,7 @@ struct ProjectItemsSection: View {
                     ItemDetailView(item: item)
                 } label: {
                     ItemRowView(
-//                        project: project,
+                        //                        project: project,
                         item: item
                     )
                 }

@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 13 Mar 2022.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ScoringRow: View {
     let label: String
