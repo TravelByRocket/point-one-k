@@ -72,6 +72,7 @@
 		2FCDC7A72C3580A1007FE63A /* Quality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A42C3580A1007FE63A /* Quality.swift */; };
 		2FCDC7A82C3580A1007FE63A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A22C3580A1007FE63A /* Item.swift */; };
 		2FCDC7A92C3580A1007FE63A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A52C3580A1007FE63A /* Score.swift */; };
+		2FCDC7AB2C3587B1007FE63A /* SwiftFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */; };
 		2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */; };
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
 		2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */; };
@@ -198,6 +199,7 @@
 		2FCDC7A32C3580A1007FE63A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		2FCDC7A42C3580A1007FE63A /* Quality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quality.swift; sourceTree = "<group>"; };
 		2FCDC7A52C3580A1007FE63A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFormatTests.swift; sourceTree = "<group>"; };
 		2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataView.swift; sourceTree = "<group>"; };
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
 		2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToggleClosedRow.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				2F8B9DAB2752A2F800E2CC3C /* DevelopmentTests.swift */,
 				2F8B9DAD2752BA7900E2CC3C /* ExtensionTests.swift */,
 				2F9AFF6B27D5356800788417 /* PerformanceTests.swift */,
+				2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */,
 			);
 			path = PointOneKTests;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 			files = (
 				2F8B9DA627528AF500E2CC3C /* AssetTests.swift in Sources */,
 				2F8B9D9F2752894400E2CC3C /* BaseTestCase.swift in Sources */,
+				2FCDC7AB2C3587B1007FE63A /* SwiftFormatTests.swift in Sources */,
 				2F9AFF6C27D5356800788417 /* PerformanceTests.swift in Sources */,
 				2F8B9DAE2752BA7900E2CC3C /* ExtensionTests.swift in Sources */,
 				2F8B9DA827528E5F00E2CC3C /* ProjectTests.swift in Sources */,
@@ -899,6 +903,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -954,6 +959,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -962,7 +968,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
 				CODE_SIGN_STYLE = Automatic;
