@@ -68,6 +68,7 @@
 		2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF50A727E2681300B6883E /* DataProvider.swift */; };
 		2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */; };
 		2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
+		2FCDC7AB2C3587B1007FE63A /* SwiftFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */; };
 		2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */; };
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
 		2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */; };
@@ -190,6 +191,7 @@
 		2FBF50A727E2681300B6883E /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKWidget.swift; sourceTree = "<group>"; };
 		2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PointOneKWidgetExtension.entitlements; sourceTree = "<group>"; };
+		2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFormatTests.swift; sourceTree = "<group>"; };
 		2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataView.swift; sourceTree = "<group>"; };
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
 		2FCFE8D127DBDE210044E7F7 /* ProjectToggleClosedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectToggleClosedRow.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				2F8B9DAB2752A2F800E2CC3C /* DevelopmentTests.swift */,
 				2F8B9DAD2752BA7900E2CC3C /* ExtensionTests.swift */,
 				2F9AFF6B27D5356800788417 /* PerformanceTests.swift */,
+				2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */,
 			);
 			path = PointOneKTests;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 			files = (
 				2F8B9DA627528AF500E2CC3C /* AssetTests.swift in Sources */,
 				2F8B9D9F2752894400E2CC3C /* BaseTestCase.swift in Sources */,
+				2FCDC7AB2C3587B1007FE63A /* SwiftFormatTests.swift in Sources */,
 				2F9AFF6C27D5356800788417 /* PerformanceTests.swift in Sources */,
 				2F8B9DAE2752BA7900E2CC3C /* ExtensionTests.swift in Sources */,
 				2F8B9DA827528E5F00E2CC3C /* ProjectTests.swift in Sources */,
@@ -883,6 +887,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -938,6 +943,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
