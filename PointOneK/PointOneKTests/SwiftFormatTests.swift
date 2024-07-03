@@ -10,7 +10,7 @@ import XCTest
 
 class SwiftFormatTests: XCTestCase {
     func test_givenXcodeSwiftVersion_thenSwiftFormatVersionMatches() {
-#warning("test xcode swift version to swiftformat")
+        #warning("test xcode swift version to swiftformat")
         XCTSkip()
     }
 }
