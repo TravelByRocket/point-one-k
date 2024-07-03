@@ -11,7 +11,7 @@ import StoreKit
 extension DataController {
     func appLaunched() {
 //        guard count(for: Project.fetchRequest()) >= 5 else { return }
-        guard count(for: Item.fetchRequest()) >= 10 else { return }
+        guard count(for: ItemOld.fetchRequest()) >= 10 else { return }
 
         let hasNeverAsked = dateAskedForReview == nil
         let intervalSinceAsked = dateAskedForReview?.timeIntervalSinceNow ?? 0

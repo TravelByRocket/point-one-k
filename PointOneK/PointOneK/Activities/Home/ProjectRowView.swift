@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectRowView: View {
-    @ObservedObject var project: Project
+    @ObservedObject var project: ProjectOld
 
     var qualityCount: Int {
         project.projectQualities.count
@@ -46,9 +46,9 @@ struct ProjectRowView: View {
 struct ProjectRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            ProjectRowView(project: Project.example)
-            ProjectRowView(project: Project.example)
-            ProjectRowView(project: Project.example)
+            ProjectRowView(project: ProjectOld.example)
+            ProjectRowView(project: ProjectOld.example)
+            ProjectRowView(project: ProjectOld.example)
         }
     }
 }

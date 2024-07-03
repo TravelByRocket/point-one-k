@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    @ObservedObject var project: Project
+    @ObservedObject var project: ProjectOld
 
     @State private var showingDeleteConfirm = false
 
@@ -53,7 +53,7 @@ struct ProjectArchiveDeleteSection_Previews: PreviewProvider {
 
     static var previews: some View {
         Form {
-            ProjectArchiveDeleteSection(project: Project.example)
+            ProjectArchiveDeleteSection(project: ProjectOld.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }

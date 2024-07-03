@@ -16,9 +16,9 @@ struct DeleteAllDataView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @FetchRequest(
-        entity: Project.entity(),
+        entity: ProjectOld.entity(),
         sortDescriptors: []
-    ) var projects: FetchedResults<Project>
+    ) var projects: FetchedResults<ProjectOld>
 
     var body: some View {
         Section(header: Text("Delete All")) {

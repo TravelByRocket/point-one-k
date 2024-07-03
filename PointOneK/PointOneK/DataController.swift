@@ -36,9 +36,9 @@ class DataController: ObservableObject {
         }
     }
 
-    var widgetProject: Project? {
+    var widgetProject: ProjectOld? {
         let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
-        let projects = (try? container.viewContext.fetch(Project.fetchRequest())) ?? []
+        let projects = (try? container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
         for project in projects {
             if projectURL == project.objectID.uriRepresentation() {
                 return project
@@ -116,7 +116,7 @@ class DataController: ObservableObject {
 
         // PROJECTS
         for i in 1...5 {
-            let project = Project(context: viewContext)
+            let project = ProjectOld(context: viewContext)
             project.title = "Project \(i)"
             project.items = []
             project.closed = Bool.random()
@@ -124,7 +124,7 @@ class DataController: ObservableObject {
 
             // QUALITIES
             for k in 1...5 {
-                let quality = Quality(context: viewContext)
+                let quality = QualityOld(context: viewContext)
                 quality.title = "Quality \(k)"
                 quality.note = "Description \(Int.random(in: 1000...9999))"
                 quality.project = project
@@ -132,14 +132,14 @@ class DataController: ObservableObject {
 
             // ITEMS
             for j in 1...5 {
-                let item = Item(context: viewContext)
+                let item = ItemOld(context: viewContext)
                 item.title = "Item \(j)"
                 item.project = project
 
                 // QUALITIES <-> SCORES
-                let qualities = project.qualities?.allObjects as? [Quality] ?? []
+                let qualities = project.qualities?.allObjects as? [QualityOld] ?? []
                 for quality in qualities {
-                    let score = Score(context: viewContext)
+                    let score = ScoreOld(context: viewContext)
                     score.item = item
                     score.quality = quality
                     score.value = Int16.random(in: 1...4)
@@ -158,26 +158,26 @@ class DataController: ObservableObject {
         }
     }
 
-    func delete(_ object: Project) {
+    func delete(_ object: ProjectOld) {
         let id = object.objectID.uriRepresentation().absoluteString
         CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [id])
 
         container.viewContext.delete(object)
     }
 
-    func delete(_ object: Item) {
+    func delete(_ object: ItemOld) {
         let id = object.objectID.uriRepresentation().absoluteString
         CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id])
 
         container.viewContext.delete(object)
     }
 
-    func delete(_ object: Quality) {
+    func delete(_ object: QualityOld) {
         container.viewContext.delete(object)
     }
 
     func deleteAll() {
-        let types = [Project.self, Item.self, Quality.self, Score.self]
+        let types = [ProjectOld.self, ItemOld.self, QualityOld.self, ScoreOld.self]
 
         for type in types {
             let fetchRequest: NSFetchRequest<NSFetchRequestResult> = type.fetchRequest()
@@ -190,7 +190,7 @@ class DataController: ObservableObject {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
 
-    func update(_ item: Item) {
+    func update(_ item: ItemOld) {
         let itemID = item.objectID.uriRepresentation().absoluteString
         let projectID = item.project?.objectID.uriRepresentation().absoluteString
 
@@ -208,7 +208,7 @@ class DataController: ObservableObject {
         save()
     }
 
-    func item(with uniqueIdentifier: String) -> Item? {
+    func item(with uniqueIdentifier: String) -> ItemOld? {
         guard let url = URL(string: uniqueIdentifier) else {
             return nil
         }
@@ -217,6 +217,6 @@ class DataController: ObservableObject {
             return nil
         }
 
-        return try? container.viewContext.existingObject(with: id) as? Item
+        return try? container.viewContext.existingObject(with: id) as? ItemOld
     }
 }

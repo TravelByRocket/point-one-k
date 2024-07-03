@@ -56,7 +56,7 @@ struct PointOneKWidgetEntryView: View {
         }
     }
 
-    func trimToFor(project: Project, item: Item) -> CGFloat {
+    func trimToFor(project: ProjectOld, item: ItemOld) -> CGFloat {
         if project.scorePossible > 0 {
             return CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
         } else {
@@ -85,7 +85,7 @@ struct PointOneKWidget_Previews: PreviewProvider {
         PointOneKWidgetEntryView(
             entry: SimpleEntry(
                 date: Date(),
-                project: Project.example
+                project: ProjectOld.example
             )
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))

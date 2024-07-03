@@ -10,16 +10,16 @@ import CoreData
 
 extension ProjectItemsSection {
     class ViewModel: ObservableObject {
-        @Published var project: Project
+        @Published var project: ProjectOld
         let dataController: DataController
 
-        @Published var sortOrder = Item.SortOrder.score
+        @Published var sortOrder = ItemOld.SortOrder.score
 
-        var items: [Item] {
+        var items: [ItemOld] {
             project.projectItems(using: sortOrder)
         }
 
-        init(project: Project, dataController: DataController) {
+        init(project: ProjectOld, dataController: DataController) {
             self.project = project
             self.dataController = dataController
         }

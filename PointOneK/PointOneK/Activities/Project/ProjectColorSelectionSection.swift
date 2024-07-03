@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ProjectColorSelectionSection: View {
-    @ObservedObject var project: Project
+    @ObservedObject var project: ProjectOld
 
     @State private var color: String
 
-    init(project: Project) {
+    init(project: ProjectOld) {
         self.project = project
         _color = State(initialValue: project.projectColor)
     }
@@ -24,7 +24,7 @@ struct ProjectColorSelectionSection: View {
     var body: some View {
         Section(header: Text("Custom project color")) {
             LazyVGrid(columns: colorColumns) {
-                ForEach(Project.colors, id: \.self) { item in
+                ForEach(ProjectOld.colors, id: \.self) { item in
                     ZStack {
                         Color(item)
                             .aspectRatio(1, contentMode: .fit)
@@ -62,7 +62,7 @@ struct ProjectColorSelectionSection: View {
 struct ProjectColorSelectionSection_Previews: PreviewProvider {
     static var previews: some View {
         Form {
-            ProjectColorSelectionSection(project: Project.example)
+            ProjectColorSelectionSection(project: ProjectOld.example)
         }
     }
 }

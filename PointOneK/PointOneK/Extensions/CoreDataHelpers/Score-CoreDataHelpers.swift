@@ -7,18 +7,18 @@
 
 import Foundation
 
-extension Score {
+extension ScoreOld {
     var scoreValue: Int {
         Int(value)
     }
 
-    static var example: Score {
+    static var example: ScoreOld {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
 
-        let score = Score(context: viewContext)
-        score.quality = Quality.example
-        score.item = Item.example
+        let score = ScoreOld(context: viewContext)
+        score.quality = QualityOld.example
+        score.item = ItemOld.example
 
         return score
     }
