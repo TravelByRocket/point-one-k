@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Quality {
+extension QualityOld {
     var qualityTitle: String {
         title ?? "New Quality"
     }
@@ -43,15 +43,15 @@ extension Quality {
         !otherProjectIndicators.contains(qualityIndicatorCharacter)
     }
 
-    var qualityScores: [Score] {
-        scores?.allObjects as? [Score] ?? []
+    var qualityScores: [ScoreOld] {
+        scores?.allObjects as? [ScoreOld] ?? []
     }
 
-    static var example: Quality {
+    static var example: QualityOld {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
 
-        let quality = Quality(context: viewContext)
+        let quality = QualityOld(context: viewContext)
         quality.title = "Shiny Quality \(Int.random(in: 10...99))"
         quality.note = """
             4) Amazing
@@ -64,7 +64,7 @@ extension Quality {
         return quality
     }
 
-    func score(for item: Item) -> Score? {
+    func score(for item: ItemOld) -> ScoreOld? {
         for score in qualityScores where score.item == item {
             return score
         }

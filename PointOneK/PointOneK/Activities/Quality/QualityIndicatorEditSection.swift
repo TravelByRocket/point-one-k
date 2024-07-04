@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct QualityIndicatorEditSection: View {
-    @ObservedObject var quality: Quality
+    @ObservedObject var quality: QualityOld
     @State private var indicatorFieldString: String
 
     @State var overrideIndicator: Bool
 
-    init(quality: Quality) {
+    init(quality: QualityOld) {
         self.quality = quality
         _indicatorFieldString = State(
             initialValue: quality.indicatorCharacter?.asString ?? quality.defaultQualityIndicator.asString)
@@ -84,7 +84,7 @@ struct QualityIndicatorEditSection: View {
 struct QualityIndicatorEditView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            QualityIndicatorEditSection(quality: Quality.example)
+            QualityIndicatorEditSection(quality: QualityOld.example)
         }
     }
 }

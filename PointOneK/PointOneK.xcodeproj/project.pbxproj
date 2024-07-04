@@ -68,6 +68,10 @@
 		2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF50A727E2681300B6883E /* DataProvider.swift */; };
 		2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */; };
 		2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
+		2FCDC7A62C3580A1007FE63A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A32C3580A1007FE63A /* Project.swift */; };
+		2FCDC7A72C3580A1007FE63A /* Quality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A42C3580A1007FE63A /* Quality.swift */; };
+		2FCDC7A82C3580A1007FE63A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A22C3580A1007FE63A /* Item.swift */; };
+		2FCDC7A92C3580A1007FE63A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A52C3580A1007FE63A /* Score.swift */; };
 		2FCDC7AB2C3587B1007FE63A /* SwiftFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */; };
 		2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */; };
 		2FCFE8D027D9C0AD0044E7F7 /* HundredDollarStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */; };
@@ -191,6 +195,10 @@
 		2FBF50A727E2681300B6883E /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		2FBF50AA27E2696B00B6883E /* PointOneKWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKWidget.swift; sourceTree = "<group>"; };
 		2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PointOneKWidgetExtension.entitlements; sourceTree = "<group>"; };
+		2FCDC7A22C3580A1007FE63A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		2FCDC7A32C3580A1007FE63A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		2FCDC7A42C3580A1007FE63A /* Quality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quality.swift; sourceTree = "<group>"; };
+		2FCDC7A52C3580A1007FE63A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFormatTests.swift; sourceTree = "<group>"; };
 		2FCFE8CD27D9BA560044E7F7 /* DeleteAllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAllDataView.swift; sourceTree = "<group>"; };
 		2FCFE8CF27D9C0AD0044E7F7 /* HundredDollarStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HundredDollarStartup.swift; sourceTree = "<group>"; };
@@ -382,6 +390,10 @@
 				2F8B9D332751CF6900E2CC3C /* Info.plist */,
 				2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */,
 				2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */,
+				2FCDC7A22C3580A1007FE63A /* Item.swift */,
+				2FCDC7A32C3580A1007FE63A /* Project.swift */,
+				2FCDC7A42C3580A1007FE63A /* Quality.swift */,
+				2FCDC7A52C3580A1007FE63A /* Score.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -717,6 +729,10 @@
 				2F8B9D402751D0AE00E2CC3C /* DataController.swift in Sources */,
 				2F8B9D4B2751D0F800E2CC3C /* Sequence-Sorting.swift in Sources */,
 				2FBF508027E147DD00B6883E /* AppDelegate.swift in Sources */,
+				2FCDC7A62C3580A1007FE63A /* Project.swift in Sources */,
+				2FCDC7A72C3580A1007FE63A /* Quality.swift in Sources */,
+				2FCDC7A82C3580A1007FE63A /* Item.swift in Sources */,
+				2FCDC7A92C3580A1007FE63A /* Score.swift in Sources */,
 				2FCFE8D427DC09480044E7F7 /* ProjectRowView.swift in Sources */,
 				2FCFE8E627DD97080044E7F7 /* ProjectArchiveDeleteSection.swift in Sources */,
 				2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */,
@@ -967,6 +983,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -999,6 +1016,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

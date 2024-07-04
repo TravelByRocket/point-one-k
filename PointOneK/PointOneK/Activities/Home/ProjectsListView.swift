@@ -12,10 +12,10 @@ struct ProjectsListView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
 
     @FetchRequest(
-        entity: Project.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Project.title, ascending: true)],
+        entity: ProjectOld.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)],
         predicate: NSPredicate(format: "closed = false")
-    ) var projects: FetchedResults<Project>
+    ) var projects: FetchedResults<ProjectOld>
 
     var projectsList: some View {
         List {

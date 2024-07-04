@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Item {
+extension ItemOld {
     enum SortOrder {
         case title, score
     }
@@ -20,11 +20,11 @@ extension Item {
         note ?? ""
     }
 
-    var itemScores: [Score] {
-        scores?.allObjects as? [Score] ?? []
+    var itemScores: [ScoreOld] {
+        scores?.allObjects as? [ScoreOld] ?? []
     }
 
-    var projectQualities: [Quality] {
+    var projectQualities: [QualityOld] {
         project?.projectQualities ?? []
     }
 
@@ -32,18 +32,18 @@ extension Item {
         Int((itemScores.map {$0.value}).reduce(0, +))
     }
 
-    static var example: Item {
+    static var example: ItemOld {
         let dataController = DataController.preview
         let viewContext = dataController.container.viewContext
 
-        let item = Item(context: viewContext)
+        let item = ItemOld(context: viewContext)
         item.title = "My Item"
         item.note = "This is my example note"
 
         return item
     }
 
-    func hasScore(for quality: Quality) -> Bool {
+    func hasScore(for quality: QualityOld) -> Bool {
         let scoredQualities = itemScores.map { $0.quality }
         return scoredQualities.contains(quality)
     }
