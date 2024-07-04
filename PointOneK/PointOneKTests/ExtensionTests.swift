@@ -5,12 +5,11 @@
 //  Created by Bryan Costanza on 27 Nov 2021.
 //
 
-import XCTest
-import SwiftUI
 @testable import PointOneK
+import SwiftUI
+import XCTest
 
 class ExtensionTests: XCTestCase {
-
     func testSequenceKeyPathSortingSelf() {
         let items = [1, 4, 3, 2, 5]
         let sortedItems = items.sorted(by: \.self)
@@ -66,5 +65,4 @@ class ExtensionTests: XCTestCase {
 
         XCTAssertTrue(onChangeFunctionRun, "The onChange() function must be run when the binding is changed")
     }
-
 }

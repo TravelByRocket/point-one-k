@@ -33,7 +33,7 @@ struct ProjectQualitiesSection: View {
                     }
                 }
             }
-            .onDelete(perform: {offsets in
+            .onDelete(perform: { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]

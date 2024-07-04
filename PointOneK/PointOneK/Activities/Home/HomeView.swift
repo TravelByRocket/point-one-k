@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 11 Mar 2022.
 //
 
-import SwiftUI
 import CoreSpotlight
+import SwiftUI
 
 struct HomeView: View {
     @State private var showingSettings = false
@@ -103,7 +103,7 @@ struct HomeView: View {
         }
     }
 
-    func createProject(_ userActivity: NSUserActivity) {
+    func createProject(_: NSUserActivity) {
         addProject()
     }
 
@@ -117,7 +117,7 @@ struct HomeView: View {
         }
     }
 
-    func openURL(_ url: URL) {
+    func openURL(_: URL) {
         addProject(fromURL: true)
     }
 }

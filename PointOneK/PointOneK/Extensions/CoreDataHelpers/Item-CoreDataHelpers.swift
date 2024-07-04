@@ -29,7 +29,7 @@ extension ItemOld {
     }
 
     var scoreTotal: Int {
-        Int((itemScores.map {$0.value}).reduce(0, +))
+        Int((itemScores.map(\.value)).reduce(0, +))
     }
 
     static var example: ItemOld {
@@ -44,7 +44,7 @@ extension ItemOld {
     }
 
     func hasScore(for quality: QualityOld) -> Bool {
-        let scoredQualities = itemScores.map { $0.quality }
+        let scoredQualities = itemScores.map(\.quality)
         return scoredQualities.contains(quality)
     }
 }

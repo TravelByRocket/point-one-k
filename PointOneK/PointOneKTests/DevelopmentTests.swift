@@ -6,11 +6,10 @@
 //
 
 import CoreData
-import XCTest
 @testable import PointOneK
+import XCTest
 
 class DevelopmentTests: BaseTestCase {
-
     func testSampleDataCreationsWorks() throws {
         try dataController.createSampleData()
 

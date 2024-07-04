@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 15 Mar 2022.
 //
 
-import SwiftUI
 import StoreKit
+import SwiftUI
 
 extension DataController {
     func appLaunched() {

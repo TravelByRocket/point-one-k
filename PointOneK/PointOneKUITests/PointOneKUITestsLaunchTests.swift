@@ -8,7 +8,6 @@
 import XCTest
 
 class PointOneKUITestsLaunchTests: XCTestCase {
-
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

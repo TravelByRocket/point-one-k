@@ -26,7 +26,7 @@ class PointOneKUITests: XCTestCase {
         app.buttons["Open"].tap()
         XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
 
-        for tapCount in 1...5 {
+        for tapCount in 1 ... 5 {
             app.buttons["Add Project"].tap()
             XCTAssertEqual(app.tables.cells.count, tapCount, "There should be \(tapCount) list row(s) initially")
         }
@@ -88,7 +88,7 @@ class PointOneKUITests: XCTestCase {
         // but the space does not get collected if animations are disabled. Adding a delay
         // fixes this. `waitForExistence` works but not sure why and has `unused` warning.
         let when = DispatchTime.now() + 0.3 // can work with as little as 0.2 delay
-        while when > DispatchTime.now() { }
+        while when > DispatchTime.now() {}
         //        app.keys["space"].waitForExistence(timeout: 1) // this works with `unused` warning
     }
 }

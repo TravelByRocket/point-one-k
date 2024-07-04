@@ -16,7 +16,7 @@ struct ProjectToggleClosedRow: View {
     @Environment(\.managedObjectContext) var managedObjectContext
 
     init(project: ProjectOld) {
-        self._project = ObservedObject(initialValue: project)
+        _project = ObservedObject(initialValue: project)
 //        self.project = project
 //        isClosed = project.closed
 //        title = project.projectTitle
@@ -50,7 +50,7 @@ struct ProjectToggleClosedRow_Previews: PreviewProvider {
         List {
             ProjectToggleClosedRow(project: ProjectOld.example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+                .environmentObject(dataController)
         }
     }
 }

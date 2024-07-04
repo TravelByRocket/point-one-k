@@ -6,17 +6,16 @@
 //
 
 import CoreData
-import XCTest
 @testable import PointOneK
+import XCTest
 
 class ProjectTests: BaseTestCase {
-
     func testCreatingProjectsAndItems() {
         let targetCount = 10
-        for _ in 0..<targetCount {
+        for _ in 0 ..< targetCount {
             let project = Project(context: managedObjectContext)
 
-            for _ in 0..<targetCount {
+            for _ in 0 ..< targetCount {
                 let item = Item(context: managedObjectContext)
                 item.project = project
             }

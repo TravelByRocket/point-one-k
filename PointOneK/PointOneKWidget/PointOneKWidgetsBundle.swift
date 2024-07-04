@@ -1,13 +1,13 @@
 //
-//  PointOneKWidget.swift
+//  PointOneKWidgetsBundle.swift
 //  PointOneKWidget
 //
 //  Created by Bryan Costanza on 15 Mar 2022.
 //
 
-import WidgetKit
-import SwiftUI
 import Intents
+import SwiftUI
+import WidgetKit
 
 @main
 struct PointOneKWidgets: WidgetBundle {

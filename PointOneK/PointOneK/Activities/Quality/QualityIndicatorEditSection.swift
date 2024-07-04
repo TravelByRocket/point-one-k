@@ -1,5 +1,5 @@
 //
-//  QualityIndicatorEditView.swift
+//  QualityIndicatorEditSection.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 13 Mar 2022.
@@ -38,7 +38,7 @@ struct QualityIndicatorEditSection: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
                         .foregroundColor(.secondary)
-                    .opacity(0.5))
+                        .opacity(0.5))
                 Spacer()
                 VStack {
                     Text("Default symbol is: \(quality.defaultQualityIndicator.asString)")
@@ -68,7 +68,7 @@ struct QualityIndicatorEditSection: View {
                         .textFieldStyle(.roundedBorder)
                         .font(.body.monospaced())
                         .monospacedDigit()
-                    .disabled(!overrideIndicator)
+                        .disabled(!overrideIndicator)
                 }
             }
         }

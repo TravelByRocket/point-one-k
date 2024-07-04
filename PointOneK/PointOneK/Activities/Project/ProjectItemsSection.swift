@@ -35,16 +35,18 @@ struct ProjectItemsSection: View {
             ForEach(viewModel.items) { item in
                 NavigationLink(
                     tag: String(item.objectID.debugDescription),
-                    selection: $selectedItemObjectID) {
-                        ItemDetailView(item: item)
-                    } label: {
-                        ItemRowView(project: viewModel.project, item: item)
-                    }
-                    .listRowBackground(
-                        BackgroundBarView(
-                            value: item.scoreTotal,
-                            max: viewModel.project.scorePossible)
+                    selection: $selectedItemObjectID
+                ) {
+                    ItemDetailView(item: item)
+                } label: {
+                    ItemRowView(project: viewModel.project, item: item)
+                }
+                .listRowBackground(
+                    BackgroundBarView(
+                        value: item.scoreTotal,
+                        max: viewModel.project.scorePossible
                     )
+                )
             }
             .onDelete { offsets in
                 withAnimation {

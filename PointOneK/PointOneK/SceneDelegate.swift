@@ -12,28 +12,30 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
 
     // for opening the app cold
     func scene(
-        _ scene: UIScene,
-        willConnectTo session: UISceneSession,
-        options connectionOptions: UIScene.ConnectionOptions) {
-            if let shortcutItem = connectionOptions.shortcutItem {
-                guard let url = URL(string: shortcutItem.type) else {
-                    return
-                }
-
-                openURL(url)
+        _: UIScene,
+        willConnectTo _: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        if let shortcutItem = connectionOptions.shortcutItem {
+            guard let url = URL(string: shortcutItem.type) else {
+                return
             }
+
+            openURL(url)
+        }
     }
 
     // for when the scene already exists
     func windowScene(
-        _ windowScene: UIWindowScene,
+        _: UIWindowScene,
         performActionFor shortcutItem: UIApplicationShortcutItem,
-        completionHandler: @escaping (Bool) -> Void) {
-            guard let url = URL(string: shortcutItem.type) else {
-                completionHandler(false)
-                return
-            }
+        completionHandler: @escaping (Bool) -> Void
+    ) {
+        guard let url = URL(string: shortcutItem.type) else {
+            completionHandler(false)
+            return
+        }
 
-            openURL(url, completion: completionHandler)
+        openURL(url, completion: completionHandler)
     }
 }

@@ -5,14 +5,15 @@
 //  Created by Bryan Costanza on 19 Sep 2021.
 //
 
-import SwiftUI
 import CloudKit
+import SwiftUI
 
 extension ProjectOld {
     static let colors = [
         "Pink", "Purple", "Red", "Orange", "Gold",
         "Green", "Teal", "Light Blue", "Dark Blue",
-        "Midnight", "Dark Gray", "Gray"]
+        "Midnight", "Dark Gray", "Gray",
+    ]
 
     var projectTitle: String {
         title ?? NSLocalizedString("New Project", comment: "Create a new project")
@@ -44,7 +45,7 @@ extension ProjectOld {
         let item = ItemOld(context: moc)
         item.project = self
 
-        if let title = title {
+        if let title {
             item.title = title
         }
 
@@ -105,14 +106,14 @@ extension ProjectOld {
     func projectItems(using sortOrder: ItemOld.SortOrder) -> [ItemOld] {
         switch sortOrder {
         case .title:
-            return projectItems.sorted(by: \ItemOld.scoreTotal).reversed()
+            projectItems.sorted(by: \ItemOld.scoreTotal).reversed()
                 .sorted(by: \ItemOld.itemTitle.localizedLowercase)
         case .score:
-            return projectItems.sorted { first, second in
+            projectItems.sorted { first, second in
                 if first.scoreTotal != second.scoreTotal {
-                    return first.scoreTotal > second.scoreTotal // larger first
+                    first.scoreTotal > second.scoreTotal // larger first
                 } else {
-                    return first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
+                    first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
                 }
             }
         }

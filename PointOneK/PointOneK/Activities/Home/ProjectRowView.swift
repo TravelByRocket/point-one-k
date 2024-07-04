@@ -20,7 +20,7 @@ struct ProjectRowView: View {
 
     var qualitiesList: String {
         project.projectQualities
-            .map { $0.qualityTitle }
+            .map(\.qualityTitle)
             .sorted { $0.lowercased() < $1.lowercased() }
             .joined(separator: ", ")
     }

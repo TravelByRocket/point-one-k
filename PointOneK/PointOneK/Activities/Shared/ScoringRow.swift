@@ -1,5 +1,5 @@
 //
-//  InlineScoringRow.swift
+//  ScoringRow.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 13 Mar 2022.

@@ -9,7 +9,6 @@ import Combine
 import StoreKit
 
 class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, SKProductsRequestDelegate {
-
     enum RequestState {
         case loading
         case loaded(SKProduct)
@@ -56,29 +55,28 @@ class UnlockManager: NSObject, ObservableObject, SKPaymentTransactionObserver, S
             for transaction in transactions {
                 switch transaction.transactionState {
                 case .purchased, .restored:
-                    self.dataController.fullVersionUnlocked = true
-                    self.requestState = .purchased
+                    dataController.fullVersionUnlocked = true
+                    requestState = .purchased
                     queue.finishTransaction(transaction)
 
                 case .failed:
                     if let product = loadedProducts.first {
-                        self.requestState = .loaded(product)
+                        requestState = .loaded(product)
                     } else {
-                        self.requestState = .failed(transaction.error)
+                        requestState = .failed(transaction.error)
                     }
 
                 case .deferred:
-                    self.requestState = .deferred
+                    requestState = .deferred
 
                 default:
                     break
                 }
-
             }
         }
     }
 
-    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
         DispatchQueue.main.async {
             self.loadedProducts = response.products
 

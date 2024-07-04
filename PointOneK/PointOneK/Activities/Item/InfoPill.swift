@@ -12,8 +12,8 @@ struct InfoPill: View {
     let level: Int
 
     var dots: String {
-        var line  = ""
-        for _ in 0..<level {
+        var line = ""
+        for _ in 0 ..< level {
             line += "."
         }
         return line
@@ -57,7 +57,7 @@ struct InfoPill: View {
                 .font(.caption)
                 .fontWeight(.bold)
                 .offset(y: -10)
-            Text(String(level)+String(letter))
+            Text(String(level) + String(letter))
                 .font(.system(.footnote, design: .monospaced))
                 .offset(y: 2)
 //                .layoutPriority(2)

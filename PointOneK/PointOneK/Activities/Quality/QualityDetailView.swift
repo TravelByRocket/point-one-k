@@ -1,5 +1,5 @@
 //
-//  EditQualityView.swift
+//  QualityDetailView.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 28 Nov 2021.
@@ -48,7 +48,8 @@ struct QualityDetailView: View {
                 ) { score in
                     ScoringRow(
                         label: score.item!.itemTitle,
-                        score: score)
+                        score: score
+                    )
                 }
                 if quality.qualityScores.isEmpty {
                     Text("Project items will show up here")

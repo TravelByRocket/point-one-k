@@ -1,5 +1,5 @@
 //
-//  EditItemView.swift
+//  ItemDetailView.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 20 Sep 2021.
@@ -29,10 +29,11 @@ struct ItemDetailView: View {
                 TextField("Title", text: $title.onChange(update))
                     .font(.title)
             }
-            ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) {quality in
+            ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) { quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
-                    score: quality.score(for: item) ?? ScoreOld.example)
+                    score: quality.score(for: item) ?? ScoreOld.example
+                )
             }
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
