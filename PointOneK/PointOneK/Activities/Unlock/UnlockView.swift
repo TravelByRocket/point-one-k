@@ -15,7 +15,7 @@ struct UnlockView: View {
     var body: some View {
         VStack {
             switch unlockManager.requestState {
-            case .loaded(let product):
+            case let .loaded(product):
                 ProductView(product: product)
             case .failed:
                 Text("Sorry, there was a error loading the store. Please try again later.")

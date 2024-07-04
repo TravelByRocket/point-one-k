@@ -18,7 +18,7 @@ struct ProjectColorSelectionSection: View {
     }
 
     let colorColumns = [
-        GridItem(.adaptive(minimum: 42))
+        GridItem(.adaptive(minimum: 42)),
     ]
 
     var body: some View {
@@ -43,8 +43,8 @@ struct ProjectColorSelectionSection: View {
                     .accessibilityElement(children: .ignore)
                     .accessibilityAddTraits(
                         item == color
-                        ? [.isButton, .isSelected]
-                        : .isButton
+                            ? [.isButton, .isSelected]
+                            : .isButton
                     )
                     .accessibilityLabel(LocalizedStringKey(item))
                 }

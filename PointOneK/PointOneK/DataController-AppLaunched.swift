@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 15 Mar 2022.
 //
 
-import SwiftUI
 import StoreKit
+import SwiftUI
 
 extension DataController {
     func appLaunched() {
@@ -15,7 +15,7 @@ extension DataController {
 
         let hasNeverAsked = dateAskedForReview == nil
         let intervalSinceAsked = dateAskedForReview?.timeIntervalSinceNow ?? 0
-        guard hasNeverAsked || intervalSinceAsked > 86_400 * 40 else { return }
+        guard hasNeverAsked || intervalSinceAsked > 86400 * 40 else { return }
 
         let allscenes = UIApplication.shared.connectedScenes
         let scene = allscenes.first

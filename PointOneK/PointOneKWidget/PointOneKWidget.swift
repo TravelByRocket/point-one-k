@@ -1,5 +1,5 @@
 //
-//  TopProjectItemsWidget.swift
+//  PointOneKWidget.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 16 Mar 2022.
@@ -40,7 +40,8 @@ struct PointOneKWidgetEntryView: View {
                         .background {
                             BackgroundBarView(
                                 value: item.scoreTotal,
-                                max: entry.project.scorePossible)
+                                max: entry.project.scorePossible
+                            )
                             .padding(-3)
                         }
                     }
@@ -58,9 +59,9 @@ struct PointOneKWidgetEntryView: View {
 
     func trimToFor(project: ProjectOld, item: ItemOld) -> CGFloat {
         if project.scorePossible > 0 {
-            return CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
+            CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
         } else {
-            return 0.0
+            0.0
         }
     }
 }
@@ -71,12 +72,13 @@ struct PointOneKWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(
             kind: kind,
-            provider: Provider()) { entry in
-                PointOneKWidgetEntryView(entry: entry)
-            }
-            .configurationDisplayName("My Widget")
-            .description("This is an example widget.")
-            .supportedFamilies([.systemSmall, .systemMedium])
+            provider: Provider()
+        ) { entry in
+            PointOneKWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("My Widget")
+        .description("This is an example widget.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 

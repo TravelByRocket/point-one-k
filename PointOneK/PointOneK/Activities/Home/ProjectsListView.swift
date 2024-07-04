@@ -1,5 +1,5 @@
 //
-//  ProjectsViewNew.swift
+//  ProjectsListView.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 19 Sep 2021.
@@ -19,7 +19,7 @@ struct ProjectsListView: View {
 
     var projectsList: some View {
         List {
-            ForEach(projects) {project in
+            ForEach(projects) { project in
                 NavigationLink {
                     ProjectView(project: project)
                 } label: {
@@ -49,7 +49,7 @@ struct ProjectsListView_Previews: PreviewProvider {
         NavigationView {
             ProjectsListView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
+                .environmentObject(dataController)
         }
     }
 }

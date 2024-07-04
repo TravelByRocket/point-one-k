@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 11/14/20.
 //
 
-import SwiftUI
 import CoreHaptics
+import SwiftUI
 
 struct LevelSelector: View {
     @Binding var value: Int
@@ -20,7 +20,7 @@ struct LevelSelector: View {
                     .foregroundColor(.orange)
                     .imageScale(.large)
             }
-            ForEach(1...4, id: \.self) {index in
+            ForEach(1 ... 4, id: \.self) { index in
                 Button(
                     action: {
                         withAnimation {
@@ -37,23 +37,24 @@ struct LevelSelector: View {
                         Image(systemName: "\(index).square\(value == index ? ".fill" : "")")
                             .font(.title)
                             .padding(.horizontal, -3)
-                    })
-                    .buttonStyle(BorderlessButtonStyle())
+                    }
+                )
+                .buttonStyle(BorderlessButtonStyle())
             }
         }
     }
 }
 
 struct LevelSelector_Previews: PreviewProvider {
-    @State static private var valueA = 1
-    @State static private var valueB = 0
+    @State private static var valueA = 1
+    @State private static var valueB = 0
 
     static var previews: some View {
         VStack(alignment: .trailing, spacing: 20) {
             LevelSelector(value: $valueA)
             LevelSelector(value: $valueB)
         }
-            .padding()
-            .previewLayout(.sizeThatFits)
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }

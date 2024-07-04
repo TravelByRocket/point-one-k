@@ -39,7 +39,6 @@ struct BatchAddItemsView: View {
                 }
                 Spacer()
             }
-
         }
         .padding(5)
     }

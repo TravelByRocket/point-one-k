@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 14 Mar 2022.
 //
 
-import Foundation
 import CoreHaptics
+import Foundation
 
 extension LevelSelector {
     func valueClearHaptic(engine: CHHapticEngine?) {

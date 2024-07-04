@@ -19,7 +19,6 @@ struct PointOneKApp: App {
 
         _dataController = StateObject(wrappedValue: dataController)
         _unlockManager = StateObject(wrappedValue: unlockManager)
-
     }
 
     var body: some Scene {
@@ -38,7 +37,7 @@ struct PointOneKApp: App {
         }
     }
 
-    func save(note: Notification) {
+    func save(note _: Notification) {
         dataController.save()
     }
 }

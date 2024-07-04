@@ -10,18 +10,19 @@ import WidgetKit
 struct Provider: TimelineProvider {
     typealias Entry = SimpleEntry
 
-    func placeholder(in context: Context) -> SimpleEntry {
+    func placeholder(in _: Context) -> SimpleEntry {
         SimpleEntry(date: Date(), project: ProjectOld.example)
     }
 
     func getSnapshot(
-        in context: Context,
-        completion: @escaping (SimpleEntry) -> Void) {
-            let entry = SimpleEntry(date: Date(), project: loadProject())
-            completion(entry)
-        }
+        in _: Context,
+        completion: @escaping (SimpleEntry) -> Void
+    ) {
+        let entry = SimpleEntry(date: Date(), project: loadProject())
+        completion(entry)
+    }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+    func getTimeline(in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         let entry = SimpleEntry(date: Date(), project: loadProject())
 
         let timeline = Timeline(entries: [entry], policy: .never)

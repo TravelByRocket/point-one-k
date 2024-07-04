@@ -5,8 +5,8 @@
 //  Created by Bryan Costanza on 27 Nov 2021.
 //
 
-import XCTest
 @testable import PointOneK
+import XCTest
 
 class AssetTests: XCTestCase {
     func testColorsExist() {

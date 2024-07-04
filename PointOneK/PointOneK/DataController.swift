@@ -70,17 +70,17 @@ class DataController: ObservableObject {
         }
 
         container.loadPersistentStores { _, error in
-            if let error = error {
+            if let error {
                 fatalError("Fatal error loading store: \(error.localizedDescription)")
             }
 
             self.container.viewContext.automaticallyMergesChangesFromParent = true
 
             #if DEBUG
-            if CommandLine.arguments.contains("enable-testing") {
-                self.deleteAll()
-                UIView.setAnimationsEnabled(false)
-            }
+                if CommandLine.arguments.contains("enable-testing") {
+                    self.deleteAll()
+                    UIView.setAnimationsEnabled(false)
+                }
             #endif
         }
     }
@@ -115,23 +115,23 @@ class DataController: ObservableObject {
         let viewContext = container.viewContext
 
         // PROJECTS
-        for i in 1...5 {
+        for i in 1 ... 5 {
             let project = ProjectOld(context: viewContext)
             project.title = "Project \(i)"
             project.items = []
             project.closed = Bool.random()
-            project.detail = "Nothin in particular \(Int16.random(in: 1000...9999 ) )"
+            project.detail = "Nothin in particular \(Int16.random(in: 1000 ... 9999))"
 
             // QUALITIES
-            for k in 1...5 {
+            for k in 1 ... 5 {
                 let quality = QualityOld(context: viewContext)
                 quality.title = "Quality \(k)"
-                quality.note = "Description \(Int.random(in: 1000...9999))"
+                quality.note = "Description \(Int.random(in: 1000 ... 9999))"
                 quality.project = project
             }
 
             // ITEMS
-            for j in 1...5 {
+            for j in 1 ... 5 {
                 let item = ItemOld(context: viewContext)
                 item.title = "Item \(j)"
                 item.project = project
@@ -142,7 +142,7 @@ class DataController: ObservableObject {
                     let score = ScoreOld(context: viewContext)
                     score.item = item
                     score.quality = quality
-                    score.value = Int16.random(in: 1...4)
+                    score.value = Int16.random(in: 1 ... 4)
                 }
             }
         }
@@ -186,7 +186,7 @@ class DataController: ObservableObject {
         }
     }
 
-    func count<T>(for fetchRequest: NSFetchRequest<T>) -> Int {
+    func count(for fetchRequest: NSFetchRequest<some Any>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
     }
 
@@ -201,7 +201,8 @@ class DataController: ObservableObject {
         let searchableItem = CSSearchableItem(
             uniqueIdentifier: itemID,
             domainIdentifier: projectID,
-            attributeSet: attributeSet)
+            attributeSet: attributeSet
+        )
 
         CSSearchableIndex.default().indexSearchableItems([searchableItem])
 

@@ -1,13 +1,13 @@
 //
-//  PointOneKTests.swift
+//  BaseTestCase.swift
 //  PointOneKTests
 //
 //  Created by Bryan Costanza on 27 Nov 2021.
 //
 
 import CoreData
-import XCTest
 @testable import PointOneK
+import XCTest
 
 class BaseTestCase: XCTestCase {
     var dataController: DataController!
@@ -17,5 +17,4 @@ class BaseTestCase: XCTestCase {
         dataController = DataController(inMemory: true)
         managedObjectContext = dataController.container.viewContext
     }
-
 }

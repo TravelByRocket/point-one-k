@@ -1,12 +1,12 @@
 //
-//  EditProjectView.swift
+//  ProjectView.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 4 Oct 2021.
 //
 
-import SwiftUI
 import CloudKit
+import SwiftUI
 
 struct ProjectView: View {
     let project: ProjectOld

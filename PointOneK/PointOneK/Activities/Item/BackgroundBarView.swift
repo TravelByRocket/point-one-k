@@ -1,5 +1,5 @@
 //
-//  BackgroundBarBiew.swift
+//  BackgroundBarView.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 2 Dec 2021.
@@ -15,14 +15,14 @@ struct BackgroundBarView: View {
     var hueAngle: Angle {
         // avoid divide by zero error
         if max != 0 {
-            return Angle(degrees: Double(360 * (value) / max))
+            Angle(degrees: Double(360 * value / max))
         } else {
-            return Angle(degrees: 0.0)
+            Angle(degrees: 0.0)
         }
     }
 
     var body: some View {
-        GeometryReader {geo in
+        GeometryReader { geo in
             ZStack(alignment: .leading) {
                 Rectangle()
                     .foregroundColor(Color.secondarySystemGroupedBackground)
@@ -30,7 +30,8 @@ struct BackgroundBarView: View {
                     .padding(4)
                     .frame(
                         width: getBarWidth(geo: geo),
-                        alignment: .leading)
+                        alignment: .leading
+                    )
                     .foregroundColor(.red)
                     .opacity(0.5)
                     .hueRotation(hueAngle)
@@ -42,9 +43,9 @@ struct BackgroundBarView: View {
     func getBarWidth(geo: GeometryProxy) -> CGFloat {
         // avoid divide by zero error
         if max != 0 {
-            return geo.size.width * CGFloat(self.value) / CGFloat(self.max)
+            geo.size.width * CGFloat(value) / CGFloat(self.max)
         } else {
-            return 0.0
+            0.0
         }
     }
 }
@@ -52,7 +53,7 @@ struct BackgroundBarView: View {
 struct BackgroundBarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            List(0..<6) {i in
+            List(0 ..< 6) { i in
                 HStack {
                     Text("Item")
                     Spacer()
