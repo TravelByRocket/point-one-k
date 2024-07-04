@@ -120,13 +120,13 @@ class DataController: ObservableObject {
             project.title = "Project \(i)"
             project.items = []
             project.closed = Bool.random()
-            project.detail = "Nothin in particular \(Int16.random(in: 1000 ... 9999))"
+            project.detail = "Nothin in particular \(Int16.random(in: 1_000 ... 9_999))"
 
             // QUALITIES
             for k in 1 ... 5 {
                 let quality = QualityOld(context: viewContext)
                 quality.title = "Quality \(k)"
-                quality.note = "Description \(Int.random(in: 1000 ... 9999))"
+                quality.note = "Description \(Int.random(in: 1_000 ... 9_999))"
                 quality.project = project
             }
 
