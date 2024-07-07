@@ -25,6 +25,6 @@ struct ScoringRowDisclosing: View {
 
 #Preview {
     List {
-        ScoringRowDisclosing(label: "Quality", score: ScoreOld.example)
+        ScoringRowDisclosing(label: "Quality", score: .example)
     }
 }

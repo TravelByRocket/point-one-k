@@ -42,7 +42,7 @@ struct Provider: TimelineProvider {
         }
 
         // Use example as last resort
-        return ProjectOld.example
+        return .example
     }
 }
 

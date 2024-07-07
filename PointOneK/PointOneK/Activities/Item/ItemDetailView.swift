@@ -32,7 +32,7 @@ struct ItemDetailView: View {
             ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) { quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
-                    score: quality.score(for: item) ?? ScoreOld.example
+                    score: quality.score(for: item) ?? .example
                 )
             }
             if item.projectQualities.isEmpty {
@@ -68,7 +68,7 @@ struct ItemDetailView: View {
     @Previewable var dataController = DataController.preview
 
     NavigationView {
-        ItemDetailView(item: ItemOld.example)
+        ItemDetailView(item: .example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }
