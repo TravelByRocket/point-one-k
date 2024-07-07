@@ -6,25 +6,25 @@
 //
 
 import CoreData
-@testable import PointOneK
 import Testing
 
-struct DevelopmentTests {
-    @MainActor @Test func testSampleDataCreationsWorks() throws {
-        let btc = BaseTestCase()
-        try btc.dataController.createSampleData()
+@testable import PointOneK
 
-        #expect(btc.dataController.count(for: ProjectOld.fetchRequest()) == 5, "There should be 5 sample projects.")
-        #expect(btc.dataController.count(for: ItemOld.fetchRequest()) == 25, "There should be 25 sample items.")
+final class DevelopmentTests: BaseTestCase {
+    @MainActor @Test func testSampleDataCreationsWorks() throws {
+        try dataController.createSampleData()
+
+        #expect(dataController.count(for: ProjectOld.fetchRequest()) == 5, "There should be 5 sample projects.")
+        #expect(dataController.count(for: ItemOld.fetchRequest()) == 25, "There should be 25 sample items.")
     }
 
     @MainActor @Test func testDeleteAllClearsEverything() throws {
         let btc = BaseTestCase()
-        try btc.dataController.createSampleData()
-        btc.dataController.deleteAll()
+        try dataController.createSampleData()
+        dataController.deleteAll()
 
-        #expect(btc.dataController.count(for: ProjectOld.fetchRequest()) == 0, "deleteAll() should leave 0 projects.")
-        #expect(btc.dataController.count(for: ItemOld.fetchRequest()) == 0, "deleteAll() should leave 0 items.")
+        #expect(dataController.count(for: ProjectOld.fetchRequest()) == 0, "deleteAll() should leave 0 projects.")
+        #expect(dataController.count(for: ItemOld.fetchRequest()) == 0, "deleteAll() should leave 0 items.")
     }
 
     @Test func testExampleProjectIsClosed() {

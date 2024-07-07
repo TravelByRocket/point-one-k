@@ -5,11 +5,12 @@
 //  Created by Bryan Costanza on 27 Nov 2021.
 //
 
-@testable import PointOneK
 import SwiftUI
 import Testing
 
-final class ExtensionTests { // must be `class` for decoding tests; must be final for `@Test`
+@testable import PointOneK
+
+final class ExtensionTests {
     @Test func testSequenceKeyPathSortingSelf() {
         let items = [1, 4, 3, 2, 5]
         let sortedItems = items.sorted(by: \.self)

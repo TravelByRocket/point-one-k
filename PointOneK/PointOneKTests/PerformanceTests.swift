@@ -5,8 +5,9 @@
 //  Created by Bryan Costanza on 6 Mar 2022.
 //
 
-@testable import PointOneK
 import XCTest
+
+@testable import PointOneK
 
 class PerformanceTests: XCTestCase {
     @MainActor func testSampleCreation() throws {

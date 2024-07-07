@@ -10,7 +10,7 @@ import SwiftData
 
 @testable import PointOneK
 
-struct BaseTestCase {
+class BaseTestCase {
     let dataController: DataController!
     let managedObjectContext: NSManagedObjectContext!
 

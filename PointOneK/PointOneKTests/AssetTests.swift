@@ -5,9 +5,10 @@
 //  Created by Bryan Costanza on 27 Nov 2021.
 //
 
-@testable import PointOneK
 import Testing
 import UIKit
+
+@testable import PointOneK
 
 struct AssetTests {
     @Test func testColorsExist() {
