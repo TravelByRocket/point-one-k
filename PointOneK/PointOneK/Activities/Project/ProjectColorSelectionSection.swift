@@ -59,10 +59,8 @@ struct ProjectColorSelectionSection: View {
     }
 }
 
-struct ProjectColorSelectionSection_Previews: PreviewProvider {
-    static var previews: some View {
-        Form {
-            ProjectColorSelectionSection(project: ProjectOld.example)
-        }
+#Preview {
+    Form {
+        ProjectColorSelectionSection(project: .example)
     }
 }

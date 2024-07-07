@@ -30,14 +30,12 @@ struct ProjectView: View {
     }
 }
 
-struct ProjectView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
+#Preview {
+    @Previewable var dataController = DataController.preview
 
-    static var previews: some View {
-        NavigationView {
-            ProjectView(project: ProjectOld.example)
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
-        }
+    NavigationView {
+        ProjectView(project: ProjectOld.example)
+            .environment(\.managedObjectContext, dataController.container.viewContext)
+            .environmentObject(dataController)
     }
 }
