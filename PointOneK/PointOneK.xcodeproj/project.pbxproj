@@ -56,7 +56,7 @@
 		2FBF508B27E188D700B6883E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FBF508A27E188D700B6883E /* SwiftUI.framework */; };
 		2FBF508E27E188D700B6883E /* PointOneKWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF508D27E188D700B6883E /* PointOneKWidgetsBundle.swift */; };
 		2FBF509127E188D900B6883E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF509027E188D900B6883E /* Assets.xcassets */; };
-		2FBF509727E188D900B6883E /* PointOneKWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2FBF508727E188D700B6883E /* PointOneKWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2FBF509727E188D900B6883E /* PointOneKWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2FBF508727E188D700B6883E /* PointOneKWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2FBF509C27E189C200B6883E /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D342751CFE200E2CC3C /* Main.xcdatamodeld */; };
 		2FBF509D27E189D100B6883E /* Item-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D442751D0F800E2CC3C /* Item-CoreDataHelpers.swift */; };
 		2FBF509E27E18A0500B6883E /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D3F2751D0AE00E2CC3C /* DataController.swift */; };
@@ -125,15 +125,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2FBF509B27E188D900B6883E /* Embed App Extensions */ = {
+		2FBF509B27E188D900B6883E /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2FBF509727E188D900B6883E /* PointOneKWidgetExtension.appex in Embed App Extensions */,
+				2FBF509727E188D900B6883E /* PointOneKWidgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -541,7 +541,7 @@
 				2F8B9D1A2751CF0A00E2CC3C /* Sources */,
 				2F8B9D1B2751CF0A00E2CC3C /* Frameworks */,
 				2F8B9D1C2751CF0A00E2CC3C /* Resources */,
-				2FBF509B27E188D900B6883E /* Embed App Extensions */,
+				2FBF509B27E188D900B6883E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -614,7 +614,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					2F8B9D1D2751CF0A00E2CC3C = {
 						CreatedOnToolsVersion = 13.1;
@@ -990,7 +990,6 @@
 		2F8B9D2D2751CF0A00E2CC3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
@@ -1023,7 +1022,6 @@
 		2F8B9D2E2751CF0A00E2CC3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PointOneK/Configuration/PointOneK.entitlements;
