@@ -70,16 +70,12 @@ struct InfoPill: View {
     }
 }
 
-struct InfoPill_Previews: PreviewProvider {
-    static var previews: some View {
-        HStack {
-            InfoPill(letter: "i", level: 1)
-            InfoPill(letter: "e", level: 2)
-            InfoPill(letter: "v", level: 3)
-            InfoPill(letter: "p", level: 4)
-            InfoPill(letter: "n", level: 0)
-        }
-        .padding(10)
-        .previewLayout(.sizeThatFits)
+#Preview {
+    HStack {
+        InfoPill(letter: "i", level: 1)
+        InfoPill(letter: "e", level: 2)
+        InfoPill(letter: "v", level: 3)
+        InfoPill(letter: "p", level: 4)
+        InfoPill(letter: "n", level: 0)
     }
 }

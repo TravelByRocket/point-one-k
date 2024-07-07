@@ -77,12 +77,13 @@ struct ProjectItemsSection: View {
     }
 }
 
-struct ProjectItemsSection_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            List {
-                ProjectItemsSection(project: ProjectOld.example, dataController: DataController.preview)
-            }
+#Preview {
+    NavigationView {
+        List {
+            ProjectItemsSection(
+                project: .example,
+                dataController: DataController.preview
+            )
         }
     }
 }

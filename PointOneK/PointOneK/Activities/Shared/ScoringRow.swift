@@ -32,10 +32,8 @@ struct ScoringRow: View {
     }
 }
 
-struct ScoringRow_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            ScoringRow(label: "Item/Quality", score: ScoreOld.example)
-        }
+#Preview {
+    List {
+        ScoringRow(label: "Item/Quality", score: .example)
     }
 }

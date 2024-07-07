@@ -17,8 +17,8 @@ extension ScoreOld {
         let viewContext = dataController.container.viewContext
 
         let score = ScoreOld(context: viewContext)
-        score.quality = QualityOld.example
-        score.item = ItemOld.example
+        score.quality = .example
+        score.item = .example
 
         return score
     }

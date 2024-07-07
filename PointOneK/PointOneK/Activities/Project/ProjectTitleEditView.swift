@@ -27,10 +27,8 @@ struct ProjectTitleEditView: View {
     }
 }
 
-struct ProjectTitleEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        Form {
-            ProjectTitleEditView(project: ProjectOld.example)
-        }
+#Preview {
+    Form {
+        ProjectTitleEditView(project: .example)
     }
 }

@@ -58,12 +58,10 @@ struct ProjectQualitiesSection: View {
     }
 }
 
-struct ProjectQualitiesSection_Previews: PreviewProvider {
-    static var dataController = DataController.preview
+#Preview {
+    @Previewable var dataController = DataController.preview
 
-    static var previews: some View {
-        ProjectQualitiesSection(project: ProjectOld.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
-    }
+    ProjectQualitiesSection(project: .example)
+        .environment(\.managedObjectContext, dataController.container.viewContext)
+        .environmentObject(dataController)
 }

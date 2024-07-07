@@ -23,8 +23,8 @@ struct ScoringRowDisclosing: View {
     }
 }
 
-struct ScoringRowDisclosing_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoringRowDisclosing(label: "Quality", score: ScoreOld.example)
+#Preview {
+    List {
+        ScoringRowDisclosing(label: "Quality", score: .example)
     }
 }

@@ -15,8 +15,6 @@ struct SelectSomethingView: View {
     }
 }
 
-struct SelectSomethingView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectSomethingView()
-    }
+#Preview {
+    SelectSomethingView()
 }

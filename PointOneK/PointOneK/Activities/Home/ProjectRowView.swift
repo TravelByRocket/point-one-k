@@ -43,12 +43,10 @@ struct ProjectRowView: View {
     }
 }
 
-struct ProjectRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            ProjectRowView(project: ProjectOld.example)
-            ProjectRowView(project: ProjectOld.example)
-            ProjectRowView(project: ProjectOld.example)
-        }
+#Preview {
+    List {
+        ProjectRowView(project: .example)
+        ProjectRowView(project: .example)
+        ProjectRowView(project: .example)
     }
 }

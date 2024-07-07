@@ -24,12 +24,10 @@ struct ItemRowView: View {
     }
 }
 
-struct ItemRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            List {
-                ItemRowView(project: ProjectOld.example, item: ItemOld.example)
-            }
+#Preview {
+    NavigationView {
+        List {
+            ItemRowView(project: .example, item: .example)
         }
     }
 }
