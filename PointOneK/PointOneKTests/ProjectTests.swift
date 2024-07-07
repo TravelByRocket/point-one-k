@@ -7,8 +7,8 @@
 
 import CoreData
 @testable import PointOneK
-import Testing
 import SwiftData
+import Testing
 
 struct ProjectTests {
     @Test func testCreatingProjectsAndItems() {
