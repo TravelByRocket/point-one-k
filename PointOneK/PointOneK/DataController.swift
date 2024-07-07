@@ -39,12 +39,7 @@ class DataController: ObservableObject {
     var widgetProject: ProjectOld? {
         let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
         let projects = (try? container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
-        for project in projects {
-            if projectURL == project.objectID.uriRepresentation() {
-                return project
-            }
-        }
-        return nil
+        return projects.first { projectURL == $0.objectID.uriRepresentation() }
     }
 
     /// Initializes a data controler, either in memory (for temporary use such as testing and previewing), or on
@@ -98,7 +93,7 @@ class DataController: ObservableObject {
         return dataController
     }()
 
-    static let model: NSManagedObjectModel = {
+    @MainActor static let model: NSManagedObjectModel = {
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
             fatalError("Failed to locate model file.")
         }
@@ -117,25 +112,25 @@ class DataController: ObservableObject {
         let viewContext = container.viewContext
 
         // PROJECTS
-        for i in 1 ... 5 {
+        for projectCounter in 1 ... 5 {
             let project = ProjectOld(context: viewContext)
-            project.title = "Project \(i)"
+            project.title = "Project \(projectCounter)"
             project.items = []
             project.closed = Bool.random()
             project.detail = "Nothin in particular \(Int16.random(in: 1_000 ... 9_999))"
 
             // QUALITIES
-            for k in 1 ... 5 {
+            for qualityCounter in 1 ... 5 {
                 let quality = QualityOld(context: viewContext)
-                quality.title = "Quality \(k)"
+                quality.title = "Quality \(qualityCounter)"
                 quality.note = "Description \(Int.random(in: 1_000 ... 9_999))"
                 quality.project = project
             }
 
             // ITEMS
-            for j in 1 ... 5 {
+            for itemCounter in 1 ... 5 {
                 let item = ItemOld(context: viewContext)
-                item.title = "Item \(j)"
+                item.title = "Item \(itemCounter)"
                 item.project = project
 
                 // QUALITIES <-> SCORES

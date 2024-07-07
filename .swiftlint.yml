@@ -1,0 +1,12 @@
+disabled_rules:
+  - trailing_comma
+
+opt_in_rules:
+  - duplicate_imports
+  - sorted_imports
+
+force_try:
+  severity: warning
+
+analyzer_rules:
+  - unused_import

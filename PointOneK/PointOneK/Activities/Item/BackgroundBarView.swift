@@ -54,13 +54,13 @@ struct BackgroundBarView: View {
     VStack {
         List {
             Section("Typical Use") {
-                ForEach(0 ..< 6) { i in
+                ForEach(0 ..< 6) { index in
                     HStack {
                         Text("Item")
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
-                    .listRowBackground(BackgroundBarView(value: i, max: 5))
+                    .listRowBackground(BackgroundBarView(value: index, max: 5))
                 }
             }
 

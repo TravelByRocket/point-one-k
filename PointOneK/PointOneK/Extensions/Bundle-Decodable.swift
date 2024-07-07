@@ -6,7 +6,6 @@
 //
 
 // swiftlint:disable line_length
-
 import Foundation
 
 extension Bundle {
