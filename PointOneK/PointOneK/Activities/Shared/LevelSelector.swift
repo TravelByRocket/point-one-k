@@ -45,16 +45,12 @@ struct LevelSelector: View {
     }
 }
 
-struct LevelSelector_Previews: PreviewProvider {
-    @State private static var valueA = 1
-    @State private static var valueB = 0
+#Preview {
+    @Previewable @State var valueA = 1
+    @Previewable @State var valueB = 0
 
-    static var previews: some View {
-        VStack(alignment: .trailing, spacing: 20) {
-            LevelSelector(value: $valueA)
-            LevelSelector(value: $valueB)
-        }
-        .padding()
-        .previewLayout(.sizeThatFits)
+    VStack(alignment: .trailing, spacing: 20) {
+        LevelSelector(value: $valueA)
+        LevelSelector(value: $valueB)
     }
 }

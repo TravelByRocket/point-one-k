@@ -50,8 +50,6 @@ struct BatchAddButtonView: View {
     }
 }
 
-struct BatchAddButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        BatchAddButtonView(project: .example)
-    }
+#Preview {
+    BatchAddButtonView(project: .example)
 }

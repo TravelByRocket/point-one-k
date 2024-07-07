@@ -60,14 +60,12 @@ struct DeleteAllDataView: View {
     }
 }
 
-struct DeleteAllDataView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
+#Preview {
+    @Previewable var dataController = DataController.preview
 
-    static var previews: some View {
-        List {
-            DeleteAllDataView()
-        }
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
+    List {
+        DeleteAllDataView()
     }
+    .environment(\.managedObjectContext, dataController.container.viewContext)
+    .environmentObject(dataController)
 }

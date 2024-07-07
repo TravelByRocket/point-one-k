@@ -12,48 +12,54 @@ struct PointOneKWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        ZStack {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(entry.project.projectTitle)
+                    .font(.title3)
+                    .foregroundColor(Color(entry.project.projectColor))
+
+                ForEach(entry.project.projectItems(using: .score)) { item in
+                    HStack {
+                        Circle()
+                            .inset(by: 10)
+                            .trim(
+                                from: 0.0,
+                                to: trimToFor(project: entry.project, item: item)
+                            )
+                            .stroke(lineWidth: 3)
+                            .rotationEffect(.degrees(180))
+                            .frame(width: 30)
+                            .padding(-8)
+
+                        Text(item.itemTitle)
+                            .font(.caption)
+
+                        Spacer()
+                    }
+                    .background {
+                        BackgroundBarView(
+                            value: item.scoreTotal,
+                            max: entry.project.scorePossible
+                        )
+                        .padding(-3)
+                    }
+                }
+
+                if entry.project.projectItems.isEmpty {
+                    Text("No items…")
+                }
+
+                Spacer()
+                    .layoutPriority(1)
+            }
+
+            Spacer()
+        }
+        .padding()
+        .containerBackground(for: .widget) {
             ContainerRelativeShape()
                 .stroke(lineWidth: 10)
                 .foregroundColor(Color(entry.project.projectColor))
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(entry.project.projectTitle)
-                        .font(.title3)
-                        .foregroundColor(Color(entry.project.projectColor))
-                    ForEach(entry.project.projectItems(using: .score)) { item in
-                        HStack {
-                            Circle()
-                                .inset(by: 10)
-                                .trim(
-                                    from: 0.0,
-                                    to: trimToFor(project: entry.project, item: item)
-                                )
-                                .stroke(lineWidth: 3)
-                                .rotationEffect(.degrees(180))
-                                .frame(width: 30)
-                                .padding(-8)
-                            Text(item.itemTitle)
-                                .font(.caption)
-                            Spacer()
-                        }
-                        .background {
-                            BackgroundBarView(
-                                value: item.scoreTotal,
-                                max: entry.project.scorePossible
-                            )
-                            .padding(-3)
-                        }
-                    }
-                    if entry.project.projectItems.isEmpty {
-                        Text("No items…")
-                    }
-                    Spacer()
-                        .layoutPriority(1)
-                }
-                Spacer()
-            }
-            .padding()
         }
     }
 
@@ -82,14 +88,11 @@ struct PointOneKWidget: Widget {
     }
 }
 
-struct PointOneKWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        PointOneKWidgetEntryView(
-            entry: SimpleEntry(
-                date: .now,
-                project: .example
-            )
-        )
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
+#Preview(as: .systemSmall) {
+    PointOneKWidget()
+} timeline: {
+    Provider.Entry(
+        date: .now,
+        project: .example
+    )
 }

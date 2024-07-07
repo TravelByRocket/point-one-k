@@ -81,10 +81,8 @@ struct QualityIndicatorEditSection: View {
     }
 }
 
-struct QualityIndicatorEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            QualityIndicatorEditSection(quality: QualityOld.example)
-        }
+#Preview {
+    List {
+        QualityIndicatorEditSection(quality: .example)
     }
 }

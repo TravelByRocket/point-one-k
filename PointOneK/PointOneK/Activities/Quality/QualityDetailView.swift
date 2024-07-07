@@ -68,12 +68,10 @@ struct QualityDetailView: View {
     }
 }
 
-struct QualityDetailView_Previews: PreviewProvider {
-    static var dataController = DataController.preview
+#Preview {
+    @Previewable var dataController = DataController.preview
 
-    static var previews: some View {
-        QualityDetailView(quality: QualityOld.example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
-    }
+    QualityDetailView(quality: .example)
+        .environment(\.managedObjectContext, dataController.container.viewContext)
+        .environmentObject(dataController)
 }

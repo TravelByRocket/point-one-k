@@ -50,18 +50,21 @@ struct BackgroundBarView: View {
     }
 }
 
-struct BackgroundBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            List(0 ..< 6) { i in
-                HStack {
-                    Text("Item")
-                    Spacer()
+#Preview {
+    VStack {
+        List {
+            Section("Typical Use") {
+                ForEach(0 ..< 6) { i in
+                    HStack {
+                        Text("Item")
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .listRowBackground(BackgroundBarView(value: i, max: 5))
                 }
-                .frame(maxWidth: .infinity)
-                .listRowBackground(BackgroundBarView(value: i, max: 5))
             }
-            List {
+
+            Section("Corner Cases") {
                 BackgroundBarView(value: 0, max: 0)
                 BackgroundBarView(value: 1, max: 100)
                 BackgroundBarView(value: 1, max: 1)
