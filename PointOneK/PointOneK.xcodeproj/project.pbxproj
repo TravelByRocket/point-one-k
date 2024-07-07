@@ -72,7 +72,6 @@
 		2FCDC7A72C3580A1007FE63A /* Quality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A42C3580A1007FE63A /* Quality.swift */; };
 		2FCDC7A82C3580A1007FE63A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A22C3580A1007FE63A /* Item.swift */; };
 		2FCDC7A92C3580A1007FE63A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A52C3580A1007FE63A /* Score.swift */; };
-		2FCDC7AB2C3587B1007FE63A /* SwiftFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */; };
 		2FCDC7C52C3B008E007FE63A /* Item-ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7C12C3B008E007FE63A /* Item-ModelHelpers.swift */; };
 		2FCDC7C62C3B008E007FE63A /* Quality-ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7C32C3B008E007FE63A /* Quality-ModelHelpers.swift */; };
 		2FCDC7C72C3B008E007FE63A /* Project-ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7C02C3B008E007FE63A /* Project-ModelHelpers.swift */; };
@@ -202,7 +201,6 @@
 		2FCDC7A32C3580A1007FE63A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		2FCDC7A42C3580A1007FE63A /* Quality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quality.swift; sourceTree = "<group>"; };
 		2FCDC7A52C3580A1007FE63A /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
-		2FCDC7AA2C3587B1007FE63A /* SwiftFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftFormatTests.swift; sourceTree = "<group>"; };
 		2FCDC7C02C3B008E007FE63A /* Project-ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project-ModelHelpers.swift"; sourceTree = "<group>"; };
 		2FCDC7C12C3B008E007FE63A /* Item-ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item-ModelHelpers.swift"; sourceTree = "<group>"; };
 		2FCDC7C32C3B008E007FE63A /* Quality-ModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quality-ModelHelpers.swift"; sourceTree = "<group>"; };
@@ -397,8 +395,8 @@
 				2F8B9D332751CF6900E2CC3C /* Info.plist */,
 				2F8B9D2F2751CF5A00E2CC3C /* PointOneK.entitlements */,
 				2FBF50AE27E2909100B6883E /* PointOneKWidgetExtension.entitlements */,
-				2FCDC7A22C3580A1007FE63A /* Item.swift */,
 				2FCDC7A32C3580A1007FE63A /* Project.swift */,
+				2FCDC7A22C3580A1007FE63A /* Item.swift */,
 				2FCDC7A42C3580A1007FE63A /* Quality.swift */,
 				2FCDC7A52C3580A1007FE63A /* Score.swift */,
 			);
