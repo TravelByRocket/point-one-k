@@ -117,25 +117,25 @@ class DataController: ObservableObject {
         let viewContext = container.viewContext
 
         // PROJECTS
-        for i in 1 ... 5 {
+        for projectCounter in 1 ... 5 {
             let project = ProjectOld(context: viewContext)
-            project.title = "Project \(i)"
+            project.title = "Project \(projectCounter)"
             project.items = []
             project.closed = Bool.random()
             project.detail = "Nothin in particular \(Int16.random(in: 1_000 ... 9_999))"
 
             // QUALITIES
-            for k in 1 ... 5 {
+            for qualityCounter in 1 ... 5 {
                 let quality = QualityOld(context: viewContext)
-                quality.title = "Quality \(k)"
+                quality.title = "Quality \(qualityCounter)"
                 quality.note = "Description \(Int.random(in: 1_000 ... 9_999))"
                 quality.project = project
             }
 
             // ITEMS
-            for j in 1 ... 5 {
+            for itemCounter in 1 ... 5 {
                 let item = ItemOld(context: viewContext)
-                item.title = "Item \(j)"
+                item.title = "Item \(itemCounter)"
                 item.project = project
 
                 // QUALITIES <-> SCORES
