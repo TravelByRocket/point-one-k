@@ -16,7 +16,6 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     project.title = "$100 Startup Ideas"
     project.closed = false
     project.detail = "Have lots of business ideas but can't figure out which one to pursue? Use this template to score them and see what floats to the top. Inspired by the book \"The $100 Startup\"."
-    // swiftlint:disable:previous line_length
 
     let ease = QualityOld(context: managedObjectContext)
     ease.project = project
