@@ -5,14 +5,16 @@
 //  Created by Bryan Costanza on 6 Mar 2022.
 //
 
-@testable import PointOneK
 import XCTest
 
-class PerformanceTests: BaseTestCase {
-    func testSampleCreation() throws {
+@testable import PointOneK
+
+class PerformanceTests: XCTestCase {
+    @MainActor func testSampleCreation() throws {
+        let btc = BaseTestCase()
         measure {
             for _ in 0 ..< 100 {
-                try? dataController.createSampleData()
+                try? btc.dataController.createSampleData()
             }
         }
     }

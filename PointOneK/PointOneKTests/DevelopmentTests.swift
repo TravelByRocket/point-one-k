@@ -6,27 +6,29 @@
 //
 
 import CoreData
-@testable import PointOneK
-import XCTest
+import Testing
 
-class DevelopmentTests: BaseTestCase {
-    func testSampleDataCreationsWorks() throws {
+@testable import PointOneK
+
+final class DevelopmentTests: BaseTestCase {
+    @MainActor @Test func testSampleDataCreationsWorks() throws {
         try dataController.createSampleData()
 
-        XCTAssertEqual(dataController.count(for: Project.fetchRequest()), 5, "There should be 5 sample projects.")
-        XCTAssertEqual(dataController.count(for: Item.fetchRequest()), 25, "There should be 25 sample items.")
+        #expect(dataController.count(for: ProjectOld.fetchRequest()) == 5, "There should be 5 sample projects.")
+        #expect(dataController.count(for: ItemOld.fetchRequest()) == 25, "There should be 25 sample items.")
     }
 
-    func testDeleteAllClearsEverything() throws {
+    @MainActor @Test func testDeleteAllClearsEverything() throws {
+        let btc = BaseTestCase()
         try dataController.createSampleData()
         dataController.deleteAll()
 
-        XCTAssertEqual(dataController.count(for: Project.fetchRequest()), 0, "deleteAll() should leave 0 projects.")
-        XCTAssertEqual(dataController.count(for: Item.fetchRequest()), 0, "deleteAll() should leave 0 items.")
+        #expect(dataController.count(for: ProjectOld.fetchRequest()) == 0, "deleteAll() should leave 0 projects.")
+        #expect(dataController.count(for: ItemOld.fetchRequest()) == 0, "deleteAll() should leave 0 items.")
     }
 
-    func testExampleProjectIsClosed() {
-        let project = Project.example
-        XCTAssertTrue(project.closed, "The example project should be closed.")
+    @Test func testExampleProjectIsClosed() {
+        let project = ProjectOld.example
+        #expect(project.closed, "The example project should be closed.")
     }
 }

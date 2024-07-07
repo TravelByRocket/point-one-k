@@ -6,15 +6,29 @@
 //
 
 import CoreData
+import SwiftData
+
 @testable import PointOneK
-import XCTest
 
-class BaseTestCase: XCTestCase {
-    var dataController: DataController!
-    var managedObjectContext: NSManagedObjectContext!
+class BaseTestCase {
+    let dataController: DataController!
+    let managedObjectContext: NSManagedObjectContext!
 
-    override func setUpWithError() throws {
+    let config: ModelConfiguration
+    let container: ModelContainer
+
+    @MainActor
+    var context: ModelContext { container.mainContext }
+
+    init() {
         dataController = DataController(inMemory: true)
         managedObjectContext = dataController.container.viewContext
+
+        config = ModelConfiguration(isStoredInMemoryOnly: true)
+
+        container = try! ModelContainer( // swiftlint:disable:this force_try
+            for: ProjectV2.self,
+            configurations: config
+        )
     }
 }
