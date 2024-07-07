@@ -6,12 +6,13 @@
 //
 
 @testable import PointOneK
-import XCTest
+import Testing
+import UIKit
 
-class AssetTests: XCTestCase {
-    func testColorsExist() {
+struct AssetTests {
+    @Test func testColorsExist() {
         for color in ProjectOld.colors {
-            XCTAssertNotNil(UIColor(named: color), "Failed to load color '\(color)' from asset catalog.")
+            #expect(UIColor(named: color) != nil, "Failed to load color '\(color)' from asset catalog.")
         }
     }
 }
