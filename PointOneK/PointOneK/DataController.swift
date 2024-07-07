@@ -85,7 +85,8 @@ class DataController: ObservableObject {
         }
     }
 
-    static var preview: DataController = {
+    @MainActor
+    static let preview: DataController = {
         let dataController = DataController(inMemory: true)
 
         do {
@@ -110,7 +111,8 @@ class DataController: ObservableObject {
     }()
 
     /// This creates example projects and items to make manual testing earlier
-    /// - Throws: An `NSError` sent from calling `save()` on the `NSMAnagedObjectContext`.
+    /// - Throws: An `NSError` sent from calling `save()` on the `NSManagedObjectContext`.
+    @MainActor
     func createSampleData() throws {
         let viewContext = container.viewContext
 

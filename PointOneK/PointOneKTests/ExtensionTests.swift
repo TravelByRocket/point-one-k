@@ -7,17 +7,17 @@
 
 @testable import PointOneK
 import SwiftUI
-import XCTest
+import Testing
 
-class ExtensionTests: XCTestCase {
-    func testSequenceKeyPathSortingSelf() {
+final class ExtensionTests { // must be `class` for decoding tests; must be final for `@Test`
+    @Test func testSequenceKeyPathSortingSelf() {
         let items = [1, 4, 3, 2, 5]
         let sortedItems = items.sorted(by: \.self)
 
-        XCTAssertEqual(sortedItems, [1, 2, 3, 4, 5])
+        #expect(sortedItems == [1, 2, 3, 4, 5])
     }
 
-    func testSequenceKeyPathSortingCustom() {
+    @Test func testSequenceKeyPathSortingCustom() {
         struct Example: Equatable {
             let value: String
         }
@@ -31,38 +31,38 @@ class ExtensionTests: XCTestCase {
             $0 > $1
         }
 
-        XCTAssertEqual(sortedItems, [example3, example2, example1])
+        #expect(sortedItems == [example3, example2, example1])
     }
 
-    func testDecodingString() {
+    @Test func testDecodingString() {
         let bundle = Bundle(for: ExtensionTests.self)
         let data = bundle.decode(String.self, from: "DecodableString.json")
-        XCTAssertEqual(data, "The rain in Spain falls mainly on the Spaniards", "The string must match the content of DecodableString.json") // swiftlint:disable:this line_length
+        #expect(data == "The rain in Spain falls mainly on the Spaniards", "The string must match the content of DecodableString.json") // swiftlint:disable:this line_length
     }
 
-    func testDecodingDictionary() {
+    @Test func testDecodingDictionary() {
         let bundle = Bundle(for: ExtensionTests.self)
         let data = bundle.decode([String: Int].self, from: "DecodableDictionary.json")
-        XCTAssertEqual(data.count, 3, "There should be 3 items decoded from DecodableDictionary.json")
-        XCTAssertEqual(data["one"], 1, "The dictionary should contain Int to String mappings")
+        #expect(data.count == 3, "There should be 3 items decoded from DecodableDictionary.json")
+        #expect(data["one"] == 1, "The dictionary should contain Int to String mappings")
     }
 
-//    func testBindingOnChange() {
-//        var onChangeFunctionRun = false
-//
-//        func exampleFunctionToCall() {
-//            onChangeFunctionRun = true
-//        }
-//
-//        var storedValue = ""
-//        let binding = Binding(
-//            get: { storedValue },
-//            set: { storedValue = $0 }
-//        )
-//
-//        let changedBinding = binding.onChange(exampleFunctionToCall)
-//        changedBinding.wrappedValue = "Test"
-//
-//        XCTAssertTrue(onChangeFunctionRun, "The onChange() function must be run when the binding is changed")
-//    }
+    @MainActor @Test func testBindingOnChange() {
+        var onChangeFunctionRun = false
+
+        func exampleFunctionToCall() {
+            onChangeFunctionRun = true
+        }
+
+        var storedValue = ""
+        let binding = Binding(
+            get: { storedValue },
+            set: { storedValue = $0 }
+        )
+
+        let changedBinding = binding.onChange(exampleFunctionToCall)
+        changedBinding.wrappedValue = "Test"
+
+        #expect(onChangeFunctionRun, "The onChange() function must be run when the binding is changed")
+    }
 }

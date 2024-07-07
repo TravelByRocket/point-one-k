@@ -7,32 +7,38 @@
 
 import CoreData
 @testable import PointOneK
-import XCTest
+import Testing
 
-class ProjectTests: BaseTestCase {
-    func testCreatingProjectsAndItems() {
+struct ProjectTests {
+    @Test func testCreatingProjectsAndItems() {
+        let btc = BaseTestCase()
+
         let targetCount = 10
         for _ in 0 ..< targetCount {
-            let project = ProjectOld(context: managedObjectContext)
+            let project = ProjectOld(context: btc.managedObjectContext)
 
             for _ in 0 ..< targetCount {
-                let item = ItemOld(context: managedObjectContext)
+                let item = ItemOld(context: btc.managedObjectContext)
                 item.project = project
             }
         }
 
-        XCTAssertEqual(dataController.count(for: ProjectOld.fetchRequest()), targetCount)
-        XCTAssertEqual(dataController.count(for: ItemOld.fetchRequest()), targetCount * targetCount)
+        #expect(btc.dataController.count(for: ProjectOld.fetchRequest()) == targetCount)
+        #expect(btc.dataController.count(for: ItemOld.fetchRequest()) == targetCount * targetCount)
     }
 
-    func testDeletingProjectCascadeDeleteItems() throws {
-        try dataController.createSampleData()
+    @MainActor @Test func testDeletingProjectCascadeDeleteItems() throws {
+        let baseTestCase = BaseTestCase()
+        try baseTestCase.dataController.createSampleData()
 
-        let request = NSFetchRequest<ProjectOld>(entityName: "Project")
-        let projects = try managedObjectContext.fetch(request)
-        dataController.delete(projects[0])
+        let request = NSFetchRequest<ProjectOld>(entityName: "ProjectOld")
+        let projects = try baseTestCase.managedObjectContext.fetch(request)
+        baseTestCase.dataController.delete(projects[0])
 
-        XCTAssertEqual(dataController.count(for: ProjectOld.fetchRequest()), 4) // 5 - 1 projects
-        XCTAssertEqual(dataController.count(for: ItemOld.fetchRequest()), 20) // 5 (items/project) * (5 - 1 projects)
+        // 5 - 1 projects
+        #expect(baseTestCase.dataController.count(for: ProjectOld.fetchRequest()) == 4)
+
+        // 5 (items/project) * (5 - 1 projects)
+        #expect(baseTestCase.dataController.count(for: ItemOld.fetchRequest()) == 20)
     }
 }

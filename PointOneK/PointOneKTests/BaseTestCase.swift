@@ -7,13 +7,12 @@
 
 import CoreData
 @testable import PointOneK
-import XCTest
 
-class BaseTestCase: XCTestCase {
+struct BaseTestCase {
     var dataController: DataController!
     var managedObjectContext: NSManagedObjectContext!
 
-    override func setUpWithError() throws {
+    init() {
         dataController = DataController(inMemory: true)
         managedObjectContext = dataController.container.viewContext
     }
