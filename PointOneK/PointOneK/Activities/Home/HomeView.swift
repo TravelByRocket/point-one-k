@@ -122,10 +122,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     HomeView()
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
 }

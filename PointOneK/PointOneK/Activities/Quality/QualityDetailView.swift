@@ -68,10 +68,6 @@ struct QualityDetailView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview (traits: .modifier(.persistenceLayer)) {
     QualityDetailView(quality: .example)
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
 }

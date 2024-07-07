@@ -44,10 +44,6 @@ struct BatchAddItemsView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     BatchAddItemsView(project: .example)
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
 }
