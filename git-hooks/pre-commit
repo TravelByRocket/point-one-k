@@ -1,0 +1,6 @@
+#!/bin/sh
+swiftformat --lint .
+if [ $? -ne 0 ]; then
+  echo "SwiftFormat found issues that need to be resolved."
+  exit 1
+fi

@@ -58,10 +58,8 @@ struct ProjectQualitiesSection: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
-    ProjectQualitiesSection(project: .example)
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
+#Preview(traits: .modifier(.persistenceLayer)) {
+    List {
+        ProjectQualitiesSection(project: .example)
+    }
 }

@@ -48,12 +48,8 @@ struct ProjectArchiveDeleteSection: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     Form {
         ProjectArchiveDeleteSection(project: .example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

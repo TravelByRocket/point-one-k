@@ -43,12 +43,8 @@ struct ProjectToggleClosedRow: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     List {
         ProjectToggleClosedRow(project: .example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

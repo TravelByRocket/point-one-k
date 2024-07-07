@@ -64,12 +64,8 @@ struct ItemDetailView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     NavigationView {
         ItemDetailView(item: .example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

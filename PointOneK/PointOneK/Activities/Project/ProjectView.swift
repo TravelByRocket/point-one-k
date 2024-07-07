@@ -30,12 +30,8 @@ struct ProjectView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     NavigationView {
         ProjectView(project: .example)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

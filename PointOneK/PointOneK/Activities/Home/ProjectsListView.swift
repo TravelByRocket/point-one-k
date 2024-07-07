@@ -42,12 +42,8 @@ struct ProjectsListView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     NavigationView {
         ProjectsListView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }

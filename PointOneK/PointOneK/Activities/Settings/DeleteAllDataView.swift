@@ -60,12 +60,8 @@ struct DeleteAllDataView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     List {
         DeleteAllDataView()
     }
-    .environment(\.managedObjectContext, dataController.container.viewContext)
-    .environmentObject(dataController)
 }
