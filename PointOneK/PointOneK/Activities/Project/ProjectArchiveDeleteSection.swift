@@ -53,7 +53,7 @@ struct ProjectArchiveDeleteSection_Previews: PreviewProvider {
 
     static var previews: some View {
         Form {
-            ProjectArchiveDeleteSection(project: ProjectOld.example)
+            ProjectArchiveDeleteSection(project: .example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }

@@ -48,7 +48,7 @@ struct BatchAddItemsView_Previews: PreviewProvider {
     static var dataController = DataController.preview
 
     static var previews: some View {
-        BatchAddItemsView(project: ProjectOld.example)
+        BatchAddItemsView(project: .example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

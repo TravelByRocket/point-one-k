@@ -11,7 +11,7 @@ struct Provider: TimelineProvider {
     typealias Entry = SimpleEntry
 
     func placeholder(in _: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), project: ProjectOld.example)
+        SimpleEntry(date: .now, project: .example)
     }
 
     func getSnapshot(

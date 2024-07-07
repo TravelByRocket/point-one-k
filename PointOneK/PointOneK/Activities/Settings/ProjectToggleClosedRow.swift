@@ -48,7 +48,7 @@ struct ProjectToggleClosedRow_Previews: PreviewProvider {
 
     static var previews: some View {
         List {
-            ProjectToggleClosedRow(project: ProjectOld.example)
+            ProjectToggleClosedRow(project: .example)
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }

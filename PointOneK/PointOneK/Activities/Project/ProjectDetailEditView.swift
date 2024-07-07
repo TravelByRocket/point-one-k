@@ -29,6 +29,6 @@ struct ProjectDetailEditView: View {
 
 #Preview {
     Form {
-        ProjectDetailEditView(project: ProjectOld.example)
+        ProjectDetailEditView(project: .example)
     }
 }

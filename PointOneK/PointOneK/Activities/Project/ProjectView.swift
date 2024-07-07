@@ -34,7 +34,7 @@ struct ProjectView: View {
     @Previewable var dataController = DataController.preview
 
     NavigationView {
-        ProjectView(project: ProjectOld.example)
+        ProjectView(project: .example)
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environmentObject(dataController)
     }

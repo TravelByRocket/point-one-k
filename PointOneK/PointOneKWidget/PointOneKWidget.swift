@@ -86,8 +86,8 @@ struct PointOneKWidget_Previews: PreviewProvider {
     static var previews: some View {
         PointOneKWidgetEntryView(
             entry: SimpleEntry(
-                date: Date(),
-                project: ProjectOld.example
+                date: .now,
+                project: .example
             )
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))

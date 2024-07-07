@@ -28,7 +28,7 @@ struct ItemRowView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             List {
-                ItemRowView(project: ProjectOld.example, item: ItemOld.example)
+                ItemRowView(project: .example, item: .example)
             }
         }
     }

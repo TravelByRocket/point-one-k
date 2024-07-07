@@ -45,8 +45,8 @@ struct ProjectRowView: View {
 
 #Preview {
     List {
-        ProjectRowView(project: ProjectOld.example)
-        ProjectRowView(project: ProjectOld.example)
-        ProjectRowView(project: ProjectOld.example)
+        ProjectRowView(project: .example)
+        ProjectRowView(project: .example)
+        ProjectRowView(project: .example)
     }
 }
