@@ -8,6 +8,7 @@
 import CoreData
 @testable import PointOneK
 import Testing
+import SwiftData
 
 struct ProjectTests {
     @Test func testCreatingProjectsAndItems() {
@@ -40,5 +41,33 @@ struct ProjectTests {
 
         // 5 (items/project) * (5 - 1 projects)
         #expect(baseTestCase.dataController.count(for: ItemOld.fetchRequest()) == 20)
+    }
+
+    @MainActor @Test func testCascadeDelete() throws {
+        let btc = BaseTestCase()
+
+        let project = ProjectV2()
+        let item = ItemV2()
+        let quality = QualityV2()
+        let score = ScoreV2()
+
+        score.item = item
+        score.quality = quality
+        item.project = project
+        quality.project = project
+
+        btc.context.insert(project)
+
+        #expect((try? btc.context.fetchCount(FetchDescriptor<ProjectV2>())) == 1)
+        #expect((try? btc.context.fetchCount(FetchDescriptor<ItemV2>())) == 1)
+        #expect((try? btc.context.fetchCount(FetchDescriptor<ScoreV2>())) == 1)
+        #expect((try? btc.context.fetchCount(FetchDescriptor<QualityV2>())) == 1)
+
+        btc.context.delete(project)
+
+        #expect((try? btc.context.fetchCount(FetchDescriptor<ProjectV2>())) == 0)
+        #expect((try? btc.context.fetchCount(FetchDescriptor<ItemV2>())) == 0)
+        #expect((try? btc.context.fetchCount(FetchDescriptor<ScoreV2>())) == 0)
+        #expect((try? btc.context.fetchCount(FetchDescriptor<QualityV2>())) == 0)
     }
 }

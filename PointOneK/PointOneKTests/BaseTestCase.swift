@@ -6,14 +6,29 @@
 //
 
 import CoreData
+import SwiftData
+
 @testable import PointOneK
 
 struct BaseTestCase {
-    var dataController: DataController!
-    var managedObjectContext: NSManagedObjectContext!
+    let dataController: DataController!
+    let managedObjectContext: NSManagedObjectContext!
+
+    let config: ModelConfiguration
+    let container: ModelContainer
+
+    @MainActor
+    var context: ModelContext { container.mainContext }
 
     init() {
         dataController = DataController(inMemory: true)
         managedObjectContext = dataController.container.viewContext
+
+        config = ModelConfiguration(isStoredInMemoryOnly: true)
+
+        container = try! ModelContainer( // swiftlint:disable:this force_try
+            for: ProjectV2.self,
+            configurations: config
+        )
     }
 }

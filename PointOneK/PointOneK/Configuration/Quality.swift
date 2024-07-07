@@ -14,10 +14,7 @@ import SwiftData
     var title: String?
     var project: ProjectV2?
 
-    @Relationship(
-        deleteRule: .cascade,
-        inverse: \ScoreV2.quality
-    )
+    @Relationship(deleteRule: .cascade)
     var scores: [ScoreV2]?
 
     public init() {}
