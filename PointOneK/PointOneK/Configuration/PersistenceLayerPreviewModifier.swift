@@ -1,5 +1,5 @@
 //
-//  PersistencePreviewModifier.swift
+//  PersistenceLayerPreviewModifier.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 7/7/24.
@@ -13,8 +13,8 @@ struct PersistenceLayerPreviewModifier: PreviewModifier {
     typealias Context = (container: ModelContainer, dataController: DataController)
 
     static func makeSharedContext() throws -> Context {
-        (
-            try ModelContainer(for: ProjectV2.self),
+        try (
+            ModelContainer(for: ProjectV2.self),
             DataController.preview
         )
     }

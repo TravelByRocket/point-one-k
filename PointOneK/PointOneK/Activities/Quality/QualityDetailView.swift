@@ -68,6 +68,6 @@ struct QualityDetailView: View {
     }
 }
 
-#Preview (traits: .modifier(.persistenceLayer)) {
+#Preview(traits: .modifier(.persistenceLayer)) {
     QualityDetailView(quality: .example)
 }
