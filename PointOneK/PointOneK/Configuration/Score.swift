@@ -15,3 +15,13 @@ import SwiftData
 
     public init() {}
 }
+
+extension ScoreV2 {
+    static var example: ScoreV2 {
+        let score = ScoreV2()
+        score.quality = QualityV2.example
+        score.item = ItemV2.example
+
+        return score
+    }
+}
