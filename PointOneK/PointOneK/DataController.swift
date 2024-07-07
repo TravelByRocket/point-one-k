@@ -39,12 +39,7 @@ class DataController: ObservableObject {
     var widgetProject: ProjectOld? {
         let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
         let projects = (try? container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
-        for project in projects {
-            if projectURL == project.objectID.uriRepresentation() {
-                return project
-            }
-        }
-        return nil
+        return projects.first { projectURL == $0.objectID.uriRepresentation() }
     }
 
     /// Initializes a data controler, either in memory (for temporary use such as testing and previewing), or on
