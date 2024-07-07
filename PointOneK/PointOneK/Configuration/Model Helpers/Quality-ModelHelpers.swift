@@ -5,8 +5,6 @@
 //  Created by Bryan Costanza on 28 Nov 2021.
 //
 
-import Foundation
-
 extension QualityV2 {
     var qualityTitle: String {
         title ?? "New Quality"

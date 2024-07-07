@@ -5,7 +5,6 @@
 //  Created by Bryan Costanza on 19 Sep 2021.
 //
 
-import CloudKit
 import SwiftData
 import SwiftUI
 
