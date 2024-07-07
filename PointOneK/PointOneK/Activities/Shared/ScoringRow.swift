@@ -23,10 +23,10 @@ struct ScoringRow: View {
             Text(label)
             Spacer()
             LevelSelector(value: $value)
-                .onChange(of: value) { newValue in
+                .onChange(of: value) {
                     score.item?.objectWillChange.send()
                     score.objectWillChange.send()
-                    score.value = Int16(newValue)
+                    score.value = Int16(value)
                 }
         }
     }

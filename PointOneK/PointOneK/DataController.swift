@@ -93,7 +93,7 @@ class DataController: ObservableObject {
         return dataController
     }()
 
-    static let model: NSManagedObjectModel = {
+    @MainActor static let model: NSManagedObjectModel = {
         guard let url = Bundle.main.url(forResource: "Main", withExtension: "momd") else {
             fatalError("Failed to locate model file.")
         }

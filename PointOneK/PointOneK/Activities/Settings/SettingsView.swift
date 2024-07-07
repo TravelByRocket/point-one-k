@@ -86,8 +86,8 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()
-                .onChange(of: widgetProject) { newURL in
-                    UserDefaults(suiteName: "group.co.synodic.PointOneK")?.set(newURL, forKey: "widgetProject")
+                .onChange(of: widgetProject) {
+                    UserDefaults(suiteName: "group.co.synodic.PointOneK")?.set(widgetProject, forKey: "widgetProject")
                     WidgetCenter.shared.reloadAllTimelines()
                 }
             }

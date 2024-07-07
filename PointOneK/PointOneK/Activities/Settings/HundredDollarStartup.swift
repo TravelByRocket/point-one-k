@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-// swiftlint:disable:next function_body_length
+// swiftlint:disable line_length
 func makeHundredDollarStartup(_ dataController: DataController) {
     let managedObjectContext = dataController.container.viewContext
 
@@ -21,7 +21,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     let ease = QualityOld(context: managedObjectContext)
     ease.project = project
     ease.title = "Ease"
-    // swiftlint:disable line_length
+
     ease.note = """
     How easy is this project? Easier the better! And don't try too hard, the easy way is hard enough
     4) I can do this task in my sleep, like singing happy birthday. Or it takes little time or resources. <10s of hours for a project.

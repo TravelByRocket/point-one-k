@@ -11,18 +11,15 @@ extension Sequence {
     func sorted<Value>(
         by keyPath: KeyPath<Element, Value>,
         using areInIncreasingOrder: (Value, Value) throws -> Bool
-    ) rethrows
-        -> [Element]
-    {
+    ) rethrows -> [Element] {
         try sorted {
             try areInIncreasingOrder($0[keyPath: keyPath], $1[keyPath: keyPath])
         }
     }
 
     func sorted(
-        by keyPath: KeyPath<Element, some Comparable>)
-        -> [Element]
-    {
+        by keyPath: KeyPath<Element, some Comparable>
+    ) -> [Element] {
         sorted(by: keyPath, using: <)
     }
 }
