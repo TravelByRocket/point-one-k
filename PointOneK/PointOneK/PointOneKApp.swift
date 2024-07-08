@@ -11,14 +11,9 @@ import SwiftUI
 struct PointOneKApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject var dataController: DataController
-    @StateObject var unlockManager: UnlockManager
 
     init() {
-        let dataController = DataController()
-        let unlockManager = UnlockManager(dataController: dataController)
-
-        _dataController = StateObject(wrappedValue: dataController)
-        _unlockManager = StateObject(wrappedValue: unlockManager)
+        _dataController = StateObject(wrappedValue: DataController())
     }
 
     var body: some Scene {
@@ -26,7 +21,6 @@ struct PointOneKApp: App {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
-                .environmentObject(unlockManager)
                 .onReceive(
                     // Automatically save when no longer in the foreground. Use this over scene phase API for port to
                     // macOS (as of macOS 11.1)
