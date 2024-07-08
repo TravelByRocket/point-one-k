@@ -14,8 +14,6 @@ struct HomeView: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    private let newProjectActivity = "co.synodic.PointOneK.newProject"
-
     @State var selectedItem: ItemOld?
     @State var newProject: ProjectOld?
 
@@ -69,17 +67,7 @@ struct HomeView: View {
                 }
             SelectSomethingView()
         }
-        // Documented issue through at least 15.1.1. Currently using 15.2.
-        // Views are improperly popping when updating `@ObservedObject`s
-        // Details at https://developer.apple.com/forums/thread/665369
         .navigationViewStyle(.stack)
-        .onContinueUserActivity(CSSearchableItemActionType, perform: loadSpotlightItem)
-        .onContinueUserActivity(newProjectActivity, perform: createProject)
-        .userActivity(newProjectActivity) { activity in
-            activity.title = "New Project"
-            activity.isEligibleForPrediction = true
-        }
-        .onOpenURL(perform: openURL)
     }
 
     func addProject(fromURL: Bool = false) {
