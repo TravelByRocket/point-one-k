@@ -14,7 +14,7 @@ struct BatchAddItemsView: View {
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,17 +26,23 @@ struct BatchAddItemsView: View {
                 }
             HStack {
                 Spacer()
+
                 Button {
                     let lines = text.components(separatedBy: "\n")
+
                     project.objectWillChange.send()
+
                     for line in lines {
                         project.addItem(titled: line)
                     }
+
                     dataController.save()
-                    presentationMode.wrappedValue.dismiss()
+
+                    dismiss()
                 } label: {
                     Text("Submit")
                 }
+
                 Spacer()
             }
         }
