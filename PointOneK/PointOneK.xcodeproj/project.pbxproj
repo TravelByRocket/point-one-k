@@ -29,7 +29,6 @@
 		2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D462751D0F800E2CC3C /* Bundle-Decodable.swift */; };
 		2F8B9D4D2751D0F800E2CC3C /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */; };
 		2F8B9D4E2751D0F800E2CC3C /* Binding-OnChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */; };
-		2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */; };
 		2F8B9D5C2751D13E00E2CC3C /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D562751D13E00E2CC3C /* ProjectView.swift */; };
 		2F8B9D5D2751D13E00E2CC3C /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */; };
 		2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */; };
@@ -86,7 +85,6 @@
 		2FCFE8F127DEEE7A0044E7F7 /* ScoringRowDisclosing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F027DEEE7A0044E7F7 /* ScoringRowDisclosing.swift */; };
 		2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */; };
 		2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */; };
-		2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE91427DFF80A0044E7F7 /* ProjectItemsSectionModel.swift */; };
 		2FCFE91727E025510044E7F7 /* ValueClearHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE91627E025510044E7F7 /* ValueClearHaptic.swift */; };
 		2FF3351327D53B4C00E1F7F4 /* PointOneKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351227D53B4C00E1F7F4 /* PointOneKUITests.swift */; };
 		2FF3351527D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3351427D53B4C00E1F7F4 /* PointOneKUITestsLaunchTests.swift */; };
@@ -155,7 +153,6 @@
 		2F8B9D462751D0F800E2CC3C /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color-Additions.swift"; sourceTree = "<group>"; };
 		2F8B9D482751D0F800E2CC3C /* Binding-OnChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binding-OnChange.swift"; sourceTree = "<group>"; };
-		2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSomethingView.swift; sourceTree = "<group>"; };
 		2F8B9D562751D13E00E2CC3C /* ProjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		2F8B9D572751D13E00E2CC3C /* ItemRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRowView.swift; sourceTree = "<group>"; };
 		2F8B9D582751D13E00E2CC3C /* ItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
@@ -208,7 +205,6 @@
 		2FCFE8F027DEEE7A0044E7F7 /* ScoringRowDisclosing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringRowDisclosing.swift; sourceTree = "<group>"; };
 		2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityIndicatorEditSection.swift; sourceTree = "<group>"; };
 		2FCFE8F427DF00600044E7F7 /* Character-AsString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character-AsString.swift"; sourceTree = "<group>"; };
-		2FCFE91427DFF80A0044E7F7 /* ProjectItemsSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectItemsSectionModel.swift; sourceTree = "<group>"; };
 		2FCFE91627E025510044E7F7 /* ValueClearHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueClearHaptic.swift; sourceTree = "<group>"; };
 		2FCFE91A27E0F03E0044E7F7 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		2FF3351027D53B4C00E1F7F4 /* PointOneKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointOneKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -437,7 +433,6 @@
 				2FCFE8E127DD928A0044E7F7 /* ProjectTitleEditView.swift */,
 				2FCFE8E327DD93FE0044E7F7 /* ProjectDetailEditView.swift */,
 				2FCFE8DD27DC51680044E7F7 /* ProjectItemsSection.swift */,
-				2FCFE91427DFF80A0044E7F7 /* ProjectItemsSectionModel.swift */,
 				2FCFE8DF27DC52670044E7F7 /* ProjectQualitiesSection.swift */,
 				2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */,
 				2FCFE8E527DD97070044E7F7 /* ProjectArchiveDeleteSection.swift */,
@@ -453,7 +448,6 @@
 				2FCFE8D727DC36040044E7F7 /* HomeView.swift */,
 				2F8B9D5A2751D13E00E2CC3C /* ProjectsListView.swift */,
 				2FCFE8D327DC09480044E7F7 /* ProjectRowView.swift */,
-				2F8B9D552751D13E00E2CC3C /* SelectSomethingView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -712,7 +706,6 @@
 				2FCFE8F527DF00600044E7F7 /* Character-AsString.swift in Sources */,
 				2F8B9D602751D13E00E2CC3C /* ProjectsListView.swift in Sources */,
 				2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */,
-				2F8B9D5B2751D13E00E2CC3C /* SelectSomethingView.swift in Sources */,
 				2F8B9D402751D0AE00E2CC3C /* DataController.swift in Sources */,
 				2F8B9D4B2751D0F800E2CC3C /* Sequence-Sorting.swift in Sources */,
 				2FCDC7A62C3580A1007FE63A /* Project.swift in Sources */,
@@ -729,7 +722,6 @@
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
-				2FCFE91527DFF80A0044E7F7 /* ProjectItemsSectionModel.swift in Sources */,
 				2FCFE8E427DD93FE0044E7F7 /* ProjectDetailEditView.swift in Sources */,
 				2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */,
 				2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */,

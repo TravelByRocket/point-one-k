@@ -43,7 +43,7 @@ struct ProjectsListView: View {
 }
 
 #Preview(traits: .modifier(.persistenceLayer)) {
-    NavigationView {
+    NavigationStack {
         ProjectsListView()
     }
 }
