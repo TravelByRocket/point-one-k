@@ -18,15 +18,6 @@ class DataController: ObservableObject {
 
     let defaults: UserDefaults
 
-    var fullVersionUnlocked: Bool {
-        get {
-            defaults.bool(forKey: "fullVersionUnlocked")
-        }
-        set {
-            defaults.set(newValue, forKey: "fullVersionUnlocked")
-        }
-    }
-
     var dateAskedForReview: Date? {
         get {
             defaults.object(forKey: "dateAskedForReview") as? Date
