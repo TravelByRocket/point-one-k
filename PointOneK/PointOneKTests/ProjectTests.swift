@@ -10,20 +10,16 @@ import SwiftData
 import Testing
 
 @testable import PointOneK
-import SwiftData
-import XCTest
 
 final class ProjectTests: BaseTestCase {
     @Test func testCreatingProjectsAndItems() {
         let targetCount = 10
-
         for _ in 0 ..< targetCount {
-            let project = Project()
+            let project = ProjectOld(context: managedObjectContext)
 
             for _ in 0 ..< targetCount {
-                let item = Item()
+                let item = ItemOld(context: managedObjectContext)
                 item.project = project
-                context.insert(item)
             }
         }
 
@@ -37,8 +33,6 @@ final class ProjectTests: BaseTestCase {
         let request = NSFetchRequest<ProjectOld>(entityName: "ProjectOld")
         let projects = try managedObjectContext.fetch(request)
         dataController.delete(projects[0])
-        dataController.save()
-//        try? dataController.modelContext.save()
 
         // 5 - 1 projects
         #expect(dataController.count(for: ProjectOld.fetchRequest()) == 4)

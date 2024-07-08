@@ -9,8 +9,6 @@ import SwiftUI
 import Testing
 
 @testable import PointOneK
-import SwiftUI
-import XCTest
 
 final class ExtensionTests {
     @Test func testSequenceKeyPathSortingSelf() {

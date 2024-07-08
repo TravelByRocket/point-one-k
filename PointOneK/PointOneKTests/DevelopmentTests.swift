@@ -9,8 +9,6 @@ import CoreData
 import Testing
 
 @testable import PointOneK
-import SwiftData
-import XCTest
 
 final class DevelopmentTests: BaseTestCase {
     @MainActor @Test func testSampleDataCreationsWorks() throws {

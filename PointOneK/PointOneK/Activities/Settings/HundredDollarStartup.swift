@@ -9,7 +9,7 @@ import CoreData
 import Foundation
 
 // swiftlint:disable line_length
-func makeHundredDollarStartup(_ dataController: DataController) {
+func makeHundredDollarStartup(_: DataController) {
     let project = Project()
     project.title = "$100 Startup Ideas"
     project.closed = false

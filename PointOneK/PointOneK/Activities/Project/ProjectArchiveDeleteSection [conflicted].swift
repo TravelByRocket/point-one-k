@@ -1,5 +1,5 @@
 //
-//  ProjectArchiveDeleteSection.swift
+//  ProjectArchiveDeleteSection [conflicted].swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 12 Mar 2022.

@@ -8,7 +8,6 @@
 import XCTest
 
 @testable import PointOneK
-import XCTest
 
 class PerformanceTests: XCTestCase {
     @MainActor func testSampleCreation() throws {
