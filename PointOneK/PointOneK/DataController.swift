@@ -10,7 +10,7 @@ import CoreSpotlight
 import SwiftUI
 import WidgetKit
 
-/// An environment singleton responsinble for managing out Core Data stack, including handling saving, counting fetch
+/// An environment singleton responsible for managing out Core Data stack, including handling saving, counting fetch
 /// requests, and dealing with sample data.
 class DataController: ObservableObject {
     /// The lone CloudKit container used to stare all our data
