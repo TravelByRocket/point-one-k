@@ -9,11 +9,10 @@ import CoreSpotlight
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showingSettings = false
-
-    @EnvironmentObject private var dataController: DataController
+    @Environment(\.modelContext) private var context
     @Environment(\.managedObjectContext) private var managedObjectContext
-
+    @EnvironmentObject private var dataController: DataController
+    @State private var showingSettings = false
     private let newProjectActivity = "co.synodic.PointOneK.newProject"
 
     @State var selectedItem: ItemOld?
