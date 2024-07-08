@@ -26,6 +26,7 @@ struct QualityIndicatorEditSection: View {
                 VStack {
                     Text("Pill Previews")
                         .font(.footnote)
+
                     HStack {
                         InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
                         InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
@@ -34,12 +35,15 @@ struct QualityIndicatorEditSection: View {
                     }
                 }
                 .padding(10)
-                .background(
+                .background {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(lineWidth: 2)
                         .foregroundColor(.secondary)
-                        .opacity(0.5))
+                        .opacity(0.5)
+                }
+
                 Spacer()
+
                 VStack {
                     Text("Default symbol is: \(quality.defaultQualityIndicator.asString)")
                     Text("Symbol '\(quality.qualityIndicatorCharacter.asString)' is \(quality.hasUniqueIdentifier ? "unique" : "already used")") // swiftlint:disable:this line_length
@@ -48,19 +52,22 @@ struct QualityIndicatorEditSection: View {
                         .italic()
                 }
             }
+
             Toggle("Override Default Symbol", isOn: $overrideIndicator.animation())
-                .onChange(of: overrideIndicator) { nowOverriding in
+                .onChange(of: overrideIndicator) {
                     quality.project?.objectWillChange.send()
-                    if nowOverriding, let char = indicatorFieldString.first {
+                    if overrideIndicator, let char = indicatorFieldString.first {
                         quality.indicator = String(char)
                     } else {
                         quality.indicator = nil
                     }
                 }
+
             if overrideIndicator {
                 HStack {
                     Text("Replace with character")
                         .fixedSize()
+
                     TextField("Indicator", text: $indicatorFieldString.onChange(update))
                         .accessibilityLabel("Character to use as indicator")
                         .autocapitalization(.none)

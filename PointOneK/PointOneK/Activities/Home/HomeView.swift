@@ -34,7 +34,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ProjectsListView()
                 .sheet(isPresented: $showingSettings) {
                     SettingsView()
@@ -43,10 +43,7 @@ struct HomeView: View {
                     settingsToolbarItem
                     addProjectToolbarItem
                 }
-
-            SelectSomethingView()
         }
-        .navigationViewStyle(.stack)
     }
 
     func addProject() {

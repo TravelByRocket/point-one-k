@@ -65,7 +65,7 @@ struct ItemDetailView: View {
 }
 
 #Preview(traits: .modifier(.persistenceLayer)) {
-    NavigationView {
+    NavigationStack {
         ItemDetailView(item: .example)
     }
 }

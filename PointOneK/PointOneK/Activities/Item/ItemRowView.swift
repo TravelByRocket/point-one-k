@@ -15,17 +15,27 @@ struct ItemRowView: View {
         HStack {
             Text(item.itemTitle)
                 .lineLimit(1)
+
             Spacer()
+
             ForEach(project.projectQualities) { quality in
-                InfoPill(letter: quality.qualityIndicatorCharacter, level: quality.score(for: item)?.scoreValue ?? 0)
+                InfoPill(
+                    letter: quality.qualityIndicatorCharacter,
+                    level: quality.score(for: item)?.scoreValue ?? 0
+                )
             }
         }
-        .listRowBackground(BackgroundBarView(value: item.scoreTotal, max: project.scorePossible))
+        .listRowBackground(
+            BackgroundBarView(
+                value: item.scoreTotal,
+                max: project.scorePossible
+            )
+        )
     }
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         List {
             ItemRowView(project: .example, item: .example)
         }

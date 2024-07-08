@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct ProjectItemsSection: View {
-    @StateObject var viewModel: ViewModel
-    @SceneStorage("selectedItemID") var selectedItemObjectID: String?
+    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var managedObjectContext
+
+    @State private var sortOrder = ItemOld.SortOrder.score
+    let project: ProjectOld
 
     var itemSortingHeader: some View {
         HStack {
-            Text("Items by \(viewModel.sortOrder == .title ? "Title, Score" : "Score, Title")")
+            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
+
             Spacer()
+
             Button {
                 withAnimation {
-                    viewModel.toggleSortOrder()
+                    if sortOrder == .title {
+                        sortOrder = .score
+                    } else { // if sortOrder == .score
+                        sortOrder = .title
+                    }
                 }
             } label: {
                 Label {
@@ -32,57 +41,57 @@ struct ProjectItemsSection: View {
 
     var body: some View {
         Section(header: itemSortingHeader) {
-            ForEach(viewModel.items) { item in
-                NavigationLink(
-                    tag: String(item.objectID.debugDescription),
-                    selection: $selectedItemObjectID
-                ) {
+            ForEach(project.projectItems) { item in
+                NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(project: viewModel.project, item: item)
+                    ItemRowView(project: project, item: item)
+                        .listRowBackground(
+                            BackgroundBarView(
+                                value: item.scoreTotal,
+                                max: project.scorePossible
+                            )
+                        )
                 }
-                .listRowBackground(
-                    BackgroundBarView(
-                        value: item.scoreTotal,
-                        max: viewModel.project.scorePossible
-                    )
-                )
             }
             .onDelete { offsets in
                 withAnimation {
-                    viewModel.delete(at: offsets)
+                    for offset in offsets {
+                        let item = project.projectItems[offset]
+                        dataController.delete(item)
+                    }
                 }
             }
-            if viewModel.items.isEmpty {
+
+            if project.projectItems.isEmpty {
                 Text("No items in this project")
             }
+
             HStack {
                 Button {
                     withAnimation {
-                        viewModel.addItem()
+                        project.addItem()
+                        project.objectWillChange.send()
+                        dataController.save()
                     }
                 } label: {
                     Label("Add New Item", systemImage: "plus")
                         .accessibilityLabel("Add new item")
                 }
+
                 Spacer()
-                BatchAddButtonView(project: viewModel.project)
+
+                BatchAddButtonView(project: project)
             }
         }
-    }
-
-    init(project: ProjectOld, dataController: DataController) {
-        let viewModel = ViewModel(project: project, dataController: dataController)
-        _viewModel = StateObject(wrappedValue: viewModel)
     }
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         List {
             ProjectItemsSection(
-                project: .example,
-                dataController: DataController.preview
+                project: .example
             )
         }
     }
