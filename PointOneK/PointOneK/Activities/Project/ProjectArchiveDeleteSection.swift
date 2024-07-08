@@ -14,7 +14,6 @@ struct ProjectArchiveDeleteSection: View {
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-    @Environment(\.presentationMode) private var presentationMode
 
     var footer: some View {
         // swiftlint:disable:next line_length

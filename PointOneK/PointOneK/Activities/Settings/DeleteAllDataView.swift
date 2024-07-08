@@ -13,7 +13,7 @@ struct DeleteAllDataView: View {
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
 
     @FetchRequest(
         entity: ProjectOld.entity(),
@@ -23,6 +23,7 @@ struct DeleteAllDataView: View {
     var body: some View {
         Section(header: Text("Delete All")) {
             Toggle("Allow Data Deletion", isOn: $enableDeleteButton)
+
             Button("Delete All Data For App") {
                 withAnimation {
                     showingDeleteAlert = true
@@ -40,17 +41,21 @@ struct DeleteAllDataView: View {
                 Text("Cancel")
                     .tint(.blue)
             }
+
             Button(role: .destructive) {
                 for project in projects {
                     project.objectWillChange.send()
                     dataController.delete(project)
                 }
+
                 dataController.deleteAll()
+
                 dataController.save()
+
                 withAnimation {
                     showingDeleteAlert = false
                     enableDeleteButton = false
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
 
             } label: {

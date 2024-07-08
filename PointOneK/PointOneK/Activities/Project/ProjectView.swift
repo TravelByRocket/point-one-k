@@ -20,7 +20,7 @@ struct ProjectView: View {
             Section(header: Text("Description")) {
                 ProjectDetailEditView(project: project)
             }
-            ProjectItemsSection(project: project, dataController: dataController)
+            ProjectItemsSection(project: project)
             ProjectQualitiesSection(project: project)
             ProjectColorSelectionSection(project: project)
             ProjectArchiveDeleteSection(project: project)
@@ -31,7 +31,7 @@ struct ProjectView: View {
 }
 
 #Preview(traits: .modifier(.persistenceLayer)) {
-    NavigationView {
+    NavigationStack {
         ProjectView(project: .example)
     }
 }
