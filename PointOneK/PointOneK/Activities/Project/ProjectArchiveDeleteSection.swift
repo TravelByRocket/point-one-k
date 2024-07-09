@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
+//    @Environment(\.modelContext) private var context
+
+//    @Bindable var projectV2: ProjectV2
+
     @ObservedObject var project: ProjectOld
 
     @State private var showingDeleteConfirm = false
@@ -26,7 +30,8 @@ struct ProjectArchiveDeleteSection: View {
                 project.closed.toggle()
             }
             .tint(.primary)
-            Button("Delete this project") {
+
+            Button("Delete this project", role: .destructive) {
                 showingDeleteConfirm.toggle()
             }
             .tint(.red)

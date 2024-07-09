@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ItemRowView: View {
+//    var itemV2: ItemV2
+
     @ObservedObject var project: ProjectOld
     @ObservedObject var item: ItemOld
 

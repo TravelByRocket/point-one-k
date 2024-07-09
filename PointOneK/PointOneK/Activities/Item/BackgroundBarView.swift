@@ -10,7 +10,6 @@ import SwiftUI
 struct BackgroundBarView: View {
     let value: Int
     let max: Int
-    var expandPadding = true
 
     var hueAngle: Angle {
         // avoid divide by zero error
@@ -26,6 +25,7 @@ struct BackgroundBarView: View {
             ZStack(alignment: .leading) {
                 Rectangle()
                     .foregroundColor(Color.secondarySystemGroupedBackground)
+
                 RoundedRectangle(cornerRadius: 3)
                     .padding(4)
                     .frame(

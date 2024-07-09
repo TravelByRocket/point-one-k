@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ItemDetailView: View {
+//    @Environment(\.modelContext) private var context
+
+//    @Bindable var itemV2: ItemV2
+
     @ObservedObject var item: ItemOld
 
     @EnvironmentObject var dataController: DataController
@@ -29,15 +33,18 @@ struct ItemDetailView: View {
                 TextField("Title", text: $title.onChange(update))
                     .font(.title)
             }
+
             ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) { quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
                     score: quality.score(for: item) ?? .example
                 )
             }
+
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
             }
+
             HStack {
                 Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
                 Spacer()
@@ -45,6 +52,7 @@ struct ItemDetailView: View {
             .listRowBackground(
                 BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
             )
+
             Section(header: Text("Item Note")) {
                 TextEditor(text: $note.onChange(update))
             }
