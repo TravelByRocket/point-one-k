@@ -34,7 +34,6 @@ struct ProjectArchiveDeleteSection: View {
             Button("Delete this project", role: .destructive) {
                 showingDeleteConfirm.toggle()
             }
-            .tint(.red)
         }
         .alert(isPresented: $showingDeleteConfirm) { getDeleteAlert() }
     }

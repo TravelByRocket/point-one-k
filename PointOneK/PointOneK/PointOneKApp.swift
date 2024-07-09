@@ -22,4 +22,12 @@ struct PointOneKApp: App {
                 .environmentObject(dataController)
         }
     }
+
+    var isInMemory: Bool {
+        #if DEBUG || TESTING
+            return true
+        #else
+            return false
+        #endif
+    }
 }
