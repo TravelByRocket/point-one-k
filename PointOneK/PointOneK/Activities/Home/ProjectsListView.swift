@@ -5,6 +5,7 @@
 //  Created by Bryan Costanza on 19 Sep 2021.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ProjectsListView: View {
@@ -16,6 +17,24 @@ struct ProjectsListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)],
         predicate: NSPredicate(format: "closed = false")
     ) var projects: FetchedResults<ProjectOld>
+
+    @Query(
+        filter: #Predicate<ProjectV2> { $0.closed == false },
+        sort: \ProjectV2.title,
+        order: .forward
+    )
+    private var projectsV2: [ProjectV2]
+
+    var body: some View {
+        Group {
+            if projects.isEmpty {
+                contentUnavailableView
+            } else {
+                projectsList
+            }
+        }
+        .navigationTitle("Open Projects")
+    }
 
     var projectsList: some View {
         List {
@@ -30,15 +49,11 @@ struct ProjectsListView: View {
         .listStyle(InsetGroupedListStyle())
     }
 
-    var body: some View {
-        Group {
-            if projects.isEmpty {
-                Text("There's nothing here right now")
-            } else {
-                projectsList
-            }
-        }
-        .navigationTitle("Open Projects")
+    var contentUnavailableView: some View {
+        ContentUnavailableView(
+            "No Projects Found",
+            systemImage: "exclamationmark.magnifyingglass"
+        )
     }
 }
 
