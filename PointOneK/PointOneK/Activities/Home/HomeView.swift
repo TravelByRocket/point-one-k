@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showingSettings = false
-
-    @EnvironmentObject private var dataController: DataController
+    @Environment(\.modelContext) private var context
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    var addProjectToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Button {
-                addProject()
-            } label: {
-                Label("Add Project", systemImage: "plus")
-            }
+    @EnvironmentObject private var dataController: DataController
+    @State private var showingSettings = false
+    @State private var newProjectTitle = ""
+    private let newProjectActivity = "co.synodic.PointOneK.newProject"
+
+    var body: some View {
+        NavigationStack {
+            ProjectsListView()
+                .toolbar { settingsToolbarItem }
+
+            addProjectRow
+                .padding()
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsView()
         }
     }
 
     var settingsToolbarItem: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
+        ToolbarItem(placement: .automatic) {
             Button {
                 showingSettings.toggle()
             } label: {
@@ -33,25 +39,41 @@ struct HomeView: View {
         }
     }
 
-    var body: some View {
-        NavigationStack {
-            ProjectsListView()
-                .sheet(isPresented: $showingSettings) {
-                    SettingsView()
-                }
-                .toolbar {
-                    settingsToolbarItem
-                    addProjectToolbarItem
-                }
+    // MARK: Add Project
+
+    var addProjectRow: some View {
+        HStack {
+            titleTextField
+            addProjectButton
         }
     }
 
-    func addProject() {
-        withAnimation {
-            let project = ProjectOld(context: managedObjectContext)
-            project.closed = false
-            dataController.save()
+    var titleTextField: some View {
+        TextField(
+            "Enter New Project Title",
+            text: $newProjectTitle
+        )
+        .textFieldStyle(.roundedBorder)
+    }
+
+    var addProjectButton: some View {
+        Button {
+            withAnimation {
+                addProject()
+            }
+        } label: {
+            Label("Add Project", systemImage: "plus")
         }
+        .labelStyle(.iconOnly)
+        .disabled(newProjectTitle.isEmpty)
+    }
+
+    func addProject() {
+        let project = ProjectOld(context: managedObjectContext)
+        project.closed = false
+        project.title = newProjectTitle
+        newProjectTitle = ""
+        dataController.save()
     }
 }
 
