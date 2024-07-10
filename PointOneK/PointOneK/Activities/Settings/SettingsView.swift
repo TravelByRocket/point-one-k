@@ -5,10 +5,25 @@
 //  Created by Bryan Costanza on 10 Dec 2021.
 //
 
+import SwiftData
 import SwiftUI
 import WidgetKit
 
 struct SettingsView: View {
+    @Query(
+        filter: #Predicate<ProjectV2> { $0.closed == true },
+        sort: \ProjectV2.title,
+        order: .forward
+    )
+    private var closedProjectsV2: [ProjectV2]
+
+    @Query(
+        filter: #Predicate<ProjectV2> { $0.closed == false },
+        sort: \ProjectV2.title,
+        order: .forward
+    )
+    private var openProjectsV2: [ProjectV2]
+
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) var managedObjectContext
 
@@ -28,6 +43,13 @@ struct SettingsView: View {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects)),
+        ]
+    }
+
+    var projectGroupsV2: [(label: String, projects: [ProjectV2])] {
+        [
+            (label: "Open Projects", projects: Array(openProjectsV2)),
+            (label: "Closed Projects", projects: Array(closedProjectsV2)),
         ]
     }
 
@@ -92,7 +114,6 @@ struct SettingsView: View {
                 }
             }
 
-            // DELETE DATA SECTION
             DeleteAllDataView()
         }
     }

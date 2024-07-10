@@ -11,6 +11,8 @@ struct ScoringRowDisclosing: View {
     let label: String
     let score: ScoreOld
 
+    // let score: ScoreV2
+
     var body: some View {
         DisclosureGroup {
             Text(score.quality?.qualityNote ?? "Quality not found")

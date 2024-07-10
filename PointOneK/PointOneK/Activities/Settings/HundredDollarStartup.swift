@@ -25,7 +25,7 @@ func makeHundredDollarStartup(_ dataController: DataController) {
     How easy is this project? Easier the better! And don't try too hard, the easy way is hard enough
     4) I can do this task in my sleep, like singing happy birthday. Or it takes little time or resources. <10s of hours for a project.
     3) I have to gather resources, maybe depend on others a little bit, or put in some effort to completing the task. 100s of hours for a project.
-    2) This will take substantial effort, studying, resources, or coordintation. 1000s of hours for a project.
+    2) This will take substantial effort, studying, resources, or coordination. 1000s of hours for a project.
     1) Huge amounts of resources. Many 1000s of hours for a project.
     """
 
