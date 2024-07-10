@@ -98,10 +98,6 @@ struct SettingsView: View {
     }
 }
 
-#Preview {
-    @Previewable var dataController = DataController.preview
-
+#Preview(traits: .modifier(.persistenceLayer)) {
     SettingsView()
-        .environment(\.managedObjectContext, dataController.container.viewContext)
-        .environmentObject(dataController)
 }
