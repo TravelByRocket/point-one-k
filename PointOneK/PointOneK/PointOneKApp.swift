@@ -9,11 +9,7 @@ import SwiftUI
 
 @main
 struct PointOneKApp: App {
-    @StateObject var dataController: DataController
-
-    init() {
-        _dataController = StateObject(wrappedValue: DataController())
-    }
+    @StateObject var dataController = DataController()
 
     var body: some Scene {
         WindowGroup {
@@ -21,5 +17,17 @@ struct PointOneKApp: App {
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environmentObject(dataController)
         }
+        .modelContainer(
+            for: ProjectV2.self,
+            inMemory: isInMemory
+        )
+    }
+
+    var isInMemory: Bool {
+        #if DEBUG || TESTING
+            return true
+        #else
+            return false
+        #endif
     }
 }

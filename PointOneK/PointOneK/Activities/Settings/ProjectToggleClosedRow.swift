@@ -8,38 +8,33 @@
 import SwiftUI
 
 struct ProjectToggleClosedRow: View {
-//    let isClosed: Bool
-//    let title: String
-    @ObservedObject private var project: ProjectOld
+    @ObservedObject var project: ProjectOld
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-
-    init(project: ProjectOld) {
-        _project = ObservedObject(initialValue: project)
-//        self.project = project
-//        isClosed = project.closed
-//        title = project.projectTitle
-    }
+    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var managedObjectContext
 
     var body: some View {
-        HStack {
-            Button {
-                withAnimation {
-                    project.objectWillChange.send()
-                    project.closed.toggle()
-                    dataController.save()
-                }
-            } label: {
-                Label {
-                    Text(project.projectTitle)
-                } icon: {
-                    Image(systemName: project.closed ? "arrow.up.circle" : "xmark.circle")
-                        .foregroundColor(project.closed ? .green : .gray)
-                }
-            }
+        Button(action: toggleClosed, label: { label })
             .buttonStyle(.plain)
+    }
+
+    private func toggleClosed() {
+        withAnimation {
+            project.closed.toggle()
         }
+    }
+
+    private var label: some View {
+        Label {
+            Text(project.projectTitle)
+        } icon: {
+            Image(systemName: systemName)
+                .foregroundColor(project.closed == true ? .green : .gray)
+        }
+    }
+
+    private var systemName: String {
+        project.closed == true ? "arrow.up.circle" : "xmark.circle"
     }
 }
 
