@@ -5,9 +5,17 @@
 //  Created by Bryan Costanza on 9 Mar 2022.
 //
 
+import SwiftData
 import SwiftUI
 
 struct DeleteAllDataView: View {
+    @Query(
+        filter: #Predicate<ProjectV2> { $0.closed == false },
+        sort: \ProjectV2.title,
+        order: .forward
+    )
+    private var projectsV2: [ProjectV2]
+
     @State private var enableDeleteButton = false
     @State private var showingDeleteAlert = false
 
