@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ProjectTitleEditView: View {
     @State private var title: String
-    let project: ProjectOld
 
-    init(project: ProjectOld) {
+    let project: ProjectV2
+
+    init(project: ProjectV2) {
         self.project = project
         _title = State(wrappedValue: project.projectTitle)
     }
@@ -22,7 +23,6 @@ struct ProjectTitleEditView: View {
     }
 
     func update() {
-        project.objectWillChange.send()
         project.title = title
     }
 }

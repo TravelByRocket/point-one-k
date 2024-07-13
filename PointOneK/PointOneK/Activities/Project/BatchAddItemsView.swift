@@ -8,35 +8,30 @@
 import SwiftUI
 
 struct BatchAddItemsView: View {
-    let project: ProjectOld
-
+    @Environment(\.dismiss) private var dismiss
     @State private var text: String = ""
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.dismiss) var dismiss
+    let project: ProjectV2
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("Add items below, separated by new lines")
+
             TextEditor(text: $text)
                 .overlay {
                     RoundedRectangle(cornerRadius: 5.0)
                         .stroke()
                 }
+
             HStack {
                 Spacer()
 
                 Button {
                     let lines = text.components(separatedBy: "\n")
 
-                    project.objectWillChange.send()
-
                     for line in lines {
                         project.addItem(titled: line)
                     }
-
-                    dataController.save()
 
                     dismiss()
                 } label: {

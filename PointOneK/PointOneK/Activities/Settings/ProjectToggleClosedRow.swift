@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ProjectToggleClosedRow: View {
-    @ObservedObject var project: ProjectOld
-
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Bindable var project: ProjectV2
 
     var body: some View {
         Button(action: toggleClosed, label: { label })
@@ -20,7 +17,7 @@ struct ProjectToggleClosedRow: View {
 
     private func toggleClosed() {
         withAnimation {
-            project.closed.toggle()
+            project.closed = !(project.closed ?? false)
         }
     }
 

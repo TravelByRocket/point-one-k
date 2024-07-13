@@ -9,12 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(\.modelContext) private var context
-    @Environment(\.managedObjectContext) private var managedObjectContext
 
-    @EnvironmentObject private var dataController: DataController
     @State private var showingSettings = false
     @State private var newProjectTitle = ""
-    private let newProjectActivity = "co.synodic.PointOneK.newProject"
 
     var body: some View {
         NavigationStack {
@@ -69,11 +66,11 @@ struct HomeView: View {
     }
 
     func addProject() {
-        let project = ProjectOld(context: managedObjectContext)
+        let project = ProjectV2()
         project.closed = false
         project.title = newProjectTitle
         newProjectTitle = ""
-        dataController.save()
+        context.insert(project)
     }
 }
 

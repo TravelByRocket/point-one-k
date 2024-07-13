@@ -9,13 +9,9 @@ import SwiftUI
 
 @main
 struct PointOneKApp: App {
-    @StateObject var dataController = DataController()
-
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
         }
         .modelContainer(
             for: ProjectV2.self,

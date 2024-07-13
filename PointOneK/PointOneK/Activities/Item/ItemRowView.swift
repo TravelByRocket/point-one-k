@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    @ObservedObject var project: ProjectOld
-    @ObservedObject var item: ItemOld
+    @Bindable var project: ProjectV2
+    @Bindable var item: ItemV2
 
     var body: some View {
         HStack {
@@ -21,7 +21,7 @@ struct ItemRowView: View {
             ForEach(project.projectQualities) { quality in
                 InfoPill(
                     letter: quality.qualityIndicatorCharacter,
-                    level: quality.score(for: item)?.scoreValue ?? 0
+                    level: Int(quality.score(for: item)?.value ?? 0)
                 )
             }
         }

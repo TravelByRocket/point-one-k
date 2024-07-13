@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: ProjectOld
+    @Environment(\.modelContext) private var context
 
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Bindable var project: ProjectV2
 
-    var qualities: [QualityOld] {
-        project.projectQualities.sorted(by: \QualityOld.qualityTitle)
+    var qualities: [QualityV2] {
+        project.projectQualities.sorted(by: \QualityV2.qualityTitle)
     }
 
     var body: some View {
@@ -33,22 +32,22 @@ struct ProjectQualitiesSection: View {
                     }
                 }
             }
-            .onDelete(perform: { offsets in
+            .onDelete { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
-                        dataController.delete(quality)
+                        context.delete(quality)
                     }
                 }
-                dataController.save()
-            })
+            }
+
             if qualities.isEmpty {
                 Text("No qualities in this project")
             }
+
             Button {
                 withAnimation {
                     project.addQuality()
-                    dataController.save()
                 }
             } label: {
                 Label("Add New Quality", systemImage: "plus")

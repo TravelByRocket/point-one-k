@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProjectDetailEditView: View {
     @State private var detail: String
-    let project: ProjectOld
+    let project: ProjectV2
 
-    init(project: ProjectOld) {
+    init(project: ProjectV2) {
         self.project = project
         _detail = State(wrappedValue: project.projectDetail)
     }
@@ -22,7 +22,6 @@ struct ProjectDetailEditView: View {
     }
 
     func update() {
-        project.objectWillChange.send()
         project.detail = detail
     }
 }

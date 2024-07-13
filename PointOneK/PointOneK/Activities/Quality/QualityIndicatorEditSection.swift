@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct QualityIndicatorEditSection: View {
-    @ObservedObject var quality: QualityOld
+    @Bindable var quality: QualityV2
     @State private var indicatorFieldString: String
 
     @State var overrideIndicator: Bool
 
-    init(quality: QualityOld) {
+    init(quality: QualityV2) {
         self.quality = quality
         _indicatorFieldString = State(
             initialValue: quality.indicatorCharacter?.asString ?? quality.defaultQualityIndicator.asString)
@@ -55,7 +55,6 @@ struct QualityIndicatorEditSection: View {
 
             Toggle("Override Default Symbol", isOn: $overrideIndicator.animation())
                 .onChange(of: overrideIndicator) {
-                    quality.project?.objectWillChange.send()
                     if overrideIndicator, let char = indicatorFieldString.first {
                         quality.indicator = String(char)
                     } else {
@@ -83,7 +82,6 @@ struct QualityIndicatorEditSection: View {
 
     func update() {
         let indicatorCharacter = indicatorFieldString.first
-        quality.project?.objectWillChange.send()
         quality.indicator = indicatorCharacter?.asString
     }
 }

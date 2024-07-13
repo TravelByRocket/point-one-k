@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ScoringRow: View {
     let label: String
-    private let score: ScoreOld
+    private let score: ScoreV2
     @State private var value: Int
 
-    init(label: String, score: ScoreOld) {
+    init(label: String, score: ScoreV2) {
         self.label = label
         self.score = score
-        _value = State(initialValue: score.scoreValue)
+        _value = State(initialValue: score.value ?? 0)
     }
 
     var body: some View {
@@ -24,9 +24,7 @@ struct ScoringRow: View {
             Spacer()
             LevelSelector(value: $value)
                 .onChange(of: value) {
-                    score.item?.objectWillChange.send()
-                    score.objectWillChange.send()
-                    score.value = Int16(value)
+                    score.value = value
                 }
         }
     }

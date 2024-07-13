@@ -9,10 +9,7 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    let project: ProjectOld
-
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    let project: ProjectV2
 
     var body: some View {
         Form {
@@ -26,7 +23,6 @@ struct ProjectView: View {
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")
-        .onDisappear(perform: dataController.save)
     }
 }
 

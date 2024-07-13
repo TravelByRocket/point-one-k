@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BatchAddButtonView: View {
-    let project: ProjectOld
+    let project: ProjectV2
 
     @State private var holdCompletionPct: CGFloat = 0.0
     @State private var showBatchEntry = false

@@ -29,17 +29,18 @@ struct Provider: TimelineProvider {
         completion(timeline)
     }
 
-    func loadProject() -> ProjectOld {
-        let dataController = DataController()
-        let projects = (try? dataController.container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
-        if let project = dataController.widgetProject {
-            return project
-        }
+    func loadProject() -> ProjectV2 {
+        #warning("loading widget project is disabled")
+//        let dataController = DataController()
+//        let projects = (try? dataController.container.viewContext.fetch(ProjectV2.fetchRequest())) ?? []
+//        if let project = dataController.widgetProject {
+//            return project
+//        }
 
         // Use the first project as backup
-        if let project = projects.sorted(by: \ProjectOld.projectTitle).first {
-            return project
-        }
+//        if let project = projects.sorted(by: \ProjectV2.projectTitle).first {
+//            return project
+//        }
 
         // Use example as last resort
         return .example
@@ -48,5 +49,5 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let project: ProjectOld
+    let project: ProjectV2
 }

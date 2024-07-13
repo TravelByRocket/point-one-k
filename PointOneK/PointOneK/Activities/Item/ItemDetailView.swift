@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @ObservedObject var item: ItemOld
+    @Bindable private var item: ItemV2
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @State private var title: String
+    @State private var note: String
 
-    @State var title: String
-    @State var note: String
-
-    init(item: ItemOld) {
+    init(item: ItemV2) {
         self.item = item
 
         _title = State(wrappedValue: item.itemTitle)
@@ -29,7 +26,7 @@ struct ItemDetailView: View {
                 TextField("Title", text: $title.onChange(update))
                     .font(.title)
             }
-            ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) { quality in
+            ForEach(item.projectQualities.sorted(by: \QualityV2.qualityTitle)) { quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
                     score: quality.score(for: item) ?? .example
@@ -50,17 +47,11 @@ struct ItemDetailView: View {
             }
         }
         .navigationTitle("Edit Item")
-        .onDisappear(perform: save)
     }
 
     func update() {
-        item.project?.objectWillChange.send()
         item.title = title
         item.note = note
-    }
-
-    func save() {
-        dataController.update(item)
     }
 }
 

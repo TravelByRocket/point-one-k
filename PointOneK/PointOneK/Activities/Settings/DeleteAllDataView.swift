@@ -9,24 +9,18 @@ import SwiftData
 import SwiftUI
 
 struct DeleteAllDataView: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
+
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == false },
         sort: \ProjectV2.title,
         order: .forward
     )
-    private var projectsV2: [ProjectV2]
+    private var projects: [ProjectV2]
 
     @State private var enableDeleteButton = false
     @State private var showingDeleteAlert = false
-
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.dismiss) var dismiss
-
-    @FetchRequest(
-        entity: ProjectOld.entity(),
-        sortDescriptors: []
-    ) var projects: FetchedResults<ProjectOld>
 
     var body: some View {
         Section(header: Text("Delete All")) {
@@ -52,13 +46,8 @@ struct DeleteAllDataView: View {
 
             Button(role: .destructive) {
                 for project in projects {
-                    project.objectWillChange.send()
-                    dataController.delete(project)
+                    context.delete(project)
                 }
-
-                dataController.deleteAll()
-
-                dataController.save()
 
                 withAnimation {
                     showingDeleteAlert = false
