@@ -14,7 +14,7 @@ class PerformanceTests: XCTestCase {
         let btc = BaseTestCase()
         measure {
             for _ in 0 ..< 100 {
-                try? btc.dataController.createSampleData()
+                try? btc.context.addSampleData()
             }
         }
     }
