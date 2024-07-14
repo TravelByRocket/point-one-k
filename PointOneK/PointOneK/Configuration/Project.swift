@@ -14,10 +14,10 @@ import SwiftData
     var detail: String?
     var title: String?
 
-    @Relationship(deleteRule: .cascade)
+    @Relationship(deleteRule: .cascade, inverse: \ItemV2.project)
     var items: [ItemV2]?
 
-    @Relationship(deleteRule: .cascade)
+    @Relationship(deleteRule: .cascade, inverse: \QualityV2.project)
     var qualities: [QualityV2]?
 
     public init() {}

@@ -36,12 +36,12 @@ struct ItemDetailView: View {
                 Text("No project qualities exist")
             }
             HStack {
-                Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
+//                Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
                 Spacer()
             }
-            .listRowBackground(
-                BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
-            )
+//            .listRowBackground(
+//                BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
+//            )
             Section(header: Text("Item Note")) {
                 TextEditor(text: $note.onChange(update))
             }

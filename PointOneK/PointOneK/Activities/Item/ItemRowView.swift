@@ -5,11 +5,20 @@
 //  Created by Bryan Costanza on 20 Sep 2021.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ItemRowView: View {
-    @Bindable var project: ProjectV2
     @Bindable var item: ItemV2
+
+    // Workaround for conflict of delete with ForEach
+    @Query private var scoresQuery: [ScoreV2]
+    private var qualities: [QualityV2] {
+        scoresQuery
+            .filter { $0.item == item }
+            .compactMap(\.quality)
+            .sorted(by: \QualityV2.qualityTitle)
+    }
 
     var body: some View {
         HStack {
@@ -18,17 +27,17 @@ struct ItemRowView: View {
 
             Spacer()
 
-            ForEach(project.projectQualities) { quality in
+            ForEach(qualities) { quality in
                 InfoPill(
                     letter: quality.qualityIndicatorCharacter,
-                    level: Int(quality.score(for: item)?.value ?? 0)
+                    level: quality.score(for: item)?.value ?? 0
                 )
             }
         }
         .listRowBackground(
             BackgroundBarView(
                 value: item.scoreTotal,
-                max: project.scorePossible
+                max: item.project?.scorePossible ?? 0
             )
         )
     }
@@ -37,7 +46,7 @@ struct ItemRowView: View {
 #Preview {
     NavigationStack {
         List {
-            ItemRowView(project: .example, item: .example)
+            ItemRowView(item: .example)
         }
     }
 }

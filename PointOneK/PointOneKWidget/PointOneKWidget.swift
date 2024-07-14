@@ -38,7 +38,8 @@ struct PointOneKWidgetEntryView: View {
                     }
                     .background {
                         BackgroundBarView(
-                            value: item.scoreTotal,
+                            value: 1,
+//                            value: item.scoreTotal,
                             max: entry.project.scorePossible
                         )
                         .padding(-3)
@@ -63,9 +64,10 @@ struct PointOneKWidgetEntryView: View {
         }
     }
 
-    func trimToFor(project: ProjectV2, item: ItemV2) -> CGFloat {
+    func trimToFor(project: ProjectV2, item _: ItemV2) -> CGFloat {
         if project.scorePossible > 0 {
-            CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
+            0.0
+//            CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
         } else {
             0.0
         }

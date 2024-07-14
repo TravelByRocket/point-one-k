@@ -41,7 +41,16 @@ extension ProjectV2 {
 
     func addItem(titled title: String? = nil) {
         let item = ItemV2()
+        modelContext?.insert(item)
+
+        do {
+            try modelContext?.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+
         item.project = self
+        items = (items ?? []) + [item]
 
         if let title {
             item.title = title
@@ -49,19 +58,42 @@ extension ProjectV2 {
 
         for quality in projectQualities {
             let score = ScoreV2()
+            modelContext?.insert(score)
             score.item = item
             score.quality = quality
+        }
+
+        do {
+            try modelContext?.save()
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
     func addQuality() {
         let quality = QualityV2()
+        modelContext?.insert(quality)
+
+        do {
+            try modelContext?.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+
         quality.project = self
+        qualities = (qualities ?? []) + [quality]
 
         for item in projectItems {
             let score = ScoreV2()
+            modelContext?.insert(score)
             score.item = item
             score.quality = quality
+        }
+
+        do {
+            try modelContext?.save()
+        } catch {
+            print(error.localizedDescription)
         }
     }
 
@@ -100,16 +132,18 @@ extension ProjectV2 {
     func projectItems(using sortOrder: ItemV2.SortOrder) -> [ItemV2] {
         switch sortOrder {
         case .title:
-            projectItems.sorted(by: \ItemV2.scoreTotal).reversed()
+            projectItems
+//                    .sorted(by: \ItemV2.scoreTotal).reversed()
                 .sorted(by: \ItemV2.itemTitle.localizedLowercase)
         case .score:
-            projectItems.sorted { first, second in
-                if first.scoreTotal != second.scoreTotal {
-                    first.scoreTotal > second.scoreTotal // larger first
-                } else {
-                    first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
-                }
-            }
+            projectItems
+//                    .sorted { first, second in
+//                        if first.scoreTotal != second.scoreTotal {
+//                            first.scoreTotal > second.scoreTotal // larger first
+//                        } else {
+//                            first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
+//                        }
+//                    }
         }
     }
 }

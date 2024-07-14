@@ -11,9 +11,10 @@ import SwiftData
 @Model public class ItemV2 {
     var note: String?
     var title: String?
+
     var project: ProjectV2?
 
-    @Relationship(deleteRule: .cascade)
+    @Relationship(deleteRule: .cascade, inverse: \ScoreV2.item)
     var scores: [ScoreV2]?
 
     public init() {}

@@ -71,6 +71,12 @@ struct HomeView: View {
         project.title = newProjectTitle
         newProjectTitle = ""
         context.insert(project)
+
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 
