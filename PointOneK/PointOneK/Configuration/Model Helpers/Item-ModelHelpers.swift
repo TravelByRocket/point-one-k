@@ -29,10 +29,10 @@ extension ItemV2 {
     }
 
     var scoreTotal: Int {
-        itemScores
+        scores?
             .compactMap(\.value)
-            .map { Int($0) }
             .reduce(0, +)
+            ?? 0
     }
 
     static var example: ItemV2 {
@@ -44,7 +44,9 @@ extension ItemV2 {
     }
 
     func hasScore(for quality: QualityV2) -> Bool {
-        let scoredQualities = itemScores.map(\.quality)
-        return scoredQualities.contains(quality)
+        scores?
+            .compactMap(\.quality)
+            .contains(quality)
+            ?? false
     }
 }
