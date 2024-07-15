@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectRowView: View {
-    var project: ProjectOld
+    @ObservedObject var project: ProjectOld
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -28,13 +28,15 @@ struct ProjectRowView: View {
     }
 
     var summary: String {
-        "\(project.projectQualities.count) Qualities, \(project.projectItems.count) Items"
+        let qualitiesCount = project.projectQualities.count
+        let itemsCount = project.projectItems.count
+        return "\(qualitiesCount) Qualities, \(itemsCount) Items"
     }
 
     var qualitiesList: String {
         project.projectQualities
             .map(\.qualityTitle)
-            .sorted { $0.lowercased() < $1.lowercased() }
+            .sorted { $0.localizedCompare($1) == .orderedAscending }
             .joined(separator: ", ")
     }
 }
