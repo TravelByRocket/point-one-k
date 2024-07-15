@@ -12,6 +12,7 @@ struct ProjectQualitiesSection: View {
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
+    @State private var newQualityName = ""
 
     var qualities: [QualityOld] {
         project.projectQualities.sorted(by: \QualityOld.qualityTitle)
@@ -35,26 +36,38 @@ struct ProjectQualitiesSection: View {
                     }
                 }
             }
-            .onDelete(perform: { offsets in
+            .onDelete { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
+                        quality.objectWillChange.send()
+                        project.objectWillChange.send()
+                        dataController.delete(quality)
+                        dataController.save()
+                        dataController.objectWillChange.send()
                         dataController.delete(quality)
                     }
                 }
                 dataController.save()
-            })
-            if qualities.isEmpty {
-                Text("No qualities in this project")
             }
-            Button {
-                withAnimation {
-                    project.addQuality()
-                    dataController.save()
+
+            HStack {
+                TextField("New Quality Name", text: $newQualityName)
+                    .textFieldStyle(.roundedBorder)
+
+                Button {
+                    withAnimation {
+                        project.addQuality(titled: newQualityName)
+                        project.objectWillChange.send()
+                        dataController.save()
+                        newQualityName = ""
+                    }
+                } label: {
+                    Label("Add New Quality", systemImage: "plus")
+                        .labelStyle(.iconOnly)
+                        .accessibilityLabel("Add new item")
                 }
-            } label: {
-                Label("Add New Quality", systemImage: "plus")
-                    .accessibilityLabel("Add project")
+                .disabled(newQualityName.isEmpty)
             }
         }
     }

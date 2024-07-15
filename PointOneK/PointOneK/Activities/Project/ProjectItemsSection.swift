@@ -12,6 +12,8 @@ struct ProjectItemsSection: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
 
     @State private var sortOrder = ItemOld.SortOrder.score
+    @State private var newItemName = ""
+
     let project: ProjectOld
 
     var itemSortingHeader: some View {
@@ -58,30 +60,32 @@ struct ProjectItemsSection: View {
                 withAnimation {
                     for offset in offsets {
                         let item = project.projectItems[offset]
+                        item.objectWillChange.send()
+                        project.objectWillChange.send()
                         dataController.delete(item)
+                        dataController.save()
+                        dataController.objectWillChange.send()
                     }
                 }
-            }
-
-            if project.projectItems.isEmpty {
-                Text("No items in this project")
             }
 
             HStack {
+                TextField("New Item Name", text: $newItemName)
+                    .textFieldStyle(.roundedBorder)
+
                 Button {
                     withAnimation {
-                        project.addItem()
+                        project.addItem(titled: newItemName)
                         project.objectWillChange.send()
                         dataController.save()
+                        newItemName = ""
                     }
                 } label: {
                     Label("Add New Item", systemImage: "plus")
+                        .labelStyle(.iconOnly)
                         .accessibilityLabel("Add new item")
                 }
-
-                Spacer()
-
-                BatchAddButtonView(project: project)
+                .disabled(newItemName.isEmpty)
             }
         }
     }
