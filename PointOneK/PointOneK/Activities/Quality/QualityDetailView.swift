@@ -14,7 +14,7 @@ struct QualityDetailView: View {
     @State var note: String
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) private var managedObjectContext
 
     init(quality: QualityOld) {
         self.quality = quality

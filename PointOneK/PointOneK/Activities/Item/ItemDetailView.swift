@@ -11,7 +11,7 @@ struct ItemDetailView: View {
     @ObservedObject var item: ItemOld
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) private var managedObjectContext
 
     @State var title: String
     @State var note: String
