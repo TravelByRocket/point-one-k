@@ -9,7 +9,12 @@
 import SwiftData
 
 @Model public class ScoreV2 {
-    var value: Int16?
+    // Attributes
+
+    var value: Int?
+
+    // Relationships
+
     var item: ItemV2?
     var quality: QualityV2?
 

@@ -9,10 +9,14 @@
 import SwiftData
 
 @Model public class ProjectV2 {
+    // Attributes
+
     var closed: Bool?
     var color: String?
     var detail: String?
     var title: String?
+
+    // Relationships
 
     @Relationship(deleteRule: .cascade)
     var items: [ItemV2]?
