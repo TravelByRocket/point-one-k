@@ -77,7 +77,7 @@ extension PersistenceLayerPreviewModifier {
                     let score = ScoreV2()
                     score.item = item
                     score.quality = quality
-                    score.value = Int16.random(in: 1 ... 4)
+                    score.value = Int.random(in: 1 ... 4)
                 }
             }
 
