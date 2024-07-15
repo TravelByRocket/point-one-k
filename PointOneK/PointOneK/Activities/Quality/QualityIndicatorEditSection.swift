@@ -28,10 +28,17 @@ struct QualityIndicatorEditSection: View {
                         .font(.footnote)
 
                     HStack {
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+                        if quality.isReversed {
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
+                        } else {
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
+                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+                        }
                     }
                 }
                 .padding(10)
@@ -62,6 +69,8 @@ struct QualityIndicatorEditSection: View {
                         quality.indicator = nil
                     }
                 }
+
+            Toggle("Reverse Order", isOn: $quality.isReversed.animation())
 
             if overrideIndicator {
                 HStack {

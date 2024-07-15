@@ -25,11 +25,13 @@ struct ProjectQualitiesSection: View {
                 } label: {
                     HStack {
                         Text(quality.qualityTitle)
+
                         Spacer()
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+
+                        infoPills(
+                            character: quality.qualityIndicatorCharacter,
+                            isReversed: quality.isReversed
+                        )
                     }
                 }
             }
@@ -54,6 +56,15 @@ struct ProjectQualitiesSection: View {
                 Label("Add New Quality", systemImage: "plus")
                     .accessibilityLabel("Add project")
             }
+        }
+    }
+
+    @ViewBuilder
+    private func infoPills(character: Character, isReversed: Bool) -> some View {
+        let levels = isReversed ? [4, 3, 2, 1] : [1, 2, 3, 4]
+
+        ForEach(levels, id: \.self) { level in
+            InfoPill(letter: character, level: level)
         }
     }
 }
