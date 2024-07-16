@@ -82,8 +82,8 @@ struct PointOneKWidget: Widget {
         ) { entry in
             PointOneKWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Project Top Items")
+        .description("See the top scored items in your project.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
