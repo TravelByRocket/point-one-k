@@ -34,12 +34,15 @@ struct QualityDetailView: View {
                 TextField("Title", text: $title.onChange(update), prompt: Text("Title here"))
                     .font(.title)
             }
+
             Section(header: Text("Scoring Notes"), footer: scoringFooter) {
                 TextEditor(text: $note.onChange(update))
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
             }
+
             QualityIndicatorEditSection(quality: quality)
+
             Section(header: Text("Scores")) {
                 ForEach(
                     quality.qualityScores
@@ -51,6 +54,7 @@ struct QualityDetailView: View {
                         score: score
                     )
                 }
+
                 if quality.qualityScores.isEmpty {
                     Text("Project items will show up here")
                         .foregroundColor(.secondary)
