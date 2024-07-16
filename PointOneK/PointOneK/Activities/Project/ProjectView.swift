@@ -30,6 +30,9 @@ struct ProjectView: View {
                 selectedColorName: $project.color,
                 colorNames: Project.colors
             )
+            .onChange(of: project.color) {
+                dataController.save()
+            }
 
             ProjectArchiveDeleteSection(project: project)
         }

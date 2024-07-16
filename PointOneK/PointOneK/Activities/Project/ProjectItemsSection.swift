@@ -45,7 +45,7 @@ struct ProjectItemsSection: View {
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(project: project, item: item)
+                    ItemRowView(item: item)
                         .listRowBackground(
                             BackgroundBarView(
                                 value: item.scoreTotal,
