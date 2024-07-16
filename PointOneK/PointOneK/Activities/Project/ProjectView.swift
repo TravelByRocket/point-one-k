@@ -9,7 +9,7 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    let project: ProjectOld
+    let project: Project
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext

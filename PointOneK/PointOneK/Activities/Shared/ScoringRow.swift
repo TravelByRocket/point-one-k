@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ScoringRow: View {
     let label: String
-    private let score: ScoreOld
+    private let score: Score
     @State private var value: Int
 
-    init(label: String, score: ScoreOld) {
+    init(label: String, score: Score) {
         self.label = label
         self.score = score
         _value = State(initialValue: score.scoreValue)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProjectRowView: View {
-    @ObservedObject var project: ProjectOld
+    @ObservedObject var project: Project
 
     var body: some View {
         VStack(alignment: .leading) {

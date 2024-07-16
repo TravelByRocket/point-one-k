@@ -56,11 +56,16 @@ extension ProjectOld {
         }
     }
 
-    func addQuality() {
+    func addQuality(titled title: String? = nil) {
         guard let moc = managedObjectContext else { return }
 
         let quality = QualityOld(context: moc)
         quality.project = self
+
+        if let title {
+            quality.title = title
+        }
+
         for item in projectItems {
             let score = ScoreOld(context: moc)
             score.item = item
