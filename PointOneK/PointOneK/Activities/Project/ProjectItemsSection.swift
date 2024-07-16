@@ -46,13 +46,13 @@ struct ProjectItemsSection: View {
                     ItemDetailView(item: item)
                 } label: {
                     ItemRowView(item: item)
-                        .listRowBackground(
-                            BackgroundBarView(
-                                value: item.scoreTotal,
-                                max: project.scorePossible
-                            )
-                        )
                 }
+                .listRowBackground(
+                    BackgroundBarView(
+                        value: item.scoreTotal,
+                        max: project.scorePossible
+                    )
+                )
             }
             .onDelete { offsets in
                 withAnimation {
