@@ -54,14 +54,18 @@ extension ProjectV2 {
         }
     }
 
-    func addQuality() {
+    func addQuality(titled title: String? = nil) {
         let quality = QualityV2()
         quality.project = self
 
+        if let title {
+            quality.title = title
+        }
+
         for item in projectItems {
             let score = ScoreV2()
-            score.item = item
             score.quality = quality
+            score.item = item
         }
     }
 
