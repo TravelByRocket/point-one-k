@@ -1,5 +1,5 @@
 //
-//  TitleAddingButton.swift
+//  TitleAddingRow.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 7/15/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TitleAddingButton: View {
+struct TitleAddingRow: View {
     @State private var text: String = ""
 
     let prompt: String
@@ -40,7 +40,7 @@ struct TitleAddingButton: View {
 
 #Preview {
     Form {
-        TitleAddingButton(
+        TitleAddingRow(
             prompt: "New Item Name",
             onAdd: { _ in }
         )

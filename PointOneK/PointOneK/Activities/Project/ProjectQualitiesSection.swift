@@ -48,7 +48,7 @@ struct ProjectQualitiesSection: View {
                 dataController.save()
             }
 
-            TitleAddingButton(prompt: "Add New Quality") { _ in
+            TitleAddingRow(prompt: "Add New Quality") { _ in
                 withAnimation {
                     #warning("add with quality title when merged")
                     project.addQuality()

@@ -63,7 +63,7 @@ struct ProjectItemsSection: View {
                 }
             }
 
-            TitleAddingButton(prompt: "Add New Item") { title in
+            TitleAddingRow(prompt: "Add New Item") { title in
                 withAnimation {
                     project.addItem(titled: title)
                     project.objectWillChange.send()
