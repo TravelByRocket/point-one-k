@@ -33,26 +33,23 @@ struct ProjectQualitiesSection: View {
                     }
                 }
             }
-            .onDelete(perform: { offsets in
+            .onDelete { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
                         dataController.delete(quality)
                     }
                 }
+
                 dataController.save()
-            })
-            if qualities.isEmpty {
-                Text("No qualities in this project")
             }
-            Button {
+
+            TitleAddingButton(prompt: "Add New Quality") { _ in
                 withAnimation {
+                    #warning("add with quality title when merged")
                     project.addQuality()
                     dataController.save()
                 }
-            } label: {
-                Label("Add New Quality", systemImage: "plus")
-                    .accessibilityLabel("Add project")
             }
         }
     }

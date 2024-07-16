@@ -12,7 +12,8 @@ struct ProjectItemsSection: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
 
     @State private var sortOrder = ItemOld.SortOrder.score
-    let project: ProjectOld
+
+    @ObservedObject var project: ProjectOld
 
     var itemSortingHeader: some View {
         HStack {
@@ -63,25 +64,12 @@ struct ProjectItemsSection: View {
                 }
             }
 
-            if project.projectItems.isEmpty {
-                Text("No items in this project")
-            }
-
-            HStack {
-                Button {
-                    withAnimation {
-                        project.addItem()
-                        project.objectWillChange.send()
-                        dataController.save()
-                    }
-                } label: {
-                    Label("Add New Item", systemImage: "plus")
-                        .accessibilityLabel("Add new item")
+            TitleAddingButton(prompt: "Add New Item") { title in
+                withAnimation {
+                    project.addItem(titled: title)
+//                    project.objectWillChange.send()
+                    dataController.save()
                 }
-
-                Spacer()
-
-                BatchAddButtonView(project: project)
             }
         }
     }
