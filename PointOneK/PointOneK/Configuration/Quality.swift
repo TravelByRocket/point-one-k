@@ -13,6 +13,7 @@ import SwiftData
     var note: String?
     var title: String?
     var project: ProjectV2?
+    var isReversed: Bool = false
 
     @Relationship(deleteRule: .cascade)
     var scores: [ScoreV2]?

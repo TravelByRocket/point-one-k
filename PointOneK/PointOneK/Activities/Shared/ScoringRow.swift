@@ -21,13 +21,18 @@ struct ScoringRow: View {
     var body: some View {
         HStack {
             Text(label)
+
             Spacer()
-            LevelSelector(value: $value)
-                .onChange(of: value) {
-                    score.item?.objectWillChange.send()
-                    score.objectWillChange.send()
-                    score.value = Int16(value)
-                }
+
+            LevelSelector(
+                value: $value,
+                possibleScores: score.quality?.possibleScores(maxScore: 4) ?? []
+            )
+            .onChange(of: value) {
+                score.item?.objectWillChange.send()
+                score.objectWillChange.send()
+                score.value = Int16(value)
+            }
         }
     }
 }

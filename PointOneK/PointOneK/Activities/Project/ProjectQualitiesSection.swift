@@ -25,11 +25,15 @@ struct ProjectQualitiesSection: View {
                 } label: {
                     HStack {
                         Text(quality.qualityTitle)
+
                         Spacer()
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+
+                        ForEach(quality.possibleScores(maxScore: 4), id: \.self) { level in
+                            InfoPill(
+                                letter: quality.qualityIndicatorCharacter,
+                                level: level
+                            )
+                        }
                     }
                 }
             }

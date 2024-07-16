@@ -10,6 +10,7 @@ import SwiftUI
 
 struct LevelSelector: View {
     @Binding var value: Int
+    let possibleScores: [Int]
 
     @State private var engine = try? CHHapticEngine()
 
@@ -20,21 +21,21 @@ struct LevelSelector: View {
                     .foregroundColor(.orange)
                     .imageScale(.large)
             }
-            ForEach(1 ... 4, id: \.self) { index in
+            ForEach(possibleScores, id: \.self) { level in
                 Button(
                     action: {
                         withAnimation {
-                            if value == index {
+                            if value == level {
                                 value = 0
                                 valueClearHaptic(engine: engine)
                             } else {
-                                value = index
+                                value = level
                                 UINotificationFeedbackGenerator().notificationOccurred(.success)
                             }
                         }
                     },
                     label: {
-                        Image(systemName: "\(index).square\(value == index ? ".fill" : "")")
+                        Image(systemName: "\(level).square\(value == level ? ".fill" : "")")
                             .font(.title)
                             .padding(.horizontal, -3)
                     }
@@ -50,7 +51,7 @@ struct LevelSelector: View {
     @Previewable @State var valueB = 0
 
     VStack(alignment: .trailing, spacing: 20) {
-        LevelSelector(value: $valueA)
-        LevelSelector(value: $valueB)
+        LevelSelector(value: $valueA, possibleScores: [1, 2, 3, 4])
+        LevelSelector(value: $valueB, possibleScores: [1, 2, 3, 4].reversed())
     }
 }

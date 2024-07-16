@@ -70,4 +70,9 @@ extension QualityOld {
         }
         return nil
     }
+
+    func possibleScores(maxScore: Int) -> [Int] {
+        let scores = Array(1 ... maxScore)
+        return isReversed ? scores.reversed() : scores
+    }
 }
