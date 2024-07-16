@@ -10,9 +10,9 @@ import SwiftUI
 struct ProjectItemsSection: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-
     @State private var sortOrder = Item.SortOrder.score
-    let project: Project
+
+    @ObservedObject var project: ProjectOld
 
     var itemSortingHeader: some View {
         HStack {
@@ -63,21 +63,13 @@ struct ProjectItemsSection: View {
                 }
             }
 
-            if project.projectItems.isEmpty {
-                Text("No items in this project")
-            }
-
-            Button {
+            TitleAddingRow(prompt: "Add New Item") { title in
                 withAnimation {
-                    project.addItem()
+                    project.addItem(titled: title)
                     project.objectWillChange.send()
                     dataController.save()
                 }
-            } label: {
-                Label("Add New Item", systemImage: "plus")
-                    .accessibilityLabel("Add new item")
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
