@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+typealias Project = ProjectOld
+typealias Item = ItemOld
+typealias Quality = QualityOld
+typealias Score = ScoreOld
+
 @main
 struct PointOneKApp: App {
     @StateObject var dataController = DataController()
