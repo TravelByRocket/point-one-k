@@ -67,22 +67,17 @@ struct ProjectItemsSection: View {
                 Text("No items in this project")
             }
 
-            HStack {
-                Button {
-                    withAnimation {
-                        project.addItem()
-                        project.objectWillChange.send()
-                        dataController.save()
-                    }
-                } label: {
-                    Label("Add New Item", systemImage: "plus")
-                        .accessibilityLabel("Add new item")
+            Button {
+                withAnimation {
+                    project.addItem()
+                    project.objectWillChange.send()
+                    dataController.save()
                 }
-
-                Spacer()
-
-                BatchAddButtonView(project: project)
+            } label: {
+                Label("Add New Item", systemImage: "plus")
+                    .accessibilityLabel("Add new item")
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
