@@ -11,7 +11,7 @@ struct ProjectItemsSection: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    @State private var sortOrder = ItemOld.SortOrder.score
+    @State private var sortOrder = Item.SortOrder.score
     let project: Project
 
     var itemSortingHeader: some View {
