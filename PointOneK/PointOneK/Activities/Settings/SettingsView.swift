@@ -39,7 +39,7 @@ struct SettingsView: View {
             .foregroundColor(.secondary)
     }
 
-    var projectGroups: [(label: String, projects: [ProjectOld])] {
+    var projectGroups: [(label: String, projects: [Project])] {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects)),
@@ -91,7 +91,7 @@ struct SettingsView: View {
                 footer: Text("If you close your widget project it will remain visible in the widget.")
             ) {
                 Picker("Pick Project", selection: $widgetProject) {
-                    ForEach(openProjects.sorted(by: \ProjectOld.projectTitle)) { project in
+                    ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
                         Text(project.projectTitle)
                             .tag((project.objectID.uriRepresentation()) as URL?)
                     }
