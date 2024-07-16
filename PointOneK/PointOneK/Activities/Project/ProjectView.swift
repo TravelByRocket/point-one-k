@@ -9,7 +9,7 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    let project: Project
+    @ObservedObject var project: Project
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
@@ -17,12 +17,20 @@ struct ProjectView: View {
     var body: some View {
         Form {
             ProjectTitleEditView(project: project)
+
             Section(header: Text("Description")) {
                 ProjectDetailEditView(project: project)
             }
+
             ProjectItemsSection(project: project)
+
             ProjectQualitiesSection(project: project)
-            ProjectColorSelectionSection(project: project)
+
+            ColorSelectionSection(
+                selectedColorName: $project.color,
+                colorNames: Project.colors
+            )
+
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")

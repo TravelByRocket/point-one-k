@@ -1,5 +1,5 @@
 //
-//  ProjectColorSelectionSection.swift
+//  ColorSelectionSection.swift
 //  PointOneK
 //
 //  Created by Bryan Costanza on 12 Mar 2022.
@@ -7,15 +7,9 @@
 
 import SwiftUI
 
-struct ProjectColorSelectionSection: View {
-    @ObservedObject var project: Project
-
-    @State private var color: String
-
-    init(project: Project) {
-        self.project = project
-        _color = State(initialValue: project.projectColor)
-    }
+struct ColorSelectionSection: View {
+    @Binding var selectedColorName: String?
+    let colorNames: [String]
 
     let colorColumns = [
         GridItem(.adaptive(minimum: 42)),
@@ -24,43 +18,42 @@ struct ProjectColorSelectionSection: View {
     var body: some View {
         Section(header: Text("Custom project color")) {
             LazyVGrid(columns: colorColumns) {
-                ForEach(Project.colors, id: \.self) { item in
+                ForEach(colorNames, id: \.self) { colorOptionName in
                     ZStack {
-                        Color(item)
+                        Color(colorOptionName)
                             .aspectRatio(1, contentMode: .fit)
                             .cornerRadius(6)
 
-                        if item == color {
+                        if colorOptionName == selectedColorName {
                             Image(systemName: "checkmark.circle")
                                 .foregroundColor(.white)
                                 .font(.largeTitle)
                         }
                     }
                     .onTapGesture {
-                        color = item
-                        update()
+                        selectedColorName = colorOptionName
                     }
                     .accessibilityElement(children: .ignore)
                     .accessibilityAddTraits(
-                        item == color
+                        colorOptionName == selectedColorName
                             ? [.isButton, .isSelected]
                             : .isButton
                     )
-                    .accessibilityLabel(LocalizedStringKey(item))
+                    .accessibilityLabel(LocalizedStringKey(colorOptionName))
                 }
             }
         }
         .padding(.vertical)
     }
-
-    func update() {
-        project.objectWillChange.send()
-        project.color = color
-    }
 }
 
-#Preview {
-    Form {
-        ProjectColorSelectionSection(project: .example)
+struct ProjectColorSelectionSection_Previews: PreviewProvider {
+    static var previews: some View {
+        Form {
+            ColorSelectionSection(
+                selectedColorName: .constant(ProjectOld.example.color),
+                colorNames: ProjectOld.colors
+            )
+        }
     }
 }

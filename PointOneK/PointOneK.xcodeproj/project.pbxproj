@@ -78,7 +78,7 @@
 		2FCFE8E227DD928A0044E7F7 /* ProjectTitleEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8E127DD928A0044E7F7 /* ProjectTitleEditView.swift */; };
 		2FCFE8E427DD93FE0044E7F7 /* ProjectDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8E327DD93FE0044E7F7 /* ProjectDetailEditView.swift */; };
 		2FCFE8E627DD97080044E7F7 /* ProjectArchiveDeleteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8E527DD97070044E7F7 /* ProjectArchiveDeleteSection.swift */; };
-		2FCFE8E827DD9D140044E7F7 /* ProjectColorSelectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */; };
+		2FCFE8E827DD9D140044E7F7 /* ColorSelectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8E727DD9D140044E7F7 /* ColorSelectionSection.swift */; };
 		2FCFE8EF27DEEB9B0044E7F7 /* ScoringRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8EE27DEEB9B0044E7F7 /* ScoringRow.swift */; };
 		2FCFE8F127DEEE7A0044E7F7 /* ScoringRowDisclosing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F027DEEE7A0044E7F7 /* ScoringRowDisclosing.swift */; };
 		2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */; };
@@ -197,7 +197,7 @@
 		2FCFE8E127DD928A0044E7F7 /* ProjectTitleEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTitleEditView.swift; sourceTree = "<group>"; };
 		2FCFE8E327DD93FE0044E7F7 /* ProjectDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailEditView.swift; sourceTree = "<group>"; };
 		2FCFE8E527DD97070044E7F7 /* ProjectArchiveDeleteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectArchiveDeleteSection.swift; sourceTree = "<group>"; };
-		2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColorSelectionSection.swift; sourceTree = "<group>"; };
+		2FCFE8E727DD9D140044E7F7 /* ColorSelectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionSection.swift; sourceTree = "<group>"; };
 		2FCFE8EE27DEEB9B0044E7F7 /* ScoringRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringRow.swift; sourceTree = "<group>"; };
 		2FCFE8F027DEEE7A0044E7F7 /* ScoringRowDisclosing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringRowDisclosing.swift; sourceTree = "<group>"; };
 		2FCFE8F227DEF79E0044E7F7 /* QualityIndicatorEditSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityIndicatorEditSection.swift; sourceTree = "<group>"; };
@@ -432,7 +432,7 @@
 				2FCFE8E327DD93FE0044E7F7 /* ProjectDetailEditView.swift */,
 				2FCFE8DD27DC51680044E7F7 /* ProjectItemsSection.swift */,
 				2FCFE8DF27DC52670044E7F7 /* ProjectQualitiesSection.swift */,
-				2FCFE8E727DD9D140044E7F7 /* ProjectColorSelectionSection.swift */,
+				2FCFE8E727DD9D140044E7F7 /* ColorSelectionSection.swift */,
 				2FCFE8E527DD97070044E7F7 /* ProjectArchiveDeleteSection.swift */,
 			);
 			path = Project;
@@ -687,7 +687,7 @@
 				2FCFE8D827DC36040044E7F7 /* HomeView.swift in Sources */,
 				2FCFE8CE27D9BA560044E7F7 /* DeleteAllDataView.swift in Sources */,
 				2F8B9D4D2751D0F800E2CC3C /* Color-Additions.swift in Sources */,
-				2FCFE8E827DD9D140044E7F7 /* ProjectColorSelectionSection.swift in Sources */,
+				2FCFE8E827DD9D140044E7F7 /* ColorSelectionSection.swift in Sources */,
 				2FCFE8D227DBDE210044E7F7 /* ProjectToggleClosedRow.swift in Sources */,
 				2FCFE8E227DD928A0044E7F7 /* ProjectTitleEditView.swift in Sources */,
 				2FCFE8E027DC52670044E7F7 /* ProjectQualitiesSection.swift in Sources */,
