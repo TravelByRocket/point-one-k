@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: ProjectOld
+    @ObservedObject var project: Project
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    var qualities: [QualityOld] {
-        project.projectQualities.sorted(by: \QualityOld.qualityTitle)
+    var qualities: [Quality] {
+        project.projectQualities.sorted(by: \Quality.qualityTitle)
     }
 
     var body: some View {
@@ -25,11 +25,15 @@ struct ProjectQualitiesSection: View {
                 } label: {
                     HStack {
                         Text(quality.qualityTitle)
+
                         Spacer()
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
-                        InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+
+                        ForEach(quality.possibleScores, id: \.self) { level in
+                            InfoPill(
+                                letter: quality.qualityIndicatorCharacter,
+                                level: level
+                            )
+                        }
                     }
                 }
             }

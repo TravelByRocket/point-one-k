@@ -10,8 +10,7 @@ import SwiftUI
 struct ProjectItemsSection: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-
-    @State private var sortOrder = ItemOld.SortOrder.score
+    @State private var sortOrder = Item.SortOrder.score
 
     @ObservedObject var project: ProjectOld
 
@@ -67,7 +66,7 @@ struct ProjectItemsSection: View {
             TitleAddingButton(prompt: "Add New Item") { title in
                 withAnimation {
                     project.addItem(titled: title)
-//                    project.objectWillChange.send()
+                    project.objectWillChange.send()
                     dataController.save()
                 }
             }
