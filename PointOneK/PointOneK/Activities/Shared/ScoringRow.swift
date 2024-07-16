@@ -26,7 +26,7 @@ struct ScoringRow: View {
 
             LevelSelector(
                 value: $value,
-                possibleScores: score.quality?.possibleScores(maxScore: 4) ?? []
+                possibleScores: score.quality?.possibleScores ?? []
             )
             .onChange(of: value) {
                 score.item?.objectWillChange.send()

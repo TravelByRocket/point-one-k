@@ -28,7 +28,7 @@ struct ProjectQualitiesSection: View {
 
                         Spacer()
 
-                        ForEach(quality.possibleScores(maxScore: 4), id: \.self) { level in
+                        ForEach(quality.possibleScores, id: \.self) { level in
                             InfoPill(
                                 letter: quality.qualityIndicatorCharacter,
                                 level: level

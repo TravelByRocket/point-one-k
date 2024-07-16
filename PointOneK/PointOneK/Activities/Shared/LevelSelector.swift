@@ -51,7 +51,13 @@ struct LevelSelector: View {
     @Previewable @State var valueB = 0
 
     VStack(alignment: .trailing, spacing: 20) {
-        LevelSelector(value: $valueA, possibleScores: [1, 2, 3, 4])
-        LevelSelector(value: $valueB, possibleScores: [1, 2, 3, 4].reversed())
+        LevelSelector(
+            value: $valueA,
+            possibleScores: Quality.example.possibleScores
+        )
+        LevelSelector(
+            value: $valueB,
+            possibleScores: Quality.example.possibleScores.reversed()
+        )
     }
 }
