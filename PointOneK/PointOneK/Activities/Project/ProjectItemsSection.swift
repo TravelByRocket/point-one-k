@@ -41,7 +41,7 @@ struct ProjectItemsSection: View {
 
     var body: some View {
         Section(header: itemSortingHeader) {
-            ForEach(project.projectItems) { item in
+            ForEach(items) { item in
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
@@ -71,6 +71,19 @@ struct ProjectItemsSection: View {
                 }
             }
         }
+    }
+
+    private var items: [Item] {
+        var comparator: (Item, Item) -> Bool {
+            switch sortOrder {
+            case .title:
+                { $0.itemTitle < $1.itemTitle }
+            case .score:
+                { $0.scoreTotal > $1.scoreTotal }
+            }
+        }
+
+        return project.projectItems.sorted(by: comparator)
     }
 }
 
