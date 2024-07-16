@@ -15,7 +15,7 @@ struct QualityDetailView: View {
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-
+    let test = (1 ... 4).reversed()
     init(quality: QualityOld) {
         self.quality = quality
 
