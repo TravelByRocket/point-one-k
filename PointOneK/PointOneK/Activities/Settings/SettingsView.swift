@@ -25,7 +25,7 @@ struct SettingsView: View {
     private var openProjectsV2: [ProjectV2]
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) private var managedObjectContext
 
     @FetchRequest var closedProjects: FetchedResults<ProjectOld>
     @FetchRequest var openProjects: FetchedResults<ProjectOld>

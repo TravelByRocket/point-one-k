@@ -20,8 +20,8 @@ struct DeleteAllDataView: View {
     @State private var showingDeleteAlert = false
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.dismiss) private var dismiss
 
     @FetchRequest(
         entity: ProjectOld.entity(),

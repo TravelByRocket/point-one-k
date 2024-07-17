@@ -15,26 +15,27 @@ struct ProjectArchiveDeleteSection: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
 
-    var footer: some View {
-        // swiftlint:disable:next line_length
-        Text("Closing a project hides a project until it is restored from Settings; deleting it removes the project entirely and permanently.")
-    }
-
     var body: some View {
         Section(footer: footer) {
             Button(project.closed ? "Reopen this project" : "Close this project") {
                 project.closed.toggle()
             }
             .tint(.primary)
-            Button("Delete this project") {
+
+            Button("Delete this project", role: .destructive) {
                 showingDeleteConfirm.toggle()
             }
             .tint(.red)
         }
-        .alert(isPresented: $showingDeleteConfirm) { getDeleteAlert() }
+        .alert(isPresented: $showingDeleteConfirm) { deleteAlert }
     }
 
-    func getDeleteAlert() -> Alert {
+    var footer: some View {
+        // swiftlint:disable:next line_length
+        Text("Closing a project hides a project until it is restored from Settings; deleting it removes the project entirely and permanently.")
+    }
+
+    var deleteAlert: Alert {
         Alert(title: Text("Delete project?"),
               // swiftlint:disable:next line_length
               message: Text("Are you sure you want to delete this project? You will also delete all the items it contains."),

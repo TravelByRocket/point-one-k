@@ -16,7 +16,8 @@ struct ProjectsListView: View {
         entity: ProjectOld.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)],
         predicate: NSPredicate(format: "closed = false")
-    ) var projects: FetchedResults<ProjectOld>
+    )
+    private var projects: FetchedResults<ProjectOld>
 
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == false },
