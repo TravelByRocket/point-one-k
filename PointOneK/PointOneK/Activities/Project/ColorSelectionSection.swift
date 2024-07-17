@@ -47,13 +47,11 @@ struct ColorSelectionSection: View {
     }
 }
 
-struct ProjectColorSelectionSection_Previews: PreviewProvider {
-    static var previews: some View {
-        Form {
-            ColorSelectionSection(
-                selectedColorName: .constant(ProjectOld.example.color),
-                colorNames: ProjectOld.colors
-            )
-        }
+#Preview {
+    Form {
+        ColorSelectionSection(
+            selectedColorName: .constant(ProjectOld.example.color),
+            colorNames: ProjectOld.colors
+        )
     }
 }

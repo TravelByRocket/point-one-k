@@ -33,14 +33,12 @@ struct ItemRowView: View {
     }
 }
 
-struct ItemRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            List {
-                ItemRowView(item: ItemOld.example)
-                ItemRowView(item: ItemOld.example)
-                ItemRowView(item: ItemOld.example)
-            }
+#Preview {
+    NavigationView {
+        List {
+            ItemRowView(item: ItemOld.example)
+            ItemRowView(item: ItemOld.example)
+            ItemRowView(item: ItemOld.example)
         }
     }
 }
