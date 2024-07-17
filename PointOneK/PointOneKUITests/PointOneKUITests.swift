@@ -7,6 +7,7 @@
 
 import XCTest
 
+@MainActor
 class PointOneKUITests: XCTestCase {
     var app: XCUIApplication!
 
