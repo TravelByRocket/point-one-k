@@ -58,11 +58,7 @@ struct ProjectItemsSection: View {
                 withAnimation {
                     for offset in offsets {
                         let item = project.projectItems[offset]
-                        item.objectWillChange.send()
-                        project.objectWillChange.send()
                         dataController.delete(item)
-                        dataController.save()
-                        dataController.objectWillChange.send()
                     }
                 }
             }
