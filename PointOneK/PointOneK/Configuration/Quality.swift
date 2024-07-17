@@ -19,7 +19,6 @@ import SwiftData
     // Relationships
 
     var project: ProjectV2?
-    var isReversed: Bool = false
 
     @Relationship(deleteRule: .cascade)
     var scores: [ScoreV2]?
