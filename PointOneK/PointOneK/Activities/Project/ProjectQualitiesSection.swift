@@ -12,7 +12,6 @@ struct ProjectQualitiesSection: View {
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-    @State private var newQualityName = ""
 
     var qualities: [Quality] {
         project.projectQualities.sorted(by: \Quality.qualityTitle)
@@ -42,11 +41,6 @@ struct ProjectQualitiesSection: View {
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
-                        quality.objectWillChange.send()
-                        project.objectWillChange.send()
-                        dataController.delete(quality)
-                        dataController.save()
-                        dataController.objectWillChange.send()
                         dataController.delete(quality)
                     }
                 }
@@ -60,15 +54,6 @@ struct ProjectQualitiesSection: View {
                     dataController.save()
                 }
             }
-        }
-    }
-
-    @ViewBuilder
-    private func infoPills(character: Character, isReversed: Bool) -> some View {
-        let levels = isReversed ? [4, 3, 2, 1] : [1, 2, 3, 4]
-
-        ForEach(levels, id: \.self) { level in
-            InfoPill(letter: character, level: level)
         }
     }
 }
