@@ -67,8 +67,6 @@ struct QualityIndicatorEditSection: View {
                     }
                 }
 
-            Toggle("Reverse Order", isOn: $quality.isReversed.animation())
-
             if overrideIndicator {
                 HStack {
                     Text("Replace with character")
