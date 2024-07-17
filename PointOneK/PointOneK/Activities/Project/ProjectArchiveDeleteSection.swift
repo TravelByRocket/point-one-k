@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @ObservedObject var project: Project
+
     @State private var showingDeleteConfirm = false
 
-    @ObservedObject var project: ProjectOld
+    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var managedObjectContext
 
     var body: some View {
         Section(footer: footer) {

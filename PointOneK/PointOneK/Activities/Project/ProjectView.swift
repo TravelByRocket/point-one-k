@@ -9,11 +9,10 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
+    @ObservedObject var project: Project
+
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
-
-    // Memberwise Init
-    let project: ProjectOld
 
     var body: some View {
         Form {
@@ -27,7 +26,13 @@ struct ProjectView: View {
 
             ProjectQualitiesSection(project: project)
 
-            ProjectColorSelectionSection(project: project)
+            ColorSelectionSection(
+                selectedColorName: $project.color,
+                colorNames: Project.colors
+            )
+            .onChange(of: project.color) {
+                dataController.save()
+            }
 
             ProjectArchiveDeleteSection(project: project)
         }

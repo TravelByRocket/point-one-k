@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @ObservedObject var item: ItemOld
+    @ObservedObject var item: Item
 
     @EnvironmentObject var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
@@ -16,7 +16,7 @@ struct ItemDetailView: View {
     @State var title: String
     @State var note: String
 
-    init(item: ItemOld) {
+    init(item: Item) {
         self.item = item
 
         _title = State(wrappedValue: item.itemTitle)
@@ -29,7 +29,7 @@ struct ItemDetailView: View {
                 TextField("Title", text: $title.onChange(update))
                     .font(.title)
             }
-            ForEach(item.projectQualities.sorted(by: \QualityOld.qualityTitle)) { quality in
+            ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) { quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
                     score: quality.score(for: item) ?? .example

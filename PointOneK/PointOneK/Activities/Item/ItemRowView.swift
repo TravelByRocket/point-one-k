@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    @ObservedObject var project: ProjectOld
-    @ObservedObject var item: ItemOld
+    let item: ItemOld
 
     var body: some View {
         HStack {
@@ -18,7 +17,7 @@ struct ItemRowView: View {
 
             Spacer()
 
-            ForEach(project.projectQualities) { quality in
+            ForEach(item.project?.projectQualities ?? []) { quality in
                 InfoPill(
                     letter: quality.qualityIndicatorCharacter,
                     level: quality.score(for: item)?.scoreValue ?? 0
@@ -28,16 +27,18 @@ struct ItemRowView: View {
         .listRowBackground(
             BackgroundBarView(
                 value: item.scoreTotal,
-                max: project.scorePossible
+                max: item.project?.scorePossible ?? 0
             )
         )
     }
 }
 
 #Preview {
-    NavigationStack {
+    NavigationView {
         List {
-            ItemRowView(project: .example, item: .example)
+            ItemRowView(item: ItemOld.example)
+            ItemRowView(item: ItemOld.example)
+            ItemRowView(item: ItemOld.example)
         }
     }
 }

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct QualityIndicatorEditSection: View {
-    @ObservedObject var quality: QualityOld
+    @ObservedObject var quality: Quality
     @State private var indicatorFieldString: String
 
     @State var overrideIndicator: Bool
 
-    init(quality: QualityOld) {
+    init(quality: Quality) {
         self.quality = quality
         _indicatorFieldString = State(
             initialValue: quality.indicatorCharacter?.asString ?? quality.defaultQualityIndicator.asString)
@@ -28,16 +28,11 @@ struct QualityIndicatorEditSection: View {
                         .font(.footnote)
 
                     HStack {
-                        if quality.isReversed {
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
-                        } else {
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 1)
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 2)
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 3)
-                            InfoPill(letter: quality.qualityIndicatorCharacter, level: 4)
+                        ForEach(quality.possibleScores, id: \.self) { level in
+                            InfoPill(
+                                letter: quality.qualityIndicatorCharacter,
+                                level: level
+                            )
                         }
                     }
                 }
@@ -59,6 +54,8 @@ struct QualityIndicatorEditSection: View {
                         .italic()
                 }
             }
+
+            Toggle("Reverse Score", isOn: $quality.isReversed.animation())
 
             Toggle("Override Default Symbol", isOn: $overrideIndicator.animation())
                 .onChange(of: overrideIndicator) {

@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: ProjectOld
+    @ObservedObject var project: Project
 
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
     @State private var newQualityName = ""
 
-    var qualities: [QualityOld] {
-        project.projectQualities.sorted(by: \QualityOld.qualityTitle)
+    var qualities: [Quality] {
+        project.projectQualities.sorted(by: \Quality.qualityTitle)
     }
 
     var body: some View {
@@ -29,10 +29,12 @@ struct ProjectQualitiesSection: View {
 
                         Spacer()
 
-                        infoPills(
-                            character: quality.qualityIndicatorCharacter,
-                            isReversed: quality.isReversed
-                        )
+                        ForEach(quality.possibleScores, id: \.self) { level in
+                            InfoPill(
+                                letter: quality.qualityIndicatorCharacter,
+                                level: level
+                            )
+                        }
                     }
                 }
             }
@@ -48,26 +50,15 @@ struct ProjectQualitiesSection: View {
                         dataController.delete(quality)
                     }
                 }
+
                 dataController.save()
             }
 
-            HStack {
-                TextField("New Quality Name", text: $newQualityName)
-                    .textFieldStyle(.roundedBorder)
-
-                Button {
-                    withAnimation {
-                        project.addQuality(titled: newQualityName)
-                        project.objectWillChange.send()
-                        dataController.save()
-                        newQualityName = ""
-                    }
-                } label: {
-                    Label("Add New Quality", systemImage: "plus")
-                        .labelStyle(.iconOnly)
-                        .accessibilityLabel("Add new item")
+            TitleAddingRow(prompt: "Add New Quality") { title in
+                withAnimation {
+                    project.addQuality(titled: title)
+                    dataController.save()
                 }
-                .disabled(newQualityName.isEmpty)
             }
         }
     }

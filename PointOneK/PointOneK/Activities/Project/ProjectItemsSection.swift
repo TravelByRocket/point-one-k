@@ -10,11 +10,9 @@ import SwiftUI
 struct ProjectItemsSection: View {
     @EnvironmentObject private var dataController: DataController
     @Environment(\.managedObjectContext) private var managedObjectContext
+    @State private var sortOrder = Item.SortOrder.score
 
-    @State private var sortOrder = ItemOld.SortOrder.score
-    @State private var newItemName = ""
-
-    let project: ProjectOld
+    @ObservedObject var project: ProjectOld
 
     var itemSortingHeader: some View {
         HStack {
@@ -43,18 +41,18 @@ struct ProjectItemsSection: View {
 
     var body: some View {
         Section(header: itemSortingHeader) {
-            ForEach(project.projectItems) { item in
+            ForEach(items) { item in
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(project: project, item: item)
-                        .listRowBackground(
-                            BackgroundBarView(
-                                value: item.scoreTotal,
-                                max: project.scorePossible
-                            )
-                        )
+                    ItemRowView(item: item)
                 }
+                .listRowBackground(
+                    BackgroundBarView(
+                        value: item.scoreTotal,
+                        max: project.scorePossible
+                    )
+                )
             }
             .onDelete { offsets in
                 withAnimation {
@@ -69,25 +67,27 @@ struct ProjectItemsSection: View {
                 }
             }
 
-            HStack {
-                TextField("New Item Name", text: $newItemName)
-                    .textFieldStyle(.roundedBorder)
-
-                Button {
-                    withAnimation {
-                        project.addItem(titled: newItemName)
-                        project.objectWillChange.send()
-                        dataController.save()
-                        newItemName = ""
-                    }
-                } label: {
-                    Label("Add New Item", systemImage: "plus")
-                        .labelStyle(.iconOnly)
-                        .accessibilityLabel("Add new item")
+            TitleAddingRow(prompt: "Add New Item") { title in
+                withAnimation {
+                    project.addItem(titled: title)
+                    project.objectWillChange.send()
+                    dataController.save()
                 }
-                .disabled(newItemName.isEmpty)
             }
         }
+    }
+
+    private var items: [Item] {
+        var comparator: (Item, Item) -> Bool {
+            switch sortOrder {
+            case .title:
+                { $0.itemTitle < $1.itemTitle }
+            case .score:
+                { $0.scoreTotal > $1.scoreTotal }
+            }
+        }
+
+        return project.projectItems.sorted(by: comparator)
     }
 }
 

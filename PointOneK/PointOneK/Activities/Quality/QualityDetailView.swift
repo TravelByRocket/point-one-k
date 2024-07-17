@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct QualityDetailView: View {
-    @ObservedObject var quality: QualityOld
+    @ObservedObject var quality: Quality
 
     @State var title: String
     @State var note: String
 
     @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
-    let test = (1 ... 4).reversed()
-    init(quality: QualityOld) {
+    @Environment(\.managedObjectContext) var managedObjectContext
+
+    init(quality: Quality) {
         self.quality = quality
 
         _title = State(wrappedValue: quality.qualityTitle)
@@ -34,23 +34,27 @@ struct QualityDetailView: View {
                 TextField("Title", text: $title.onChange(update), prompt: Text("Title here"))
                     .font(.title)
             }
+
             Section(header: Text("Scoring Notes"), footer: scoringFooter) {
                 TextEditor(text: $note.onChange(update))
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
             }
+
             QualityIndicatorEditSection(quality: quality)
+
             Section(header: Text("Scores")) {
                 ForEach(
                     quality.qualityScores
                         .filter { $0.item != nil }
-                        .sorted(by: \ScoreOld.item!.itemTitle)
+                        .sorted(by: \Score.item!.itemTitle)
                 ) { score in
                     ScoringRow(
                         label: score.item!.itemTitle,
                         score: score
                     )
                 }
+
                 if quality.qualityScores.isEmpty {
                     Text("Project items will show up here")
                         .foregroundColor(.secondary)
