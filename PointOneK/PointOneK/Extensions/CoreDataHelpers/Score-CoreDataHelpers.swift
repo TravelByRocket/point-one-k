@@ -7,6 +7,8 @@
 
 import Foundation
 
+extension ScoreOld: ScoreProtocol {}
+
 extension ScoreOld {
     var scoreValue: Int {
         Int(value)

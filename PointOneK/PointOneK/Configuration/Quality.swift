@@ -8,7 +8,7 @@
 
 import SwiftData
 
-@Model public class QualityV2 {
+@Model public class QualityV2: QualityProtocol {
     // Attributes
 
     var indicator: String?

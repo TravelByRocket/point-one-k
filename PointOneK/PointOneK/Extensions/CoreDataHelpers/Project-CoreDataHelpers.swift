@@ -8,6 +8,8 @@
 import CloudKit
 import SwiftUI
 
+extension ProjectOld: ProjectProtocol {}
+
 extension ProjectOld {
     static let colors = [
         "Pink", "Purple", "Red", "Orange", "Gold",

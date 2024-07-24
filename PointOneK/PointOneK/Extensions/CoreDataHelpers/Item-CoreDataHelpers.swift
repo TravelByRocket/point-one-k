@@ -7,6 +7,8 @@
 
 import Foundation
 
+extension ItemOld: ItemProtocol {}
+
 extension ItemOld {
     enum SortOrder {
         case title, score

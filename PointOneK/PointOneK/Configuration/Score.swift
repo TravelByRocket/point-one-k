@@ -8,10 +8,10 @@
 
 import SwiftData
 
-@Model public class ScoreV2 {
+@Model public class ScoreV2: ScoreProtocol {
     // Attributes
 
-    var value: Int?
+    var value: Int = 0
 
     // Relationships
 

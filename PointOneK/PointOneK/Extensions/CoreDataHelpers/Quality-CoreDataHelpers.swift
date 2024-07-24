@@ -7,6 +7,8 @@
 
 import Foundation
 
+extension QualityOld: QualityProtocol {}
+
 extension QualityOld {
     var qualityTitle: String {
         title ?? "New Quality"

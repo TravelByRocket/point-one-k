@@ -8,10 +8,10 @@
 
 import SwiftData
 
-@Model public class ProjectV2 {
+@Model public class ProjectV2: ProjectProtocol {
     // Attributes
 
-    var closed: Bool?
+    var closed: Bool = false
     var color: String?
     var detail: String?
     var title: String?

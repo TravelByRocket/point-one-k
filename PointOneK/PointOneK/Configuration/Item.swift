@@ -8,7 +8,7 @@
 
 import SwiftData
 
-@Model public class ItemV2 {
+@Model public class ItemV2: ItemProtocol {
     // Attributes
 
     var note: String?

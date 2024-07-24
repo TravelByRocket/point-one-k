@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */; };
+		2F1264C42C50BB02004EC997 /* ProjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C32C50BB02004EC997 /* ProjectProtocol.swift */; };
+		2F1264C62C50BB9A004EC997 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C52C50BB9A004EC997 /* ItemProtocol.swift */; };
+		2F1264C82C50BBAF004EC997 /* ScoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C72C50BBAF004EC997 /* ScoreProtocol.swift */; };
+		2F1264CA2C50BBB8004EC997 /* QualityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C92C50BBB8004EC997 /* QualityProtocol.swift */; };
+		2F1264CD2C50C188004EC997 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C52C50BB9A004EC997 /* ItemProtocol.swift */; };
+		2F1264CE2C50C188004EC997 /* ScoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C72C50BBAF004EC997 /* ScoreProtocol.swift */; };
+		2F1264CF2C50C188004EC997 /* ProjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C32C50BB02004EC997 /* ProjectProtocol.swift */; };
+		2F1264D02C50C188004EC997 /* QualityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1264C92C50BBB8004EC997 /* QualityProtocol.swift */; };
 		2F1DA9DD2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */; };
 		2F1DA9DF2753E3350004EFD5 /* QualityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */; };
 		2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */; };
@@ -129,6 +137,10 @@
 
 /* Begin PBXFileReference section */
 		2F0C3D7D2755E8290043AC55 /* Score-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Score-CoreDataHelpers.swift"; sourceTree = "<group>"; };
+		2F1264C32C50BB02004EC997 /* ProjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProtocol.swift; sourceTree = "<group>"; };
+		2F1264C52C50BB9A004EC997 /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
+		2F1264C72C50BBAF004EC997 /* ScoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreProtocol.swift; sourceTree = "<group>"; };
+		2F1264C92C50BBB8004EC997 /* QualityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityProtocol.swift; sourceTree = "<group>"; };
 		2F1DA9DC2753E0DB0004EFD5 /* Quality-CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quality-CoreDataHelpers.swift"; sourceTree = "<group>"; };
 		2F1DA9DE2753E3350004EFD5 /* QualityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityDetailView.swift; sourceTree = "<group>"; };
 		2F1DA9E02753EFB30004EFD5 /* Text-Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text-Character.swift"; sourceTree = "<group>"; };
@@ -364,6 +376,10 @@
 				2FCDC7A42C3580A1007FE63A /* Quality.swift */,
 				2FCDC7A52C3580A1007FE63A /* Score.swift */,
 				2F64BDA22C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift */,
+				2F1264C32C50BB02004EC997 /* ProjectProtocol.swift */,
+				2F1264C52C50BB9A004EC997 /* ItemProtocol.swift */,
+				2F1264C72C50BBAF004EC997 /* ScoreProtocol.swift */,
+				2F1264C92C50BBB8004EC997 /* QualityProtocol.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -712,15 +728,19 @@
 				2FCFE8E627DD97080044E7F7 /* ProjectArchiveDeleteSection.swift in Sources */,
 				2FEFE66B2C460D2A004F4119 /* TitleAddingRow.swift in Sources */,
 				2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */,
+				2F1264C82C50BBAF004EC997 /* ScoreProtocol.swift in Sources */,
 				2F1DA9E12753EFB30004EFD5 /* Text-Character.swift in Sources */,
+				2F1264C62C50BB9A004EC997 /* ItemProtocol.swift in Sources */,
 				2F8B9D762751D16D00E2CC3C /* LevelSelector.swift in Sources */,
 				2F8B9D4C2751D0F800E2CC3C /* Bundle-Decodable.swift in Sources */,
 				2F8B9D722751D16D00E2CC3C /* InfoPill.swift in Sources */,
 				2FCFE8F327DEF79E0044E7F7 /* QualityIndicatorEditSection.swift in Sources */,
 				2F8B9D242751CF0A00E2CC3C /* ContentView.swift in Sources */,
+				2F1264CA2C50BBB8004EC997 /* QualityProtocol.swift in Sources */,
 				2F32AC082763B29800BCA997 /* SettingsView.swift in Sources */,
 				2FCFE8E427DD93FE0044E7F7 /* ProjectDetailEditView.swift in Sources */,
 				2F8B9D222751CF0A00E2CC3C /* PointOneKApp.swift in Sources */,
+				2F1264C42C50BB02004EC997 /* ProjectProtocol.swift in Sources */,
 				2F0C3D7E2755E8290043AC55 /* Score-CoreDataHelpers.swift in Sources */,
 				2F8B9D492751D0F800E2CC3C /* Project-CoreDataHelpers.swift in Sources */,
 				2F8B9D5E2751D13E00E2CC3C /* ItemDetailView.swift in Sources */,
@@ -756,6 +776,10 @@
 				2FBF50A327E18F2300B6883E /* Quality-CoreDataHelpers.swift in Sources */,
 				2F35D62B27F1280C001EEE55 /* Color-Additions.swift in Sources */,
 				2FBF50AC27E2697E00B6883E /* PointOneKWidget.swift in Sources */,
+				2F1264CD2C50C188004EC997 /* ItemProtocol.swift in Sources */,
+				2F1264CE2C50C188004EC997 /* ScoreProtocol.swift in Sources */,
+				2F1264CF2C50C188004EC997 /* ProjectProtocol.swift in Sources */,
+				2F1264D02C50C188004EC997 /* QualityProtocol.swift in Sources */,
 				2FBF50A927E268D000B6883E /* DataProvider.swift in Sources */,
 				2FBF508E27E188D700B6883E /* PointOneKWidgetsBundle.swift in Sources */,
 				2FBF509D27E189D100B6883E /* Item-CoreDataHelpers.swift in Sources */,
