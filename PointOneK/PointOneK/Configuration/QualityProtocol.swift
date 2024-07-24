@@ -19,3 +19,23 @@ protocol QualityProtocol {
     var project: ProjectType? { get }
     var scores: ScoreSequence? { get }
 }
+
+struct AnyQuality<ProjectType, ScoreType>: QualityProtocol {
+    typealias ScoreSequence = AnySequence<ScoreType>
+
+    let indicator: String?
+    let note: String?
+    let title: String?
+    let isReversed: Bool
+    let project: ProjectType?
+    let scores: ScoreSequence?
+
+    init<Q: QualityProtocol>(_ quality: Q) where Q.ProjectType == ProjectType, Q.ScoreType == ScoreType {
+        indicator = quality.indicator
+        note = quality.note
+        title = quality.title
+        isReversed = quality.isReversed
+        project = quality.project
+        scores = quality.scores.map { AnySequence($0) }
+    }
+}
