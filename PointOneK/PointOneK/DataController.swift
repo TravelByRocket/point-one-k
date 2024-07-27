@@ -18,15 +18,6 @@ class DataController: ObservableObject {
 
     let defaults: UserDefaults
 
-    var dateAskedForReview: Date? {
-        get {
-            defaults.object(forKey: "dateAskedForReview") as? Date
-        }
-        set {
-            defaults.set(newValue, forKey: "dateAskedForReview")
-        }
-    }
-
     var widgetProject: ProjectOld? {
         let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
         let projects = (try? container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
@@ -176,36 +167,5 @@ class DataController: ObservableObject {
 
     func count(for fetchRequest: NSFetchRequest<some Any>) -> Int {
         (try? container.viewContext.count(for: fetchRequest)) ?? 0
-    }
-
-    func update(_ item: ItemOld) {
-        let itemID = item.objectID.uriRepresentation().absoluteString
-        let projectID = item.project?.objectID.uriRepresentation().absoluteString
-
-        let attributeSet = CSSearchableItemAttributeSet(contentType: .text)
-        attributeSet.title = item.itemTitle
-        attributeSet.contentDescription = item.itemNote
-
-        let searchableItem = CSSearchableItem(
-            uniqueIdentifier: itemID,
-            domainIdentifier: projectID,
-            attributeSet: attributeSet
-        )
-
-        CSSearchableIndex.default().indexSearchableItems([searchableItem])
-
-        save()
-    }
-
-    func item(with uniqueIdentifier: String) -> ItemOld? {
-        guard let url = URL(string: uniqueIdentifier) else {
-            return nil
-        }
-
-        guard let id = container.persistentStoreCoordinator.managedObjectID(forURIRepresentation: url) else {
-            return nil
-        }
-
-        return try? container.viewContext.existingObject(with: id) as? ItemOld
     }
 }

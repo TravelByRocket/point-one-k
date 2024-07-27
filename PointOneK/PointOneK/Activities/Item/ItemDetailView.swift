@@ -10,11 +10,8 @@ import SwiftUI
 struct ItemDetailView: View {
     @ObservedObject var item: Item
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
-
-    @State var title: String
-    @State var note: String
+    @State private var title: String
+    @State private var note: String
 
     init(item: Item) {
         self.item = item
@@ -26,18 +23,24 @@ struct ItemDetailView: View {
     var body: some View {
         Form {
             Section {
-                TextField("Title", text: $title.onChange(update))
-                    .font(.title)
+                TextField(
+                    "Title",
+                    text: $title.onChange(update)
+                )
+                .font(.title)
             }
+
             ForEach(item.projectQualities.sorted(by: \Quality.qualityTitle)) { quality in
                 ScoringRowDisclosing(
                     label: quality.qualityTitle,
                     score: quality.score(for: item) ?? .example
                 )
             }
+
             if item.projectQualities.isEmpty {
                 Text("No project qualities exist")
             }
+
             HStack {
                 Text("Score: \(item.scoreTotal) of \(item.project?.scorePossible ?? 0)")
                 Spacer()
@@ -45,22 +48,17 @@ struct ItemDetailView: View {
             .listRowBackground(
                 BackgroundBarView(value: item.scoreTotal, max: item.project?.scorePossible ?? 0)
             )
+
             Section(header: Text("Item Note")) {
                 TextEditor(text: $note.onChange(update))
             }
         }
         .navigationTitle("Edit Item")
-        .onDisappear(perform: save)
     }
 
     func update() {
-        item.project?.objectWillChange.send()
         item.title = title
         item.note = note
-    }
-
-    func save() {
-        dataController.update(item)
     }
 }
 
