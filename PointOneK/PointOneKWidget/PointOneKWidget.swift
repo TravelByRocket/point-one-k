@@ -63,7 +63,7 @@ struct PointOneKWidgetEntryView: View {
         }
     }
 
-    func trimToFor(project: ProjectOld, item: ItemOld) -> CGFloat {
+    func trimToFor(project: ProjectV2, item: ItemV2) -> CGFloat {
         if project.scorePossible > 0 {
             CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
         } else {

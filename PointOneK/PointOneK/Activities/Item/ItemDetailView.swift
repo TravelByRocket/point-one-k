@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @ObservedObject var item: Item
-
     @State private var title: String
     @State private var note: String
+
+    @Bindable var item: Item
 
     init(item: Item) {
         self.item = item

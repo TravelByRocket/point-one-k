@@ -41,7 +41,7 @@ extension ProjectV2 {
 
     func addItem(titled title: String? = nil) {
         let item = ItemV2()
-        item.project = self
+        items = (items ?? []) + [item] // `item.project = self` does not publish change
 
         if let title {
             item.title = title
@@ -56,7 +56,7 @@ extension ProjectV2 {
 
     func addQuality(titled title: String? = nil) {
         let quality = QualityV2()
-        quality.project = self
+        qualities = (qualities ?? []) + [quality] // `quality.project = self` does not publish change
 
         if let title {
             quality.title = title

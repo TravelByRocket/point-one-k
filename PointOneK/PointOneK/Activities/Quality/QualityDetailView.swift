@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct QualityDetailView: View {
-    @ObservedObject var quality: Quality
+    @Bindable var quality: Quality
 
-    @State var title: String
-    @State var note: String
-
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @State private var title: String
+    @State private var note: String
 
     init(quality: Quality) {
         self.quality = quality
@@ -62,11 +59,9 @@ struct QualityDetailView: View {
                 }
             }
         }
-        .onDisappear(perform: dataController.save)
     }
 
     func update() {
-        quality.project?.objectWillChange.send()
         quality.title = title
         quality.note = note
     }

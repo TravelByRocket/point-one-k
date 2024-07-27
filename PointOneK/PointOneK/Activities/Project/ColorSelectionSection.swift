@@ -50,8 +50,8 @@ struct ColorSelectionSection: View {
 #Preview {
     Form {
         ColorSelectionSection(
-            selectedColorName: .constant(ProjectOld.example.color),
-            colorNames: ProjectOld.colors
+            selectedColorName: .constant(Project.example.color),
+            colorNames: Project.colors
         )
     }
 }

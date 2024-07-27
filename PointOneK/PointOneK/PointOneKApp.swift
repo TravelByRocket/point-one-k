@@ -7,20 +7,16 @@
 
 import SwiftUI
 
-typealias Project = ProjectOld
-typealias Item = ItemOld
-typealias Quality = QualityOld
-typealias Score = ScoreOld
+typealias Project = ProjectV2
+typealias Item = ItemV2
+typealias Quality = QualityV2
+typealias Score = ScoreV2
 
 @main
 struct PointOneKApp: App {
-    @StateObject var dataController = DataController()
-
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environmentObject(dataController)
         }
         .modelContainer(
             for: ProjectV2.self,

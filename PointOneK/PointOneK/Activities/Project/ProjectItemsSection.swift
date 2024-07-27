@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct ProjectItemsSection: View {
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.modelContext) private var context
     @State private var sortOrder = Item.SortOrder.score
 
-    @ObservedObject var project: ProjectOld
+    @Bindable var project: Project
 
     var itemSortingHeader: some View {
         HStack {
@@ -58,7 +57,7 @@ struct ProjectItemsSection: View {
                 withAnimation {
                     for offset in offsets {
                         let item = project.projectItems[offset]
-                        dataController.delete(item)
+                        context.delete(item)
                     }
                 }
             }
@@ -66,8 +65,6 @@ struct ProjectItemsSection: View {
             TitleAddingRow(prompt: "Add New Item") { title in
                 withAnimation {
                     project.addItem(titled: title)
-                    project.objectWillChange.send()
-                    dataController.save()
                 }
             }
         }

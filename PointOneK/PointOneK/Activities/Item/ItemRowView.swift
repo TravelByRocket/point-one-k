@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemRowView: View {
-    let item: ItemOld
+    @Bindable var item: Item
 
     var body: some View {
         HStack {
@@ -20,7 +20,7 @@ struct ItemRowView: View {
             ForEach(item.project?.projectQualities ?? []) { quality in
                 InfoPill(
                     letter: quality.qualityIndicatorCharacter,
-                    level: quality.score(for: item)?.scoreValue ?? 0
+                    level: quality.score(for: item)?.value ?? 0
                 )
             }
         }
@@ -36,9 +36,9 @@ struct ItemRowView: View {
 #Preview {
     NavigationView {
         List {
-            ItemRowView(item: ItemOld.example)
-            ItemRowView(item: ItemOld.example)
-            ItemRowView(item: ItemOld.example)
+            ItemRowView(item: Item.example)
+            ItemRowView(item: Item.example)
+            ItemRowView(item: Item.example)
         }
     }
 }

@@ -15,51 +15,29 @@ struct SettingsView: View {
         sort: \ProjectV2.title,
         order: .forward
     )
-    private var closedProjectsV2: [ProjectV2]
+    private var closedProjects: [ProjectV2]
 
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == false },
         sort: \ProjectV2.title,
         order: .forward
     )
-    private var openProjectsV2: [ProjectV2]
-
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
-
-    @FetchRequest var closedProjects: FetchedResults<ProjectOld>
-    @FetchRequest var openProjects: FetchedResults<ProjectOld>
+    private var openProjects: [ProjectV2]
 
     @State private var widgetProject: URL? = UserDefaults(
         suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
 
-    var noProjectsText: some View {
+    private var noProjectsText: some View {
         Text("No projects here")
             .italic()
             .foregroundColor(.secondary)
     }
 
-    var projectGroups: [(label: String, projects: [Project])] {
+    private var projectGroups: [(label: String, projects: [Project])] {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects)),
         ]
-    }
-
-    init() {
-        _closedProjects = FetchRequest<ProjectOld>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true),
-            ],
-            predicate: NSPredicate(format: "closed = true")
-        )
-
-        _openProjects = FetchRequest<ProjectOld>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true),
-            ],
-            predicate: NSPredicate(format: "closed = false")
-        )
     }
 
     var body: some View {
@@ -67,7 +45,8 @@ struct SettingsView: View {
             // TEMPLATES SECTION
             Section(header: Text("Templates")) {
                 Button {
-                    makeHundredDollarStartup(dataController)
+                    #warning("revive $100 startup template")
+//                    makeHundredDollarStartup(dataController)
                 } label: {
                     Text("$100 Startup")
                 }
@@ -93,8 +72,10 @@ struct SettingsView: View {
                 Picker("Pick Project", selection: $widgetProject) {
                     ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
                         Text(project.projectTitle)
-                            .tag((project.objectID.uriRepresentation()) as URL?)
+                        #warning("Revive widget project selection")
+//                            .tag((project.objectID.uriRepresentation()) as URL?)
                     }
+
                     Text("Use Placeholder Project")
                         .italic()
                         .tag(nil as URL?)

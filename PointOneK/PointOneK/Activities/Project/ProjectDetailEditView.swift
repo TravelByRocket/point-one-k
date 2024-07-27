@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProjectDetailEditView: View {
     @State private var detail: String
-    let project: Project
+
+    @Bindable var project: Project
 
     init(project: Project) {
         self.project = project
@@ -22,7 +23,6 @@ struct ProjectDetailEditView: View {
     }
 
     func update() {
-        project.objectWillChange.send()
         project.detail = detail
     }
 }
