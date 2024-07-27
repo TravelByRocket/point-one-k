@@ -16,8 +16,6 @@ class DataController: ObservableObject {
     /// The lone CloudKit container used to stare all our data
     let container: NSPersistentCloudKitContainer
 
-    let defaults: UserDefaults
-
     var widgetProject: ProjectOld? {
         let projectURL = UserDefaults(suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
         let projects = (try? container.viewContext.fetch(ProjectOld.fetchRequest())) ?? []
@@ -30,9 +28,8 @@ class DataController: ObservableObject {
     /// Defaults to permanent storage.
     /// - Parameter inMemory: Whether to store this data in temporary storage or not
     /// - Paramater defaults: The UserDefaults suite where user data should be stored
-    init(inMemory: Bool = false, defaults: UserDefaults = .standard) {
+    init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Main", managedObjectModel: Self.model)
-        self.defaults = defaults
 
         // For testing and previewing purposes, we create a temporary, in-memory databse by writing to /dev/null/ so
         // our data is destroyed after the app finishes running.
