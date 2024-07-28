@@ -88,8 +88,6 @@ final class PointOneKUITests: XCTestCase {
         XCTAssert(zzzIndex < aaaIndex)
     }
 
-    // Check Sort by Name Updates with New Item
-    // Check Sort by Score Updates with Changes Scores
     // Check background bar updates with score change
 
     // MARK: Helpers
