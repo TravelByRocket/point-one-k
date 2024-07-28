@@ -11,8 +11,9 @@ import Testing
 
 @testable import PointOneK
 
+@MainActor
 final class ProjectTests: BaseTestCase {
-    @MainActor @Test func testCascadeDelete() throws {
+    @Test func testCascadeDelete() throws {
         let project = ProjectV2()
         let item = ItemV2()
         let quality = QualityV2()
@@ -38,7 +39,7 @@ final class ProjectTests: BaseTestCase {
         #expect((try? context.fetchCount(FetchDescriptor<QualityV2>())) == 0)
     }
 
-    @MainActor @Test func testAddItem() {
+    @Test func testAddItem() {
         let project = ProjectV2()
         project.addItem(titled: "Item Title")
         context.insert(project)
@@ -47,7 +48,7 @@ final class ProjectTests: BaseTestCase {
         #expect((try? context.fetchCount(FetchDescriptor<ItemV2>())) == 1)
     }
 
-    @MainActor @Test func testAddQuality() {
+    @Test func testAddQuality() {
         let project = ProjectV2()
         project.addQuality()
         context.insert(project)
@@ -56,7 +57,7 @@ final class ProjectTests: BaseTestCase {
         #expect((try? context.fetchCount(FetchDescriptor<QualityV2>())) == 1)
     }
 
-    @MainActor @Test func test_givenProject_whenAddItemThenQuality_thenScoreCreated() {
+    @Test func test_givenProject_whenAddItemThenQuality_thenScoreCreated() {
         let project = ProjectV2()
         project.addItem()
         project.addQuality()
@@ -68,7 +69,7 @@ final class ProjectTests: BaseTestCase {
         #expect((try? context.fetchCount(FetchDescriptor<QualityV2>())) == 1)
     }
 
-    @MainActor @Test func test_givenProject_whenAddQualityThenItem_thenScoreCreated() {
+    @Test func test_givenProject_whenAddQualityThenItem_thenScoreCreated() {
         let project = ProjectV2()
         project.addQuality()
         project.addItem()
