@@ -41,6 +41,7 @@ struct LevelSelector: View {
                     }
                 )
                 .buttonStyle(BorderlessButtonStyle())
+                .accessibilityIdentifier("Level \(level)")
             }
         }
     }

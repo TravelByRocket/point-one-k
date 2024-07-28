@@ -40,12 +40,13 @@ struct ProjectItemsSection: View {
 
     var body: some View {
         Section(header: itemSortingHeader) {
-            ForEach(items) { item in
+            ForEach(items.filter { $0.modelContext != nil }) { item in
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(item: item)
+                    row(item: item) // same as ItemRowView but doesn't crash when a function here
                 }
+                .accessibilityIdentifier("ItemRow \(item.itemTitle)")
                 .listRowBackground(
                     BackgroundBarView(
                         value: item.scoreTotal,
@@ -56,8 +57,18 @@ struct ProjectItemsSection: View {
             .onDelete { offsets in
                 withAnimation {
                     for offset in offsets {
-                        let item = project.projectItems[offset]
+                        let item = items[offset]
+                        project.items?.removeAll { $0 == item }
+                        item.project = nil
+
+                        for score in item.scores ?? [] {
+                            score.quality?.scores?.removeAll { $0 == score }
+                            score.item = nil
+                            context.delete(score)
+                        }
+
                         context.delete(item)
+                        try? context.save()
                     }
                 }
             }
@@ -72,19 +83,69 @@ struct ProjectItemsSection: View {
 
     private var items: [Item] {
         var comparator: (Item, Item) -> Bool {
+            let scoreComparator: (Item, Item) -> ComparisonResult = {
+                if $0.scoreTotal == $1.scoreTotal {
+                    .orderedSame
+                } else if $0.scoreTotal > $1.scoreTotal {
+                    .orderedAscending
+                } else {
+                    .orderedDescending
+                }
+            }
+
+            let nameCompare: (Item, Item) -> ComparisonResult = {
+                $0.itemTitle.localizedCompare($1.itemTitle)
+            }
+
             switch sortOrder {
             case .title:
-                { $0.itemTitle < $1.itemTitle }
+                return {
+                    let nameComparison = nameCompare($0, $1)
+                    if nameComparison != .orderedSame {
+                        return nameComparison == .orderedAscending
+                    } else {
+                        return scoreComparator($0, $1) == .orderedAscending
+                    }
+                }
             case .score:
-                { $0.scoreTotal > $1.scoreTotal }
+                return {
+                    let scoreComparison = scoreComparator($0, $1)
+                    if scoreComparison != .orderedSame {
+                        return scoreComparison == .orderedAscending
+                    } else {
+                        return nameCompare($0, $1) == .orderedAscending
+                    }
+                }
             }
         }
 
-        return project.projectItems.sorted(by: comparator)
+        return project.items?.sorted(by: comparator) ?? []
+    }
+
+    private func row(item: Item) -> some View {
+        HStack {
+            Text(item.itemTitle)
+                .lineLimit(1)
+
+            Spacer()
+
+            ForEach(item.project?.projectQualities.sorted(by: \.qualityIndicatorCharacter) ?? []) { quality in
+                InfoPill(
+                    letter: quality.qualityIndicatorCharacter,
+                    level: quality.score(for: item)?.value ?? 0
+                )
+            }
+        }
+        .listRowBackground(
+            BackgroundBarView(
+                value: item.scoreTotal,
+                max: item.project?.scorePossible ?? 0
+            )
+        )
     }
 }
 
-#Preview {
+#Preview(traits: .modifier(.persistenceLayer)) {
     NavigationStack {
         List {
             ProjectItemsSection(

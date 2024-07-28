@@ -13,7 +13,7 @@ struct ProjectQualitiesSection: View {
     @Bindable var project: Project
 
     var qualities: [Quality] {
-        project.projectQualities.sorted(by: \Quality.qualityTitle)
+        project.qualities?.sorted(by: \Quality.qualityTitle) ?? []
     }
 
     var body: some View {
@@ -40,7 +40,16 @@ struct ProjectQualitiesSection: View {
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
+                        project.qualities?.removeAll { $0 == quality }
+                        quality.project = nil
+
+                        for score in quality.scores ?? [] {
+                            score.item?.scores?.removeAll { $0 == score }
+                            score.quality = nil
+                            context.delete(score)
+                        }
                         context.delete(quality)
+                        try? context.save()
                     }
                 }
             }

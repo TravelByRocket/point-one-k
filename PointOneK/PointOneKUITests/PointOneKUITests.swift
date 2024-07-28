@@ -7,7 +7,8 @@
 
 import XCTest
 
-class PointOneKUITests: XCTestCase {
+@MainActor
+final class PointOneKUITests: XCTestCase {
     var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -18,77 +19,96 @@ class PointOneKUITests: XCTestCase {
         app.launch()
     }
 
-    func testAppHas4Tabs() throws {
-        XCTAssertEqual(app.tabBars.buttons.count, 4, "There should be 4 tabs in the app.")
+    func test_GivenNoProject_WhenProjectAdded_ThenOneProjectShows() {
+        createNewProject(titled: "New Project")
+        let projectCount = app.collectionViews.cells.count
+        XCTAssert(projectCount == 1)
     }
 
-    func testOpenTabAddsItems() {
-        app.buttons["Open"].tap()
-        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
-
-        for tapCount in 1 ... 5 {
-            app.buttons["Add Project"].tap()
-            XCTAssertEqual(app.tables.cells.count, tapCount, "There should be \(tapCount) list row(s) initially")
-        }
+    func test_givenNoItem_whenItemAdded_thenOneItemShows() {
+        createNewProject(titled: "New Project")
+        app.buttons["New Project"].tap()
+        createNewItem(titled: "New Item")
+        XCTAssert(app.staticTexts["New Item"].exists)
     }
 
-    func testAddingItemInsertsRow() {
-        app.buttons["Open"].tap()
-        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
+    func test_givenNoQuality_whenQualityAdded_thenOneQualityShows() {
+        createNewProject(titled: "New Project")
+        app.buttons["New Project"].tap()
+        createNewQuality(titled: "New Quality")
+        XCTAssert(app.staticTexts["New Quality"].exists)
+    }
 
+    func test_givenProject_whenProjectTitleChanged_thenProjectRowUpdates() {
+        let projectTitle = "New Project"
+        createNewProject(titled: projectTitle)
+        app.buttons["New Project"].tap()
+        app.textFields["Project Title"].tap()
+        app.typeText(" Updated")
+        app.buttons["Open Projects"].tap()
+        XCTAssert(app.staticTexts["New Project Updated"].exists)
+    }
+
+    func test_givenProject_whenItemAdded_thenProjectRowUpdates() {
+        createNewProject(titled: "New Project")
+        app.buttons["New Project"].tap()
+        createNewItem(titled: "New Item")
+        app.buttons["Open Projects"].tap()
+        XCTAssert(app.staticTexts["0 Qualities, 1 Items"].exists)
+    }
+
+    func test_givenProject_whenQualityAdded_thenProjectRowUpdates() {
+        createNewProject(titled: "New Project")
+        app.buttons["New Project"].tap()
+        createNewQuality(titled: "New Quality")
+        app.buttons["Open Projects"].tap()
+        XCTAssert(app.staticTexts["1 Qualities, 0 Items"].exists)
+    }
+
+    func test_givenProjectWithItem_whenQualityAdded_thenItemRowHasPill() {
+        createNewProject(titled: "New Project")
+        app.buttons["New Project"].tap()
+        createNewItem(titled: "New Item")
+        createNewQuality(titled: "New Quality")
+        XCTAssert(app.staticTexts["0n"].exists)
+    }
+
+    func test_givenTwoItems_whenScoresChange_thenItemsAreSortedByScore() throws {
+        createNewProject(titled: "New Project")
+        app.buttons["New Project"].tap()
+        createNewItem(titled: "AAA")
+        createNewItem(titled: "ZZZ")
+        createNewQuality(titled: "New Quality")
+        app.buttons["ItemRow ZZZ"].tap()
+        app.buttons["Level 4"].tap()
+        app.buttons["Edit Project"].tap()
+        let itemElements = app.staticTexts.allElementsBoundByIndex
+        let zzzIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == "ItemRow ZZZ" })
+        let aaaIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == "ItemRow AAA" })
+        XCTAssert(zzzIndex < aaaIndex)
+    }
+
+    // Check Sort by Name Updates with New Item
+    // Check Sort by Score Updates with Changes Scores
+    // Check background bar updates with score change
+
+    // MARK: Helpers
+
+    func createNewProject(titled title: String) {
+        app.textFields["Enter New Project Title"].tap()
+        app.typeText(title)
         app.buttons["Add Project"].tap()
-        XCTAssertEqual(app.tables.cells.count, 1, "There should be 1 list row after adding a project")
+    }
 
+    func createNewItem(titled title: String) {
+        app.textFields["Add New Item"].tap()
+        app.typeText(title)
         app.buttons["Add New Item"].tap()
-        XCTAssertEqual(app.tables.cells.count, 2, "There should be 2 list rows after adding an item")
     }
 
-    func testEditingProjectUpdatesCorrectly() {
-        app.buttons["Open"].tap()
-        XCTAssertEqual(app.tables.cells.count, 0, "There should be no list rows initially.")
-
-        app.buttons["Add Project"].tap()
-        XCTAssertEqual(app.tables.cells.count, 1, "There should be 1 list row after adding a project")
-
-        app.buttons["Compose"].tap()
-
-        app.textFields["Project name"].tap()
-
-        waitForKeyboard()
-
-        app.keys["space"].tap()
-        app.keys["more"].tap()
-        app.keys["2"].tap()
-        app.buttons["Return"].tap()
-
-        app.buttons["Open Projects"].tap()
-        XCTAssertTrue(app.staticTexts["New Project 2"].exists, "Modified project name should be visible in list")
-    }
-
-    func testEditingItemUpdatesCorrectly() {
-        // Go to Open projects and add one project and one item before the test.
-        testAddingItemInsertsRow()
-
-        app.buttons["New Item"].tap()
-        app.textFields["New Item"].tap()
-
-        waitForKeyboard()
-
-        app.keys["space"].tap()
-        app.keys["more"].tap()
-        app.keys["2"].tap()
-        app.buttons["Return"].tap()
-
-        app.buttons["Open Projects"].tap()
-        XCTAssertTrue(app.staticTexts["New Item 2"].exists, "Modified item name should be visible in list")
-    }
-
-    func waitForKeyboard() {
-        // Tapping "space" here without a delay does not fail as far as the key existing
-        // but the space does not get collected if animations are disabled. Adding a delay
-        // fixes this. `waitForExistence` works but not sure why and has `unused` warning.
-        let when = DispatchTime.now() + 0.3 // can work with as little as 0.2 delay
-        while when > DispatchTime.now() {}
-        //        app.keys["space"].waitForExistence(timeout: 1) // this works with `unused` warning
+    func createNewQuality(titled title: String) {
+        app.textFields["Add New Quality"].tap()
+        app.typeText(title)
+        app.buttons["Add New Quality"].tap()
     }
 }

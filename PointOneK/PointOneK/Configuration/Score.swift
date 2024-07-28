@@ -15,7 +15,10 @@ import SwiftData
 
     // Relationships
 
+    @Relationship(deleteRule: .nullify)
     var item: ItemV2?
+
+    @Relationship(deleteRule: .nullify)
     var quality: QualityV2?
 
     public init() {}

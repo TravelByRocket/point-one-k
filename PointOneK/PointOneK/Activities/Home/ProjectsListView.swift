@@ -35,6 +35,7 @@ struct ProjectsListView: View {
                 } label: {
                     ProjectRowView(project: project)
                 }
+                .accessibilityIdentifier(project.projectTitle)
             }
         }
         .listStyle(InsetGroupedListStyle())
