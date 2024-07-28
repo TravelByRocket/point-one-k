@@ -5,7 +5,6 @@
 //  Created by Bryan Costanza on 6 Mar 2022.
 //
 
-import UIKit
 import XCTest
 
 @MainActor
@@ -24,6 +23,27 @@ final class PointOneKUITests: XCTestCase {
         static let newProject = "New Project"
         static let newItem = "New Item"
         static let newQuality = "New Quality"
+    }
+
+    enum Buttons {
+        static let addProject = "Add Project"
+        static let addNewItem = "Add New Item"
+        static let addNewQuality = "Add New Quality"
+        static let delete = "Delete"
+        static let level4 = "Level 4"
+        static func itemRow(itemTitle: String) -> String { "ItemRow \(itemTitle)" }
+    }
+
+    enum BackNavigation {
+        static let openProjects = "Open Projects"
+        static let editProject = "Edit Project"
+    }
+
+    enum TextFields {
+        static let enterNewProjectTitle = "Enter New Project Title"
+        static let projectTitle = "Project Title"
+        static let addNewItem = "Add New Item"
+        static let addNewQuality = "Add New Quality"
     }
 
     func test_GivenNoProject_WhenProjectAdded_ThenOneProjectShows() {
@@ -50,17 +70,18 @@ final class PointOneKUITests: XCTestCase {
         let projectTitle = Titles.newProject
         createProject(titled: projectTitle)
         app.buttons[Titles.newProject].tap()
-        app.textFields["Project Title"].tap()
-        app.typeText(" Updated")
-        app.buttons["Open Projects"].tap()
-        XCTAssert(app.staticTexts["New Project Updated"].exists)
+        app.textFields[TextFields.projectTitle].tap()
+        let suffix = " Updated"
+        app.typeText(suffix)
+        app.buttons[BackNavigation.openProjects].tap()
+        XCTAssert(app.staticTexts[Titles.newProject + suffix].exists)
     }
 
     func test_givenProject_whenItemAdded_thenProjectRowUpdates() {
         createProject(titled: Titles.newProject)
         app.buttons[Titles.newProject].tap()
         createItem(titled: Titles.newItem)
-        app.buttons["Open Projects"].tap()
+        app.buttons[BackNavigation.openProjects].tap()
         XCTAssert(app.staticTexts["0 Qualities, 1 Items"].exists)
     }
 
@@ -68,7 +89,7 @@ final class PointOneKUITests: XCTestCase {
         createProject(titled: Titles.newProject)
         app.buttons[Titles.newProject].tap()
         createQuality(titled: Titles.newQuality)
-        app.buttons["Open Projects"].tap()
+        app.buttons[BackNavigation.openProjects].tap()
         XCTAssert(app.staticTexts["1 Qualities, 0 Items"].exists)
     }
 
@@ -83,15 +104,17 @@ final class PointOneKUITests: XCTestCase {
     func test_givenTwoItems_whenScoresChange_thenItemsAreSortedByScore() throws {
         createProject(titled: Titles.newProject)
         app.buttons[Titles.newProject].tap()
-        createItem(titled: "AAA")
-        createItem(titled: "ZZZ")
+        let itemTitleA = "AAA"
+        let itemTitleZ = "ZZZ"
+        createItem(titled: itemTitleA)
+        createItem(titled: itemTitleZ)
         createQuality(titled: Titles.newQuality)
-        app.buttons["ItemRow ZZZ"].tap()
-        app.buttons["Level 4"].tap()
-        app.buttons["Edit Project"].tap()
+        app.buttons[Buttons.itemRow(itemTitle: itemTitleZ)].tap()
+        app.buttons[Buttons.level4].tap()
+        app.buttons[BackNavigation.editProject].tap()
         let itemElements = app.staticTexts.allElementsBoundByIndex
-        let zzzIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == "ZZZ" })
-        let aaaIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == "AAA" })
+        let zzzIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == itemTitleZ })
+        let aaaIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == itemTitleA })
         XCTAssert(zzzIndex < aaaIndex)
     }
 
@@ -101,8 +124,8 @@ final class PointOneKUITests: XCTestCase {
         app.buttons[Titles.newProject].tap()
         createItem(titled: Titles.newItem)
         createQuality(titled: Titles.newQuality)
-        app.buttons["ItemRow " + Titles.newItem].swipeLeft()
-        app.buttons["Delete"].tap()
+        app.buttons[Buttons.itemRow(itemTitle: Titles.newItem)].swipeLeft()
+        app.buttons[Buttons.delete].tap()
         createItem(titled: Titles.newItem + "2")
         let itemElements = app.staticTexts.allElementsBoundByIndex
         let itemRowCount = itemElements.filter { $0.label.contains(Titles.newItem) }.count
@@ -116,7 +139,7 @@ final class PointOneKUITests: XCTestCase {
         createItem(titled: Titles.newItem)
         createQuality(titled: Titles.newQuality)
         app.buttons["QualityRow " + Titles.newQuality].swipeLeft()
-        app.buttons["Delete"].tap()
+        app.buttons[Buttons.delete].tap()
         createQuality(titled: Titles.newQuality + "2")
         let qualityElements = app.staticTexts.allElementsBoundByIndex
         let qualityRowCount = qualityElements.filter { $0.label.contains(Titles.newQuality) }.count
@@ -128,20 +151,20 @@ final class PointOneKUITests: XCTestCase {
     // MARK: Helpers
 
     func createProject(titled title: String) {
-        app.textFields["Enter New Project Title"].tap()
+        app.textFields[TextFields.enterNewProjectTitle].tap()
         app.typeText(title)
-        app.buttons["Add Project"].tap()
+        app.buttons[Buttons.addProject].tap()
     }
 
     func createItem(titled title: String) {
-        app.textFields["Add New Item"].tap()
+        app.textFields[TextFields.addNewItem].tap()
         app.typeText(title)
-        app.buttons["Add New Item"].tap()
+        app.buttons[Buttons.addNewItem].tap()
     }
 
     func createQuality(titled title: String) {
-        app.textFields["Add New Quality"].tap()
+        app.textFields[TextFields.addNewQuality].tap()
         app.typeText(title)
-        app.buttons["Add New Quality"].tap()
+        app.buttons[Buttons.addNewQuality].tap()
     }
 }
