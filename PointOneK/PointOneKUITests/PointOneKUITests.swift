@@ -5,6 +5,7 @@
 //  Created by Bryan Costanza on 6 Mar 2022.
 //
 
+import UIKit
 import XCTest
 
 @MainActor
@@ -15,7 +16,7 @@ final class PointOneKUITests: XCTestCase {
         continueAfterFailure = false
 
         app = XCUIApplication()
-        app.launchArguments = ["enable-testing"]
+        app.launchEnvironment["DISABLE_ANIMATIONS"] = "true"
         app.launch()
     }
 
@@ -92,6 +93,34 @@ final class PointOneKUITests: XCTestCase {
         let zzzIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == "ZZZ" })
         let aaaIndex = try XCTUnwrap(itemElements.firstIndex { $0.label == "AAA" })
         XCTAssert(zzzIndex < aaaIndex)
+    }
+
+    func test_givenOneItemAndOneQuality_whenItemDeletedAndCreated_thenOneItemRow() {
+        // Delete followed by add to also ensure original item doesn't reappear due to view or persistence issue
+        createProject(titled: Titles.newProject)
+        app.buttons[Titles.newProject].tap()
+        createItem(titled: Titles.newItem)
+        createQuality(titled: Titles.newQuality)
+        app.buttons["ItemRow " + Titles.newItem].swipeLeft()
+        app.buttons["Delete"].tap()
+        createItem(titled: Titles.newItem + "2")
+        let itemElements = app.staticTexts.allElementsBoundByIndex
+        let itemRowCount = itemElements.filter { $0.label.contains(Titles.newItem) }.count
+        XCTAssert(itemRowCount == 1)
+    }
+
+    func test_givenOneItemAndOneQuality_whenQualityDeletedAndCreated_thenOneQualityRow() {
+        // Delete followed by add to also ensure original item doesn't reappear due to view or persistence issue
+        createProject(titled: Titles.newProject)
+        app.buttons[Titles.newProject].tap()
+        createItem(titled: Titles.newItem)
+        createQuality(titled: Titles.newQuality)
+        app.buttons["QualityRow " + Titles.newQuality].swipeLeft()
+        app.buttons["Delete"].tap()
+        createQuality(titled: Titles.newQuality + "2")
+        let qualityElements = app.staticTexts.allElementsBoundByIndex
+        let qualityRowCount = qualityElements.filter { $0.label.contains(Titles.newQuality) }.count
+        XCTAssert(qualityRowCount == 1)
     }
 
     // Check background bar updates with score change

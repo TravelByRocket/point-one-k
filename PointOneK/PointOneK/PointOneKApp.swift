@@ -14,6 +14,13 @@ typealias Score = ScoreV2
 
 @main
 struct PointOneKApp: App {
+    init() {
+        let env = ProcessInfo.processInfo.environment
+        if env["DISABLE_ANIMATIONS"] == "true" {
+            UIView.setAnimationsEnabled(false)
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

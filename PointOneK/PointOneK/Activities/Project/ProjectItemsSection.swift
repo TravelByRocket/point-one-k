@@ -58,17 +58,8 @@ struct ProjectItemsSection: View {
                 withAnimation {
                     for offset in offsets {
                         let item = items[offset]
-                        project.items?.removeAll { $0 == item }
-                        item.project = nil
-
-                        for score in item.scores ?? [] {
-                            score.quality?.scores?.removeAll { $0 == score }
-                            score.item = nil
-                            context.delete(score)
-                        }
-
+                        project.items?.removeAll { $0 == item } // needed for view to get notified
                         context.delete(item)
-                        try? context.save()
                     }
                 }
             }

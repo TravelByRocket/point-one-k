@@ -35,21 +35,14 @@ struct ProjectQualitiesSection: View {
                         }
                     }
                 }
+                .accessibilityIdentifier("QualityRow \(quality.qualityTitle)")
             }
             .onDelete { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
-                        project.qualities?.removeAll { $0 == quality }
-                        quality.project = nil
-
-                        for score in quality.scores ?? [] {
-                            score.item?.scores?.removeAll { $0 == score }
-                            score.quality = nil
-                            context.delete(score)
-                        }
+                        project.qualities?.removeAll { $0 == quality } // needed for view to get notified
                         context.delete(quality)
-                        try? context.save()
                     }
                 }
             }
