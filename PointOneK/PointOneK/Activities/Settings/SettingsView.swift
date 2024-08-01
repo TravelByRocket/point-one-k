@@ -55,6 +55,15 @@ struct SettingsView: View {
                 } label: {
                     Text("$100 Startup")
                 }
+
+                Button {
+                    let project = EisenhowerMethod.project
+                    project.qualities = EisenhowerMethod.qualities
+                    context.insert(project)
+                    dismiss()
+                } label: {
+                    Text("Eisenhower Method")
+                }
             }
 
             // OPEN/CLOSED PROJECTS SECTION
