@@ -49,7 +49,7 @@ struct LevelSelector: View {
 
 #Preview {
     @Previewable @State var valueA: Int? = 1
-    @Previewable @State var valueB: Int? = nil
+    @Previewable @State var valueB: Int? = nil // swiftlint:disable:this redundant_optional_initialization
 
     VStack(alignment: .trailing, spacing: 20) {
         LevelSelector(

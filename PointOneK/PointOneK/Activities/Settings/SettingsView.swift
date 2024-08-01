@@ -10,6 +10,9 @@ import SwiftUI
 import WidgetKit
 
 struct SettingsView: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
+
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == true },
         sort: \ProjectV2.title,
@@ -45,8 +48,10 @@ struct SettingsView: View {
             // TEMPLATES SECTION
             Section(header: Text("Templates")) {
                 Button {
-                    #warning("revive $100 startup template")
-//                    makeHundredDollarStartup(dataController)
+                    let project = HundredDollarStartup.project
+                    project.qualities = HundredDollarStartup.qualities
+                    context.insert(project)
+                    dismiss()
                 } label: {
                     Text("$100 Startup")
                 }

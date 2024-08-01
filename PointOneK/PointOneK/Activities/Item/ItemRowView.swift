@@ -5,8 +5,6 @@
 //  Created by Bryan Costanza on 20 Sep 2021.
 //
 
-// swiftlint:disable comment_spacing
-
 // import SwiftUI
 
 // MOVED TO FUNCTION DUE TO SWIFTDATA CRASH
