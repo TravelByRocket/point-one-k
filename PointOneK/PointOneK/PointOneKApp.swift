@@ -27,12 +27,4 @@ struct PointOneKApp: App {
         }
         .modelContainer(.standard)
     }
-
-    var isInMemory: Bool {
-        #if DEBUG || TESTING
-            return true
-        #else
-            return false
-        #endif
-    }
 }

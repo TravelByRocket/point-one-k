@@ -9,10 +9,10 @@ import SwiftData
 
 extension ModelContainer {
     static var standard: ModelContainer {
-        #if DEBUG
+        #if DEBUG || TESTING
             let config = ModelConfiguration(
                 "debug",
-                isStoredInMemoryOnly: false,
+                isStoredInMemoryOnly: true,
                 groupContainer: .automatic
             )
         #else

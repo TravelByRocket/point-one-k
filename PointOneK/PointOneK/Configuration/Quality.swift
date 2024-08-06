@@ -18,7 +18,6 @@ import SwiftData
 
     // Relationships
 
-//    @Relationship(deleteRule: .nullify)
     var project: ProjectV2?
 
     @Relationship(deleteRule: .cascade)

@@ -69,8 +69,6 @@ extension ProjectV2 {
             let score = ScoreV2()
             item.scores = (item.scores ?? []) + [score] // score.item = item
             quality.scores = (quality.scores ?? []) + [score] // score.quality = quality
-//            score.quality = quality
-//            score.item = item
         }
         try? modelContext?.save()
     }
