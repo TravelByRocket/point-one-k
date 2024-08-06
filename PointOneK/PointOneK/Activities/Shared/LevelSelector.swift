@@ -9,7 +9,7 @@ import CoreHaptics
 import SwiftUI
 
 struct LevelSelector: View {
-    @Binding var value: Int
+    @Binding var value: Int?
     let possibleScores: [Int]
 
     @State private var engine = try? CHHapticEngine()
@@ -26,7 +26,7 @@ struct LevelSelector: View {
                     action: {
                         withAnimation {
                             if value == level {
-                                value = 0
+                                value = nil
                                 valueClearHaptic(engine: engine)
                             } else {
                                 value = level
@@ -41,14 +41,15 @@ struct LevelSelector: View {
                     }
                 )
                 .buttonStyle(BorderlessButtonStyle())
+                .accessibilityIdentifier("Level \(level)")
             }
         }
     }
 }
 
 #Preview {
-    @Previewable @State var valueA = 1
-    @Previewable @State var valueB = 0
+    @Previewable @State var valueA: Int? = 1
+    @Previewable @State var valueB: Int? = nil // swiftlint:disable:this redundant_optional_initialization
 
     VStack(alignment: .trailing, spacing: 20) {
         LevelSelector(

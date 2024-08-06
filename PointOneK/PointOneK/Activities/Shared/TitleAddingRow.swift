@@ -11,15 +11,19 @@ struct TitleAddingRow: View {
     @State private var text: String = ""
 
     let prompt: String
-    let onAdd: (String) -> Void
+    let addingAction: (String) -> Void
 
     var body: some View {
         HStack {
             TextField(prompt, text: $text)
                 .textFieldStyle(.roundedBorder)
+                .onSubmit {
+                    addingAction(text)
+                    text = ""
+                }
 
             Button {
-                onAdd(text)
+                addingAction(text)
                 text = ""
             } label: {
                 addLabelView
@@ -42,7 +46,7 @@ struct TitleAddingRow: View {
     Form {
         TitleAddingRow(
             prompt: "New Item Name",
-            onAdd: { _ in }
+            addingAction: { _ in }
         )
     }
 }

@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
-    @ObservedObject var project: Project
-
+    @Environment(\.modelContext) private var context
     @State private var showingDeleteConfirm = false
 
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Bindable var project: Project
 
     var body: some View {
         Section(footer: footer) {
@@ -44,7 +42,7 @@ struct ProjectArchiveDeleteSection: View {
     }
 
     func delete() {
-        dataController.delete(project)
+        context.delete(project)
     }
 }
 

@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct ProjectItemsSection: View {
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Environment(\.modelContext) private var context
     @State private var sortOrder = Item.SortOrder.score
 
-    @ObservedObject var project: ProjectOld
+    @Bindable var project: Project
 
     var itemSortingHeader: some View {
         HStack {
@@ -45,8 +44,10 @@ struct ProjectItemsSection: View {
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    ItemRowView(item: item)
+                    // TODO: Fix ItemRowView #66
+                    row(item: item)
                 }
+                .accessibilityIdentifier("ItemRow \(item.itemTitle)")
                 .listRowBackground(
                     BackgroundBarView(
                         value: item.scoreTotal,
@@ -57,8 +58,9 @@ struct ProjectItemsSection: View {
             .onDelete { offsets in
                 withAnimation {
                     for offset in offsets {
-                        let item = project.projectItems[offset]
-                        dataController.delete(item)
+                        let item = items[offset]
+                        project.items?.removeAll { $0 == item } // needed for view to get notified
+                        context.delete(item)
                     }
                 }
             }
@@ -66,8 +68,6 @@ struct ProjectItemsSection: View {
             TitleAddingRow(prompt: "Add New Item") { title in
                 withAnimation {
                     project.addItem(titled: title)
-                    project.objectWillChange.send()
-                    dataController.save()
                 }
             }
         }
@@ -75,19 +75,70 @@ struct ProjectItemsSection: View {
 
     private var items: [Item] {
         var comparator: (Item, Item) -> Bool {
+            let scoreComparator: (Item, Item) -> ComparisonResult = {
+                if $0.scoreTotal == $1.scoreTotal {
+                    .orderedSame
+                } else if $0.scoreTotal > $1.scoreTotal {
+                    .orderedAscending
+                } else {
+                    .orderedDescending
+                }
+            }
+
+            let nameCompare: (Item, Item) -> ComparisonResult = {
+                $0.itemTitle.localizedCompare($1.itemTitle)
+            }
+
             switch sortOrder {
             case .title:
-                { $0.itemTitle < $1.itemTitle }
+                return {
+                    let nameComparison = nameCompare($0, $1)
+                    if nameComparison != .orderedSame {
+                        return nameComparison == .orderedAscending
+                    } else {
+                        return scoreComparator($0, $1) == .orderedAscending
+                    }
+                }
             case .score:
-                { $0.scoreTotal > $1.scoreTotal }
+                return {
+                    let scoreComparison = scoreComparator($0, $1)
+                    if scoreComparison != .orderedSame {
+                        return scoreComparison == .orderedAscending
+                    } else {
+                        return nameCompare($0, $1) == .orderedAscending
+                    }
+                }
             }
         }
 
-        return project.projectItems.sorted(by: comparator)
+        return project.items?.sorted(by: comparator) ?? []
+    }
+
+    // TODO: Fix ItemRowView #66
+    private func row(item: Item) -> some View {
+        HStack {
+            Text(item.itemTitle)
+                .lineLimit(1)
+
+            Spacer()
+
+            ForEach(item.project?.projectQualities.sorted(by: \.qualityIndicatorCharacter) ?? []) { quality in
+                InfoPill(
+                    letter: quality.qualityIndicatorCharacter,
+                    level: quality.score(for: item)?.value ?? 0
+                )
+            }
+        }
+        .listRowBackground(
+            BackgroundBarView(
+                value: item.scoreTotal,
+                max: item.project?.scorePossible ?? 0
+            )
+        )
     }
 }
 
-#Preview {
+#Preview(traits: .modifier(.persistenceLayer)) {
     NavigationStack {
         List {
             ProjectItemsSection(

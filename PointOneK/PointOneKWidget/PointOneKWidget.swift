@@ -5,26 +5,41 @@
 //  Created by Bryan Costanza on 16 Mar 2022.
 //
 
+import SwiftData
 import SwiftUI
 import WidgetKit
 
 struct PointOneKWidgetEntryView: View {
+    @Query private var projects: [ProjectV2]
+
     var entry: Provider.Entry
+
+    var project: ProjectV2? {
+        projects.first(where: { $0.widgetID == 1 })
+    }
+
+    var color: Color? {
+        if let color = project?.projectColor {
+            Color(color)
+        } else {
+            nil
+        }
+    }
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(entry.project.projectTitle)
+                Text(project?.projectTitle ?? "No Project")
                     .font(.title3)
-                    .foregroundColor(Color(entry.project.projectColor))
+                    .foregroundColor(color ?? .accentColor)
 
-                ForEach(entry.project.projectItems(using: .score)) { item in
+                ForEach(project?.projectItems(using: .score) ?? []) { item in
                     HStack {
                         Circle()
                             .inset(by: 10)
                             .trim(
                                 from: 0.0,
-                                to: trimToFor(project: entry.project, item: item)
+                                to: trimToFor(project: project, item: item)
                             )
                             .stroke(lineWidth: 3)
                             .rotationEffect(.degrees(180))
@@ -39,13 +54,13 @@ struct PointOneKWidgetEntryView: View {
                     .background {
                         BackgroundBarView(
                             value: item.scoreTotal,
-                            max: entry.project.scorePossible
+                            max: project?.scorePossible ?? 0
                         )
                         .padding(-3)
                     }
                 }
 
-                if entry.project.projectItems.isEmpty {
+                if project?.projectItems.isEmpty ?? true {
                     Text("No items…")
                 }
 
@@ -59,13 +74,17 @@ struct PointOneKWidgetEntryView: View {
         .containerBackground(for: .widget) {
             ContainerRelativeShape()
                 .stroke(lineWidth: 10)
-                .foregroundColor(Color(entry.project.projectColor))
+                .foregroundColor(color ?? .accentColor)
         }
     }
 
-    func trimToFor(project: ProjectOld, item: ItemOld) -> CGFloat {
-        if project.scorePossible > 0 {
-            CGFloat(item.scoreTotal) / CGFloat(entry.project.scorePossible)
+    func trimToFor(project: ProjectV2?, item: ItemV2) -> CGFloat {
+        if let project {
+            if project.scorePossible > 0 {
+                CGFloat(item.scoreTotal) / CGFloat(project.scorePossible)
+            } else {
+                0.0
+            }
         } else {
             0.0
         }
@@ -81,6 +100,7 @@ struct PointOneKWidget: Widget {
             provider: Provider()
         ) { entry in
             PointOneKWidgetEntryView(entry: entry)
+                .modelContainer(.standard)
         }
         .configurationDisplayName("Project Top Items")
         .description("See the top scored items in your project.")
@@ -92,7 +112,6 @@ struct PointOneKWidget: Widget {
     PointOneKWidget()
 } timeline: {
     Provider.Entry(
-        date: .now,
-        project: .example
+        date: .now
     )
 }

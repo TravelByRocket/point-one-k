@@ -41,7 +41,8 @@ extension ProjectV2 {
 
     func addItem(titled title: String? = nil) {
         let item = ItemV2()
-        item.project = self
+        modelContext?.insert(item)
+        items = (items ?? []) + [item] // `item.project = self` does not publish change
 
         if let title {
             item.title = title
@@ -49,14 +50,16 @@ extension ProjectV2 {
 
         for quality in projectQualities {
             let score = ScoreV2()
-            score.item = item
-            score.quality = quality
+            item.scores = (item.scores ?? []) + [score] // score.item = item
+            quality.scores = (quality.scores ?? []) + [score] // score.quality = quality
         }
+        try? modelContext?.save()
     }
 
     func addQuality(titled title: String? = nil) {
         let quality = QualityV2()
-        quality.project = self
+        modelContext?.insert(quality)
+        qualities = (qualities ?? []) + [quality] // `quality.project = self` does not publish change
 
         if let title {
             quality.title = title
@@ -64,9 +67,10 @@ extension ProjectV2 {
 
         for item in projectItems {
             let score = ScoreV2()
-            score.quality = quality
-            score.item = item
+            item.scores = (item.scores ?? []) + [score] // score.item = item
+            quality.scores = (quality.scores ?? []) + [score] // score.quality = quality
         }
+        try? modelContext?.save()
     }
 
     static var example: ProjectV2 {

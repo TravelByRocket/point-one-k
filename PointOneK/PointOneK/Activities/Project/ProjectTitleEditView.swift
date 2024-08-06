@@ -17,12 +17,11 @@ struct ProjectTitleEditView: View {
     }
 
     var body: some View {
-        TextField("Project name", text: $title.onChange(update))
+        TextField("Project Title", text: $title.onChange(update))
             .font(.title)
     }
 
     func update() {
-        project.objectWillChange.send()
         project.title = title
     }
 }

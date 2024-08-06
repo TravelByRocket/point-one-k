@@ -10,56 +10,36 @@ import SwiftUI
 import WidgetKit
 
 struct SettingsView: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
+
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == true },
         sort: \ProjectV2.title,
         order: .forward
     )
-    private var closedProjectsV2: [ProjectV2]
+    private var closedProjects: [ProjectV2]
 
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == false },
         sort: \ProjectV2.title,
         order: .forward
     )
-    private var openProjectsV2: [ProjectV2]
+    private var openProjects: [ProjectV2]
 
-    @EnvironmentObject var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @State private var widgetProjectID: ProjectV2.ID?
 
-    @FetchRequest var closedProjects: FetchedResults<ProjectOld>
-    @FetchRequest var openProjects: FetchedResults<ProjectOld>
-
-    @State private var widgetProject: URL? = UserDefaults(
-        suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
-
-    var noProjectsText: some View {
+    private var noProjectsText: some View {
         Text("No projects here")
             .italic()
             .foregroundColor(.secondary)
     }
 
-    var projectGroups: [(label: String, projects: [Project])] {
+    private var projectGroups: [(label: String, projects: [Project])] {
         [
             (label: "Open Projects", projects: Array(openProjects)),
             (label: "Closed Projects", projects: Array(closedProjects)),
         ]
-    }
-
-    init() {
-        _closedProjects = FetchRequest<ProjectOld>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true),
-            ],
-            predicate: NSPredicate(format: "closed = true")
-        )
-
-        _openProjects = FetchRequest<ProjectOld>(
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true),
-            ],
-            predicate: NSPredicate(format: "closed = false")
-        )
     }
 
     var body: some View {
@@ -67,9 +47,21 @@ struct SettingsView: View {
             // TEMPLATES SECTION
             Section(header: Text("Templates")) {
                 Button {
-                    makeHundredDollarStartup(dataController)
+                    let project = HundredDollarStartup.project
+                    project.qualities = HundredDollarStartup.qualities
+                    context.insert(project)
+                    dismiss()
                 } label: {
                     Text("$100 Startup")
+                }
+
+                Button {
+                    let project = EisenhowerMethod.project
+                    project.qualities = EisenhowerMethod.qualities
+                    context.insert(project)
+                    dismiss()
+                } label: {
+                    Text("Eisenhower Method")
                 }
             }
 
@@ -90,19 +82,32 @@ struct SettingsView: View {
                 header: Text("Widget Project"),
                 footer: Text("If you close your widget project it will remain visible in the widget.")
             ) {
-                Picker("Pick Project", selection: $widgetProject) {
+                Picker("Pick Project", selection: $widgetProjectID) {
                     ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
                         Text(project.projectTitle)
-                            .tag((project.objectID.uriRepresentation()) as URL?)
+                            .tag(project.id)
                     }
+
                     Text("Use Placeholder Project")
                         .italic()
                         .tag(nil as URL?)
                 }
+                .onAppear {
+                    if let project = openProjects.first(where: { $0.widgetID == 1 }) {
+                        widgetProjectID = project.id
+                    }
+                }
                 .pickerStyle(.inline)
                 .labelsHidden()
-                .onChange(of: widgetProject) {
-                    UserDefaults(suiteName: "group.co.synodic.PointOneK")?.set(widgetProject, forKey: "widgetProject")
+                .onChange(of: widgetProjectID) {
+                    for project in openProjects {
+                        if project.id == widgetProjectID {
+                            project.widgetID = 1
+                        } else {
+                            project.widgetID = nil
+                        }
+                    }
+
                     WidgetCenter.shared.reloadAllTimelines()
                 }
             }

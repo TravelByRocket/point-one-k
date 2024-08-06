@@ -11,10 +11,12 @@ import SwiftData
 @Model public class ProjectV2 {
     // Attributes
 
-    var closed: Bool?
+    var closed: Bool = false
     var color: String?
     var detail: String?
     var title: String?
+
+    var widgetID: Int?
 
     // Relationships
 

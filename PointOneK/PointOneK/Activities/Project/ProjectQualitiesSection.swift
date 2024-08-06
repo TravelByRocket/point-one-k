@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct ProjectQualitiesSection: View {
-    @ObservedObject var project: Project
+    @Environment(\.modelContext) private var context
 
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Bindable var project: Project
 
     var qualities: [Quality] {
-        project.projectQualities.sorted(by: \Quality.qualityTitle)
+        project.qualities?.sorted(by: \Quality.qualityTitle) ?? []
     }
 
     var body: some View {
@@ -36,22 +35,21 @@ struct ProjectQualitiesSection: View {
                         }
                     }
                 }
+                .accessibilityIdentifier("QualityRow \(quality.qualityTitle)")
             }
             .onDelete { offsets in
                 for offset in offsets {
                     withAnimation {
                         let quality = qualities[offset]
-                        dataController.delete(quality)
+                        project.qualities?.removeAll { $0 == quality } // needed for view to get notified
+                        context.delete(quality)
                     }
                 }
-
-                dataController.save()
             }
 
             TitleAddingRow(prompt: "Add New Quality") { title in
                 withAnimation {
                     project.addQuality(titled: title)
-                    dataController.save()
                 }
             }
         }

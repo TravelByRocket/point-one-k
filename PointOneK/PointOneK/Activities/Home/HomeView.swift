@@ -9,9 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(\.modelContext) private var context
-    @Environment(\.managedObjectContext) private var managedObjectContext
-    @EnvironmentObject private var dataController: DataController
-
     @State private var showingSettings = false
     @State private var newProjectTitle = ""
 
@@ -68,11 +65,11 @@ struct HomeView: View {
     }
 
     func addProject() {
-        let project = ProjectOld(context: managedObjectContext)
+        let project = Project()
         project.closed = false
         project.title = newProjectTitle
         newProjectTitle = ""
-        dataController.save()
+        context.insert(project)
     }
 }
 

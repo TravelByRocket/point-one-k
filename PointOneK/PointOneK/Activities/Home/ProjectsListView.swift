@@ -9,22 +9,12 @@ import SwiftData
 import SwiftUI
 
 struct ProjectsListView: View {
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
-
-    @FetchRequest(
-        entity: ProjectOld.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \ProjectOld.title, ascending: true)],
-        predicate: NSPredicate(format: "closed = false")
-    )
-    private var projects: FetchedResults<ProjectOld>
-
     @Query(
         filter: #Predicate<ProjectV2> { $0.closed == false },
         sort: \ProjectV2.title,
         order: .forward
     )
-    private var projectsV2: [ProjectV2]
+    private var projects: [ProjectV2]
 
     var body: some View {
         Group {
@@ -45,6 +35,7 @@ struct ProjectsListView: View {
                 } label: {
                     ProjectRowView(project: project)
                 }
+                .accessibilityIdentifier(project.projectTitle)
             }
         }
         .listStyle(InsetGroupedListStyle())

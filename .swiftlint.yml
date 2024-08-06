@@ -1,5 +1,6 @@
 disabled_rules:
   - trailing_comma
+  - blanket_disable_command
 
 opt_in_rules:
   - duplicate_imports

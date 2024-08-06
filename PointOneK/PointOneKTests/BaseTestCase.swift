@@ -11,9 +11,6 @@ import SwiftData
 @testable import PointOneK
 
 class BaseTestCase {
-    let dataController: DataController!
-    let managedObjectContext: NSManagedObjectContext!
-
     let config: ModelConfiguration
     let container: ModelContainer
 
@@ -21,9 +18,6 @@ class BaseTestCase {
     var context: ModelContext { container.mainContext }
 
     init() {
-        dataController = DataController(inMemory: true)
-        managedObjectContext = dataController.container.viewContext
-
         config = ModelConfiguration(isStoredInMemoryOnly: true)
 
         container = try! ModelContainer( // swiftlint:disable:this force_try

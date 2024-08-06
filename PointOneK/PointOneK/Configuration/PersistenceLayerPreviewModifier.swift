@@ -28,13 +28,9 @@ struct PersistenceLayerPreviewModifier: PreviewModifier {
         return context
     }
 
-    var dataController = DataController(inMemory: true)
-
     func body(content: Content, context: ModelContext) -> some View {
         content
             .modelContainer(context.container)
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environmentObject(dataController)
     }
 }
 

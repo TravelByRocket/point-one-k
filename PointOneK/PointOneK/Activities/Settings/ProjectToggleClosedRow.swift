@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ProjectToggleClosedRow: View {
-    @ObservedObject var project: Project
-
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Bindable var project: Project
 
     var body: some View {
         Button(action: toggleClosed, label: { label })

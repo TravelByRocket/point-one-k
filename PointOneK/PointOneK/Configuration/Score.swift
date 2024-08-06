@@ -16,6 +16,7 @@ import SwiftData
     // Relationships
 
     var item: ItemV2?
+
     var quality: QualityV2?
 
     public init() {}

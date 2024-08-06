@@ -12,7 +12,7 @@ import UIKit
 
 struct AssetTests {
     @Test func testColorsExist() {
-        for color in ProjectOld.colors {
+        for color in ProjectV2.colors {
             #expect(UIColor(named: color) != nil, "Failed to load color '\(color)' from asset catalog.")
         }
     }

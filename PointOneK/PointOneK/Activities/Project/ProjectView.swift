@@ -9,10 +9,7 @@ import CloudKit
 import SwiftUI
 
 struct ProjectView: View {
-    @ObservedObject var project: Project
-
-    @EnvironmentObject private var dataController: DataController
-    @Environment(\.managedObjectContext) private var managedObjectContext
+    @Bindable var project: Project
 
     var body: some View {
         Form {
@@ -30,14 +27,10 @@ struct ProjectView: View {
                 selectedColorName: $project.color,
                 colorNames: Project.colors
             )
-            .onChange(of: project.color) {
-                dataController.save()
-            }
 
             ProjectArchiveDeleteSection(project: project)
         }
         .navigationTitle("Edit Project")
-        .onDisappear(perform: dataController.save)
     }
 }
 
