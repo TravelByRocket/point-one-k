@@ -40,7 +40,7 @@ struct ProjectItemsSection: View {
 
     var body: some View {
         Section(header: itemSortingHeader) {
-            ForEach(items.filter { $0.modelContext != nil }) { item in
+            ForEach(items) { item in
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
