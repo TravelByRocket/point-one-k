@@ -11,42 +11,25 @@ struct Provider: TimelineProvider {
     typealias Entry = SimpleEntry
 
     func placeholder(in _: Context) -> SimpleEntry {
-        SimpleEntry(date: .now, project: .example)
+        SimpleEntry(date: .now)
     }
 
     func getSnapshot(
         in _: Context,
         completion: @escaping (SimpleEntry) -> Void
     ) {
-        let entry = SimpleEntry(date: Date(), project: loadProject())
+        let entry = SimpleEntry(date: .now)
         completion(entry)
     }
 
     func getTimeline(in _: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        let entry = SimpleEntry(date: Date(), project: loadProject())
+        let entry = SimpleEntry(date: Date())
 
         let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
-    }
-
-    func loadProject() -> ProjectV2 {
-        #warning("load project not active")
-//        let projects = (try? dataController.container.viewContext.fetch(ProjectV2.fetchRequest())) ?? []
-//        if let project = dataController.widgetProject {
-//            return project
-//        }
-
-        // Use the first project as backup
-//        if let project = projects.sorted(by: \ProjectV2.projectTitle).first {
-//            return project
-//        }
-
-        // Use example as last resort
-        return .example
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let project: ProjectV2
 }

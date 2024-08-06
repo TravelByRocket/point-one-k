@@ -27,8 +27,7 @@ struct SettingsView: View {
     )
     private var openProjects: [ProjectV2]
 
-    @State private var widgetProject: URL? = UserDefaults(
-        suiteName: "group.co.synodic.PointOneK")?.url(forKey: "widgetProject")
+    @State private var widgetProjectID: ProjectV2.ID?
 
     private var noProjectsText: some View {
         Text("No projects here")
@@ -83,21 +82,32 @@ struct SettingsView: View {
                 header: Text("Widget Project"),
                 footer: Text("If you close your widget project it will remain visible in the widget.")
             ) {
-                Picker("Pick Project", selection: $widgetProject) {
+                Picker("Pick Project", selection: $widgetProjectID) {
                     ForEach(openProjects.sorted(by: \Project.projectTitle)) { project in
                         Text(project.projectTitle)
-                        #warning("Revive widget project selection")
-//                            .tag((project.objectID.uriRepresentation()) as URL?)
+                            .tag(project.id)
                     }
 
                     Text("Use Placeholder Project")
                         .italic()
                         .tag(nil as URL?)
                 }
+                .onAppear {
+                    if let project = openProjects.first(where: { $0.widgetID == 1 }) {
+                        widgetProjectID = project.id
+                    }
+                }
                 .pickerStyle(.inline)
                 .labelsHidden()
-                .onChange(of: widgetProject) {
-                    UserDefaults(suiteName: "group.co.synodic.PointOneK")?.set(widgetProject, forKey: "widgetProject")
+                .onChange(of: widgetProjectID) {
+                    for project in openProjects {
+                        if project.id == widgetProjectID {
+                            project.widgetID = 1
+                        } else {
+                            project.widgetID = nil
+                        }
+                    }
+
                     WidgetCenter.shared.reloadAllTimelines()
                 }
             }

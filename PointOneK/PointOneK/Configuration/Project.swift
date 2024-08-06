@@ -16,6 +16,8 @@ import SwiftData
     var detail: String?
     var title: String?
 
+    var widgetID: Int?
+
     // Relationships
 
     @Relationship(deleteRule: .cascade)

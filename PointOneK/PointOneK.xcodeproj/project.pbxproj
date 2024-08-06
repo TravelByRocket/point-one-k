@@ -13,6 +13,8 @@
 		2F341B8D275993890096D685 /* BackgroundBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F341B8C275993890096D685 /* BackgroundBarView.swift */; };
 		2F35D62B27F1280C001EEE55 /* Color-Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9D472751D0F800E2CC3C /* Color-Additions.swift */; };
 		2F3AC3462C5B2676005E243D /* EisenhowerMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AC3452C5B2676005E243D /* EisenhowerMatrix.swift */; };
+		2F4E1B952C61B5E20029FC6F /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E1B942C61B5E20029FC6F /* ModelContainer.swift */; };
+		2F4E1B962C61B5E20029FC6F /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4E1B942C61B5E20029FC6F /* ModelContainer.swift */; };
 		2F64BDA32C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F64BDA22C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift */; };
 		2F664E722C55A38D003FDDE4 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7A32C3580A1007FE63A /* Project.swift */; };
 		2F664E732C55A3D0003FDDE4 /* Project-ModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCDC7C02C3B008E007FE63A /* Project-ModelHelpers.swift */; };
@@ -129,6 +131,7 @@
 		2F32AC072763B29800BCA997 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F341B8C275993890096D685 /* BackgroundBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBarView.swift; sourceTree = "<group>"; };
 		2F3AC3452C5B2676005E243D /* EisenhowerMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EisenhowerMatrix.swift; sourceTree = "<group>"; };
+		2F4E1B942C61B5E20029FC6F /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 		2F64BDA22C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceLayerPreviewModifier.swift; sourceTree = "<group>"; };
 		2F8B9D1E2751CF0A00E2CC3C /* PointOneK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointOneK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F8B9D212751CF0A00E2CC3C /* PointOneKApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointOneKApp.swift; sourceTree = "<group>"; };
@@ -353,6 +356,7 @@
 				2FCDC7A42C3580A1007FE63A /* Quality.swift */,
 				2FCDC7A52C3580A1007FE63A /* Score.swift */,
 				2F64BDA22C3B3DED0061B78A /* PersistenceLayerPreviewModifier.swift */,
+				2F4E1B942C61B5E20029FC6F /* ModelContainer.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -671,6 +675,7 @@
 				2FCDC7C52C3B008E007FE63A /* Item-ModelHelpers.swift in Sources */,
 				2FCDC7C62C3B008E007FE63A /* Quality-ModelHelpers.swift in Sources */,
 				2FCDC7C72C3B008E007FE63A /* Project-ModelHelpers.swift in Sources */,
+				2F4E1B962C61B5E20029FC6F /* ModelContainer.swift in Sources */,
 				2FCFE8F127DEEE7A0044E7F7 /* ScoringRowDisclosing.swift in Sources */,
 				2F1DA9DF2753E3350004EFD5 /* QualityDetailView.swift in Sources */,
 				2FCFE8DE27DC51680044E7F7 /* ProjectItemsSection.swift in Sources */,
@@ -721,6 +726,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F664E742C55A4BA003FDDE4 /* Quality.swift in Sources */,
+				2F4E1B952C61B5E20029FC6F /* ModelContainer.swift in Sources */,
 				2F664E752C55A4BA003FDDE4 /* Score.swift in Sources */,
 				2F664E762C55A4BA003FDDE4 /* Item.swift in Sources */,
 				2FBF50AD27E2756400B6883E /* BackgroundBarView.swift in Sources */,
@@ -933,7 +939,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2022.000.00;
-				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK;
+				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1041,7 +1047,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2022.000.00;
-				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK.PointOneKWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = co.synodic.PointOneK.debug.PointOneKWidget.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

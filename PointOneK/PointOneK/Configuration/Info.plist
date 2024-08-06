@@ -15,20 +15,20 @@
 			</array>
 		</dict>
 	</array>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>pointonek://newProject</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>New Project</string>
-			<key>UIApplicationShortcutItemIconSymbolName</key>
-			<string>rectangle.stack.badge.plus</string>
-		</dict>
-	</array>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>co.synodic.PointOneK.newProject</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>rectangle.stack.badge.plus</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>New Project</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>pointonek://newProject</string>
+		</dict>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

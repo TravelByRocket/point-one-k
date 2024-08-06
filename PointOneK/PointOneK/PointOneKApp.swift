@@ -25,10 +25,7 @@ struct PointOneKApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(
-            for: ProjectV2.self,
-            inMemory: isInMemory
-        )
+        .modelContainer(.standard)
     }
 
     var isInMemory: Bool {
