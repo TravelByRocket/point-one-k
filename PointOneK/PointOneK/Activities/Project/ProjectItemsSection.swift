@@ -44,7 +44,8 @@ struct ProjectItemsSection: View {
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    row(item: item) // same as ItemRowView but doesn't crash when a function here
+                    // TODO: Fix ItemRowView #66
+                    row(item: item)
                 }
                 .accessibilityIdentifier("ItemRow \(item.itemTitle)")
                 .listRowBackground(
@@ -113,6 +114,7 @@ struct ProjectItemsSection: View {
         return project.items?.sorted(by: comparator) ?? []
     }
 
+    // TODO: Fix ItemRowView #66
     private func row(item: Item) -> some View {
         HStack {
             Text(item.itemTitle)

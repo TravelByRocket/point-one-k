@@ -6,7 +6,7 @@
 //
 
 // import SwiftUI
-
+// TODO: Fix ItemRowView #66
 // MOVED TO FUNCTION DUE TO SWIFTDATA CRASH
 //
 // struct ItemRowView: View {
