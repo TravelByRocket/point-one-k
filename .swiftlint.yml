@@ -1,6 +1,7 @@
 disabled_rules:
   - trailing_comma
   - blanket_disable_command
+  - todo
 
 opt_in_rules:
   - duplicate_imports
