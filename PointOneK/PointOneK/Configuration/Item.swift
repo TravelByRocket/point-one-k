@@ -6,7 +6,7 @@
 //
 //
 
-import SwiftData
+public import SwiftData
 
 @Model public class ItemV2 {
     // Attributes
