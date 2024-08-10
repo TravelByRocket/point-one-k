@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -574,7 +574,7 @@
 				};
 			};
 			buildConfigurationList = 2F8B9D192751CF0A00E2CC3C /* Build configuration list for PBXProject "PointOneK" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
