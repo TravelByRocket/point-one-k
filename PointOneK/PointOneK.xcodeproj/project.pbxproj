@@ -277,10 +277,10 @@
 				2F8B9D232751CF0A00E2CC3C /* ContentView.swift */,
 				2F8B9D3C2751D00A00E2CC3C /* Activities */,
 				2F8B9D3A2751D00600E2CC3C /* Extensions */,
-				2F8B9D8B2751D37D00E2CC3C /* Localization */,
 				2F8B9D972751DAC500E2CC3C /* Configuration */,
-				2F8B9D412751D0D800E2CC3C /* Colors.xcassets */,
+				2FC5FADA2C6BA61200D9A947 /* Localizable.xcstrings */,
 				2F8B9D252751CF0A00E2CC3C /* Assets.xcassets */,
+				2F8B9D412751D0D800E2CC3C /* Colors.xcassets */,
 				2F8B9D272751CF0A00E2CC3C /* Preview Content */,
 			);
 			path = PointOneK;
@@ -328,14 +328,6 @@
 				2FCFE8ED27DEE7B50044E7F7 /* Shared */,
 			);
 			path = Activities;
-			sourceTree = "<group>";
-		};
-		2F8B9D8B2751D37D00E2CC3C /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				2FC5FADA2C6BA61200D9A947 /* Localizable.xcstrings */,
-			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 		2F8B9D972751DAC500E2CC3C /* Configuration */ = {
