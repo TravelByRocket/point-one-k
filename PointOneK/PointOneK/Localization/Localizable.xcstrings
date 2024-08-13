@@ -24,6 +24,12 @@
         "en" : {
           "variations" : {
             "plural" : {
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@, no items."
+                }
+              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
