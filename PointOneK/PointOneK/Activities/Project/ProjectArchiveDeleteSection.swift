@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProjectArchiveDeleteSection: View {
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     @State private var showingDeleteConfirm = false
 
@@ -43,6 +44,7 @@ struct ProjectArchiveDeleteSection: View {
 
     func delete() {
         context.delete(project)
+        dismiss()
     }
 }
 
