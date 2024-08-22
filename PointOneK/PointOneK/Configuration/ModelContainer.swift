@@ -12,7 +12,7 @@ extension ModelContainer {
         #if DEBUG || TESTING
             let config = ModelConfiguration(
                 "debug",
-                isStoredInMemoryOnly: true,
+                isStoredInMemoryOnly: false,
                 groupContainer: .automatic
             )
         #else
