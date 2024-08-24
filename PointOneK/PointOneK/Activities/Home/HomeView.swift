@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     @Environment(\.modelContext) private var context
     @State private var showingSettings = false
-    @State private var newProjectTitle = ""
 
     var body: some View {
         NavigationStack {
@@ -39,7 +38,6 @@ struct HomeView: View {
         TitleAddingRow(prompt: "Enter New Project Title") { title in
             withAnimation {
                 addProject(titled: title)
-                newProjectTitle = ""
             }
         }
     }
