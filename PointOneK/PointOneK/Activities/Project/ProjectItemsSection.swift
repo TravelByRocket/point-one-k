@@ -13,31 +13,6 @@ struct ProjectItemsSection: View {
 
     @Bindable var project: Project
 
-    var itemSortingHeader: some View {
-        HStack {
-            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
-
-            Spacer()
-
-            Button {
-                withAnimation {
-                    if sortOrder == .title {
-                        sortOrder = .score
-                    } else { // if sortOrder == .score
-                        sortOrder = .title
-                    }
-                }
-            } label: {
-                Label {
-                    Text("Switch sort priority")
-                } icon: {
-                    Image(systemName: "arrow.up.arrow.down")
-                }
-                .labelStyle(.iconOnly)
-            }
-        }
-    }
-
     var body: some View {
         Section(header: itemSortingHeader) {
             ForEach(items) { item in
@@ -75,6 +50,31 @@ struct ProjectItemsSection: View {
 
     private var items: [ItemV2] {
         project.projectItems(using: sortOrder)
+    }
+
+    var itemSortingHeader: some View {
+        HStack {
+            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
+
+            Spacer()
+
+            Button {
+                withAnimation {
+                    if sortOrder == .title {
+                        sortOrder = .score
+                    } else { // if sortOrder == .score
+                        sortOrder = .title
+                    }
+                }
+            } label: {
+                Label {
+                    Text("Switch sort priority")
+                } icon: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+                .labelStyle(.iconOnly)
+            }
+        }
     }
 
     // TODO: Fix ItemRowView #66
