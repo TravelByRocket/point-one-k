@@ -60,11 +60,7 @@ struct ProjectItemsSection: View {
 
             Button {
                 withAnimation {
-                    if sortOrder == .title {
-                        sortOrder = .score
-                    } else { // if sortOrder == .score
-                        sortOrder = .title
-                    }
+                    sortOrder.toggle()
                 }
             } label: {
                 Label {
