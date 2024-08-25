@@ -27,7 +27,7 @@ struct ProjectDetailEditView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .modifier(.persistenceLayer)) {
     Form {
         ProjectDetailEditView(project: .example)
     }

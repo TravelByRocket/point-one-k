@@ -23,7 +23,7 @@ struct ScoringRowDisclosing: View {
     }
 }
 
-#Preview {
+#Preview(traits: .modifier(.persistenceLayer)) {
     List {
         ScoringRowDisclosing(label: "Quality", score: .example)
     }
