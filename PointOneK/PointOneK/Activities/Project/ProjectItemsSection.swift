@@ -73,45 +73,8 @@ struct ProjectItemsSection: View {
         }
     }
 
-    private var items: [Item] {
-        var comparator: (Item, Item) -> Bool {
-            let scoreComparator: (Item, Item) -> ComparisonResult = {
-                if $0.scoreTotal == $1.scoreTotal {
-                    .orderedSame
-                } else if $0.scoreTotal > $1.scoreTotal {
-                    .orderedAscending
-                } else {
-                    .orderedDescending
-                }
-            }
-
-            let nameCompare: (Item, Item) -> ComparisonResult = {
-                $0.itemTitle.localizedCompare($1.itemTitle)
-            }
-
-            switch sortOrder {
-            case .title:
-                return {
-                    let nameComparison = nameCompare($0, $1)
-                    if nameComparison != .orderedSame {
-                        return nameComparison == .orderedAscending
-                    } else {
-                        return scoreComparator($0, $1) == .orderedAscending
-                    }
-                }
-            case .score:
-                return {
-                    let scoreComparison = scoreComparator($0, $1)
-                    if scoreComparison != .orderedSame {
-                        return scoreComparison == .orderedAscending
-                    } else {
-                        return nameCompare($0, $1) == .orderedAscending
-                    }
-                }
-            }
-        }
-
-        return project.items?.sorted(by: comparator) ?? []
+    private var items: [ItemV2] {
+        project.projectItems(using: sortOrder)
     }
 
     // TODO: Fix ItemRowView #66

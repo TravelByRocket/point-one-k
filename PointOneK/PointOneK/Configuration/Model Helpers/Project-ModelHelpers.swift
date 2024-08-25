@@ -106,18 +106,43 @@ extension ProjectV2 {
     }
 
     func projectItems(using sortOrder: ItemV2.SortOrder) -> [ItemV2] {
-        switch sortOrder {
-        case .title:
-            projectItems.sorted(by: \ItemV2.scoreTotal).reversed()
-                .sorted(by: \ItemV2.itemTitle.localizedLowercase)
-        case .score:
-            projectItems.sorted { first, second in
-                if first.scoreTotal != second.scoreTotal {
-                    first.scoreTotal > second.scoreTotal // larger first
+        var comparator: (ItemV2, ItemV2) -> Bool {
+            let scoreComparator: (ItemV2, ItemV2) -> ComparisonResult = {
+                if $0.scoreTotal == $1.scoreTotal {
+                    .orderedSame
+                } else if $0.scoreTotal > $1.scoreTotal {
+                    .orderedAscending
                 } else {
-                    first.itemTitle.localizedLowercase < second.itemTitle.localizedLowercase // 'a' first
+                    .orderedDescending
+                }
+            }
+
+            let nameCompare: (ItemV2, ItemV2) -> ComparisonResult = {
+                $0.itemTitle.localizedCompare($1.itemTitle)
+            }
+
+            switch sortOrder {
+            case .title:
+                return {
+                    let nameComparison = nameCompare($0, $1)
+                    if nameComparison != .orderedSame {
+                        return nameComparison == .orderedAscending
+                    } else {
+                        return scoreComparator($0, $1) == .orderedAscending
+                    }
+                }
+            case .score:
+                return {
+                    let scoreComparison = scoreComparator($0, $1)
+                    if scoreComparison != .orderedSame {
+                        return scoreComparison == .orderedAscending
+                    } else {
+                        return nameCompare($0, $1) == .orderedAscending
+                    }
                 }
             }
         }
+
+        return items?.sorted(by: comparator) ?? []
     }
 }
