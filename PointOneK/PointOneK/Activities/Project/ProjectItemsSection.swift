@@ -13,31 +13,6 @@ struct ProjectItemsSection: View {
 
     @Bindable var project: Project
 
-    var itemSortingHeader: some View {
-        HStack {
-            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
-
-            Spacer()
-
-            Button {
-                withAnimation {
-                    if sortOrder == .title {
-                        sortOrder = .score
-                    } else { // if sortOrder == .score
-                        sortOrder = .title
-                    }
-                }
-            } label: {
-                Label {
-                    Text("Switch sort priority")
-                } icon: {
-                    Image(systemName: "arrow.up.arrow.down")
-                }
-                .labelStyle(.iconOnly)
-            }
-        }
-    }
-
     var body: some View {
         Section(header: itemSortingHeader) {
             ForEach(items) { item in
@@ -73,45 +48,29 @@ struct ProjectItemsSection: View {
         }
     }
 
-    private var items: [Item] {
-        var comparator: (Item, Item) -> Bool {
-            let scoreComparator: (Item, Item) -> ComparisonResult = {
-                if $0.scoreTotal == $1.scoreTotal {
-                    .orderedSame
-                } else if $0.scoreTotal > $1.scoreTotal {
-                    .orderedAscending
-                } else {
-                    .orderedDescending
-                }
-            }
+    private var items: [ItemV2] {
+        project.projectItems(using: sortOrder)
+    }
 
-            let nameCompare: (Item, Item) -> ComparisonResult = {
-                $0.itemTitle.localizedCompare($1.itemTitle)
-            }
+    var itemSortingHeader: some View {
+        HStack {
+            Text("Items by \(sortOrder == .title ? "Title, Score" : "Score, Title")")
 
-            switch sortOrder {
-            case .title:
-                return {
-                    let nameComparison = nameCompare($0, $1)
-                    if nameComparison != .orderedSame {
-                        return nameComparison == .orderedAscending
-                    } else {
-                        return scoreComparator($0, $1) == .orderedAscending
-                    }
+            Spacer()
+
+            Button {
+                withAnimation {
+                    sortOrder.toggle()
                 }
-            case .score:
-                return {
-                    let scoreComparison = scoreComparator($0, $1)
-                    if scoreComparison != .orderedSame {
-                        return scoreComparison == .orderedAscending
-                    } else {
-                        return nameCompare($0, $1) == .orderedAscending
-                    }
+            } label: {
+                Label {
+                    Text("Switch sort priority")
+                } icon: {
+                    Image(systemName: "arrow.up.arrow.down")
                 }
+                .labelStyle(.iconOnly)
             }
         }
-
-        return project.items?.sorted(by: comparator) ?? []
     }
 
     // TODO: Fix ItemRowView #66

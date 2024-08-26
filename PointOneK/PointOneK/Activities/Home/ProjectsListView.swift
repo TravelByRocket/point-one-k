@@ -38,7 +38,7 @@ struct ProjectsListView: View {
                 .accessibilityIdentifier(project.projectTitle)
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(.insetGrouped)
     }
 
     var contentUnavailableView: some View {

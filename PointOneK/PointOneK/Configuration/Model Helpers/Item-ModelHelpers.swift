@@ -10,6 +10,13 @@ import Foundation
 extension ItemV2 {
     enum SortOrder {
         case title, score
+
+        mutating func toggle() {
+            switch self {
+            case .title: self = .score
+            case .score: self = .title
+            }
+        }
     }
 
     var itemTitle: String {

@@ -24,12 +24,6 @@
         "en" : {
           "variations" : {
             "plural" : {
-              "zero" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%1$@, no items."
-                }
-              },
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -40,6 +34,12 @@
                 "stringUnit" : {
                   "state" : "new",
                   "value" : "%1$@, %2$lld items."
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%1$@, no items."
                 }
               }
             }
@@ -235,6 +235,7 @@
       }
     },
     "Add Project" : {
+      "extractionState" : "stale",
       "localizations" : {
         "it" : {
           "stringUnit" : {
@@ -501,9 +502,6 @@
       }
     },
     "Eisenhower Method" : {
-
-    },
-    "Enter New Project Title" : {
 
     },
     "Gold" : {

@@ -41,7 +41,7 @@ struct ProjectRowView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .modifier(.persistenceLayer)) {
     List {
         ProjectRowView(project: .example)
         ProjectRowView(project: .example)

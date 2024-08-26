@@ -10,14 +10,13 @@ import SwiftUI
 struct HomeView: View {
     @Environment(\.modelContext) private var context
     @State private var showingSettings = false
-    @State private var newProjectTitle = ""
 
     var body: some View {
         NavigationStack {
             ProjectsListView()
                 .toolbar { settingsToolbarItem }
 
-            addProjectRow
+            titleAddingRow
                 .padding()
         }
         .sheet(isPresented: $showingSettings) {
@@ -35,40 +34,18 @@ struct HomeView: View {
         }
     }
 
-    // MARK: Add Project
-
-    var addProjectRow: some View {
-        HStack {
-            titleTextField
-            addProjectButton
-        }
-    }
-
-    var titleTextField: some View {
-        TextField(
-            "Enter New Project Title",
-            text: $newProjectTitle
-        )
-        .textFieldStyle(.roundedBorder)
-    }
-
-    var addProjectButton: some View {
-        Button {
+    var titleAddingRow: some View {
+        TitleAddingRow(prompt: "Enter New Project Title") { title in
             withAnimation {
-                addProject()
+                addProject(titled: title)
             }
-        } label: {
-            Label("Add Project", systemImage: "plus")
         }
-        .labelStyle(.iconOnly)
-        .disabled(newProjectTitle.isEmpty)
     }
 
-    func addProject() {
+    func addProject(titled: String) {
         let project = Project()
         project.closed = false
-        project.title = newProjectTitle
-        newProjectTitle = ""
+        project.title = titled
         context.insert(project)
     }
 }

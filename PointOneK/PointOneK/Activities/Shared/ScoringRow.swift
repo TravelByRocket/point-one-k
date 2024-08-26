@@ -35,7 +35,7 @@ struct ScoringRow: View {
     }
 }
 
-#Preview {
+#Preview(traits: .modifier(.persistenceLayer)) {
     List {
         ScoringRow(label: "Item/Quality", score: .example)
     }
